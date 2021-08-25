@@ -8,7 +8,9 @@ spec:
   interval: 1m0s
   ref:
     branch: main
-  url: https://github.com/dfroberg/cluster
+  secretRef:
+    name: flux-system
+  url: ssh://git@github.com/dfroberg/cluster
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
@@ -16,14 +18,10 @@ metadata:
   name: flux-system
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 10m0s
   path: ./cluster/base
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   validation: client
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
