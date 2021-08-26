@@ -6,12 +6,5 @@ metadata:
 spec:
   type: slack
   channel: managed-services
-  # Enable decryption
-  decryption:
-    # Use the sops provider
-    provider: sops
-    secretRef:
-      # Reference the new 'sops-gpg' secret
-      name: sops-gpg
   secretRef:
     name: slack-url 
