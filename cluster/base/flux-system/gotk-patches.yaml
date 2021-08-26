@@ -17,7 +17,6 @@ metadata:
   name: source-controller
   namespace: flux-system
 spec:
-
   template:
     spec:
       containers:
