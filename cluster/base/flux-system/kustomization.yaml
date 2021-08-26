@@ -4,5 +4,7 @@ resources:
   - gotk-components.yaml
   - gotk-sync.yaml
   - charts
+  - flux-notifications
+  - cluster-sops-keys
 patchesStrategicMerge:
   - ./gotk-patches.yaml
