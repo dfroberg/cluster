@@ -4,3 +4,7 @@ resources:
   - cert-manager.yaml
   - metallb-system.yaml
   - networking.yaml
+  - monitoring.yaml
+  - longhorn-system.yaml
+  - kasten-io.yaml
+  
