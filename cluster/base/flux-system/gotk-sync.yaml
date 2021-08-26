@@ -18,6 +18,10 @@ metadata:
   name: flux-system
   namespace: flux-system
 spec:
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
   interval: 1m0s
   path: ./cluster/base
   prune: true
@@ -25,7 +29,3 @@ spec:
     kind: GitRepository
     name: flux-system
   validation: client
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
