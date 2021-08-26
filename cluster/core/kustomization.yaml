@@ -4,6 +4,7 @@ resources:
   - namespaces
   - metallb-system
   - cert-manager
+  - flux-notifications
   - system-upgrade
   - monitoring
   
