@@ -8,7 +8,7 @@ spec:
   channel: managed-services
   secretRef:
     name: slack-url 
-  # Enable decryption
+    # Enable decryption
   decryption:
     # Use the sops provider
     provider: sops
