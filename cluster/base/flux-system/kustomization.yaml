@@ -3,8 +3,8 @@ kind: Kustomization
 resources:
   - gotk-components.yaml
   - gotk-sync.yaml
+  - sources
   - notifications
-  # - ./sources/
   - charts
 patchesStrategicMerge:
   - ./gotk-patches.yaml
