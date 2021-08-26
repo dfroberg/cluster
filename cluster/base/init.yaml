@@ -2,14 +2,17 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: crds
+  name: init
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: init
   interval: 1m0s
-  path: ./cluster/crds
+  path: ./cluster/init
   prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+
