@@ -6,5 +6,9 @@ metadata:
 spec:
   type: slack
   channel: managed-services
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
   secretRef:
     name: slack-url 
