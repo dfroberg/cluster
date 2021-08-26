@@ -11,7 +11,7 @@ k3sup install \
     --user=$USER \
     --cluster \
     --k3s-version=$K3S_VERSION \
-    --k3s-extra-args="\
+    --k3s-extra-args='\
       --node-taint CriticalAddonsOnly=true:NoExecute \
       --node-label master=yes \
       --tls-san 192.168.30.60 \
@@ -22,7 +22,7 @@ k3sup install \
       --disable servicelb \
       --disable traefik \
       --disable metrics-server \
-      "
+      '
 
 sleep 5
 
@@ -35,7 +35,7 @@ k3sup join \
   --server-ip $LB \
   --server \
   --k3s-version=$K3S_VERSION \
-  --k3s-extra-args="\
+  --k3s-extra-args='\
       --node-taint CriticalAddonsOnly=true:NoExecute \
       --node-label master=yes \
       --tls-san 192.168.30.60 \
@@ -46,7 +46,7 @@ k3sup join \
       --disable servicelb \
       --disable traefik \
       --disable metrics-server \
-      "
+      '
 sleep 5
 export NEXT_SERVER_IP=192.168.30.72
 
@@ -57,7 +57,7 @@ k3sup join \
   --server-ip $LB \
   --server \
   --k3s-version=$K3S_VERSION \
-  --k3s-extra-args="\
+  --k3s-extra-args='\
       --node-taint CriticalAddonsOnly=true:NoExecute \
       --node-label master=yes \
       --tls-san 192.168.30.60 \
@@ -68,7 +68,7 @@ k3sup join \
       --disable servicelb \
       --disable traefik \
       --disable metrics-server \
-      "
+      '
 
 sleep 5
 
@@ -83,9 +83,12 @@ k3sup join \
   --server-ip $SERVER_IP \
   --server \
   --k3s-version=$K3S_VERSION \
-  --k3s-extra-args="\
+  --k3s-extra-args='\
       --node-label worker=yes \
-      "
+      --disable servicelb \
+      --disable traefik \
+      --disable metrics-server \
+      '
 
 sleep 5
 
@@ -98,9 +101,12 @@ k3sup join \
   --server-ip $SERVER_IP \
   --server \
   --k3s-version=$K3S_VERSION \
-  --k3s-extra-args="\
+  --k3s-extra-args='\
       --node-label worker=yes \
-      "
+      --disable servicelb \
+      --disable traefik \
+      --disable metrics-server \
+      '
 
 sleep 5
 
@@ -113,9 +119,12 @@ k3sup join \
   --server-ip $SERVER_IP \
   --server \
   --k3s-version=$K3S_VERSION \
-  --k3s-extra-args="\
+  --k3s-extra-args='\
       --node-label worker=yes \
-      "
+      --disable servicelb \
+      --disable traefik \
+      --disable metrics-server \
+      '
 
 sleep 5
 
@@ -129,9 +138,12 @@ k3sup join \
   --server-ip $SERVER_IP \
   --server \
   --k3s-version=$K3S_VERSION \
-  --k3s-extra-args="\
+  --k3s-extra-args='\
       --node-label storage=yes \
-      "
+      --disable servicelb \
+      --disable traefik \
+      --disable metrics-server \
+      '
 
 sleep 5
 export NEXT_SERVER_IP=192.168.30.91
@@ -143,9 +155,12 @@ k3sup join \
   --server-ip $SERVER_IP \
   --server \
   --k3s-version=$K3S_VERSION \
-  --k3s-extra-args="\
+  --k3s-extra-args='\
       --node-label storage=yes \
-      "
+      --disable servicelb \
+      --disable traefik \
+      --disable metrics-server \
+      '
 
 sleep 5
 export NEXT_SERVER_IP=192.168.30.92
@@ -157,8 +172,11 @@ k3sup join \
   --server-ip $SERVER_IP \
   --server \
   --k3s-version=$K3S_VERSION \
-  --k3s-extra-args="\
+  --k3s-extra-args='\
       --node-label storage=yes \
-      "
+      --disable servicelb \
+      --disable traefik \
+      --disable metrics-server \
+      '
 
 sleep 5
