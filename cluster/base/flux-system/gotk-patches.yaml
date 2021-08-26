@@ -1,3 +1,15 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  decryption:
+    # Use the sops provider
+    provider: sops
+    secretRef:
+      # Reference the new 'sops-gpg' secret
+      name: sops-gpg
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -5,6 +17,7 @@ metadata:
   name: source-controller
   namespace: flux-system
 spec:
+
   template:
     spec:
       containers:
@@ -13,9 +26,3 @@ spec:
             limits:
               cpu: 4000m
               memory: 2Gi
-  decryption:
-      # Use the sops provider
-      provider: sops
-      secretRef:
-        # Reference the new 'sops-gpg' secret
-        name: sops-gpg
