@@ -8,6 +8,10 @@ spec:
   interval: 1m0s
   path: ./cluster/init
   prune: false
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
   sourceRef:
     kind: GitRepository
     name: flux-system
