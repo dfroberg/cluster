@@ -4,4 +4,5 @@ resources:
   - cluster-sops-keys/cluster-secrets.yaml
   - cluster-sops-keys/cluster-secrets.sops.yaml
   - cluster-sops-keys/cluster-secrets-repo.yaml
-
+patchesStrategicMerge:
+  - ./init-patches.yaml
