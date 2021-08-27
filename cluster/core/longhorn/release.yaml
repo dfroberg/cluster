@@ -1,0 +1,57 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: longhorn
+  namespace: longhorn-system
+spec:
+  releaseName: longhorn
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.longhorn.io
+      chart: longhorn
+      version: 1.1.2
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    persistence:
+      defaultClass: true
+      reclaimPolicy: Delete
+      defaultClassReplicaCount: 3
+    defaultSettings:
+      backupTarget: nfs://nas.cs.aml.ink:/mnt/data/nfs/longhorn/
+      backupTargetCredentialSecret: 
+      allowRecurringJobWhileVolumeDetached: false
+      createDefaultDiskLabeledNodes: false
+      defaultDataPath: /mnt/vg1/
+      defaultDataLocality: disabled
+      replicaSoftAntiAffinity: false
+      storageOverProvisioningPercentage: 200
+      storageMinimalAvailablePercentage: 10
+      upgradeChecker: true
+      defaultReplicaCount: 3
+      guaranteedEngineCPU: 0.25
+      defaultLonghornStaticStorageClass: longhorn-static
+      backupstorePollInterval: 300
+      autoSalvage: true
+      autoDeletePodWhenVolumeDetachedUnexpectedly: true
+      disableSchedulingOnCordonedNode: true
+      replicaZoneSoftAntiAffinity: true
+      volumeAttachmentRecoveryPolicy: wait
+      nodeDownPodDeletionPolicy: do-nothing
+      allowNodeDrainWithLastHealthyReplica: false
+      disableReplicaRebuild: false
+      replicaReplenishmentWaitInterval: 600
+      disableRevisionCounter: false
+      systemManagedPodsImagePullPolicy: if-not-present
+      allowVolumeCreationWithDegradedAvailability: true
+      autoCleanupSystemGeneratedSnapshot: true
+      taint-toleration: StorageOnly=true:NoExecute;StorageOnly=true:NoSchedule;CriticalAddonsOnly=true:NoSchedule;CriticalAddonsOnly=true:NoExecute
+      node-affinity: storage=yes
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace

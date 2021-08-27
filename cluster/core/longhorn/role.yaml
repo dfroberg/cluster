@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: longhorn-psp-role
+  namespace: longhorn-system
+rules:
+  - apiGroups:
+      - policy
+    resources:
+      - podsecuritypolicies
+    verbs:
+      - use
+    resourceNames:
+      - longhorn-psp
