@@ -4,14 +4,12 @@ metadata:
   name: flux-system
   namespace: flux-system
 spec:
-  template:
-    spec:
-      decryption:
-        # Use the sops provider
-        provider: sops
-        secretRef:
-          # Reference the new 'sops-gpg' secret
-          name: sops-gpg
+  decryption:
+    # Use the sops provider
+    provider: sops
+    secretRef:
+      # Reference the new 'sops-gpg' secret
+      name: sops-gpg
 ---
 apiVersion: apps/v1
 kind: Deployment
