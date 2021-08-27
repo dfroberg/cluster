@@ -5,4 +5,4 @@ resources:
   - kube-system
   - networking
   - system-upgrade
-  - k10
+#  - k10
