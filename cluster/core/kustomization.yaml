@@ -7,5 +7,5 @@ resources:
   - flux-notifications
   - system-upgrade
   - monitoring
-patchesStrategicMerge:
-  - ./core-patches.yaml  
+#patchesStrategicMerge:
+#  - ./core-patches.yaml  
