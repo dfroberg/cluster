@@ -3,5 +3,4 @@ kind: Kustomization
 resources:
   - cluster-sops-keys/cluster-secrets-repo.yaml
   - cluster-sops-keys/cluster-secrets.sops.yaml
-patchesStrategicMerge:
-  - ./init-patches.yaml  
+
