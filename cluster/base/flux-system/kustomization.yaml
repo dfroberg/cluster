@@ -3,8 +3,6 @@ kind: Kustomization
 resources:
   - gotk-components.yaml
   - gotk-sync.yaml
-  - cluster-sops-keys/cluster-secrets.sops.yaml
-  - cluster-sops-keys/cluster-secrets-repo.yaml
   - charts
 patchesStrategicMerge:
   - ./gotk-patches.yaml

@@ -2,14 +2,19 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: crds
+  name: init
   namespace: flux-system
 spec:
   interval: 1m0s
-  dependsOn:
-    - name: init
-  path: ./cluster/crds
+  path: ./cluster/init
   prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
