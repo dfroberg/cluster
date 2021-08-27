@@ -158,12 +158,11 @@ k3sup join \
 --node-label storage=yes \
 "
 
-echo "Apply Cluster Secret Keys"
-kubectl create ns flux-system
-kubectl apply -f ../cluster-secrets/cluster/sops-gpg.yaml -n flux-system
+
 echo "Bootstrap"
 flux bootstrap github --owner=dfroberg --repository=cluster --private=false --personal=true --path=/cluster/base/ --token-auth --reconcile
-
+echo "Apply Cluster Secret Keys"
+kubectl apply -f ../cluster-secrets/cluster/sops-gpg.yaml -n flux-system
 # Setup some helpers
 alias kdk="k describe kustomizations.kustomize.toolkit.fluxcd.io -A"
 
