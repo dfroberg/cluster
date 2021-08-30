@@ -86,7 +86,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: "rook-ceph-block"
+              storageClassName: "longhorn-static"
               resources:
                 requests:
                   storage: 1Gi
@@ -179,7 +179,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: "rook-ceph-block"
+              storageClassName: "longhorn-static"
               resources:
                 requests:
                   storage: 10Gi
