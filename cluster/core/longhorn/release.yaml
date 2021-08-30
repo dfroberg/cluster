@@ -34,7 +34,7 @@ spec:
       upgradeChecker: true
       defaultReplicaCount: 3
       guaranteedEngineCPU: 0.25
-      defaultLonghornStaticStorageClass: longhorn-static
+      defaultLonghornStaticStorageClass: longhorn
       backupstorePollInterval: 300
       autoSalvage: true
       autoDeletePodWhenVolumeDetachedUnexpectedly: true

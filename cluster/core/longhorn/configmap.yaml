@@ -17,7 +17,7 @@ data:
     default-replica-count: 3
     default-data-locality: disabled
     guaranteed-engine-cpu: 15
-    default-longhorn-static-storage-class: longhorn-static
+    default-longhorn-static-storage-class: longhorn
     backupstore-poll-interval: 300
     taint-toleration: StorageOnly=true:NoExecute;StorageOnly=true:NoSchedule;CriticalAddonsOnly=true:NoSchedule;CriticalAddonsOnly=true:NoExecute
     system-managed-components-node-selector:
