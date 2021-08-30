@@ -20,7 +20,7 @@ spec:
     persistence:
       defaultClass: true
       reclaimPolicy: Delete
-      defaultClassReplicaCount: 3
+      defaultClassReplicaCount: 2
     defaultSettings:
       backupTarget: nfs://nas.cs.aml.ink:/mnt/data/nfs/longhorn/
       backupTargetCredentialSecret: 
