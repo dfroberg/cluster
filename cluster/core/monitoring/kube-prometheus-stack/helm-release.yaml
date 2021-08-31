@@ -74,7 +74,7 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "traefik"
+        ingressClassName: "nginx"
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
@@ -124,27 +124,27 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints:
-        - 192.168.42.10
-        - 192.168.42.11
-        - 192.168.42.12
+        - 192.168.30.70
+        - 192.168.30.71
+        - 192.168.30.72
     kubeScheduler:
       enabled: true
       endpoints:
-        - 192.168.42.10
-        - 192.168.42.11
-        - 192.168.42.12
+        - 192.168.30.70
+        - 192.168.30.71
+        - 192.168.30.72
     kubeProxy:
       enabled: true
       endpoints:
-        - 192.168.42.10
-        - 192.168.42.11
-        - 192.168.42.12
+        - 192.168.30.70
+        - 192.168.30.71
+        - 192.168.30.72
     kubeEtcd:
       enabled: true
       endpoints:
-        - 192.168.42.10
-        - 192.168.42.11
-        - 192.168.42.12
+        - 192.168.30.70
+        - 192.168.30.71
+        - 192.168.30.72
       service:
         enabled: true
         port: 2381
@@ -156,7 +156,7 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "traefik"
+        ingressClassName: "nginx"
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:

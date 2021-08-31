@@ -30,7 +30,7 @@ spec:
       ingress:
         enabled: true
         hostname: "thanos.${SECRET_DOMAIN}"
-        ingressClassName: "traefik"
+        ingressClassName: "nginx"
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         tls: true
