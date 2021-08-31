@@ -4,6 +4,7 @@ resources:
   - namespaces
   - metallb-system
   # - longhorn
+  - rook-ceph
   - cert-manager
   - flux-notifications
   - system-upgrade
