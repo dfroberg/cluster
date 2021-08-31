@@ -7,4 +7,5 @@ resources:
   - monitoring.yaml
   - longhorn-system.yaml
   - kasten-io.yaml
+  - rook-ceph
   
