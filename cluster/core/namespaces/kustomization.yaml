@@ -7,6 +7,6 @@ resources:
   - monitoring.yaml
   - longhorn-system.yaml
   - kasten-io.yaml
-  - rook-ceph
+  - rook-ceph.yaml
   - rook-nfs-system
   

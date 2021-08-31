@@ -17,7 +17,7 @@ resources:
   - k8s-at-home-charts.yaml
   - kasten-charts.yaml
   - kuberhealthy-charts.yaml
-  - longhorn-charts.yaml
+  #- longhorn-charts.yaml
   - descheduler-charts.yaml
   - external-dns-charts.yaml
   - lwolf-charts.yaml
