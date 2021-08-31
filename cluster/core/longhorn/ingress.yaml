@@ -7,7 +7,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: longhorn.k8s.aml.ink
+  - host: "longhorn.${SECRET_DOMAIN}"
     http:
       paths:
       - path: /
