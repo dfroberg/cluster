@@ -8,5 +8,5 @@ resources:
   - longhorn-system.yaml
   - kasten-io.yaml
   - rook-ceph.yaml
-  - rook-nfs-system
+  - rook-nfs-system.yaml
   
