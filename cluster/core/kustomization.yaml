@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - namespaces
   - metallb-system
-  - longhorn
+  # - longhorn
   - cert-manager
   - flux-notifications
   - system-upgrade
