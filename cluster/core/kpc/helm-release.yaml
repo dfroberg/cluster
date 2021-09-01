@@ -27,5 +27,5 @@ spec:
         # if defaultEnabled is false, you can enable specific ingresses by setting the annotation to true
         defaultEnabled: true
         defaultFrontend: http-80
-        defaultBackend: nginx
+        defaultBackend: traefik
         #allowedHostRegex: "/.*/"
