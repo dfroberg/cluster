@@ -77,7 +77,7 @@ spec:
         maxVersion: VersionTLS13
         sniStrict: true
     pilot:
-      enabled: true
+      enabled: false
       token: "${SECRET_TRAEFIK_PILOT_TOKEN}"
     experimental:
       plugins:
@@ -94,7 +94,7 @@ spec:
                   - key: app.kubernetes.io/name
                     operator: In
                     values:
-                      - traefik
+                      - worker
               topologyKey: kubernetes.io/hostname
     resources:
       requests:
