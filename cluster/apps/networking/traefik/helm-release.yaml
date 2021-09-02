@@ -84,18 +84,18 @@ spec:
         enabled: true
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
-    affinity:
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/name
-                    operator: In
-                    values:
-                      - worker
-              topologyKey: kubernetes.io/hostname
+#    affinity:
+#      podAntiAffinity:
+#        preferredDuringSchedulingIgnoredDuringExecution:
+#          - weight: 100
+#            podAffinityTerm:
+#              labelSelector:
+#                matchExpressions:
+#                  - key: app.kubernetes.io/name
+#                    operator: In
+#                    values:
+#                      - worker
+#              topologyKey: kubernetes.io/hostname
     resources:
       requests:
         memory: 100Mi
