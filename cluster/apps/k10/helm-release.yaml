@@ -49,4 +49,4 @@ spec:
             patch:
               - op: add
                 path: /spec/ingressClassName
-                value: nginx
+                value: traefik
