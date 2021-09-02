@@ -53,7 +53,7 @@ The Git repository contains the following directories under `cluster` and are or
 | ---------------------- | ----- | ------------ | -------------------- | ---- | --------------------------- |
 | HP DL580               | 3     | 256GB SSD    | N/A                  | 196GB | k3s Masters (embedded etcd) |
 | HP DL360               | 3     | 240GB SSD    | N/A                  | 196GB | k3s Workers                 |
-| HP DL380               | 3     | 240GB SSD    | 1TB NVMe (longhorn)  | 196GB | k3s Workers  (label: storage=yes)               |
+| HP DL380               | 3     | 240GB SSD    | 1TB NVMe (rook-ceph)  | 196GB | k3s Workers  (label: storage=yes)               |
 | TrueNAS Core           | 1     | 120GB SSD    | 8x2TB RAIDz2         | 32GB  | Shared file storage         |
 
 ## Tools
