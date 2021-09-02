@@ -5,7 +5,7 @@
 !!! info "Ran from your workstation"
 
 ```sh
-kubectl -n rook-ceph exec -it (kubectl -n rook-ceph get pod -l "app=rook-direct-mount" -o jsonpath='{.items[0].metadata.name}') bash
+kubectl -n rook-ceph exec -it $(kubectl -n rook-ceph get pod -l "app=rook-direct-mount" -o jsonpath='{.items[0].metadata.name}') -- bash
 ```
 
 !!! info "Ran from the `rook-ceph-toolbox`"
@@ -29,7 +29,7 @@ kubectl apply -f cluster/apps/home/home-assistant/config-pvc.yaml
 - Get the `csi-vol-*` string
 
 ```sh
-kubectl get pv/(kubectl get pv | grep home-assistant-config-v1 | awk -F' ' '{print $1}') -n home -o json | jq -r '.spec.csi.volumeAttributes.imageName'
+kubectl get pv/$(kubectl get pv | grep home-assistant-config-v1 | awk -F' ' '{print $1}') -n home -o json | jq -r '.spec.csi.volumeAttributes.imageName'
 ```
 
 !!! info "Ran from the `rook-ceph-toolbox`"

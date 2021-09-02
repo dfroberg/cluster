@@ -1,6 +1,6 @@
 # Lab Cluster
 
-This repository _is_ my home Kubernetes cluster in a declarative state. [Flux](https://github.com/fluxcd/flux2) watches my [cluster](./cluster/) folder and makes the changes to my cluster based on the YAML manifests.
+This repository _is_ my lab Kubernetes cluster in a declarative state. [Flux](https://github.com/fluxcd/flux2) watches my [cluster](./cluster/) folder and makes the changes to my cluster based on the YAML manifests.
 
 Feel free to open a [Github issue](https://github.com/dfroberg/cluster/issues/new/choose) or join the [k8s@home Discord](https://discord.gg/sTMX7Vh) if you have any questions.
 
@@ -27,6 +27,7 @@ See my [ansible](./ansible/) directory for my playbooks and roles.
 The Git repository contains the following directories under `cluster` and are ordered below by how Flux will apply them.
 
 - **base** directory is the entrypoint to Flux
+- **init** directory contains SOPS and other secrets inittialization.
 - **crds** directory contains custom resource definitions (CRDs) that need to exist globally in your cluster before anything else exists
 - **core** directory (depends on **crds**) are important infrastructure applications (grouped by namespace) that should never be pruned by Flux
 - **apps** directory (depends on **core**) is where your common applications (grouped by namespace) could be placed, Flux will prune resources here if they are not tracked by Git anymore
