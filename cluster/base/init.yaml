@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 1m0s
   path: ./cluster/init
-  prune: false
+  prune: true
   decryption:
     provider: sops
     secretRef:

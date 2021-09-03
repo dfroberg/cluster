@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: crds
   path: ./cluster/core
-  prune: false
+  prune: true
   decryption:
     provider: sops
     secretRef:
