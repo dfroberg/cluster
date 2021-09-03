@@ -5,6 +5,7 @@ resources:
   - metallb-system
   - rook-ceph
   - cert-manager
+  - networking
   - flux-notifications
   - system-upgrade
   - monitoring
