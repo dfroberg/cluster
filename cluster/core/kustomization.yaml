@@ -7,6 +7,6 @@ resources:
   - cert-manager
   - networking
   - flux-notifications
-  - system-upgrade
-  - monitoring
+#  - system-upgrade
+#  - monitoring
 
