@@ -34,7 +34,7 @@ spec:
       host: "k10.${SECRET_DOMAIN}"
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-      urlPath: /
+      urlPath: 
       hosts:
         - "k10.${SECRET_DOMAIN}"
       tls:
