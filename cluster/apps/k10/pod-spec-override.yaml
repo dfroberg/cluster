@@ -9,4 +9,4 @@ data:
     kind: Pod
     spec:
       nodeSelector:
-        node-role.kubernetes.io/worker: "true"
+        worker: yes
