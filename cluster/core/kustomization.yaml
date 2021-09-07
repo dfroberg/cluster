@@ -7,6 +7,7 @@ resources:
   - cert-manager
   - networking
   - flux-notifications
+  - vpa
 #  - system-upgrade
 #  - monitoring
 
