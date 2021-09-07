@@ -1,4 +1,5 @@
 resources:
+- vpa-tls-certs.sops.yaml
 - admission-controller-deployment.yaml
 - recommender-deployment.yaml
 - updater-deployment.yaml
