@@ -33,15 +33,16 @@ spec:
             port: 8080
     nodeSelector:
       worker: yes
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-          - key: app.kubernetes.io/instance
-            operator: In
-            values:
-            - error-pages
-        topologyKey: kubernetes.io/hostname
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/instance
+              operator: In
+              values:
+              - error-pages
+          topologyKey: kubernetes.io/hostname
     resources:
       requests:
         memory: 100Mi
