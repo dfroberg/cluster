@@ -17,17 +17,6 @@ spec:
   dependsOn:
     - name: traefik
       namespace: networking
-  nodeSelector:
-    worker: yes
-  podAntiAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-    - labelSelector:
-        matchExpressions:
-        - key: app.kubernetes.io/instance
-          operator: In
-          values:
-          - error-pages
-      topologyKey: kubernetes.io/hostname
   values:
     image:
       repository: ghcr.io/tarampampam/error-pages
@@ -42,6 +31,17 @@ spec:
         ports:
           http:
             port: 8080
+    nodeSelector:
+      worker: yes
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/instance
+            operator: In
+            values:
+            - error-pages
+        topologyKey: kubernetes.io/hostname
     resources:
       requests:
         memory: 100Mi
