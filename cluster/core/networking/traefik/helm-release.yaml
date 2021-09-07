@@ -78,24 +78,22 @@ spec:
         sniStrict: true
     pilot:
       enabled: false
-      token: "${SECRET_TRAEFIK_PILOT_TOKEN}"
+#      token: "${SECRET_TRAEFIK_PILOT_TOKEN}"
     experimental:
       plugins:
         enabled: true
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
-#    affinity:
-#      podAntiAffinity:
-#        preferredDuringSchedulingIgnoredDuringExecution:
-#          - weight: 100
-#            podAffinityTerm:
-#              labelSelector:
-#                matchExpressions:
-#                  - key: app.kubernetes.io/name
-#                    operator: In
-#                    values:
-#                      - worker
-#              topologyKey: kubernetes.io/hostname
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          preference:
+            matchExpressions:
+            - key: worker
+              operator: In
+              values:
+              - yes
     resources:
       requests:
         memory: 100Mi
