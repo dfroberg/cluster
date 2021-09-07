@@ -10,5 +10,5 @@ resources:
   - vpa
   - goldilocks
 #  - system-upgrade
-#  - monitoring
+  - monitoring
 
