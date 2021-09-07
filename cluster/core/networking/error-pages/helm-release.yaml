@@ -17,6 +17,8 @@ spec:
   dependsOn:
     - name: traefik
       namespace: networking
+  nodeSelector:
+    worker: yes
   values:
     image:
       repository: ghcr.io/tarampampam/error-pages
