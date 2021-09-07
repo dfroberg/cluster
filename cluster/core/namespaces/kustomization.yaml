@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - metallb-system.yaml
+  - goldilocks.yaml
   - networking.yaml
   - monitoring.yaml
   - kasten-io.yaml
