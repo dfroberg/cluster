@@ -12,5 +12,5 @@ resources:
   # - snmp-exporter-ups-0
   # - speedtest-exporter
   - thanos
-   - unifi-poller
+  - unifi-poller
   # - uptimerobot-heartbeat
