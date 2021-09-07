@@ -4,3 +4,5 @@ metadata:
   name: rook-nfs-system 
   annotations:
     k10.kasten.io/ignorebackuppolicy: "true"
+  labels:
+    goldilocks.fairwinds.com/enabled: "true"

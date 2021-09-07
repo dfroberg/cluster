@@ -5,3 +5,5 @@ metadata:
   name: rook-ceph
   annotations:
     k10.kasten.io/ignorebackuppolicy: "true"
+  labels:
+    goldilocks.fairwinds.com/enabled: "true"
