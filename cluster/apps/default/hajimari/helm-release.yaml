@@ -23,7 +23,7 @@ spec:
     env:
       TZ: "Europe/Stockholm"
     hajimari:
-      defaultEnable: false
+      defaultEnable: true
       namespaceSelector:
         matchNames:
           - default
