@@ -83,7 +83,7 @@ spec:
       plugins:
         enabled: true
     nodeSelector:
-      worker: "true"
+      worker: yes
     resources:
       requests:
         memory: 100Mi
