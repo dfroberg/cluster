@@ -83,17 +83,7 @@ spec:
       plugins:
         enabled: true
     nodeSelector:
-      node-role.kubernetes.io/worker: "true"
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100
-          preference:
-            matchExpressions:
-            - key: worker
-              operator: In
-              values:
-              - "yes"
+      worker: "true"
     resources:
       requests:
         memory: 100Mi
