@@ -20,11 +20,17 @@ spec:
     image:
       repository: ghcr.io/toboshii/hajimari
       tag: v0.1.0
+    env:
+      TZ: "Europe/Stockholm"
     hajimari:
       defaultEnable: false
       namespaceSelector:
         matchNames:
           - default
+          - monitoring
+          - networking
+          - rook-ceph
+          - kasten-io
       name: "you"
       customApps:
         - name: Some External Cluster Service
