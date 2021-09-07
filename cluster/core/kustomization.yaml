@@ -8,6 +8,7 @@ resources:
   - networking
   - flux-notifications
   - vpa
+  - goldilocks
 #  - system-upgrade
 #  - monitoring
 
