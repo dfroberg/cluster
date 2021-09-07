@@ -93,7 +93,7 @@ spec:
             - key: worker
               operator: In
               values:
-              - yes
+              - "yes"
     resources:
       requests:
         memory: 100Mi
