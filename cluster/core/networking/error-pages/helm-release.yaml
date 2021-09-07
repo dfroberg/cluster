@@ -19,6 +19,15 @@ spec:
       namespace: networking
   nodeSelector:
     worker: yes
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchExpressions:
+        - key: app.kubernetes.io/instance
+          operator: In
+          values:
+          - error-pages
+      topologyKey: kubernetes.io/hostname
   values:
     image:
       repository: ghcr.io/tarampampam/error-pages
