@@ -4,6 +4,6 @@ kind: Namespace
 metadata:
   name: rook-ceph
   annotations:
-    k10.kasten.io/ignorebackuppolicy: "true"
+    k10.kasten.io/ignorebackuppolicy: "false"
   labels:
     goldilocks.fairwinds.com/enabled: "true"
