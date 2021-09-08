@@ -47,7 +47,7 @@ spec:
         # dashboard.serviceAccount.create -- If true, a service account will be created for the dashboard. If set to false, you must set `dashboard.serviceAccount.name`
         create: true
         # dashboard.serviceAccount.name -- The name of an existing service account to use for the controller. Combined with `dashboard.serviceAccount.create`
-        name:
+        name: goldilocks-dashboard-sa
 
       # dashboard.deployment.annotations -- Extra annotations for the dashboard deployment
       deployment:
