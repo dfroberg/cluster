@@ -5,7 +5,7 @@ metadata:
   name: crds
   namespace: flux-system
 spec:
-  interval: 1m0s
+  interval: 15m0s
   path: ./cluster/crds
   prune: false
   decryption:
