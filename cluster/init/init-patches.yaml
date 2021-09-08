@@ -1,5 +1,6 @@
 kind: StorageClass
 metadata:
   name: local-path
+  namespace: kube-system
   annotations:
     storageclass.kubernetes.io/is-default-class: "false"
