@@ -62,7 +62,7 @@ spec:
           # kubernetes.io/tls-acme: "true"
         hosts:
           - host: goldilocks.${SECRET_DOMAIN}
-
+            paths: "/"
         tls:
           - secretName: "${SECRET_DOMAIN/./-}-tls"
             hosts:
