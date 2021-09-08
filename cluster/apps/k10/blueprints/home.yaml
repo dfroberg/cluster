@@ -19,7 +19,7 @@ actions:
                 imagePullPolicy: IfNotPresent
                 env:
                   - name: TZ
-                    value: "Europe/Stockholm"
+                    value: ${CLUSTER_TZ}
                 volumeMounts:
                   - name: rclone-config
                     mountPath: "/config"

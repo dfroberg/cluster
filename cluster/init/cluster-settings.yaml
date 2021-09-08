@@ -5,6 +5,7 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
+  CLUSTER_TZ: "Europe/Stockholm"
   METALLB_LB_RANGE: 192.168.30.100-192.168.30.150
   #
   NETWORK_K8S_CLUSTER_CIDR: "10.69.0.0/16"

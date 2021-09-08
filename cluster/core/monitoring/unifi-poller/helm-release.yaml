@@ -21,9 +21,9 @@ spec:
       repository: ghcr.io/k8s-at-home/unpoller
       tag: 2.1.3
     env:
-      TZ: "Europe/Stockholm"
+      TZ: ${CLUSTER_TZ}
       UP_UNIFI_DEFAULT_ROLE: "lab-controller"
-      UP_UNIFI_DEFAULT_URL: "https://192.168.10.91"
+      UP_UNIFI_DEFAULT_URL: ${SECRET_UNIFI_CTRL_URI}
       UP_UNIFI_DEFAULT_VERIFY_SSL: false
       UP_UNIFI_DEFAULT_USER: "unifipoller"
       UP_UNIFI_DEFAULT_PASS: "unifipoller"

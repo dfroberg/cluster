@@ -21,7 +21,7 @@ spec:
       repository: ghcr.io/toboshii/hajimari
       tag: v0.1.0
     env:
-      TZ: "Europe/Stockholm"
+      TZ: ${CLUSTER_TZ}
     hajimari:
       defaultEnable: true
       namespaceSelector:
