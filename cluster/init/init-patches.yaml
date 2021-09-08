@@ -1,12 +1,5 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-kind: Kustomization
+kind: StorageClass
 metadata:
-  name: init
-  namespace: flux-system
-spec:
-  decryption:
-    # Use the sops provider
-    provider: sops
-    secretRef:
-      # Reference the new 'sops-gpg' secret
-      name: sops-gpg
+  name: local-path
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
