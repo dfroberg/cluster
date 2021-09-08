@@ -54,15 +54,7 @@ spec:
         annotations: {}
 
       ingress:
-        enabled: true
-        ingressClassName: "traefik"
-        annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        hosts:
-          - "goldilocks.${SECRET_DOMAIN}"
-        tls:
-          - hosts:
-              - "goldilocks.${SECRET_DOMAIN}"
+        enabled: false
 
       # dashboard.resources -- A resources block for the dashboard.
       resources:
