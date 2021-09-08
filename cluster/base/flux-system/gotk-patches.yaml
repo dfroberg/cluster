@@ -10,3 +10,18 @@ spec:
     secretRef:
       # Reference the new 'sops-gpg' secret
       name: sops-gpg
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: source-controller
+  namespace: flux-system
+spec:
+  template:
+    spec:
+      containers:
+        - name: manager
+          resources:
+            limits:
+              cpu: 4000m
+              memory: 2Gi
