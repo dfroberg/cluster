@@ -75,6 +75,16 @@ spec:
           memory: 32Mi
         requests:
           cpu: 25m
-          memory: 32Mi    
-      nodeSelector: 
-        - worker: yes
+          memory: 32Mi
+    nodeSelector:
+      worker: yes
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/instance
+              operator: In
+              values:
+              - goldilocks-dashboard
+          topologyKey: kubernetes.io/hostname
