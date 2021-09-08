@@ -54,23 +54,15 @@ spec:
         annotations: {}
 
       ingress:
-        # dashboard.ingress.enabled -- Enables an ingress object for the dashboard.
         enabled: true
-        annotations: 
+        ingressClassName: "traefik"
+        annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          kubernetes.io/ingress.class: traefik
-          # kubernetes.io/tls-acme: "true"
         hosts:
-          - host: goldilocks.${SECRET_DOMAIN}
-            http:
-              paths:
-              - backend:
-                  serviceName: goldilocks-dashboard
-                  servicePort: 80
+          - "goldilocks.${SECRET_DOMAIN}"
         tls:
-          - secretName: "${SECRET_DOMAIN/./-}-tls"
-            hosts:
-              - goldilocks.${SECRET_DOMAIN}
+          - hosts:
+              - "goldilocks.${SECRET_DOMAIN}"
 
       # dashboard.resources -- A resources block for the dashboard.
       resources:

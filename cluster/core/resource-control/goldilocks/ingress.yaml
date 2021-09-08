@@ -1,0 +1,27 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: goldilocks-dashboard
+  namespace: goldilocks
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+  labels:
+    app.kubernetes.io/instance: goldilocks-dashboard
+    app.kubernetes.io/name: goldilocks-dashboard
+spec:
+  ingressClassName: "traefik"
+  rules:
+    - host: "goldilocks.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: goldilocks-dashboard
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - "goldilocks.${SECRET_DOMAIN}"
