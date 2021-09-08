@@ -5,7 +5,7 @@ resources:
   - botkube
   - grafana
   - kube-prometheus-stack
-  # - loki
+  - loki
   - promtail
   - flux-system
   # - snmp-exporter-pdu-0
