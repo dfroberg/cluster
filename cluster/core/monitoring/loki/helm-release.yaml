@@ -44,34 +44,6 @@ spec:
         enable_api: true
     alerting_groups:
       #
-      # zigbee2mqtt
-      #
-      - name: zigbee2mqtt
-        rules:
-          - alert: ZigbeeUnableToReachMQTT
-            expr: |
-              sum(count_over_time({app="zigbee2mqtt"} |= "Not connected to MQTT server"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              summary: "Zigbee2mqtt is unable to reach MQTT"
-      #
-      # zwavejs2mqtt
-      #
-      - name: zwavejs2mqtt
-        rules:
-          - alert: ZwaveUnableToReachMQTT
-            expr: |
-              sum(count_over_time({app="zwavejs2mqtt"} |= "Error while connecting MQTT"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              summary: "Zwavejs2mqtt is unable to reach MQTT"
-      #
       # frigate
       #
       - name: frigate
