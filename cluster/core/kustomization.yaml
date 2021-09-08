@@ -4,11 +4,12 @@ resources:
   - namespaces
   - metallb-system
   - rook-ceph
+#  - rook-nfs
   - cert-manager
   - networking
   - flux-notifications
   - vpa
   - goldilocks
-#  - system-upgrade
+  - system-upgrade
   - monitoring
 
