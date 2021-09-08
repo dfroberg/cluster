@@ -44,12 +44,33 @@ spec:
     existingObjstoreSecret: thanos-objstore
     queryFrontend:
       enabled: false
+      resources:
+        requests:
+          cpu: 25m
+          memory: 263M
+        limits:
+          cpu: 278m
+          memory: 289M
     bucketweb:
       enabled: true
+      resources:
+        requests:
+          cpu: 25m
+          memory: 263M
+        limits:
+          cpu: 87m
+          memory: 290M
     compactor:
       enabled: true
       persistence:
         enabled: false
+      resources:
+        requests:
+          cpu: 25m
+          memory: 263M
+        limits:
+          cpu: 87m
+          memory: 397M
     storegateway:
       enabled: true
       persistence:
