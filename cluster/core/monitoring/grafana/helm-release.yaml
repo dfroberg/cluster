@@ -20,6 +20,13 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/grafana
     replicas: 1
+    resources:
+      requests:
+        cpu: 22m
+        memory: 132M
+      limits:
+        cpu: 75m
+        memory: 137M
     env:
       GF_EXPLORE_ENABLED: true
       GF_PANELS_DISABLE_SANITIZE_HTML: true

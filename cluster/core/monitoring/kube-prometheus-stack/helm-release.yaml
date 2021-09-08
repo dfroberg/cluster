@@ -17,6 +17,13 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    resources:
+      requests:
+        cpu: 25m
+        memory: 263M
+      limits:
+        cpu: 48m
+        memory: 263M
     fullnameOverride: prometheus
     alertmanager:
       config:
