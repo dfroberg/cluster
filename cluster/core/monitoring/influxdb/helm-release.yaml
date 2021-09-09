@@ -8,9 +8,9 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://grafana.github.io/helm-charts
+      # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: influxdb
-      version: 6.16.0
+      version: 2.3.9
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
