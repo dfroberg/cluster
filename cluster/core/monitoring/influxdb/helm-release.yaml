@@ -53,10 +53,10 @@ spec:
         runAsUser: 1001
       resources:
         limits:
-          cpu: 100m
+          cpu: 1000m
           memory: 512Mi
         requests:
-          cpu: 100m
+          cpu: 1500m
           memory: 1024Mi
       livenessProbe:
         enabled: true
