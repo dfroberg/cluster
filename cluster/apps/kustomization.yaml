@@ -4,4 +4,4 @@ resources:
   - default
   - kube-system
 #  - system-upgrade
-  - k10
+#  - k10
