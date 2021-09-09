@@ -5,3 +5,6 @@ resources:
   - metrics-server
   - kube-cleanup-operator
   - kured
+  - descheduler
+  - node-feature-discovery
+  - reloader
