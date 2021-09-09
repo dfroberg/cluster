@@ -81,7 +81,8 @@ spec:
         ##
         ## loadBalancerSourceRanges:
         ## - 10.10.10.0/24
-        loadBalancerSourceRanges: "${SVC_METALLB_CIDR}"
+        loadBalancerSourceRanges: 
+          - ${SVC_METALLB_CIDR}
         ## @param influxdb.service.clusterIP Static clusterIP or None for headless services
         ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#choosing-your-own-ip-address
         ## e.g:
