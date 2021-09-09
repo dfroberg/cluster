@@ -134,7 +134,8 @@ spec:
         ## pullSecrets:
         ##   - myRegistryKeySecretName
         ##
-        pullSecrets: []
+        pullSecrets: 
+          - regcred
       ## @param relay.configuration [string] InfluxDB Relay&trade; Configuration. Specify content for relay.toml
       ## Alternatively, you can put your relay.toml under the files/conf/ directory
       ##
@@ -477,7 +478,8 @@ spec:
         ## pullSecrets:
         ##   - myRegistryKeySecretName
         ##
-        pullSecrets: []
+        pullSecrets: 
+          - regcred
       ## Init container Security Context
       ## Note: the chown of the data folder is done to securityContext.runAsUser
       ## and not the below volumePermissions.securityContext.runAsUser
@@ -607,7 +609,8 @@ spec:
             ## pullSecrets:
             ##   - myRegistryKeySecretName
             ##
-            pullSecrets: []
+            pullSecrets: 
+              - regcred
         ## Azure Storage Container configuration
         ##
         azure:
@@ -644,4 +647,5 @@ spec:
             ## pullSecrets:
             ##   - myRegistryKeySecretName
             ##
-            pullSecrets: []
+            pullSecrets: 
+              - regcred
