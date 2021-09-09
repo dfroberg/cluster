@@ -8,3 +8,4 @@ resources:
   - descheduler
   - node-feature-discovery
   - reloader
+  - node-problem-detector
