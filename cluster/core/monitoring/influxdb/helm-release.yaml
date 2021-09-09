@@ -37,8 +37,8 @@ spec:
       usePasswordFiles: false
       admin:
         username: admin
-        password: "${SECRET_INFLUX_ADMIN_PASSWORD}"
-        token: "${SECRET_INFLUX_ADMIN_TOKEN}"
+        password: ${SECRET_INFLUX_ADMIN_PASSWORD}
+        token: ${SECRET_INFLUX_ADMIN_TOKEN}
         org: primary
         bucket: primary
     influxdb:
