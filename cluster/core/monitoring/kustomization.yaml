@@ -15,3 +15,4 @@ resources:
   - thanos
   - unifi-poller
   # - uptimerobot-heartbeat
+  - influxdb

@@ -1,0 +1,639 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: influxdb
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://grafana.github.io/helm-charts
+      chart: influxdb
+      version: 6.16.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    global:
+      storageClass: "rook-ceph-block"
+    image:
+      registry: docker.io
+      repository: bitnami/influxdb
+      tag: 2.0.8-debian-10-r12
+      pullPolicy: IfNotPresent
+    architecture: standalone
+    auth:
+      enabled: true
+      usePasswordFiles: false
+      admin:
+        username: admin
+        password: "${SECRET_INFLUX_ADMIN_PASSWORD}"
+        token: "${SECRET_INFLUX_ADMIN_TOKEN}"
+        org: primary
+        bucket: primary
+    influxdb:
+      replicaCount: 1
+      updateStrategy: RollingUpdate
+      podManagementPolicy: OrderedReady
+      nodeSelector: 
+        worker: yes
+      securityContext:
+        enabled: true
+        fsGroup: 1001
+        runAsUser: 1001
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      livenessProbe:
+        enabled: true
+        initialDelaySeconds: 180
+        periodSeconds: 45
+        timeoutSeconds: 30
+        successThreshold: 1
+        failureThreshold: 6
+      readinessProbe:
+        enabled: true
+        initialDelaySeconds: 60
+        periodSeconds: 45
+        timeoutSeconds: 30
+        successThreshold: 1
+        failureThreshold: 6
+      containerPorts:
+        http: 8086
+        rpc: 8088
+      service:
+        type: LoadBalancer
+        port: 8086
+        rpcPort: 8088
+        nodePorts:
+          http: ""
+          rpc: ""
+        loadBalancerIP: "${SVC_INFLUXDB_IP}"
+        ## @param influxdb.service.loadBalancerSourceRanges Address that are allowed when service is LoadBalancer
+        ## https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
+        ##
+        ## loadBalancerSourceRanges:
+        ## - 10.10.10.0/24
+        loadBalancerSourceRanges: "${SVC_METALLB_CIDR}"
+        ## @param influxdb.service.clusterIP Static clusterIP or None for headless services
+        ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#choosing-your-own-ip-address
+        ## e.g:
+        ## clusterIP: None
+        ##
+        clusterIP: ""
+        ## @param influxdb.service.annotations Annotations for InfluxDB&trade; service
+        ##
+        annotations: {}
+        ## @param influxdb.service.sessionAffinity Session affinity for the InfluxDB&trade; service
+        ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-userspace
+        sessionAffinity: ""
+        ## @param influxdb.service.sessionAffinityConfig Additional settings for the sessionAffinity
+        ## sessionAffinityConfig:
+        ##   clientIP:
+        ##     timeoutSeconds: 300
+        sessionAffinityConfig: {}
+
+    ## @section InfluxDB Relay&trade; parameters
+
+    relay:
+      ## Bitnami InfluxDB Relay&trade; image
+      ## ref: https://hub.docker.com/r/bitnami/influxdb-relay/tags/
+      ## @param relay.image.registry InfluxDB Relay&trade; image registry
+      ## @param relay.image.repository InfluxDB Relay&trade; image repository
+      ## @param relay.image.tag InfluxDB Relay&trade; image tag (immutable tags are recommended)
+      ## @param relay.image.pullPolicy InfluxDB Relay&trade; image pull policy
+      ## @param relay.image.pullSecrets Specify docker-registry secret names as an array
+      ##
+      image:
+        registry: docker.io
+        repository: bitnami/influxdb-relay
+        tag: 0.20200717.0-scratch-r12
+        ## Specify a imagePullPolicy. Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+        ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+        ##
+        pullPolicy: IfNotPresent
+        ## Optionally specify an array of imagePullSecrets.
+        ## Secrets must be manually created in the namespace.
+        ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+        ## e.g:
+        ## pullSecrets:
+        ##   - myRegistryKeySecretName
+        ##
+        pullSecrets: []
+      ## @param relay.configuration [string] InfluxDB Relay&trade; Configuration. Specify content for relay.toml
+      ## Alternatively, you can put your relay.toml under the files/conf/ directory
+      ##
+      configuration: |-
+        [[http]]
+        # Name of the HTTP server, used for display purposes only.
+        name = "relay-server"
+        # TCP address to bind to, for HTTP server.
+        bind-addr = "0.0.0.0:9096"
+        # Array of InfluxDB&trade; instances to use as backends for Relay.
+        output = [
+            {{- $influxdbReplicaCount := int .Values.influxdb.replicaCount }}
+            {{- $influxdbFullname := include "common.names.fullname" . }}
+            {{- $influxdbHeadlessServiceName := printf "%s-headless" (include "common.names.fullname" .) }}
+            {{- $releaseName := .Release.Namespace }}
+            {{- $clusterDomain:= .Values.clusterDomain }}
+            {{- range $e, $i := until $influxdbReplicaCount }}
+            { name="{{ $influxdbFullname }}-{{ $i }}", location="http://{{ $influxdbFullname }}-{{ $i }}.{{ $influxdbHeadlessServiceName }}.{{ $releaseName }}.svc.{{ $clusterDomain }}:8086/write", timeout="10s"},
+            {{- end }}
+        ]
+      ## @param relay.existingConfiguration Name of existing ConfigMap object with the InfluxDB Relay&trade; configuration (`relay.configuration` will be ignored)
+      ## NOTE: This will override relay.configuration
+      ##
+      existingConfiguration: ""
+      ## @param relay.replicaCount The number of InfluxDB Relay&trade; replicas to deploy
+      ##
+      replicaCount: 1
+      updateStrategy: RollingUpdate
+      nodeSelector: 
+        worker: yes
+      securityContext:
+        enabled: true
+        fsGroup: 1001
+        runAsUser: 1001
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      livenessProbe:
+        enabled: true
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 5
+        successThreshold: 1
+        failureThreshold: 6
+      readinessProbe:
+        enabled: true
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        timeoutSeconds: 5
+        successThreshold: 1
+        failureThreshold: 6
+      containerPorts:
+        http: 9096
+      service:
+        ## @param relay.service.type Kubernetes service type (`ClusterIP`, `NodePort` or `LoadBalancer`)
+        ##
+        type: ClusterIP
+        ## @param relay.service.port InfluxDB Relay&trade; HTTP port
+        ##
+        port: 9096
+        ## @param relay.service.nodePort Kubernetes HTTP node port
+        ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+        ##
+        nodePort: ""
+        ## @param relay.service.loadBalancerIP loadBalancerIP if service type is `LoadBalancer`
+        ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+        ##
+        loadBalancerIP: ""
+        ## @param relay.service.loadBalancerSourceRanges Address that are allowed when service is LoadBalancer
+        ## https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
+        ##
+        ## loadBalancerSourceRanges:
+        ## - 10.10.10.0/24
+        loadBalancerSourceRanges: []
+        ## @param relay.service.clusterIP Static clusterIP or None for headless services
+        ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#choosing-your-own-ip-address
+        ## e.g:
+        ## clusterIP: None
+        ##
+        clusterIP: ""
+        ## @param relay.service.annotations Annotations for InfluxDB Relay&trade; service
+        ##
+        annotations: {}
+
+    ## @section InfluxDB Collectd&trade; parameters
+
+    collectd:
+      ## @param collectd.enabled InfluxDB Collectd&trade; service enable
+      ##
+      enabled: false
+      service:
+        ## @param collectd.service.type Kubernetes service type (`ClusterIP`, `NodePort` or `LoadBalancer`)
+        ##
+        type: ClusterIP
+        ## @param collectd.service.port InfluxDB Collectd&trade; UDP port (should match with corresponding port in influxdb.conf)
+        ## This requires corresponding configuration in influxdb.conf to enable
+        ## collectd block
+        ##
+        port: 25826
+        ## @param collectd.service.nodePort Kubernetes HTTP node port
+        ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+        ##
+        nodePort: ""
+        ## @param collectd.service.loadBalancerIP loadBalancerIP if service type is `LoadBalancer`
+        ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+        ##
+        loadBalancerIP: ""
+        ## @param collectd.service.loadBalancerSourceRanges Address that are allowed when service is LoadBalancer
+        ## https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
+        ##
+        ## loadBalancerSourceRanges:
+        ## - 10.10.10.0/24
+        loadBalancerSourceRanges: []
+        ## @param collectd.service.clusterIP Static clusterIP or None for headless services
+        ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#choosing-your-own-ip-address
+        ## e.g:
+        ## clusterIP: None
+        ##
+        clusterIP: ""
+        ## @param collectd.service.annotations Annotations for InfluxDB Collectd&trade; service
+        ##   metallb.universe.tf/allow-shared-ip: "true"
+        ##
+        annotations: {}
+
+    ## @section Exposing parameters
+
+    ## Configure the ingress resource that allows you to access the
+    ## influxdb installation. Set up the URL
+    ## ref: http://kubernetes.io/docs/user-guide/ingress/
+    ##
+    ingress:
+      enabled: true
+      ingressClassName: "traefik"
+      tls: true
+      ## @param ingress.certManager Add annotations for cert-manager
+      ##
+      certManager: false
+      ## @param ingress.pathType Ingress path type
+      ##
+      pathType: ImplementationSpecific
+      ## @param ingress.apiVersion Force Ingress API version (automatically detected if not set)
+      ##
+      apiVersion: ""
+      ## @param ingress.hostname Default host for the ingress resource
+      ##
+      hostname: influxdb.${SECRET_DOMAIN}
+      ## @param ingress.path Ingress path*' in order to use this
+      ## with ALB ingress controllers.
+      ##
+      path: /
+      ## @param ingress.annotations Ingress annotations
+      ## For a full list of possible ingress annotations, please see
+      ## ref: https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/annotations.md
+      ##
+      ## If certManager is set to true, annotation kubernetes.io/tls-acme: "true" will automatically be set
+      ##
+      annotations: 
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+      ## @param ingress.extraHosts The list of additional hostnames to be covered with this ingress record.
+      ## Most likely the hostname above will be enough, but in the event more hosts are needed, this is an array
+      ## extraHosts:
+      ## - name: influxdb.local
+      ##   path: /
+      ##
+      extraHosts: []
+      ## @param ingress.extraPaths Additional arbitrary path/backend objects
+      ## For example: The ALB ingress controller requires a special rule for handling SSL redirection.
+      ## extraPaths:
+      ## - path: /*
+      ##   backend:
+      ##     serviceName: ssl-redirect
+      ##     servicePort: use-annotation
+      ##
+      extraPaths: []
+      ## @param ingress.extraTls The tls configuration for additional hostnames to be covered with this ingress record.
+      ## see: https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
+      ## extraTls:
+      ## - hosts:
+      ##     - influxdb.local
+      ##   secretName: influxdb.local-tls
+      ##
+      extraTls: []
+      ## @param ingress.secrets If you're providing your own certificates, please use this to add the certificates as secrets
+      ## key and certificate should start with -----BEGIN CERTIFICATE----- or
+      ## -----BEGIN RSA PRIVATE KEY-----
+      ##
+      ## name should line up with a tlsSecret set further up
+      ## If you're using cert-manager, this is unneeded, as it will create the secret for you if it is not set
+      ##
+      ## It is also possible to create and manage the certificates outside of this helm chart
+      ## Please see README.md for more information
+      ## - name: influxdb.local-tls
+      ##   key:
+      ##   certificate:
+      ##
+      secrets: []
+
+    ## @section Metrics parameters
+
+    ## Prometheus metrics
+    ## ref: https://docs.influxdata.com/influxdb/v1.7/administration/server_monitoring/#influxdb-metrics-http-endpoint
+    ##
+    metrics:
+      ## @param metrics.enabled Enable the export of Prometheus metrics
+      ##
+      enabled: false
+      service:
+        ## @param metrics.service.type Kubernetes service type (`ClusterIP`, `NodePort` or `LoadBalancer`)
+        ##
+        type: ClusterIP
+        ## @param metrics.service.port InfluxDB&trade; Prometheus port
+        ##
+        port: 9122
+        ## @param metrics.service.nodePort Kubernetes HTTP node port
+        ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+        ##
+        nodePort: ""
+        ## @param metrics.service.loadBalancerIP loadBalancerIP if service type is `LoadBalancer`
+        ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+        ##
+        loadBalancerIP: ""
+        ## @param metrics.service.loadBalancerSourceRanges Address that are allowed when service is LoadBalancer
+        ## https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
+        ##
+        ## loadBalancerSourceRanges:
+        ## - 10.10.10.0/24
+        loadBalancerSourceRanges: []
+        ## @param metrics.service.clusterIP Static clusterIP or None for headless services
+        ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#choosing-your-own-ip-address
+        ## e.g:
+        ## clusterIP: None
+        ##
+        clusterIP: ""
+        ## @param metrics.service.annotations [object] Annotations for the Prometheus metrics service
+        ##
+        annotations:
+          prometheus.io/scrape: "true"
+          prometheus.io/port: "{{ .Values.influxdb.service.port }}"
+          prometheus.io/path: "/metrics"
+      ## Prometheus Operator ServiceMonitor configuration
+      ##
+      serviceMonitor:
+        ## @param metrics.serviceMonitor.enabled if `true`, creates a Prometheus Operator ServiceMonitor (also requires `metrics.enabled` to be `true`)
+        ##
+        enabled: false
+        ## @param metrics.serviceMonitor.namespace Namespace in which Prometheus is running
+        ## e.g:
+        ## namespace: monitoring
+        ##
+        namespace: ""
+        ## @param metrics.serviceMonitor.interval Interval at which metrics should be scraped.
+        ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#endpoint
+        ## e.g:
+        ## interval: 10s
+        ##
+        interval: ""
+        ## @param metrics.serviceMonitor.scrapeTimeout Timeout after which the scrape is ended
+        ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#endpoint
+        ## e.g:
+        ## scrapeTimeout: 10s
+        ##
+        scrapeTimeout: ""
+        ## @param metrics.serviceMonitor.selector Prometheus instance selector labels
+        ## ref: https://github.com/bitnami/charts/tree/master/bitnami/prometheus-operator#prometheus-configuration
+        ## e.g:
+        ## selector:
+        ##   prometheus: my-prometheus
+        ##
+        selector: {}
+    ## NetworkPolicy parameters
+    ##
+    networkPolicy:
+      ## @param networkPolicy.enabled Enable NetworkPolicy
+      ##
+      enabled: false
+      ## @param networkPolicy.allowExternal Don't require client label for connections
+      ## client labels will have network access to the ports InfluxDB&trade; is listening
+      ## on. When true, InfluxDB&trade; will accept connections from any source
+      ## (with the correct destination port).
+      ##
+      allowExternal: true
+    ## Persistence parameters
+    ##
+    persistence:
+      ## @param persistence.enabled Enable data persistence
+      ##
+      enabled: true
+      ## @param persistence.existingClaim Use a existing PVC which must be created manually before bound
+      ## If defined, PVC must be created manually before volume will be bound
+      ## The value is evaluated as a template
+      ##
+      existingClaim: ""
+      ## @param persistence.storageClass Specify the `storageClass` used to provision the volume
+      ## If defined, storageClassName: <storageClass>
+      ## If set to "-", storageClassName: "", which disables dynamic provisioning
+      ## If undefined (the default) or set to null, no storageClassName spec is
+      ## set, choosing the default provisioner.
+      ##
+      storageClass: "rook-ceph-block"
+      ## @param persistence.accessModes Access mode of data volume
+      ##
+      accessModes:
+        - ReadWriteOnce
+      ## @param persistence.size Size of data volume
+      ##
+      size: 8Gi
+
+    ## @section Volume permissions parameters
+
+    ## Init Container parameters
+    ## Change the owner and group of the persistent volume mountpoint to 'runAsUser:fsGroup'
+    ## values from the securityContext section.
+    ##
+    volumePermissions:
+      ## @param volumePermissions.enabled Enable init container that changes the owner and group of the persistent volume mountpoint to `runAsUser:fsGroup`
+      ##
+      enabled: false
+      ## @param volumePermissions.image.registry Init container volume-permissions image registry
+      ## @param volumePermissions.image.repository Init container volume-permissions image name
+      ## @param volumePermissions.image.tag Init container volume-permissions image tag
+      ## @param volumePermissions.image.pullPolicy Init container volume-permissions image pull policy
+      ## @param volumePermissions.image.pullSecrets Specify docker-registry secret names as an array
+      ##
+      image:
+        registry: docker.io
+        repository: bitnami/bitnami-shell
+        tag: 10-debian-10-r173
+        ## Specify a imagePullPolicy. Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+        ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+        ##
+        pullPolicy: IfNotPresent
+        ## Optionally specify an array of imagePullSecrets.
+        ## Secrets must be manually created in the namespace.
+        ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+        ## e.g:
+        ## pullSecrets:
+        ##   - myRegistryKeySecretName
+        ##
+        pullSecrets: []
+      ## Init container Security Context
+      ## Note: the chown of the data folder is done to securityContext.runAsUser
+      ## and not the below volumePermissions.securityContext.runAsUser
+      ## When runAsUser is set to special value "auto", init container will try to chwon the
+      ## data folder to autodetermined user&group, using commands: `id -u`:`id -G | cut -d" " -f2`
+      ## "auto" is especially useful for OpenShift which has scc with dynamic userids (and 0 is not allowed).
+      ## You may want to use this volumePermissions.securityContext.runAsUser="auto" in combination with
+      ## pod securityContext.enabled=false and shmVolume.chmod.enabled=false
+      ## @param volumePermissions.securityContext.runAsUser User ID for the init container (when facing issues in OpenShift or uid unknown, try value "auto")
+      ##
+      securityContext:
+        runAsUser: 0
+
+    ## @section InfluxDB&trade; backup parameters
+
+    backup:
+      ## @param backup.enabled Enable InfluxDB&trade; backup
+      ##
+      enabled: false
+      ## @param backup.directory Directory where backups are stored
+      ##
+      directory: "/backups"
+      ## @param backup.retentionDays Retention time in days for backups (older backups are deleted)
+      ##
+      retentionDays: 10
+      ## Cronjob configuration
+      ## This cronjob is used to create InfluxDB&trade; backups
+      ##
+      cronjob:
+        ## @param backup.cronjob.schedule Schedule in Cron format to save snapshots
+        ## See https://en.wikipedia.org/wiki/Cron
+        ##
+        schedule: "0 2 * * *"
+        ## @param backup.cronjob.historyLimit Number of successful finished jobs to retain
+        ##
+        historyLimit: 1
+        ## @param backup.cronjob.podAnnotations Pod annotations
+        ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+        ##
+        podAnnotations: {}
+        ## K8s Security Context for Backup Cronjob pods
+        ## https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+        ## @param backup.cronjob.securityContext.enabled Enable security context for InfluxDB&trade;
+        ## @param backup.cronjob.securityContext.fsGroup Group ID for the InfluxDB&trade; filesystem
+        ## @param backup.cronjob.securityContext.runAsUser Group ID for the InfluxDB&trade; filesystem
+        ##
+        securityContext:
+          enabled: true
+          fsGroup: 1001
+          runAsUser: 1001
+      ## @param backup.podAffinityPreset Backup &trade; Pod affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+      ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+      ##
+      podAffinityPreset: ""
+      ## @param backup.podAntiAffinityPreset Backup&trade; Pod anti-affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+      ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+      ##
+      podAntiAffinityPreset: soft
+      ## Node affinity preset
+      ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+      ##
+      nodeAffinityPreset:
+        ## @param backup.nodeAffinityPreset.type Backup&trade; Node affinity preset type. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+        type: ""
+        ## @param backup.nodeAffinityPreset.key Backup&trade; Node label key to match Ignored if `affinity` is set.
+        ## E.g.
+        ## key: "kubernetes.io/e2e-az-name"
+        ##
+        key: ""
+        ## @param backup.nodeAffinityPreset.values Backup&trade; Node label values to match. Ignored if `affinity` is set.
+        ## E.g.
+        ## values:
+        ##   - e2e-az1
+        ##   - e2e-az2
+        ##
+        values: []
+      ## @param backup.affinity Backup&trade; Affinity for backup pod assignment
+      ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+      ## Note: podAffinityPreset, podAntiAffinityPreset, and  nodeAffinityPreset will be ignored when it's set
+      ##
+      affinity: {}
+      ## @param backup.nodeSelector Backup&trade; Node labels for backup pod assignment
+      ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+      ##
+      nodeSelector: 
+        worker: yes
+      ## @param backup.tolerations Backup&trade; Tolerations for backup pod assignment
+      ## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+      ##
+      tolerations: []
+      ## Storage providers where to upload backups
+      ##
+      uploadProviders:
+        ## Google Storage Bucket configuration
+        ## @param backup.uploadProviders.google.enabled enable upload to google storage bucket
+        ## @param backup.uploadProviders.google.secret json secret with serviceaccount data to access Google storage bucket
+        ## @param backup.uploadProviders.google.secretKey service account secret key name
+        ## @param backup.uploadProviders.google.existingSecret Name of existing secret object with Google serviceaccount json credentials
+        ## @param backup.uploadProviders.google.bucketName google storage bucket name name
+        ##
+        google:
+          enabled: false
+          secret: ""
+          secretKey: "key.json"
+          existingSecret: ""
+          bucketName: "gs://bucket/influxdb"
+          ## Bitnami Google Cloud SDK image
+          ## ref: https://hub.docker.com/r/bitnami/google-cloud-sdk/tags/
+          ## @param backup.uploadProviders.google.image.registry Google Cloud SDK image registry
+          ## @param backup.uploadProviders.google.image.repository Google Cloud SDK image name
+          ## @param backup.uploadProviders.google.image.tag Google Cloud SDK image tag
+          ## @param backup.uploadProviders.google.image.pullPolicy Google Cloud SDK image pull policy
+          ## @param backup.uploadProviders.google.image.pullSecrets Specify docker-registry secret names as an array
+          ##
+          image:
+            registry: docker.io
+            repository: bitnami/google-cloud-sdk
+            tag: 0.354.0-debian-10-r1
+            ## Specify a imagePullPolicy. Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+            ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+            ##
+            pullPolicy: IfNotPresent
+            ## Optionally specify an array of imagePullSecrets.
+            ## Secrets must be manually created in the namespace.
+            ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+            ## e.g:
+            ## pullSecrets:
+            ##   - myRegistryKeySecretName
+            ##
+            pullSecrets: []
+        ## Azure Storage Container configuration
+        ##
+        azure:
+          ## @param backup.uploadProviders.azure.enabled Enable upload to azure storage container
+          ## @param backup.uploadProviders.azure.secret Secret with credentials to access Azure storage
+          ## @param backup.uploadProviders.azure.secretKey Service account secret key name
+          ## @param backup.uploadProviders.azure.existingSecret Name of existing secret object
+          ## @param backup.uploadProviders.azure.containerName Destination container
+          enabled: false
+          secret: ""
+          secretKey: "connection-string"
+          existingSecret: ""
+          containerName: "influxdb-container"
+          ## Bitnami Azure CLI image
+          ## ref: https://hub.docker.com/r/bitnami/azure-cli/tags/
+          ## @param backup.uploadProviders.azure.image.registry Azure CLI image registry
+          ## @param backup.uploadProviders.azure.image.repository Azure CLI image repository
+          ## @param backup.uploadProviders.azure.image.tag Azure CLI image tag (immutable tags are recommended)
+          ## @param backup.uploadProviders.azure.image.pullPolicy Azure CLI image pull policy
+          ## @param backup.uploadProviders.azure.image.pullSecrets Specify docker-registry secret names as an array
+          ##
+          image:
+            registry: docker.io
+            repository: bitnami/azure-cli
+            tag: 2.27.2-debian-10-r2
+            ## Specify a imagePullPolicy. Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+            ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+            ##
+            pullPolicy: IfNotPresent
+            ## Optionally specify an array of imagePullSecrets.
+            ## Secrets must be manually created in the namespace.
+            ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+            ## e.g:
+            ## pullSecrets:
+            ##   - myRegistryKeySecretName
+            ##
+            pullSecrets: []
