@@ -4,6 +4,7 @@ data:
 kind: Secret
 metadata:
     name: regcred
+    namespace: flux-system
 type: kubernetes.io/dockerconfigjson
 sops:
     kms: []
@@ -11,8 +12,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2021-09-09T10:18:33Z"
-    mac: ENC[AES256_GCM,data:Hqxfmr0sG+ov5AVtVir0rGVeObyG0Q1pgYj7rZS6j8c99xxlB1kr5LGp5d4mkx7y4cMDtWukcWTUYsaMqqbqCzC6tuWs5l1iMmNAFTeR1muC6I+/XgMOX/aWPLNfHhTpo3pmoFJ1Fu0DYdgcc38tvJs5OFDntYhiH6cw8OP4LAY=,iv:+VCAcceGDC9A+aZuCtNBLUByKm9N+xi/sczn6i3nH2I=,tag:0yuAFr+NWVOgqslBsw3xWw==,type:str]
+    lastmodified: "2021-09-09T10:21:50Z"
+    mac: ENC[AES256_GCM,data:Ni35IA+jZmZJOWn4a3ZaEmKk7zSYuZ/CkrcHIq5b25t/hLXORYsPZEhNw8FXGTi99f+QZzZM4RcutLQqJBfWToA/A4APrW/HRzcbyU6PHC3FT2PQ1WubE5LQrZ0rTs9kf9L4bYQtieZOfML+gtMo6yE40trMFJ5a87wH4/PhpPY=,iv:iZfiOBCl6sqsYQDrcLcnivgHl89KtNaueEfEH0RqSTk=,tag:MKRo68oljxBRbQO3dO7i8Q==,type:str]
     pgp:
         - created_at: "2021-09-09T10:16:48Z"
           enc: |
