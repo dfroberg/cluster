@@ -82,8 +82,6 @@ spec:
     experimental:
       plugins:
         enabled: true
-    nodeSelector:
-      worker: yes
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
