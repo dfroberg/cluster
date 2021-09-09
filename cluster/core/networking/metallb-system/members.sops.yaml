@@ -3,7 +3,7 @@ data:
     secretkey: ENC[AES256_GCM,data:H1Dm+VfjPpSZ4z42By2+GP02U1zUgM0nhHf1MNWk8ozIPPh3qd36jP7PoBAuPG2TM7XwnFWJhiQIGtaUvMkYmaT9zGkuwY7QsJyY6Q0xVc9SmVgf2m0K69JGQ3n2GbpTlVR9hmx2JSuUWQ7QBzVEgf7V7byXvLJxRlt8pVWu30mVZM0XGYXRApCW26UfHu9ND0lKcPfoJ/yNvDTbp0af7rG9yq6hBRU6sYQe91Kao60SSBJT0fWLeNd2E5i0GLubstdM3ejGxVvVPkqN8rPEgqIPAn8W9JtqGKorFbm+lxU/l98n5Bhn5g==,iv:yc1nx9topn525DPbzHnQIPqB+Giw6B0Q+fTaSwgfioE=,tag:wO7p6+2BhyIgjXP2oOxPDA==,type:str]
 kind: Secret
 metadata:
-    name: memberlist
+    name: metallb-memberlist
     namespace: metallb-system
 sops:
     kms: []
@@ -11,8 +11,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2021-09-09T14:16:35Z"
-    mac: ENC[AES256_GCM,data:EuPd0H9FEUvDmKS6LsxBB2iq9MetU4yhQUIPHc6UN3ys7g2HzqMNNVQBmWyszMWiwcjYeK6SujVZF1xLM8ACWmvWM7M8MrH7UuJDiOztQLM7qHr4mk0xHThDq92QIlBvyTypZY4l4w70HPSA39G3BI5Oh7mzBKykpJZgp7W/8nM=,iv:tt2zgsG6cu46/UOY0PcKmO7JENBBtkeBML9kiXZ1gLk=,tag:HgQ/9bN5deyilqSaa3Qa2A==,type:str]
+    lastmodified: "2021-09-09T14:19:19Z"
+    mac: ENC[AES256_GCM,data:zN7HuHCwTmWq1eHCjER36m0V5caGxnAq5edhVcEwbwcJ9kpK2kNntFGcsiz5kjprK0Sn63X7Js9ZbMLmWyykmQhUhDd+RAeXjAu0EYVMP1NwrbbA+DGwp9KAymV6MyqwiH6H89vZgxhZIBWEQ7RB2Lh4iJIrkQCYHkXmCveeosc=,iv:KKdroUJCNggTVwfR6cBe6GviNzHz79JZzQP5xArWuT0=,tag:l48I1oBcbvU+8QHUyhGk8w==,type:str]
     pgp:
         - created_at: "2021-09-09T14:16:15Z"
           enc: |
