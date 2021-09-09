@@ -60,7 +60,7 @@ spec:
         failureThreshold: 6
       readinessProbe:
         enabled: true
-        initialDelaySeconds: 60
+        initialDelaySeconds: 180
         periodSeconds: 45
         timeoutSeconds: 30
         successThreshold: 1
@@ -173,14 +173,14 @@ spec:
         enabled: true
         initialDelaySeconds: 30
         periodSeconds: 10
-        timeoutSeconds: 5
+        timeoutSeconds: 15
         successThreshold: 1
         failureThreshold: 6
       readinessProbe:
         enabled: true
-        initialDelaySeconds: 5
+        initialDelaySeconds: 30
         periodSeconds: 10
-        timeoutSeconds: 5
+        timeoutSeconds: 15
         successThreshold: 1
         failureThreshold: 6
       containerPorts:
