@@ -10,4 +10,5 @@ resources:
   - kasten-io.yaml
   - rook-ceph.yaml
   - rook-nfs-system.yaml
+  - velero.yaml
   
