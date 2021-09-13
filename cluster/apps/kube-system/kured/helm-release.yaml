@@ -31,5 +31,14 @@ spec:
     tolerations:
       - key: "node-role.kubernetes.io/master"
         operator: "Exists"
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
     metrics:
       create: true
+    resources:
+      requests:
+        cpu: 25m
+        memory: 263M
+      limits:
+        cpu: 25m
+        memory: 263M
