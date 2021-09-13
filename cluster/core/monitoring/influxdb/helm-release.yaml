@@ -23,6 +23,8 @@ spec:
   upgrade:
     remediation:
       retries: 3
+  dependsOn:
+    - name: rook-ceph
   values:
     global:
       storageClass: "rook-ceph-block"
