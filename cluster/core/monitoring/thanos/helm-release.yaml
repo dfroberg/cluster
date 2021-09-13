@@ -58,7 +58,7 @@ spec:
           cpu: 25m
           memory: 263M
         limits:
-          cpu: 87m
+          cpu: 100m
           memory: 290M
     compactor:
       enabled: true
@@ -66,10 +66,10 @@ spec:
         enabled: false
       resources:
         requests:
-          cpu: 108m
+          cpu: 208m
           memory: 263M
         limits:
-          cpu: 133m
+          cpu: 233m
           memory: 263M
     storegateway:
       enabled: true
