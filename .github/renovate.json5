@@ -167,7 +167,7 @@
       "automergeType": "branch",
       "requiredStatusChecks": null,
       "matchUpdateTypes": ["minor", "patch"],
-      // "matchPackageNames": [
+      "matchPackageNames": [
       //   "ghcr.io/k8s-at-home/jackett",
       //   "ghcr.io/k8s-at-home/prowlarr-nightly"
      ]
