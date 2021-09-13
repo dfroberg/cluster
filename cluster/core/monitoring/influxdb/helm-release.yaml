@@ -52,12 +52,12 @@ spec:
         fsGroup: 1001
         runAsUser: 1001
       resources:
-        limits:
-          cpu: 1500m
-          memory: 1Gi
         requests:
-          cpu: 1000m
-          memory: 512Mi
+          cpu: 25m
+          memory: 263M
+        limits:
+          cpu: 45m
+          memory: 263M
       livenessProbe:
         enabled: true
         initialDelaySeconds: 180

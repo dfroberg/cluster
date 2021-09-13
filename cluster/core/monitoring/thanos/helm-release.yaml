@@ -66,11 +66,11 @@ spec:
         enabled: false
       resources:
         requests:
-          cpu: 25m
+          cpu: 108m
           memory: 263M
         limits:
-          cpu: 87m
-          memory: 397M
+          cpu: 133m
+          memory: 263M
     storegateway:
       enabled: true
       persistence:

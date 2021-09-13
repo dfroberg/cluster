@@ -22,3 +22,10 @@ spec:
           protocol: layer2
           addresses:
             - "${METALLB_LB_RANGE}"
+    resources:
+      requests:
+        cpu: 25m
+        memory: 263M
+      limits:
+        cpu: 25m
+        memory: 263M

@@ -22,7 +22,7 @@ spec:
         cpu: 25m
         memory: 263M
       limits:
-        cpu: 48m
+        cpu: 92m
         memory: 263M
     fullnameOverride: prometheus
     alertmanager:

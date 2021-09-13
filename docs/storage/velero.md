@@ -62,3 +62,38 @@ NAME                  STATUS    CREATED                          SCHEDULE    BAC
 velero-daily-backup   Enabled   2021-09-13 11:16:59 +0200 CEST   0 6 * * *   120h0m0s     14m ago       <none>
 ~~~
 
+Check if backups are succeding;
+~~~
+velero get backups
+~~~
+~~~
+NAME                                 STATUS      ERRORS   WARNINGS   CREATED                          EXPIRES   STORAGE LOCATION   SELECTOR
+velero-daily-backup-20210913114258   Completed   0        0          2021-09-13 11:42:58 +0200 CEST   4d        default            <none>
+~~~
+
+# Annotations
+To enable PV backups on workloads you need to describe in an annotation which volumes to backup;
+In manfifests add;
+~~~
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    backup.velero.io/backup-volumes: data
+~~~
+
+or from kubectl;
+Examples;
+~~~
+kubectl -n YOUR_POD_NAMESPACE annotate pod/YOUR_POD_NAME backup.velero.io/backup-volumes=YOUR_VOLUME_NAME_1,YOUR_VOLUME_NAME_2,...
+~~~
+~~~
+kubectl -n default annotate pod hajimari-696b7f8d7d-jf8jh backup.velero.io/backup-volumes=data 
+~~~
+
+# Backups
+## Entire namespace
+~~~
+velero backup create backup-demo-app-ns --include-namespaces demo-ns --wait
+~~~
+
