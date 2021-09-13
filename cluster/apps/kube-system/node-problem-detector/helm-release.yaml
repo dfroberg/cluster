@@ -21,3 +21,15 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
+    tolerations:
+      - effect: "NoExecute"
+        operator: "Exists"
+      - effect: "NoSchedule"
+        operator: "Exists"
+    resources:
+      requests:
+        cpu: 25m
+        memory: 263M
+      limits:
+        cpu: 25m
+        memory: 263M

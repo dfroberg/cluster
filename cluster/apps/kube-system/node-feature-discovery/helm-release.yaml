@@ -22,6 +22,8 @@ spec:
           operator: "Equal"
           value: "true"
           effect: "NoSchedule"
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -86,3 +88,10 @@ spec:
           operator: "Exists"
         - effect: "NoSchedule"
           operator: "Exists"
+      resources:
+        requests:
+          cpu: 25m
+          memory: 263M
+        limits:
+          cpu: 25m
+          memory: 263M
