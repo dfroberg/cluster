@@ -5,6 +5,7 @@ export USER=dfroberg
 export SERVER_IP=192.168.30.70
 export K3S_VERSION=v1.21.4+k3s1
 export LB=192.168.30.60
+
 echo "Master 01"
 k3sup install \
     --host=192.168.30.70 \
@@ -23,9 +24,10 @@ k3sup install \
 --disable traefik \
 --disable metrics-server \
 "
+sleep 5
 
 # Replace Master01 ip with LB IP
-sed -i '' "s/$SERVER_IP/$LB/g" kubeconfig 
+sed --in-place='' --expression="s/$SERVER_IP/$LB/g" /home/dfroberg/cluster/kubeconfig 
 
 sleep 5
 echo "Master 02"
@@ -159,12 +161,20 @@ k3sup join \
 --node-label storage=yes \
 "
 
+echo "Create flux-system namespace"
+export KUBECONFIG=/home/dfroberg/cluster/kubeconfig
+kubectl config set-context default
+kubectl create namespace flux-system
+
+echo "Apply Initial Cluster Secret Keys"
+kubectl apply -f ../cluster-secrets/cluster/sops-gpg.yaml -n flux-system
+
+echo "Patch system to ensure local-path is not default as it collides with rook-ceph"
+kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 
 echo "Bootstrap"
 flux bootstrap github --owner=dfroberg --repository=cluster --private=false --personal=true --path=/cluster/base/ --token-auth --reconcile
 
-echo "Apply Initial Cluster Secret Keys"
-kubectl apply -f ../cluster-secrets/cluster/sops-gpg.yaml -n flux-system
 
 # Setup some helpers
 alias kdk="k describe kustomizations.kustomize.toolkit.fluxcd.io -A"

@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - namespaces
   - storage
+  - kube-system
   - networking
   - resource-control
   - system-upgrade
