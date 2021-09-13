@@ -1,0 +1,34 @@
+---
+name: Schedule - Update Kah Library Helm chart
+
+on: # yamllint disable-line rule:truthy
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */4 * * *"
+
+jobs:
+  update-helm-deps:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/setup-helm@v1
+        with:
+          version: v3.6.3
+      - run: helm repo add k8s-at-home-library https://library-charts.k8s-at-home.com
+      - run: helm repo update
+      - run: helm dep update
+        working-directory: charts/kah-common
+      - uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: renovate-kah-library-chart
+          delete-branch: true
+          title: "chore(deps): update kah library chart"
+          signoff: true
+          committer: "Danny Froberg <dfroberg@users.noreply.github.com>"
+          author: "Danny Froberg <dfroberg@users.noreply.github.com>"
+          assignees: "dfroberg"
+          commit-message: "chore(deps): update kah library chart"
+          body: |
+            Update the kah library chart
+          labels: renovate/kah-library-chart
