@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - default.yaml
+  - calico-system.yaml
   - cert-manager.yaml
   - metallb-system.yaml
   - goldilocks.yaml
@@ -11,4 +12,6 @@ resources:
   - rook-ceph.yaml
   - rook-nfs-system.yaml
   - velero.yaml
+  - home.yaml
+  - gaming.yaml
   

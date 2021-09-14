@@ -27,6 +27,7 @@ spec:
     image:
       registry: public.ecr.aws
       repository: bitnami/thanos
+    storageClass: "rook-ceph-block"
     query:
       enabled: true
       replicaLabels:
