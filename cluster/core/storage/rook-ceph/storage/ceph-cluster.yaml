@@ -45,6 +45,13 @@ spec:
     manageMachineDisruptionBudgets: false
     machineDisruptionBudgetNamespace: openshift-machine-api
   resources:
+    mgr:
+      limits:
+        cpu: "500m"
+        memory: "1024Mi"
+      requests:
+        cpu: "500m"
+        memory: "1024Mi"
     mon:
       requests:
         cpu: 35m
@@ -66,10 +73,10 @@ spec:
     nodes:
       - name: "storage01.${SECRET_NODE_DOMAIN}"
         devices:
-          - name: "sdb"
+          - name: "sd[b-z]"
       - name: "storage02.${SECRET_NODE_DOMAIN}"
         devices:
-          - name: "sdb"
+          - name: "sd[b-z]"
       - name: "storage03.${SECRET_NODE_DOMAIN}"
         devices:
-          - name: "sdb"
+          - name: "sd[b-z]"
