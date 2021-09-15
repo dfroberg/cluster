@@ -1,0 +1,8 @@
+---
+# Timezone for the servers
+timezone: "Europe/Stockholm"
+
+# Additional ssh public keys to add to the nodes
+ssh_authorized_keys:
+  # Workstation
+  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCRSrGw/2bWOBdJo17vSOZ15D+NRKxgDxRd4K+5hqChs5E0NUx1cZf2tpkY/Db/skb3QaIBteYWXZsu6qtxw0tml/5VtXXVtXOF7bF/ZC/xhvKKGMjvDHQvvIX1Gn/DAHV3Hl3RPxjeo3Y/2ObTxMxDnZJiSO/CJJxC0rOkFKBHF7oZzbUWAsxKLxVTAxxp5jEyCrpPACW3K95n4k9d5jbITz3uFWIhXVv9If65uH6a72jyOK93H2Egbu8NlgaF1hZTKeVc9cH1YoanG+qUDd8NKZXd/qQ99gSDoVjR9RGrGVza+2h3wUqsWxfpbwodk0nB0eyr616xI2Vj0QdjNyzN"

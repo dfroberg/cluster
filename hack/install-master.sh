@@ -24,12 +24,12 @@ k3sup install \
 --disable traefik \
 --disable metrics-server \
 "
-sleep 5
+sleep 15
 
 # Replace Master01 ip with LB IP
 sed --in-place='' --expression="s/$SERVER_IP/$LB/g" /home/dfroberg/cluster/kubeconfig 
 
-sleep 5
+
 echo "Master 02"
 export NEXT_SERVER_IP=192.168.30.71
 
