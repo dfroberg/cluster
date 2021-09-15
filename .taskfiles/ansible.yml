@@ -14,7 +14,7 @@ tasks:
     dir: ansible
     cmds:
       - "ansible-galaxy install -r requirements.yml --force --ignore-errors"
-      - "pip3 install -r requirements.txt"
+      - "pip3 install -r requirements.txt --user"
     silent: true
 
   list:
@@ -28,14 +28,14 @@ tasks:
     desc: Check date on all the hosts
     dir: ansible
     cmds:
-      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line -m command -a 'date'"
+      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'date'"
     silent: true
 
   ping:
     desc: Ping all the hosts
     dir: ansible
     cmds:
-      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line -m 'ping'"
+      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line  --become -m 'ping'"
     silent: true
 
   uptime:
@@ -62,14 +62,14 @@ tasks:
     desc: Reboot all the k8s nodes
     dir: ansible
     cmds:
-      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a '/usr/bin/systemctl reboot' --become"
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a '/bin/systemctl reboot' --become"
     silent: true
 
   poweroff:
     desc: Shutdown all the k8s nodes
     dir: ansible
     cmds:
-      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a '/usr/bin/systemctl poweroff' --become"
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a '/bin/systemctl poweroff' --become"
     silent: true
 
   playbook:ubuntu-prepare:

@@ -111,7 +111,7 @@ k3s_agent: {}
 ##
 
 # Use become privileges for
-k3s_become_for_all: false
+k3s_become_for_all: true
 k3s_become_for_systemd: null
 k3s_become_for_install_dir: null
 k3s_become_for_directory_creation: null
