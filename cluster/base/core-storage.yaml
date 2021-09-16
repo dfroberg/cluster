@@ -42,6 +42,15 @@ spec:
       kind: Deployment
       name: rook-ceph-mon-c
       namespace: rook-ceph
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: rook-ceph-osd-0
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: rook-ceph-osd-1
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: rook-ceph-osd-2
   postBuild:
     substitute: {}
     substituteFrom:
