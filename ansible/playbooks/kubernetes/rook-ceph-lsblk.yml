@@ -1,0 +1,29 @@
+---
+- hosts:
+    - storage
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  pre_tasks:
+    - name: Pausing for 1 seconds...
+      pause:
+        seconds: 1
+  tasks:
+    - name: Show lsblk on storage nodes
+      block:
+        - name: lsblk
+          no_log: True
+          ansible.builtin.shell: >
+            /bin/lsblk {{ item | join(' ') }} 
+          register: command_output
+          loop:
+            - "{{ rook_devices }}"
+        - debug: msg="{{ command_output | json_query('results[*].stdout') }}"
+      when:
+        - rook_devices is defined
+        - rook_devices is iterable
+        - rook_devices | length > 0
+#    - name: Json Query
+#      set_fact:
+#        query_result:
+#          command_output:"{{ command_output | json_query('results[*].stdout') }}"

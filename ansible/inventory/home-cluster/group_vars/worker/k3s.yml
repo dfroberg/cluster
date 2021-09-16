@@ -14,4 +14,6 @@ k3s_agent:
   # TODO: Adding a node label here breaks the k3s service
   # node-label:
   #   - "node-role.kubernetes.io/worker=true"
+  node-label:
+     - "worker=yes"
 

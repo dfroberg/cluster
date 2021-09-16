@@ -41,7 +41,7 @@ k3s_server_config_yaml_d_files:
 # /var/lib/rancher/k3s/server/manifests
 #
 
-# k3s_server_manifests_templates:
+#k3s_server_manifests_templates:
 #   - "home-dns/home-dns-rbac.yaml.j2"
 #   - "calico/calico-installation.yaml.j2"
 #   - "calico/calico-bgpconfiguration.yaml.j2"

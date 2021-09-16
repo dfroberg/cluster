@@ -7,10 +7,14 @@ tasks:
     cmds:
       - flux reconcile source git flux-system
     silent: true
+  install:
+    desc: Sync flux-system with the Git Repository
+    cmds:
+      - flux install
+    silent: true
   seed:
     desc: Install sops secret (Only needed after initial cluster install)
     cmds:
-      - kubectl create ns flux-system
       - kubectl apply -f ../cluster-secrets/cluster/sops-gpg.yaml -n flux-system
     silent: true  
   bootstrap:

@@ -106,3 +106,9 @@ tasks:
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/rook-ceph-nuke.yml"
     silent: true
+  playbook:rook-lsblk:
+    desc: Check lsblk of configured devices on the storage nodes
+    dir: ansible
+    cmds:
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/rook-ceph-lsblk.yml"
+    silent: true
