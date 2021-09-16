@@ -32,25 +32,20 @@ spec:
       namespace: rook-ceph
     - apiVersion: apps/v1
       kind: Deployment
-      name: rook-ceph-mon-a
-      namespace: rook-ceph
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: rook-ceph-mon-b
-      namespace: rook-ceph
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: rook-ceph-mon-c
+      name: rook-ceph-mgr-a
       namespace: rook-ceph
     - apiVersion: apps/v1
       kind: Deployment
       name: rook-ceph-osd-0
+      namespace: rook-ceph
     - apiVersion: apps/v1
       kind: Deployment
       name: rook-ceph-osd-1
+      namespace: rook-ceph
     - apiVersion: apps/v1
       kind: Deployment
       name: rook-ceph-osd-2
+      namespace: rook-ceph
   postBuild:
     substitute: {}
     substituteFrom:
