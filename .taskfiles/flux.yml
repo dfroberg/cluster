@@ -2,6 +2,11 @@
 version: "3"
 
 tasks:
+  update-cli:
+    desc: Go get the latest cli
+    cmds:
+      - curl -s https://fluxcd.io/install.sh | sudo bash
+    silent: true
   sync:
     desc: Sync flux-system with the Git Repository
     cmds:

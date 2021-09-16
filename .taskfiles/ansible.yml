@@ -94,7 +94,7 @@ tasks:
     silent: true
 
   playbook:cluster-nuke:
-    desc: Install Kubernetes on the nodes
+    desc: Completely remove Kubernetes on the nodes
     dir: ansible
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/k3s-nuke.yml"

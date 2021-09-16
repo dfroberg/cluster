@@ -14,7 +14,7 @@ k3s_server:
     # haproxy
     - "{{ k3s_registration_address }}"
   docker: false
-  flannel-backend: "host-gw" # This needs to be in quotes
+  flannel-backend: "vxlan" # This needs to be in quotes
   disable:
   #  - flannel
     - traefik
@@ -22,12 +22,12 @@ k3s_server:
     - metrics-server
     - local-storage
   disable-network-policy: true
-  disable-cloud-controller: true
+  disable-cloud-controller: false
   write-kubeconfig-mode: "644"
   # Network CIDR to use for pod IPs
-  #cluster-cidr: "10.69.0.0/16"
+  cluster-cidr: "10.69.0.0/16"
   # Network CIDR to use for service IPs
-  #service-cidr: "10.96.0.0/16"
+  service-cidr: "10.69.0.0/16"
   kubelet-arg:
     - "feature-gates=GracefulNodeShutdown=true"
     - "feature-gates=MixedProtocolLBService=true"
