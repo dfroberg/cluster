@@ -16,7 +16,7 @@ spec:
         name: rook-ceph-charts
         namespace: flux-system
   install:
-    timeout: 10m
+    timeout: 30m
     remediation:
       retries: 3
   upgrade:
@@ -34,5 +34,5 @@ spec:
         cpu: 100m
         memory: 128Mi
       limits:
-        cpu: 1000m
-        memory: 256Mi
+        cpu: 2000m
+        memory: 512Mi
