@@ -1,0 +1,51 @@
+---
+version: "3"
+
+vars:
+  K3S_PRIMARY_MASTER_NODE_USERNAME: dfroberg
+  K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.30.70"
+  SOURCE_ETCDCTL_CACERT: '/var/lib/rancher/k3s/server/tls/etcd/server-ca.crt' 
+  SOURCE_ETCDCTL_CERT: '/var/lib/rancher/k3s/server/tls/etcd/server-client.crt' 
+  SOURCE_ETCDCTL_KEY: '/var/lib/rancher/k3s/server/tls/etcd/server-client.key' 
+
+env:
+  ETCDCTL_ENDPOINTS: 'https://{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:2379' 
+  ETCDCTL_CACERT: '/tmp/etcd/server-ca.crt' 
+  ETCDCTL_CERT: '/tmp/etcd/server-client.crt' 
+  ETCDCTL_KEY: '/tmp/etcd/server-client.key' 
+  ETCDCTL_API: 3 
+  
+tasks:
+
+  bootstrap:
+    desc: Install etcdctl and remotely fetch etcd certs from k3s main node as well as run status to test
+    cmds:
+      - chmod +x ~/cluster/hack/install-etcdctl.sh
+      - ~/cluster/hack/install-etcdctl.sh
+      - mkdir -p /tmp/etcd
+      - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:{{.SOURCE_ETCDCTL_CACERT}} {{.ETCDCTL_CACERT}}
+      - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:{{.SOURCE_ETCDCTL_CERT}} {{.ETCDCTL_CERT}}
+      - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:{{.SOURCE_ETCDCTL_KEY}} {{.ETCDCTL_KEY}}
+      - etcdctl endpoint status --cluster --write-out=table
+    silent: true
+    dir: ~/cluster/
+  status:
+    desc: Endpoint status
+    cmds:
+      - etcdctl endpoint status --cluster --write-out=table
+    silent: true
+  endpoint:
+    desc: Endpoint health
+    cmds:
+      - etcdctl endpoint health --cluster --write-out=table
+    silent: true
+  alarm:
+    desc: Alarm list
+    cmds:
+      - etcdctl alarm list
+    silent: true
+  metrics:
+    desc: Endpoint metrics
+    cmds:
+      - curl -L --cacert {{.ETCDCTL_CACERT}} --cert {{.ETCDCTL_CERT}} --key {{.ETCDCTL_KEY}} https://{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:2379/metrics
+    silent: true
