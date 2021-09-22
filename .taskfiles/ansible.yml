@@ -45,6 +45,13 @@ tasks:
       - ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line -a 'uptime'
     silent: true
 
+  uptime:storage:
+    desc: Uptime of storage hosts
+    dir: ansible
+    cmds:
+      - ansible storage -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line -a 'uptime'
+    silent: true
+
   clean-images:
     desc: Clean up stale container images
     dir: ansible
@@ -65,11 +72,25 @@ tasks:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a '/bin/systemctl reboot' --become"
     silent: true
 
+  reboot:storage:
+    desc: Reboot storage nodes
+    dir: ansible
+    cmds:
+      - "ansible storage -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a '/bin/systemctl reboot' --become"
+    silent: true
+
   poweroff:
     desc: Shutdown all the k8s nodes
     dir: ansible
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a '/bin/systemctl poweroff' --become"
+    silent: true
+
+  poweroff:storage:
+    desc: Shutdown all the k8s nodes
+    dir: ansible
+    cmds:
+      - "ansible storage -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a '/bin/systemctl poweroff' --become"
     silent: true
 
   playbook:ubuntu-prepare:
