@@ -7,9 +7,9 @@ metadata:
 spec:
   interval: 5m0s
   dependsOn:
-    - name: init
+    - name: core-network
   path: ./cluster/core/storage
-  prune: true
+  prune: false
   decryption:
     provider: sops
     secretRef:

@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - kube-system
-  - networking
+  #- networking   # Moved to own step in base
   - resource-control
   - system-upgrade
   - monitoring

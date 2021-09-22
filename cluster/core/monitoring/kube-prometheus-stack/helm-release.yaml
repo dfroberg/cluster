@@ -175,6 +175,8 @@ spec:
               - "prometheus.${SECRET_DOMAIN}"
       thanosService:
         enabled: true
+      thanosServiceMonitor:
+        enabled: true
       prometheusSpec:
         replicas: 1
         replicaExternalLabelName: "replica"
