@@ -26,6 +26,7 @@ tasks:
     cmds:
       - kubectl get serviceaccount k10-k10 -o jsonpath="{.secrets[0].name}" --namespace kasten-io
       - kubectl get secret k10-k10-token-bdpdn --namespace kasten-io -ojsonpath="{.data.token}{'\n'}" | base64 --decode
+      
   grafana-password:
     desc: Retrieve the Grafana passphrase
     cmds:
@@ -33,6 +34,7 @@ tasks:
       - echo -n 'User; ' && kubectl get secret grafana --namespace monitoring -o jsonpath='{.data.admin-user}' | base64 --decode && echo
       - echo -n 'Pass; ' && kubectl get secret grafana --namespace monitoring -o jsonpath='{.data.admin-password}' | base64 --decode && echo
     silent: true
+
   pause:
     desc: Pause all Helm Releases that rely on NFS storage
     cmds:

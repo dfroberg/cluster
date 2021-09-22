@@ -27,3 +27,11 @@ tasks:
     cmds:
       - flux bootstrap github --owner=dfroberg --repository=cluster --private=false --personal=true --path=/cluster/base/ --token-auth --reconcile
     silent: true
+  setup:
+    desc: Complete installation of Flux
+    cmds:
+      - task flux:update-cli
+      - task flux:install
+      - task flux:seed
+      - task flux:bootstrap
+    dir: ~/cluster/
