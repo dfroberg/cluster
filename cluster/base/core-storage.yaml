@@ -6,6 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m0s
+  retryInterval: 1m0s
+  timeout: 15m0s
   dependsOn:
     - name: core-network
   path: ./cluster/core/storage
@@ -21,10 +23,6 @@ spec:
     - apiVersion: apps/v1
       kind: Deployment
       name: rook-ceph-operator
-      namespace: rook-ceph
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: rook-direct-mount
       namespace: rook-ceph
     - apiVersion: apps/v1
       kind: Deployment
