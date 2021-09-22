@@ -6,6 +6,3 @@ metadata:
 data:
   config: |
     [global]
-    # osd crush update on start = false
-    # osd pool default size = 2
-    # mon lease = 30.0
