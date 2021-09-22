@@ -26,15 +26,12 @@ spec:
       backupStorageLocation:
         name: default
         bucket: velero
+        default: true
         config:
           region: us-east-1
           s3ForcePathStyle: true
           s3Url: https://${SECRET_MINIO_HOST}
           publicUrl: https://${SECRET_MINIO_HOST}
-      volumeSnapshotLocation:
-        name: aws
-        config:
-          region: us-east-1
       resticTimeout: 6h
     initContainers:
       - name: velero-plugin-for-aws
