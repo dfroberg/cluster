@@ -23,6 +23,10 @@
   tags:
     - disks
 
+- include: ramdisk.yml
+  tags:
+    - ramdisks
+
 - include: security.yml
   tags:
     - security
