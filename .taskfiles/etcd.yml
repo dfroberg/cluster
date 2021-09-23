@@ -44,6 +44,16 @@ tasks:
     cmds:
       - etcdctl alarm list
     silent: true
+  perf:
+    desc: Performance test Small
+    cmds:
+      - etcdctl check perf --load='s'
+    silent: true
+  perf-large:
+    desc: Performance test Small
+    cmds:
+      - etcdctl check perf --load='l'
+    silent: true
   metrics:
     desc: Endpoint metrics
     cmds:

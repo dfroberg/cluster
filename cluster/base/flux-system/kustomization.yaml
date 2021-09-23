@@ -8,3 +8,4 @@ patchesStrategicMerge:
   - ./gotk-patch-sops.yaml
   - ./gotk-patch-source-controller.yaml
   - ./gotk-patch-helm-controller.yaml
+  - ./gotk-patch-kustomize-controller.yaml

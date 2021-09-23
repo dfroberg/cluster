@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: source-controller
+  name: kustomize-controller
   namespace: flux-system
 spec:
   template:
@@ -11,6 +11,6 @@ spec:
           resources:
             limits:
               cpu: 3000m
-              memory: 2Gi
+              memory: 1Gi
           nodeSelector:
             worker: yes
