@@ -1,6 +1,6 @@
 ---
 - hosts:
-    - storage
+    - all
   become: true
   gather_facts: true
   any_errors_fatal: true
@@ -9,12 +9,26 @@
       pause:
         seconds: 5
   tasks:
+    # Ensure any remnants of rook is nuked on ALL nodes
+    #- name: Remove /var/lib/rook
+    #  ansible.builtin.file:
+    #    state: absent
+    #    path: "/var/lib/rook"
+    - name: Locating all files in rook dir
+      find:
+        path: "/var/lib/rook"
+      register: cleanup
+      ignore_errors: true
+
+    - name: Removing all files previously found in rook dir
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ cleanup.files }}"
+      ignore_errors: true
+
     - name: Reset disks
       block:
-        - name: Remove /var/lib/rook
-          ansible.builtin.file:
-            state: absent
-            path: "/var/lib/rook"
         - name: Zap the drives
           ansible.builtin.shell: >
             sgdisk --zap-all {{ item }} || true

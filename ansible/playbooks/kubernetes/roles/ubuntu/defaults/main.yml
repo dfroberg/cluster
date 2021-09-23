@@ -23,6 +23,8 @@ apt_install_packages:
   - software-properties-common
   - unattended-upgrades
   - unzip
+  - lzop 
+  
 
 apt_remove_packages:
   - apparmor

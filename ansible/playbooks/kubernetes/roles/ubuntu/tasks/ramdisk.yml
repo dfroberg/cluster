@@ -1,7 +1,191 @@
 ---
-#- name: Create ramdisk directory
-#  ansible.builtin.file:
-#    state: directory
-#    path: "{{ data_dir }}"
-#  when:
-#   - data_dir is defined
+# This is an experimental feature for use on non critical clusters
+# depends on adding lzop to installed packages.
+- name: Unmount up k3s ramdisk
+  ansible.posix.mount:
+    path: /var/lib/rancher
+    src: tmpfs
+    fstype: tmpfs
+    opts: rw,nodev,nosuid,size=8G
+    state: unmounted
+  when:
+   - ramdisk is defined
+
+- name: Unmount up rook ramdisk
+  ansible.posix.mount:
+    path: /var/lib/rook
+    src: tmpfs
+    fstype: tmpfs
+    opts: rw,nodev,nosuid,size=512M
+    state: unmounted
+  when:
+   - ramdisk is defined
+
+- name: Unmount up kubelet ramdisk
+  ansible.posix.mount:
+    path: /var/lib/kubelet
+    src: tmpfs
+    fstype: tmpfs
+    opts: rw,nodev,nosuid,size=200M
+    state: unmounted
+  when:
+   - ramdisk is defined   
+
+- name: Delete rancher ramdisk mount directory
+  ansible.builtin.file:
+    state: absent
+    path: "/var/lib/rancher"
+  when:
+   - ramdisk is defined
+
+- name: Delete kubelet ramdisk mount directory
+  ansible.builtin.file:
+    state: absent
+    path: "/var/lib/kubelet"
+  when:
+   - ramdisk is defined
+
+- name: Delete rook ramdisk mount directory
+  ansible.builtin.file:
+    state: absent
+    path: "/var/lib/rook"
+  when:
+   - ramdisk is defined
+
+- name: Create ramdisk backup directory
+  ansible.builtin.file:
+    state: directory
+    path: "/var/ramdisk-backup"
+  when:
+   - ramdisk is defined
+
+- name: Create rancher ramdisk mount directory
+  ansible.builtin.file:
+    state: directory
+    path: "/var/lib/rancher"
+  when:
+   - ramdisk is defined
+
+- name: Create kubelet ramdisk mount directory
+  ansible.builtin.file:
+    state: directory
+    path: "/var/lib/kubelet"
+  when:
+   - ramdisk is defined
+
+- name: Create rook ramdisk mount directory
+  ansible.builtin.file:
+    state: directory
+    path: "/var/lib/rook"
+  when:
+   - ramdisk is defined
+
+- name: Mount up k3s ramdisk
+  ansible.posix.mount:
+    path: /var/lib/rancher
+    src: tmpfs
+    fstype: tmpfs
+    opts: rw,nodev,nosuid,size=8G
+    state: mounted
+  when:
+   - ramdisk is defined
+
+- name: Mount up rook ramdisk
+  ansible.posix.mount:
+    path: /var/lib/rook
+    src: tmpfs
+    fstype: tmpfs
+    opts: rw,nodev,nosuid,size=512M
+    state: mounted
+  when:
+   - ramdisk is defined
+
+- name: Mount up kubelet ramdisk
+  ansible.posix.mount:
+    path: /var/lib/kubelet
+    src: tmpfs
+    fstype: tmpfs
+    opts: rw,nodev,nosuid,size=200M
+    state: mounted
+  when:
+   - ramdisk is defined   
+
+- name: Put an empty file in each ramdisk for tests
+  ansible.builtin.shell: >
+    touch /var/lib/rancher/test
+    touch /var/lib/kubelet/test
+    touch /var/lib/rook/test
+  when:
+   - ramdisk is defined
+
+- name: Update /etc/init.d/ramdisk 
+  ansible.builtin.blockinfile:
+    path: /etc/init.d/ramdisk
+    create: true
+    mode: ug+rwx
+    block: |
+      #! /bin/sh
+      # /etc/init.d/ramdisk
+      #
+      case "$1" in
+      start)
+          echo "Copying rancher files to ramdisk"
+          cd /var/lib/rancher
+          tar --lzop -xvf /var/ramdisk-backup/ramdisk-rancher-backup.tar.lzop
+          echo [`date +"%Y-%m-%d %H:%M"`] Rancher Ramdisk Synched from HD >> /var/log/ramdisk_sync.log
+          echo "Copying kubelet files to ramdisk"
+          cd /var/lib/kubelet
+          tar --lzop -xvf /var/ramdisk-backup/ramdisk-kubelet-backup.tar.lzop
+          echo [`date +"%Y-%m-%d %H:%M"`] kubelet Ramdisk Synched from HD >> /var/log/ramdisk_sync.log
+          echo "Copying rancher files to ramdisk"
+          cd /var/lib/rook
+          tar --lzop -xvf /var/ramdisk-backup/ramdisk-rook-backup.tar.lzop
+          echo [`date +"%Y-%m-%d %H:%M"`] rook Ramdisk Synched from HD >> /var/log/ramdisk_sync.log
+          ;;
+      sync)
+          echo "Synching rancher files from ramdisk to Harddisk"
+          echo [`date +"%Y-%m-%d %H:%M"`] Rancher Ramdisk Synched to HD >> /var/log/ramdisk_sync.log
+          cd /var/ramdisk-backup/
+          mv -f ramdisk-rancher-backup.tar.lzop ramdisk-rancher-backup-old.tar.lzop
+          tar --lzop -cvf ramdisk-rancher-backup.tar.lzop /var/lib/rancher  --transform 's,^var/lib/rancher,.,g'
+          echo "Synching kubelet files from ramdisk to Harddisk"
+          echo [`date +"%Y-%m-%d %H:%M"`] kubelet Ramdisk Synched to HD >> /var/log/ramdisk_sync.log
+          mv -f ramdisk-kubelet-backup.tar.lzop ramdisk-kubelet-backup-old.tar.lzop
+          tar --lzop -cvf ramdisk-kubelet-backup.tar.lzop /var/lib/kubelet --transform 's,^var/lib/kubelet,.,g'
+          echo "Synching rook files from ramdisk to Harddisk"
+          echo [`date +"%Y-%m-%d %H:%M"`] rook Ramdisk Synched to HD >> /var/log/ramdisk_sync.log
+          mv -f ramdisk-rook-backup.tar.lzop ramdisk-rook-backup-old.tar.lzop
+          tar --lzop -cvf ramdisk-rook-backup.tar.lzop /var/lib/rook  --transform 's,^var/lib/rook,.,g'
+          ;;
+      stop)
+          echo "Synching logfiles from ramdisk to Harddisk"
+          echo [`date +"%Y-%m-%d %H:%M"`] STOP: Ramdisk Synched to HD START >> /var/log/ramdisk_sync.log
+          cd /var/ramdisk-backup/
+          tar --lzop -cvf ramdisk-rancher-backup.tar.lzop /var/lib/rancher  --transform 's,^var/lib/rancher,.,g'
+          tar --lzop -cvf ramdisk-kubelet-backup.tar.lzop /var/lib/kubelet  --transform 's,^var/lib/kubelet,.,g'
+          tar --lzop -cvf ramdisk-rook-backup.tar.lzop /var/lib/rook  --transform 's,^var/lib/rook,.,g'
+          echo [`date +"%Y-%m-%d %H:%M"`] STOP Ramdisk Synched to HD DONE >> /var/log/ramdisk_sync.log
+          ;;
+      *)
+          echo "Usage: /etc/init.d/ramdisk {start|stop|sync}"
+          exit 1
+          ;;
+      esac
+      exit 0
+  when:
+   - ramdisk is defined
+
+- name: "Ensure RAM Disk is synced every two minutes"
+  ansible.builtin.cron:
+    name: "Sync RAM Disk"
+    minute: "2"
+    user: root
+    job: "/etc/init.d/ramdisk sync >> /dev/null 2>&1"
+    cron_file: ansible_ramdisk_sync
+  when:
+   - ramdisk is defined
+
+- name: Make ramdisk script run on 00 99
+  ansible.builtin.shell: update-rc.d ramdisk defaults 00 99
+  when:
+   - ramdisk is defined

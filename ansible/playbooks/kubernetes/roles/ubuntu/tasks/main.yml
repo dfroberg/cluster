@@ -15,6 +15,10 @@
   tags:
     - network
 
+- include: journal.yml
+  tags:
+    - journal
+
 - include: filesystem.yml
   tags:
     - filesystem
