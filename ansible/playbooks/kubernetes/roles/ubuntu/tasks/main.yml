@@ -23,6 +23,10 @@
   tags:
     - filesystem
 
+- include: mounts.yml
+  tags:
+    - mounts
+
 - include: disks.yml
   tags:
     - disks

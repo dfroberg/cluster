@@ -4,9 +4,6 @@
 - name: Unmount up k3s ramdisk
   ansible.posix.mount:
     path: /var/lib/rancher
-    src: tmpfs
-    fstype: tmpfs
-    opts: rw,nodev,nosuid,size=8G
     state: unmounted
   when:
    - ramdisk is defined
@@ -14,9 +11,6 @@
 - name: Unmount up rook ramdisk
   ansible.posix.mount:
     path: /var/lib/rook
-    src: tmpfs
-    fstype: tmpfs
-    opts: rw,nodev,nosuid,size=512M
     state: unmounted
   when:
    - ramdisk is defined
@@ -24,9 +18,6 @@
 - name: Unmount up kubelet ramdisk
   ansible.posix.mount:
     path: /var/lib/kubelet
-    src: tmpfs
-    fstype: tmpfs
-    opts: rw,nodev,nosuid,size=200M
     state: unmounted
   when:
    - ramdisk is defined   
@@ -85,7 +76,7 @@
     path: /var/lib/rancher
     src: tmpfs
     fstype: tmpfs
-    opts: rw,nodev,nosuid,size=8G
+    opts: rw,nodev,nosuid,size=12G
     state: mounted
   when:
    - ramdisk is defined

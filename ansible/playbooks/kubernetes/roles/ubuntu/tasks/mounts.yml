@@ -1,0 +1,66 @@
+---
+- name: stat /dev/shm
+  stat:
+    path: /dev/shm
+  register: dev_shm
+  tags:
+    - mount
+    - shm
+
+- name: mount /dev/shm with noexec and size 12G
+  become: 'yes'
+  mount:
+    name: /dev/shm
+    src: none
+    fstype: tmpfs
+    opts: rw,nosuid,nodev,noexec,size=12G
+    state: present
+  when: dev_shm.stat.exists
+  tags:
+    - mount
+    - shm
+
+- name: create tmp.mount
+  ansible.builtin.template:
+    src: etc/systemd/tmp.mount.j2
+    dest: /etc/systemd/system/tmp.mount
+    backup: 'yes'
+    mode: 0644
+    owner: root
+    group: root
+  tags:
+    - mount
+    - systemd
+    - tmp
+
+- name: stat tmp.mount
+  stat:
+    path: /etc/systemd/system/tmp.mount
+  register: tmp_mount
+  tags:
+    - mount
+    - tmp
+
+- name: unmask tmp.mount
+  become: 'yes'
+  systemd:
+    name: tmp.mount
+    masked: 'no'
+  when: tmp_mount.stat.exists
+  tags:
+    - mount
+    - systemd
+    - tmp
+
+- name: start tmp.mount
+  become: 'yes'
+  systemd:
+    name: tmp.mount
+    daemon_reload: 'yes'
+    state: started
+    enabled: 'yes'
+  when: tmp_mount.stat.exists
+  tags:
+    - mount
+    - systemd
+    - tmp
