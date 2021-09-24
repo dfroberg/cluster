@@ -24,6 +24,10 @@ apt_install_packages:
   - unattended-upgrades
   - unzip
   - lzop 
+  - lsscsi 
+  - sg3-utils 
+  - multipath-tools 
+  - scsitools
   
 
 apt_remove_packages:

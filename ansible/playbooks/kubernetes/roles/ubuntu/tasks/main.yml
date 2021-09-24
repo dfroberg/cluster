@@ -23,6 +23,10 @@
   tags:
     - filesystem
 
+- include: democratic-iscsi.yml
+  tags:
+    - iscsi
+
 - include: mounts.yml
   tags:
     - mounts
@@ -31,9 +35,9 @@
   tags:
     - disks
 
-- include: ramdisk.yml
-  tags:
-    - ramdisks
+#- include: ramdisk.yml
+#  tags:
+#    - ramdisks
 
 - include: security.yml
   tags:

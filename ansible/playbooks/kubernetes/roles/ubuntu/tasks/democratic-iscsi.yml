@@ -1,0 +1,36 @@
+- name: create multipath.conf
+  ansible.builtin.template:
+    src: etc/multipath.conf.j2
+    dest: /etc/multipath.conf
+    backup: 'yes'
+    mode: 0644
+    owner: root
+    group: root
+  tags:
+    - multipath
+    - systemd
+    - iscsi
+
+- name: Create /etc/iscsi/nodes directory
+  ansible.builtin.file:
+    state: directory
+    path: "/etc/iscsi/nodes"
+
+# Ensure that open-iscsi and multipath-tools are enabled and running
+- name: Enable and esure started iscsid.service
+  ansible.builtin.systemd:
+    name: iscsid.service
+    state: restarted
+    enabled: yes
+
+- name: Enable and esure started open-iscsi.service
+  ansible.builtin.systemd:
+    name: open-iscsi.service
+    state: restarted
+    enabled: yes
+
+- name: Enable and esure started open-iscsi.service
+  ansible.builtin.systemd:
+    name: open-iscsi.service
+    state: restarted
+    enabled: yes
