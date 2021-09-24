@@ -39,7 +39,7 @@ spec:
         - "k10.${SECRET_DOMAIN}"
       tls:
         enabled: true
-        secretName: "${SECRET_DOMAIN/./-}-tls"
+        secretName: "${SECRET_DOMAIN/./-/g}-tls"
   postRenderers:
     - kustomize:
         patchesJson6902:
