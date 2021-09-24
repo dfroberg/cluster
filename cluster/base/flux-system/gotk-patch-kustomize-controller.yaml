@@ -12,5 +12,3 @@ spec:
             limits:
               cpu: 3000m
               memory: 1Gi
-          nodeSelector:
-            worker: yes
