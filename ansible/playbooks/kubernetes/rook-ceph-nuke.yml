@@ -14,6 +14,19 @@
     #  ansible.builtin.file:
     #    state: absent
     #    path: "/var/lib/rook"
+    - name: Locating all files in rook backup dir
+      find:
+        path: "/var/ramdisk-backup"
+      register: cleanup
+      ignore_errors: true
+
+    - name: Removing all files previously found in rook backup dir
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ cleanup.files }}"
+      ignore_errors: true
+
     - name: Locating all files in rook dir
       find:
         path: "/var/lib/rook"
