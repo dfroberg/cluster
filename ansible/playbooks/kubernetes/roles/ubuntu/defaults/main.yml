@@ -28,6 +28,7 @@ apt_install_packages:
   - sg3-utils 
   - multipath-tools 
   - scsitools
+  - cloud-utils
   
 
 apt_remove_packages:
@@ -37,7 +38,6 @@ apt_remove_packages:
   - btrfs-progs
   - byobu
   - cloud-init
-  - cloud-guest-utils
   - cloud-initramfs-copymods
   - cloud-initramfs-dyn-netconf
   - friendly-recovery

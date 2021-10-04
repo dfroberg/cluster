@@ -6,70 +6,91 @@
     path: /var/lib/rancher
     state: unmounted
   when:
-   - ramdisk is defined
+    - ramdisk is defined
+  tags:
+    - ramdisks
 
 - name: Unmount up rook ramdisk
   ansible.posix.mount:
     path: /var/lib/rook
     state: unmounted
   when:
-   - ramdisk is defined
+    - ramdisk is defined
+  tags:
+    - ramdisks
 
 - name: Unmount up kubelet ramdisk
   ansible.posix.mount:
     path: /var/lib/kubelet
     state: unmounted
   when:
-   - ramdisk is defined   
+    - ramdisk is defined   
+  tags:
+    - ramdisks
 
+# Ensure the below is done only for nodes with ramdisk enabled
 - name: Delete rancher ramdisk mount directory
   ansible.builtin.file:
     state: absent
     path: "/var/lib/rancher"
   when:
-   - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks
 
 - name: Delete kubelet ramdisk mount directory
   ansible.builtin.file:
     state: absent
     path: "/var/lib/kubelet"
   when:
-   - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks
 
 - name: Delete rook ramdisk mount directory
   ansible.builtin.file:
     state: absent
     path: "/var/lib/rook"
   when:
-   - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks
 
 - name: Create ramdisk backup directory
   ansible.builtin.file:
     state: directory
     path: "/var/ramdisk-backup"
   when:
-   - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks
 
 - name: Create rancher ramdisk mount directory
   ansible.builtin.file:
     state: directory
     path: "/var/lib/rancher"
   when:
-   - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks
 
 - name: Create kubelet ramdisk mount directory
   ansible.builtin.file:
     state: directory
     path: "/var/lib/kubelet"
   when:
-   - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks
 
 - name: Create rook ramdisk mount directory
   ansible.builtin.file:
     state: directory
     path: "/var/lib/rook"
   when:
-   - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks
 
 - name: Mount up k3s ramdisk
   ansible.posix.mount:
@@ -79,7 +100,9 @@
     opts: rw,nodev,nosuid,size=12G
     state: mounted
   when:
-   - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks
 
 - name: Mount up rook ramdisk
   ansible.posix.mount:
@@ -89,7 +112,9 @@
     opts: rw,nodev,nosuid,size=512M
     state: mounted
   when:
-   - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks
 
 - name: Mount up kubelet ramdisk
   ansible.posix.mount:
@@ -99,7 +124,9 @@
     opts: rw,nodev,nosuid,size=200M
     state: mounted
   when:
-   - ramdisk is defined   
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks
 
 - name: Put an empty file in each ramdisk for tests
   ansible.builtin.shell: >
@@ -107,7 +134,10 @@
     touch /var/lib/kubelet/test
     touch /var/lib/rook/test
   when:
-   - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks
+
 
 - name: Update /etc/init.d/ramdisk 
   ansible.builtin.blockinfile:
@@ -164,7 +194,20 @@
       esac
       exit 0
   when:
-   - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks
+
+- name: "Ensure RAM Disk cron is Removed"
+  ansible.builtin.cron:
+    name: "Sync RAM Disk"
+    state: absent
+    user: root
+    cron_file: ansible_ramdisk_sync
+  when:
+    - ramdisk is defined and ( (ramdisk == 'no') or (ramdisk == false) )
+  tags:
+    - ramdisks
 
 - name: "Ensure RAM Disk is synced every two minutes"
   ansible.builtin.cron:
@@ -174,9 +217,13 @@
     job: "/etc/init.d/ramdisk sync >> /dev/null 2>&1"
     cron_file: ansible_ramdisk_sync
   when:
-   - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks
 
 - name: Make ramdisk script run on 00 99
   ansible.builtin.shell: update-rc.d ramdisk defaults 00 99
   when:
-   - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+  tags:
+    - ramdisks

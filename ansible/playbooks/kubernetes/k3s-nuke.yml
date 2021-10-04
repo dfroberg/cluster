@@ -11,6 +11,16 @@
       pause:
         seconds: 5
   tasks:
+    - name: Gather ramdisk backups to delete
+      find:
+        paths: /var/ramdisk-backup
+        patterns: "*"
+      register: files_to_delete
+    - name: Delete ramdisk backup files
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ files_to_delete.files }}"
     - name: Kill k3s
       ansible.builtin.command: /usr/local/bin/k3s-killall.sh
     - name: Uninstall k3s
@@ -31,3 +41,4 @@
         path: "{{ item.path }}"
         state: absent
       loop: "{{ files_to_delete.files }}"
+

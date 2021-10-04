@@ -4,11 +4,13 @@
     - worker
     - storage
   become: true
-  gather_facts: true
-  any_errors_fatal: true
+  gather_facts: false
+  any_errors_fatal: false
   pre_tasks:
-    - name: Pausing for 5 seconds...
-      pause:
-        seconds: 5
+     - setup:
+       register: setup_status
+       until: setup_status is success
+       delay: 10
+       retries: 30
   roles:
     - ubuntu
