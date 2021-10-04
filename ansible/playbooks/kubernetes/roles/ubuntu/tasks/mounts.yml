@@ -13,7 +13,7 @@
     name: /dev/shm
     src: none
     fstype: tmpfs
-    opts: rw,nosuid,nodev,noexec,size=12G
+    opts: rw,nosuid,nodev,noexec,size=16G
     state: present
   when: dev_shm.stat.exists
   tags:
