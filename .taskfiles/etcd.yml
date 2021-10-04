@@ -17,7 +17,7 @@ env:
   
 tasks:
 
-  bootstrap:
+  setup:
     desc: Install etcdctl and remotely fetch etcd certs from k3s main node as well as run status to test
     cmds:
       - chmod +x ~/cluster/hack/install-etcdctl.sh
