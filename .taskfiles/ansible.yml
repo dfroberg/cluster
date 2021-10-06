@@ -59,6 +59,13 @@ tasks:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line -a 'k3s crictl rmi --prune' --become"
     silent: true
 
+  clean-logs:
+    desc: Clean up stale logs
+    dir: ansible
+    cmds:
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line -a 'rm /var/log/*.*.gz' --become"
+    silent: true
+
   purge-manifests:
     desc: Delete all manifests under /var/lib/rancher/k3s/server/manifests
     dir: ansible
@@ -132,4 +139,10 @@ tasks:
     dir: ansible
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/rook-ceph-lsblk.yml"
+    silent: true
+  playbook:etcd-restore:master:
+    desc: Retrieve and restore master from etcd snapshot stored in S3 object storage
+    dir: ansible
+    cmds:
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/etcd-s3-restore.yml"
     silent: true
