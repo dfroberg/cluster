@@ -4,4 +4,3 @@ resources:
   - default
 #  - system-upgrade
 #  - k10
-  - velero

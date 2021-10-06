@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - kube-system
   #- networking   # Moved to own step in base
+  #- velero       # Moved to own step in base
   - resource-control
   - system-upgrade
   - monitoring
