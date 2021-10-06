@@ -50,7 +50,7 @@ tasks:
       - etcdctl check perf --load='s'
     silent: true
   perf-large:
-    desc: Performance test Small
+    desc: Performance test Large
     cmds:
       - etcdctl check perf --load='l'
     silent: true
