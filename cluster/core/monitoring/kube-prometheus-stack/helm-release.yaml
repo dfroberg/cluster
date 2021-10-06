@@ -34,7 +34,7 @@ spec:
           resolve_timeout: 5m
         receivers:
           - name: "null"
-          - name: "discord"
+          - name: "slack"
             slack_configs:
               - channel: "#prometheus"
                 icon_url: https://avatars3.githubusercontent.com/u/3380462
@@ -61,12 +61,12 @@ spec:
           group_wait: 30s
           group_interval: 5m
           repeat_interval: 6h
-          receiver: "discord"
+          receiver: "slack"
           routes:
             - receiver: "null"
               match:
                 alertname: Watchdog
-            - receiver: "discord"
+            - receiver: "slack"
               match_re:
                 severity: critical
               continue: true
