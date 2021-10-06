@@ -1,0 +1,66 @@
+---
+- hosts:
+    - master
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  pre_tasks:
+    - name: Pausing for 5 seconds...
+      pause:
+        seconds: 5
+      tags:
+        - etcdrestore
+  tasks:
+    - name: Stop and disable k3s
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+        enabled: no
+      with_items:
+        - k3s
+      tags:
+        - etcdrestore
+    - name: Delete k3s server data directory
+      ansible.builtin.file:
+        state: absent
+        path: "/var/lib/rancher/k3s/data"
+      tags:
+        - etcdrestore
+
+#    - name: Get snaphostlist from s3 bucket
+
+#    - name: Get name of latest snapshot from s3 bucket
+
+
+    - name: Start k3s on master with cluster-init and reset with path to s3 snapshot
+      command: \
+        k3s server \
+        --cluster-init \
+        --cluster-reset \
+        --etcd-s3 \
+        --cluster-reset-restore-path=etcd-snapshot--1633426500 \
+        --etcd-s3-endpoint="{{ etcd_s3_endpoint }}"
+        --etcd-s3-bucket="{{ etcd_s3_bucket }}" \
+        --etcd-s3-access-key="{{ etcd_s3_access_key }}" \
+        --etcd-s3-secret-key="{{ etcd_s3_secret_key }}"
+      when:
+        - ansible_hostname == "master01"  
+      tags:
+        - etcdrestore
+    # Allow master01 to settle
+    - name: Pausing for 120 seconds...
+      pause:
+        seconds: 120
+      tags:
+        - etcdrestore
+    - name: Start and enable k3s
+      systemd:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      with_items:
+        - k3s
+      when:
+        - ansible_hostname != "master01"  
+      tags:
+        - etcdrestore
