@@ -46,4 +46,11 @@ tasks:
     cmds:
       - flux resume hr -n home frigate
       - kubectl scale -n home deploy/frigate --replicas 1
+  rook-ceph-password:
+    desc: Retrieve the Rook Ceph passphrase
+    cmds:
+      - echo "Rook Ceph Dashboard Credentials"
+      - echo -n 'User; admin' && echo
+      - echo -n 'Pass; ' && kubectl -n rook-ceph get secret rook-ceph-dashboard-password -o jsonpath="{['data']['password']}" | base64 --decode && echo
+    silent: true
 
