@@ -31,7 +31,7 @@ spec:
     config:
       recommendations: false
       settings:
-        clustername: home-cluster
+        clustername: lab-cluster
         kubectl:
           enabled: true
           restrictAccess: true
