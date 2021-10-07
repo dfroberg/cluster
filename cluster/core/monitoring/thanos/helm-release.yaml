@@ -47,7 +47,7 @@ spec:
       enabled: false
       resources:
         requests:
-          cpu: 25m
+          cpu: 50m
           memory: 263M
         limits:
           cpu: 278m
@@ -56,7 +56,7 @@ spec:
       enabled: true
       resources:
         requests:
-          cpu: 25m
+          cpu: 50m
           memory: 263M
         limits:
           cpu: 100m
@@ -67,10 +67,10 @@ spec:
         enabled: false
       resources:
         requests:
-          cpu: 208m
+          cpu: 512m
           memory: 263M
         limits:
-          cpu: 233m
+          cpu: 512m
           memory: 263M
     storegateway:
       enabled: true
