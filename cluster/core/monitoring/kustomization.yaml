@@ -4,6 +4,7 @@ resources:
   - blackbox-exporter
   - botkube
   - grafana
+  - influxdb
   - kube-prometheus-stack
   - loki
   - promtail
@@ -15,4 +16,3 @@ resources:
   - thanos
   - unifi-poller
   # - uptimerobot-heartbeat
-  - influxdb
