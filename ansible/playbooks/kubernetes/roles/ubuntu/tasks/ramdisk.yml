@@ -227,3 +227,10 @@
     - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
   tags:
     - ramdisks
+
+- name: Ensure ramdisk service is disabled
+  ansible.builtin.shell: update-rc.d ramdisk disable
+  when:
+    - ramdisk is defined and ( (ramdisk == 'no') or (ramdisk == false) )
+  tags:
+    - ramdisks
