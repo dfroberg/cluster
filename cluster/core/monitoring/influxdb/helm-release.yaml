@@ -198,7 +198,7 @@ spec:
       service:
         ## @param relay.service.type Kubernetes service type (`ClusterIP`, `NodePort` or `LoadBalancer`)
         ##
-        type: ClusterIP
+        type: LoadBalancer
         ## @param relay.service.port InfluxDB Relay&trade; HTTP port
         ##
         port: 9096
