@@ -24,7 +24,7 @@ spec:
     remediation:
       retries: 3
   dependsOn:
-    - name: rook-ceph
+    - name: core-storage
   values:
     global:
       storageClass: "rook-ceph-block"
