@@ -47,7 +47,7 @@ spec:
       fallbackApiVersion: v1
     ingressRoute:
       dashboard:
-        enabled: true
+        enabled: false
     globalArguments:
       - "--api.insecure=true"
       - "--serverstransport.insecureskipverify=true"
