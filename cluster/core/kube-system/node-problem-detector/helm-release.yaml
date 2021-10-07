@@ -28,8 +28,8 @@ spec:
         operator: "Exists"
     resources:
       requests:
-        cpu: 25m
+        cpu: 50m
         memory: 263M
       limits:
-        cpu: 25m
+        cpu: 50m
         memory: 263M
