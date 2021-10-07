@@ -53,4 +53,11 @@ tasks:
       - echo -n 'User; admin' && echo
       - echo -n 'Pass; ' && kubectl -n rook-ceph get secret rook-ceph-dashboard-password -o jsonpath="{['data']['password']}" | base64 --decode && echo
     silent: true
-
+  rook-ceph-rescan-and-prepare:
+    desc: Restart operator to re-scan and prepare storage nodes for changes in drives.
+    cmds:
+      - kubectl -n rook-ceph delete pod -l app=rook-ceph-operator
+  rook-ceph-operator-log:
+    desc: Keep an eye on the Rook Ceph operator
+    cmds:
+      - kubectl -n rook-ceph logs -f -l app=rook-ceph-operator
