@@ -86,6 +86,13 @@ tasks:
       - "ansible storage -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a '/bin/systemctl reboot' --become"
     silent: true
 
+  reboot:status:
+    desc: Check if node reboot is scheduled by kured
+    dir: ansible
+    cmds:
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a 'test -f /var/run/reboot-required' --become"
+    silent: true
+
   poweroff:
     desc: Shutdown all the k8s nodes
     dir: ansible
