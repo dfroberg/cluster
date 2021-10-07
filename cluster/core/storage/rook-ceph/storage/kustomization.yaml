@@ -8,3 +8,4 @@ resources:
   - ceph-object.yaml
   - storage-class.yaml
   - volume-snapshot-class.yaml
+  - ceph-bucket.yaml
