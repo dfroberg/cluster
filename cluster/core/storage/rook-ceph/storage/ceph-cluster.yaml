@@ -48,16 +48,16 @@ spec:
     mgr:
       limits:
         cpu: "1500m"
-        memory: "1024Mi"
+        memory: 2048Mi
       requests:
-        cpu: "1500m"
-        memory: "1024Mi"
+        cpu: 1500m
+        memory: 1024Mi
     mon:
       requests:
         cpu: 350m
         memory: 800Mi
       limits:
-        memory: 1024Mi
+        memory: 2048Mi
     osd:
       requests:
         cpu: 350m
