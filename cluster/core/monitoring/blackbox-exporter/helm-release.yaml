@@ -35,25 +35,10 @@ spec:
         scrapeTimeout: 30s
       targets:
         - name: router
-          url: 192.168.1.1
-          module: icmp
-        - name: garage
-          url: 192.168.1.19
-          module: icmp
-        - name: vacuum
-          url: 192.168.1.28
-          module: icmp
-        - name: zigbee
-          url: 192.168.1.90
+          url: 192.168.30.1
           module: icmp
         - name: nas
-          url: 192.168.42.50
-          module: icmp
-        - name: piaware
-          url: 192.168.150.25
-          module: icmp
-        - name: hdhomerun
-          url: 192.168.150.30
+          url: 192.168.30.113
           module: icmp
     prometheusRule:
       enabled: true
