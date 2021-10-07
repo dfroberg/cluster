@@ -209,7 +209,7 @@ spec:
         ## @param relay.service.loadBalancerIP loadBalancerIP if service type is `LoadBalancer`
         ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
         ##
-        loadBalancerIP: ""
+        loadBalancerIP: "${SVC_INFLUXDB_IP}"
         ## @param relay.service.loadBalancerSourceRanges Address that are allowed when service is LoadBalancer
         ## https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
         ##
@@ -600,44 +600,6 @@ spec:
             registry: docker.io
             repository: bitnami/google-cloud-sdk
             tag: 0.359.0-debian-10-r1
-            ## Specify a imagePullPolicy. Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
-            ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
-            ##
-            pullPolicy: IfNotPresent
-            ## Optionally specify an array of imagePullSecrets.
-            ## Secrets must be manually created in the namespace.
-            ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
-            ## e.g:
-            ## pullSecrets:
-            ##   - myRegistryKeySecretName
-            ##
-            pullSecrets: 
-              - regcred
-        ## Azure Storage Container configuration
-        ##
-        azure:
-          ## @param backup.uploadProviders.azure.enabled Enable upload to azure storage container
-          ## @param backup.uploadProviders.azure.secret Secret with credentials to access Azure storage
-          ## @param backup.uploadProviders.azure.secretKey Service account secret key name
-          ## @param backup.uploadProviders.azure.existingSecret Name of existing secret object
-          ## @param backup.uploadProviders.azure.containerName Destination container
-          enabled: false
-          secret: ""
-          secretKey: "connection-string"
-          existingSecret: ""
-          containerName: "influxdb-container"
-          ## Bitnami Azure CLI image
-          ## ref: https://hub.docker.com/r/bitnami/azure-cli/tags/
-          ## @param backup.uploadProviders.azure.image.registry Azure CLI image registry
-          ## @param backup.uploadProviders.azure.image.repository Azure CLI image repository
-          ## @param backup.uploadProviders.azure.image.tag Azure CLI image tag (immutable tags are recommended)
-          ## @param backup.uploadProviders.azure.image.pullPolicy Azure CLI image pull policy
-          ## @param backup.uploadProviders.azure.image.pullSecrets Specify docker-registry secret names as an array
-          ##
-          image:
-            registry: docker.io
-            repository: bitnami/azure-cli
-            tag: 2.28.1-debian-10-r2
             ## Specify a imagePullPolicy. Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
             ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
             ##
