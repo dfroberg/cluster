@@ -17,7 +17,7 @@ spec:
         namespace: flux-system
       interval: 5m
   dependsOn:
-  - name: rook-ceph
+  - name: core-storage
   values:
     resources:
       requests:
