@@ -1,2 +1,2 @@
-docker==5.0.2
+docker==5.0.3
 ansible>=2.10.7
