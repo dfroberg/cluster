@@ -84,7 +84,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${NAS_ADDR}"
-            path: /tycho/Media
+            path: /recordings
         mountPath: /media
     podAnnotations:
       backup.velero.io/backup-volumes: config

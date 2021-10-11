@@ -63,7 +63,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${NAS_ADDR}"
-            path: /tycho/Media
+            path: /recordings
         mountPath: /media
         readOnly: true
       transcode:
