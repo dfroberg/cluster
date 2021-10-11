@@ -22,6 +22,9 @@ spec:
       repository: ghcr.io/tarampampam/error-pages
       tag: 1.8.0
     controller:
+      enabled: true
+      type: deployment
+      strategy: RollingUpdate
       replicas: 3
     nameOverride: error-pages
     env:
