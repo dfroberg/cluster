@@ -4,7 +4,7 @@ resources:
   - blackbox-exporter
   - botkube
   - grafana
-  - influxdb
+  # - influxdb # Temp disable
   - kube-prometheus-stack
   - loki
   - promtail
