@@ -14,6 +14,7 @@ tasks:
     dir: ansible
     cmds:
       - "ansible-galaxy install -r requirements.yml --force --ignore-errors"
+      - "ansible-galaxy collection install -r requirements.yml --force"
       - "pip3 install -r requirements.txt --user"
     silent: true
 
