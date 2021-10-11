@@ -67,7 +67,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${NAS_ADDR}"
-            path: /recordings
+            path: /recordimnt/data/recordingsngs
         mountPath: /media
     podAnnotations:
       backup.velero.io/backup-volumes: config
