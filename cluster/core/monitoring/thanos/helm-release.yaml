@@ -70,8 +70,8 @@ spec:
           cpu: 512m
           memory: 263M
         limits:
-          cpu: 512m
-          memory: 263M
+          cpu: 2048m
+          memory: 512M
     storegateway:
       enabled: true
       persistence:
