@@ -5,3 +5,4 @@ resources:
   - system-upgrade
 #  - k10
   - vpn-gateway
+  - media
