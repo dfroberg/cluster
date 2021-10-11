@@ -15,4 +15,6 @@ resources:
   - home.yaml
   - gaming.yaml
   - vpn-gateway.yaml
+  - media.yaml
+  
   
