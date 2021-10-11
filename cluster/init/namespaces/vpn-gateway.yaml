@@ -3,4 +3,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: vpn-gateway
+  labels:
+    goldilocks.fairwinds.com/enabled: "true"
+    goldilocks.fairwinds.com/vpa-update-mode: "auto"
 

@@ -6,3 +6,4 @@ metadata:
     k10.kasten.io/ignorebackuppolicy: "true"
   labels:
     goldilocks.fairwinds.com/enabled: "true"
+    goldilocks.fairwinds.com/vpa-update-mode: "auto"
