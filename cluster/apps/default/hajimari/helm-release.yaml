@@ -31,7 +31,9 @@ spec:
           - networking
           - rook-ceph
           - kasten-io
-      name: "you"
+          - media
+          - home
+      name: "${YOUR_NAME}"
       customApps:
         - name: Some External Cluster Service
           url: http://192.168.1.100:5000
@@ -87,8 +89,8 @@ spec:
               url: "https://youtube.com/feed/subscriptions"
         - name: Reading
           links:
-            - name: Instapaper
-              url: "https://www.instapaper.com/u"
+            - name: AMN
+              url: "https://www.almasdarnews.com/u"
             - name: Medium
               url: "http://medium.com"
             - name: Reddit
