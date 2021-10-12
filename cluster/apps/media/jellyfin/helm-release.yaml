@@ -45,6 +45,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
+          - secretName: "${SECRET_DOMAIN//./-}-tls"
           - hosts:
               - "jellyfin.${SECRET_DOMAIN}"
     persistence:

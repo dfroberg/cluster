@@ -39,6 +39,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
+          - secretName: "${SECRET_DOMAIN//./-}-tls"
           - hosts:
               - "requests.${SECRET_DOMAIN}"
     persistence:

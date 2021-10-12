@@ -66,6 +66,7 @@ spec:
               - path: /admin
                 pathType: Prefix
         tls:
+          - secretName: "${SECRET_DOMAIN//./-}-tls"
           - hosts:
               - "vaultwarden.${SECRET_DOMAIN}"
     persistence:

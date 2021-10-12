@@ -36,6 +36,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
+          - secretName: "${SECRET_DOMAIN//./-}-tls"
           - hosts:
               - "bazarr.${SECRET_DOMAIN}"
     podSecurityContext:
