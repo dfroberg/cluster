@@ -1,12 +1,35 @@
 ---
 # This is an experimental feature for use on non critical clusters
 # depends on adding lzop to installed packages.
+
+- name: "check mount point /var/lib/rancher "
+  command: mountpoint /var/lib/rancher
+  register: k3s_mount_stat
+  failed_when: False
+  changed_when: False
+  tags:
+    - ramdisks
+- name: "check mount point /var/lib/rook "
+  command: mountpoint /var/lib/rook
+  register: rook_mount_stat
+  failed_when: False
+  changed_when: False
+  tags:
+    - ramdisks
+- name: "check mount point /var/lib/kubelet "
+  command: mountpoint /var/lib/kubelet
+  register: kubelet_mount_stat
+  failed_when: False
+  changed_when: False
+  tags:
+    - ramdisks    
 - name: Unmount up k3s ramdisk
   ansible.posix.mount:
     path: /var/lib/rancher
     state: unmounted
   when:
-    - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+    - k3s_mount_stat.stdout == "/var/lib/rancher is a mountpoint"
   tags:
     - ramdisks
 
@@ -15,7 +38,8 @@
     path: /var/lib/rook
     state: unmounted
   when:
-    - ramdisk is defined
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+    - rook_mount_stat.stdout == "/var/lib/rancher is a mountpoint"
   tags:
     - ramdisks
 
@@ -24,7 +48,8 @@
     path: /var/lib/kubelet
     state: unmounted
   when:
-    - ramdisk is defined   
+    - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
+    - mount_kubelet_mount_statstat.stdout == "/var/lib/rancher is a mountpoint"
   tags:
     - ramdisks
 
@@ -229,7 +254,9 @@
     - ramdisks
 
 - name: Ensure ramdisk service is disabled
-  ansible.builtin.shell: update-rc.d ramdisk disable
+  ansible.builtin.shell: update-rc.d ramdisk disable 00 99
+  failed_when: False
+  changed_when: False
   when:
     - ramdisk is defined and ( (ramdisk == 'no') or (ramdisk == false) )
   tags:

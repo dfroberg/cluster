@@ -4,6 +4,8 @@
     name: "{{ inventory_hostname }}"
   when:
     - ansible_hostname != inventory_hostname
+  tags:
+    - network
 
 - name: Update /etc/hosts to include hostname
   ansible.builtin.blockinfile:
@@ -20,11 +22,15 @@
       ff02::1 ip6-allnodes
       ff02::2 ip6-allrouters
       ff02::3 ip6-allhosts
+  tags:
+    - network
 
 - name: Check for bridge-nf-call-iptables
   ansible.builtin.stat:
     path: /proc/sys/net/bridge/bridge-nf-call-iptables
   register: bridge_nf_call_iptables_result
+  tags:
+    - network
 
 - name: Set Kubernetes network configuration
   ansible.builtin.blockinfile:
@@ -38,18 +44,24 @@
   when:
     - bridge_nf_call_iptables_result.stat.exists
   register: sysctl_network
+  tags:
+    - network
 
 - name: Reload Kubernetes network configuration
   ansible.builtin.shell: sysctl -p /etc/sysctl.d/99-kubernetes-cri.conf
   when:
     - sysctl_network.changed
     - bridge_nf_call_iptables_result.stat.exists
+  tags:
+    - network
 
 # Set ip forwarding on in /proc and verify token value with the sysctl command
 #- ansible.posix.sysctl:
 #    name: net.ipv4.ip_forward
 #    value: '1'
 #    sysctl_set: yes
+#  tags:
+#    - network
 
 # Set ip forwarding on in /proc and in the sysctl file and reload if necessary
 #- ansible.posix.sysctl:
@@ -58,3 +70,5 @@
 #    sysctl_set: yes
 #    state: present
 #    reload: yes
+#  tags:
+#    - network
