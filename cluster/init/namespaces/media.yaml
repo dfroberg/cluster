@@ -4,6 +4,6 @@ kind: Namespace
 metadata:
   name: media
   labels:
-    vpn-routed-gateway: "true"
+    # vpn-routed-gateway: "true"
     goldilocks.fairwinds.com/enabled: "true"
     goldilocks.fairwinds.com/vpa-update-mode: "auto"
