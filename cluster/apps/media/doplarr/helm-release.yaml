@@ -18,6 +18,7 @@ spec:
     image:
       repository: ghcr.io/kiranshila/doplarr
       tag: overseerr
+    updateStrategy: Recreate
     nameOverride: doplarr
     env:
       OVERSEERR_URL: "https://requests.${SECRET_DOMAIN}"

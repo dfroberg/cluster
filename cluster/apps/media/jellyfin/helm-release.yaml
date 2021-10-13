@@ -19,6 +19,7 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/jellyfin
       tag: v10.7.7
+    updateStrategy: Recreate
     env:
       TZ: "${CLUSTER_TZ}"
       JELLYFIN_CACHE_DIR: "/config/cache"
