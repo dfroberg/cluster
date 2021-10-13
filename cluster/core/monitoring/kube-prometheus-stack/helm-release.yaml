@@ -23,10 +23,10 @@ spec:
     resources:
       requests:
         cpu: 25m
-        memory: 263M
+        memory: 1024M
       limits:
         cpu: 92m
-        memory: 263M
+        memory: 2048M
     fullnameOverride: prometheus
     alertmanager:
       config:
