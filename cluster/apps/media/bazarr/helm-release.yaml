@@ -20,6 +20,7 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/bazarr
       tag: v1.0.0
+    updateStrategy: Recreate
     env:
       TZ: "${CLUSTER_TZ}"
     ingress:
