@@ -2,15 +2,15 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: radarr
+  name: jacket
   namespace: media
 spec:
   interval: 5m
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: radarr
-      version: 15.0.3
+      chart: jacket
+      version: 11.1.1
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -18,8 +18,8 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/radarr
-      tag: v3.2.2.5080
+      repository: ghcr.io/k8s-at-home/jacket
+      tag: v0.18.791
     env:
       TZ: "${CLUSTER_TZ}"
     ingress:
@@ -27,64 +27,32 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
           hajimari.io/enable: "true"
-          hajimari.io/icon: "filmstrip"
+          hajimari.io/icon: "text"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-auth@kubernetescrd"
         hosts:
-          - host: "radarr.${SECRET_DOMAIN}"
+          - host: "jacket.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: "${SECRET_DOMAIN//./-}-tls"
           - hosts:
-              - "radarr.${SECRET_DOMAIN}"
-      api:
-        enabled: true
-        ingressClassName: "traefik"
-        annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        hosts:
-          - host: "radarr.${SECRET_DOMAIN}"
-            paths:
-              - path: /api
-                pathType: Prefix
-        tls:
-          - secretName: "${SECRET_DOMAIN//./-}-tls"
-          - hosts:
-              - "radarr.${SECRET_DOMAIN}"
+              - "jacket.${SECRET_DOMAIN}"
+            secretName: "${SECRET_DOMAIN//./-}-tls"
     podSecurityContext:
       supplementalGroups:
         - 100
-    metrics:
-      enabled: true
-      serviceMonitor:
-        interval: 3m
-        scrapeTimeout: 1m
-      prometheusRule:
-        enabled: true
-      exporter:
-        image:
-          repository: ghcr.io/onedr0p/exportarr
-          tag: v0.6.1
-        env:
-          port: 9794
-          additionalMetrics: true
-          unknownQueueItems: false
     persistence:
       config:
         enabled: true
-        existingClaim: radarr-config-v1
-      media:
+        existingClaim: jacket-config-v1
+      torrentblackhole:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
             server: "${NAS_ADDR}"
-            path: ${NAS_BASE_PATH}/
+            path: ${NAS_BASE_PATH}/watch
         mountPath: /media
     podAnnotations:
       backup.velero.io/backup-volumes: config

@@ -25,7 +25,7 @@ data:
   SVC_PLEX_ADDR: "192.168.30.114"
   SVC_QBITTORRENT_ADDR: "192.168.30.115"
   NAS_ADDR: "192.168.3.113"
-  NAS_BASE_PATH: "/mnt/data/nfs/Recordings/"
+  NAS_BASE_PATH: "/mnt/data/nfs/Recordings"
   #
   VPN_PORT: "51820"
   VPN_COUNTRY:  "SE"
