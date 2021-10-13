@@ -15,23 +15,23 @@ spec:
         kind: HelmRepository
         name: jetstack-charts
         namespace: flux-system
-    healthChecks:
-      - apiVersion: apps/v1
-        kind: Deployment
-        name: cert-manager
-        namespace: cert-manager
-      - apiVersion: apiextensions.k8s.io/v1
-        kind: CustomResourceDefinition
-        name: certificates.cert-manager.io
-      - apiVersion: apiextensions.k8s.io/v1
-        kind: CustomResourceDefinition
-        name: certificaterequests.cert-manager.io
-      - apiVersion: apiextensions.k8s.io/v1
-        kind: CustomResourceDefinition
-        name: clusterissuers.cert-manager.io
-      - apiVersion: apiextensions.k8s.io/v1
-        kind: CustomResourceDefinition
-        name: issuers.cert-manager.io
+      healthChecks:
+        - apiVersion: apps/v1
+          kind: Deployment
+          name: cert-manager
+          namespace: cert-manager
+        - apiVersion: apiextensions.k8s.io/v1
+          kind: CustomResourceDefinition
+          name: certificates.cert-manager.io
+        - apiVersion: apiextensions.k8s.io/v1
+          kind: CustomResourceDefinition
+          name: certificaterequests.cert-manager.io
+        - apiVersion: apiextensions.k8s.io/v1
+          kind: CustomResourceDefinition
+          name: clusterissuers.cert-manager.io
+        - apiVersion: apiextensions.k8s.io/v1
+          kind: CustomResourceDefinition
+          name: issuers.cert-manager.io
   values:
     installCRDs: false
     webhook:
