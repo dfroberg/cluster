@@ -17,5 +17,6 @@ resources:
   - readarr
   - sabnzbd
   - sonarr
+  - mylar
   #- sonarr-uhd
   #- tautulli
