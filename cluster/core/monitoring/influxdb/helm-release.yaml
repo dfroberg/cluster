@@ -32,7 +32,7 @@ spec:
     image:
       registry: docker.io
       repository: bitnami/influxdb
-      tag: 2.0.8-debian-10-r12
+      tag: 2.0.9-debian-10-r12
       pullPolicy: IfNotPresent
     architecture: standalone
     auth:
