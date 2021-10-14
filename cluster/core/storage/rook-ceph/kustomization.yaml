@@ -8,3 +8,5 @@ resources:
   - service-monitors
   - snapshot-controller
   - dashboard
+  - tools
+  
