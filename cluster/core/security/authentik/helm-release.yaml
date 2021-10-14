@@ -1,0 +1,75 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: authentik
+  namespace: security
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.goauthentik.io
+      chart: authentik
+      version: 3.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: authentik-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    replicas: 1
+    worker:
+      replicas: 1
+    image:
+      repository: ghcr.io/goauthentik/server
+      tag: 2021.9.8
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918-ips@kubernetescrd
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      hosts:
+        - host: "id.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: "${SECRET_DOMAIN//./-}-tls"
+          hosts:
+            - "id.${SECRET_DOMAIN}"
+    authentik:
+      email:
+        host: "${SECRET_SMTP}"
+        port: 587
+        use_tls: true
+        username: "${SECRET_EMAIL}"
+        password: "${AUTHENTIK_EMAIL_PASSWORD}"
+        from: "${SECRET_EMAIL}"
+      secret_key: "${AUTHENTIK_SECRET_KEY}"
+      log_level: debug
+      outposts:
+        docker_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
+      error_reporting:
+        enabled: false
+      postgresql:
+        host: postgresql.databases
+        name: authentik
+        user: authentik
+        password: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
+        s3_backup:
+          access_key: "${SECRET_MINIO_ACCESS_KEY}"
+          secret_key: "${SECRET_MINIO_SECRET_KEY}"
+          bucket: authentik
+          host: ${SECRET_MINIO_HOST}
+      redis:
+        host: redis-master.databases
+        password: "${SECRET_REDIS_PASSWORD}"
+    prometheus:
+      serviceMonitor:
+        create: true
+        interval: 30s
+        scrapeTimeout: 3s
+      rules:
+        create: true

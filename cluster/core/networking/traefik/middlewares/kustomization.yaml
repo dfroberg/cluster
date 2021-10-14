@@ -6,3 +6,4 @@ resources:
   - redirect-path.yaml
   - secret.sops.yaml
   - basic-auth.yaml
+  - secure-headers.yaml

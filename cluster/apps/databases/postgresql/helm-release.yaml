@@ -1,0 +1,32 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: postgresql
+  namespace: databases
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.bitnami.com/bitnami
+      chart: postgresql
+      version: 10.12.4
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      registry: quay.io
+      repository: bitnami/postgresql
+      tag: 13.4.0
+    postgresqlPassword: "${SECRET_POSTGRES_PASSWORD}"
+    postgresqlDatabase: authentik
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    persistence:
+      size: 5Gi
+      existingClaim: postgresql-config-v1
