@@ -51,6 +51,7 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
+    backupsEnabled: true
     snapshotsEnabled: false
     upgradeCRDs: false
     cleanUpCRDs: false
