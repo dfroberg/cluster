@@ -119,16 +119,37 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: "${SECRET_DOMAIN//./-}-tls"
-            hosts:
+          - hosts:
               - "hajimari.${SECRET_DOMAIN}"
     persistence:
       data:
         enabled: true
         existingClaim: hajimari-config
     podAnnotations:
+      backup.velero.io/backup-volumes: data
+      pre.hook.backup.velero.io/container: fsfreeze
+      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
+      post.hook.backup.velero.io/container: fsfreeze
+      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
       configmap.reloader.stakater.com/reload: "hajimari-settings"
     resources:
       requests:
-        cpu: 100m
-        memory: 128M
+        memory: 250Mi
+        cpu: 500m
+      limits:
+        memory: 1500Mi
+    additionalContainers:
+      fsfreeze:
+        name: fsfreeze
+        image: ubuntu:focal-20210827
+        imagePullPolicy: IfNotPresent
+        command:
+          - "/bin/bash"
+          - "-c"
+          - "sleep infinity"
+        volumeMounts:
+          - name: config
+            mountPath: /config
+        securityContext:
+          privileged: true
+
