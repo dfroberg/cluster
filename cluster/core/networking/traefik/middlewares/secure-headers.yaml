@@ -1,0 +1,34 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: secure-headers
+  namespace: networking
+spec:
+  headers:
+    frameDeny: true
+    browserXssFilter: true
+    contentTypeNosniff: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 15552000
+    customFrameOptionsValue: SAMEORIGIN
+    customRequestHeaders:
+      X-Forwarded-Proto: https
+    addVaryHeader: true
+    accessControlMaxAge: 100
+    accessControlAllowOriginList:
+      - '*'
+    accessControlAllowHeaders:
+      - 'Content-Type'
+    accessControlAllowMethods:
+      - GET
+      - OPTIONS
+      - POST
+      - PUT
+      - PATCH
+      - DELETE
+    contentSecurityPolicy: |
+      default-src 'none'; form-action 'none'; frame-ancestors 'none'; base-uri 'none'
+    referrerPolicy: 'origin-when-cross-origin'
