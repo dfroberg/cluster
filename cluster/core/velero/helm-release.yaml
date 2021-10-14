@@ -51,7 +51,7 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
-    snapshotsEnabled: true
+    snapshotsEnabled: false
     upgradeCRDs: false
     cleanUpCRDs: false
     kubectl:
