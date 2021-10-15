@@ -15,11 +15,6 @@ spec:
         kind: HelmRepository
         name: kpc-charts
         namespace: flux-system
-  valuesFrom:
-  - kind: Secret
-    name: kubernetes-pfsense-controller
-    valuesKey: secrets.sops.yaml
-    optional: false
   values:
     pfsense:
       url: ${PFSENSE_URL}
