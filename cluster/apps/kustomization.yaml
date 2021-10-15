@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - default
   - system-upgrade
+  - databases
 #  - k10
 #  - vpn-gateway
   - media
