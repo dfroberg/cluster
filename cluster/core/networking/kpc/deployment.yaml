@@ -20,10 +20,35 @@ spec:
       containers:
         - name: kubernetes-pfsense-controller
           image: docker.io/travisghansen/kubernetes-pfsense-controller:v0.5.8
-      resources: 
-      limits:
-        cpu: 100m
-        memory: 128Mi
-      requests:
-        cpu: 100m
-        memory: 128Mi
+          resources: 
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          env:
+            - name: CONTROLLER_NAME
+              value: "kubernetes-pfsense-controller"
+            - name: CONTROLLER_NAMESPACE
+              value: "networking"
+            - name: PFSENSE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: kubernetes-pfsense-controller
+                  key: PFSENSE_URL
+            - name: PFSENSE_INSECURE
+              valueFrom:
+                secretKeyRef:
+                  name: kubernetes-pfsense-controller
+                  key: PFSENSE_INSECURE
+            - name: PFSENSE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: kubernetes-pfsense-controller
+                  key: PFSENSE_USERNAME
+            - name: PFSENSE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kubernetes-pfsense-controller
+                  key: PFSENSE_PASSWORD
