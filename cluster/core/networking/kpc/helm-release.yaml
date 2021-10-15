@@ -21,6 +21,11 @@ spec:
     valuesKey: secrets.sops.yaml
     optional: false
   values:
+    pfsense:
+      url: ${PFSENSE_URL}
+      insecure: ${PFSENSE_INSECURE}
+      username: ${PFSENSE_USERNAME}
+      password: ${PFSENSE_PASSWORD}
     haproxy-declarative:
       enabled: true
     haproxy-ingress-proxy:
