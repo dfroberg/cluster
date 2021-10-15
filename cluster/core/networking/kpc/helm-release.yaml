@@ -15,11 +15,17 @@ spec:
         kind: HelmRepository
         name: kpc-charts
         namespace: flux-system
+  valuesFrom:
+    - kind: ConfigMap
+      name: kubernetes-pfsense-controller-config
   values:
-    pfsense:
-      url: ${PFSENSE_URL}
-      insecure: ${PFSENSE_INSECURE}
-      username: ${PFSENSE_USERNAME}
-      password: ${PFSENSE_PASSWORD}
-    haproxy-declarative:
+    replicaCount: 1
+    rbac:
       enabled: true
+    resources: 
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
