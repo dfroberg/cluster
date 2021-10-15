@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - config.yaml
   - rbac.yaml
-  - helm-release.yaml
+  # - helm-release.yaml # Chart is not updated, I'll test deployment untill I write a new chart
   - secrets.sops.yaml
+  - deployment.yaml
