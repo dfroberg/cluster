@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: kubernetes-pfsense-controller
-  namespace: kpc
+  namespace: networking
 spec:
   interval: 5m
   chart:
@@ -15,17 +15,56 @@ spec:
         kind: HelmRepository
         name: kpc-charts
         namespace: flux-system
+  valuesFrom:
+  - kind: Secret
+    name: kubernetes-pfsense-controller
+    valuesKey: secrets.sops.yaml
+    optional: false
   values:
     haproxy-declarative:
-        enabled: true
+      enabled: true
     haproxy-ingress-proxy:
-        enabled: true
-        ingressLabelSelector:
-        ingressFieldSelector:
-        # works in conjunction with the ingress annotation 'haproxy-ingress-proxy.pfsense.org/enabled'
-        # if defaultEnabled is empty or true, you can disable specific ingresses by setting the annotation to false
-        # if defaultEnabled is false, you can enable specific ingresses by setting the annotation to true
-        defaultEnabled: true
-        defaultFrontend: http-80
-        defaultBackend: traefik
-        #allowedHostRegex: "/.*/"
+      enabled: true
+      ingressLabelSelector:
+      ingressFieldSelector:
+      # works in conjunction with the ingress annotation 'haproxy-ingress-proxy.pfsense.org/enabled'
+      # if defaultEnabled is empty or true, you can disable specific ingresses by setting the annotation to false
+      # if defaultEnabled is false, you can enable specific ingresses by setting the annotation to true
+      defaultEnabled: true
+      defaultFrontend: http-80
+      defaultBackend: traefik
+      allowedHostRegex: "/.${SECRET_DOMAIN}$$/"
+    metallb:
+      enabled: true
+      nodeLabelSelector:
+      nodeFieldSelector:
+      # configMap: "metallb-system/config"
+      #bgp-implementation: frr
+      #options:
+      #  frr:
+      #    template:
+      #      peergroup: metallb
+    pfsense-dns-services:
+      enabled: true
+      serviceLabelSelector:
+      serviceFieldSelector:
+      allowedHostRegex: "/.${SECRET_DOMAIN}$$/"
+      dnsBackends:
+        dnsmasq:
+          enabled: true
+        unbound:
+          enabled: true
+    pfsense-dns-ingresses:
+      enabled: true
+      ingressLabelSelector:
+      ingressFieldSelector:
+      # works in conjunction with the ingress annotation 'dns.pfsense.org/enabled'
+      # if defaultEnabled is empty or true, you can disable specific ingresses by setting the annotation to false
+      # if defaultEnabled is false, you can enable specific ingresses by setting the annotation to true
+      defaultEnabled: true
+      allowedHostRegex: "/.${SECRET_DOMAIN}$$/"
+      dnsBackends:
+        dnsmasq:
+          enabled: true
+        unbound:
+          enabled: true

@@ -7,3 +7,4 @@ resources:
   - error-pages
   - wildcard-certificate
   - secret-reflector
+  - kpc # Test pfSense controller
