@@ -44,8 +44,8 @@ data:
         # if defaultEnabled is empty or true, you can disable specific ingresses by setting the annotation to false
         # if defaultEnabled is false, you can enable specific ingresses by setting the annotation to true
         defaultEnabled: true
-        defaultFrontend: http-80
-        defaultBackend: traefik
+        defaultFrontend: http-443
+        defaultBackend: traefik-443
         # by default anything is allowed
         allowedHostRegex: "/.${SECRET_DOMAIN}$$/"
       pfsense-dns-services:
@@ -83,5 +83,5 @@ data:
         frontends:
           http-80:
             hostname: http-80.k8s
-          primary_frontend_name2:
-            hostname: some-name.k8s
+          https-443:
+            hostname: https-443.k8s
