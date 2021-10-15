@@ -4,5 +4,5 @@ resources:
   - default
   - system-upgrade
 #  - k10
-  - vpn-gateway
+#  - vpn-gateway
   - media
