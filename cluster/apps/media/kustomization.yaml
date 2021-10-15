@@ -11,7 +11,7 @@ resources:
   #- plex
   - prowlarr
   - qbittorrent
-  - qbittorrent-vpn
+  #- qbittorrent-vpn
   - radarr
   #- radarr-uhd
   - readarr
