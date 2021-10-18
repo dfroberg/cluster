@@ -30,16 +30,16 @@ spec:
           image:
             repository: ghcr.io/k8s-at-home/wireguard
             tag: v1.0.20210914
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+                - SYS_ADMIN
         env:
           TZ: "${CLUSTER_TZ}"
           IPTABLES_BACKEND: nft
           KILLSWITCH: "false"
         configFileSecret: vpn-gateway-vpnconfig
-        securityContext:
-          capabilities:
-            add:
-              - NET_ADMIN
-              - SYS_ADMIN
         resources:
           requests:
             cpu: 100m
