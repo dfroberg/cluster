@@ -11,6 +11,7 @@ metadata:
     pfsense.org/type: declarative
 data:
   data: |
+    # Example with most arguments
     # resources:
     #   - type: backend
     #     ha_servers:
@@ -122,7 +123,7 @@ data:
     resources:
       - type: backend
         definition:
-          name: metallb-traefik-ingress-https
+          name: traefik-443
           monitor_uri: /healthz
         ha_servers:
           # declare dynamic nodes by using the backing service
@@ -138,7 +139,7 @@ data:
               checkssl: yes
       - type: backend
         definition:
-          name: metallb-nginx-ingress-http
+          name: traefik-80
           monitor_uri: /healthz
         ha_servers:
           # declare dynamic nodes by using the backing service
@@ -153,10 +154,10 @@ data:
               status: active
       - type: frontend
         definition:
-          name: k8s.dev-https
+          name: https-443
           type: tcp
           status: active
-          backend_serverpool: metallb-traefik-ingress-https
+          backend_serverpool: traefik-443
           a_extaddr:
             item:
               - extaddr: wan_ipv4
@@ -164,10 +165,10 @@ data:
                 extaddr_ssl: yes
       - type: frontend
         definition:
-          name: k8s.dev-http
-          type: tcp
+          name: http-80
+          type: http
           status: active
-          backend_serverpool: metallb-traefik-ingress-http
+          backend_serverpool: traefik-80
           a_extaddr:
             item:
               - extaddr: wan_ipv4
