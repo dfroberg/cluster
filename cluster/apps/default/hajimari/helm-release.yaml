@@ -112,6 +112,8 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "text"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          external-dns/is-public: "true"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
         hosts:
           - host: "hajimari.${SECRET_DOMAIN}"
             paths:
@@ -137,7 +139,7 @@ spec:
         memory: 250Mi
         cpu: 500m
       limits:
-        memory: 1500Mi
+        memory: 1250Mi
     additionalContainers:
       fsfreeze:
         name: fsfreeze
