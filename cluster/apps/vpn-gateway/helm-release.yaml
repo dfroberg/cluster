@@ -68,8 +68,8 @@ spec:
         securityContext:
           capabilities:
             add:
-              - CAP_NET_ADMIN
-              - CAP_SYS_ADMIN
+              - NET_ADMIN
+              - SYS_ADMIN
     routed_namespaces:
       - media
     settings:
