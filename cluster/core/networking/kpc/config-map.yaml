@@ -125,6 +125,13 @@ data:
         definition:
           name: traefik-443
           monitor_uri: /healthz
+          httpcheck_method: HEAD
+          check_type: HTTP
+          checkinter: 5000
+          log-health-checks:
+          # monitor_httpversion: HTTP/1.1\r\nHost:\ www.froberg.org
+          connection_timeout: 240000
+          server_timeout: 240000
         ha_servers:
           # declare dynamic nodes by using the backing service
           - type: node-service
@@ -134,13 +141,21 @@ data:
             serviceName: traefik
             servicePort: 443
             definition:
-              name: metallb-traefik-ingress-https
+              name: traefik-ingeress-443-100
               status: active
+              ssl: yes
               checkssl: yes
       - type: backend
         definition:
           name: traefik-80
           monitor_uri: /healthz
+          httpcheck_method: HEAD
+          check_type: HTTP
+          checkinter: 5000
+          log-health-checks:
+          # monitor_httpversion: HTTP/1.1\r\nHost:\ www.froberg.org
+          connection_timeout: 240000
+          server_timeout: 240000
         ha_servers:
           # declare dynamic nodes by using the backing service
           - type: node-service
@@ -150,7 +165,7 @@ data:
             serviceName: traefik
             servicePort: 80
             definition:
-              name: metallb-traefik-ingress-http
+              name: traefik-ingeress-80-100
               status: active
       - type: frontend
         definition:
