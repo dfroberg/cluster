@@ -32,8 +32,8 @@ spec:
             tag: v1.0.20210914
         env:
           TZ: "${CLUSTER_TZ}"
-          IPTABLES_BACKEND: legacy
-          KILLSWITCH: "true"
+          IPTABLES_BACKEND: nft
+          KILLSWITCH: "false"
         configFileSecret: vpn-gateway-vpnconfig
         resources:
           requests:
