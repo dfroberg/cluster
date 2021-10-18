@@ -65,12 +65,12 @@ spec:
                     cidr: ${NETWORK_K8S_CLUSTER_CIDR}
                 - ipBlock:
                     cidr: ${NETWORK_K8S_SERVICE_CIDR}
-        securityContext:
-          capabilities:
-            add:
-              - CAP_NET_RAW
-              - CAP_NET_ADMIN
-              - CAP_NET_BIND_SERVICE
+      securityContext:
+        capabilities:
+          add:
+            - CAP_NET_RAW
+            - CAP_NET_ADMIN
+            - CAP_NET_BIND_SERVICE
     routed_namespaces:
       - media
     settings:
