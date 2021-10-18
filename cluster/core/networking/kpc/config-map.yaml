@@ -121,6 +121,10 @@ data:
     #             extaddr_port: 443
     #             extaddr_ssl: yes
     resources:
+      - files:
+        item:
+          - name: k8s-maintenance
+            content: SFRUUC8xLjAgNTAzIE1haW50ZW5hbmNlDQpDYWNoZS1Db250cm9sOiBuby1jYWNoZQ0KQ29ubmVjdGlvbjogY2xvc2UNCkNvbnRlbnQtVHlwZTogdGV4dC9odG1sDQpSZXRyeS1BZnRlcjogMzANCg0KPCFkb2N0eXBlIGh0bWw+DQo8dGl0bGU+U2VydmljZSBNYWludGVuYW5jZTwvdGl0bGU+DQo8c3R5bGU+DQogIGJvZHkgeyB0ZXh0LWFsaWduOiBjZW50ZXI7IHBhZGRpbmc6IDIwcHg7IH0NCiAgQG1lZGlhIChtaW4td2lkdGg6IDc2OHB4KXsNCiAgICBib2R5eyBwYWRkaW5nLXRvcDogMTUwcHg7IH0NCiAgfQ0KICBoMSB7IGZvbnQtc2l6ZTogNTBweDsgfQ0KICBib2R5IHsgZm9udDogMjBweCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGNvbG9yOiAjMzMzOyB9DQogIGFydGljbGUgeyBkaXNwbGF5OiBibG9jazsgdGV4dC1hbGlnbjogbGVmdDsgbWF4LXdpZHRoOiA2NTBweDsgbWFyZ2luOiAwIGF1dG87IH0NCiAgYSB7IGNvbG9yOiAjZGM4MTAwOyB0ZXh0LWRlY29yYXRpb246IG5vbmU7IH0NCiAgYTpob3ZlciB7IGNvbG9yOiAjMzMzOyB0ZXh0LWRlY29yYXRpb246IG5vbmU7IH0NCjwvc3R5bGU+DQoNCjxhcnRpY2xlPg0KICAgIDxoMT5XZSZyc3F1bztsbCBiZSBiYWNrIHNvb24hPC9oMT4NCiAgICA8ZGl2Pg0KICAgICAgICA8cD5Tb3JyeSBmb3IgdGhlIGluY29udmVuaWVuY2UgYnV0IHdlJnJzcXVvO3JlIHBlcmZvcm1pbmcgc29tZSBtYWludGVuYW5jZSBhdCB0aGUgbW9tZW50LiBXZSZyc3F1bztsbCBiZSBiYWNrIG9ubGluZSBzaG9ydGx5ITwvcD4NCiAgICAgICAgPHA+Jm1kYXNoOyBUaGUgSzhTIFRlYW08L3A+DQogICAgPC9kaXY+DQo8L2FydGljbGU+
       - type: backend
         definition:
           name: traefik-443
@@ -132,6 +136,10 @@ data:
           # monitor_httpversion: HTTP/1.1\r\nHost:\ www.froberg.org
           connection_timeout: 240000
           server_timeout: 240000
+          errorfiles:
+            item:
+              - errorcode: 503
+                errorfile: k8s-maintenance  # Needs to be predefined
         ha_servers:
           # declare dynamic nodes by using the backing service
           - type: node-service
@@ -156,6 +164,10 @@ data:
           # monitor_httpversion: HTTP/1.1\r\nHost:\ www.froberg.org
           connection_timeout: 240000
           server_timeout: 240000
+          errorfiles:
+            item:
+              - errorcode: 503
+                errorfile: k8s-maintenance  # Needs to be predefined
         ha_servers:
           # declare dynamic nodes by using the backing service
           - type: node-service
