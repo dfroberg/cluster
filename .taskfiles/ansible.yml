@@ -32,6 +32,15 @@ tasks:
       - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'date'"
     silent: true
 
+  check-space:
+    desc: Check space on all the hosts
+    dir: ansible
+    cmds:
+      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'df -h /'"
+      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'df -h /var/lib/rancher'"
+      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'df -h /var/lib/kubelet'"
+    silent: true
+
   ping:
     desc: Ping all the hosts
     dir: ansible
