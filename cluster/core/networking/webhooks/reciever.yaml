@@ -22,3 +22,19 @@ spec:
     - hosts:
         - "flux-webhook.${SECRET_DOMAIN}"
       secretName: "${SECRET_DOMAIN//./-}-tls"
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Receiver
+metadata:
+  name: flux-system-reciever
+  namespace: flux-system
+spec:
+  type: github
+  events:
+    - "ping"
+    - "push"
+  secretRef:
+    name: webhook-token
+  resources:
+    - kind: GitRepository
+      name: flux-system
