@@ -109,10 +109,9 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          # traefik.ingress.kubernetes.io/router.middlewares: networking-internal-auth@kubernetescrd
           hajimari.io/enable: "true"
-          hajimari.io/icon: "weather-sunset"
+          hajimari.io/icon: "text"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - host: "hajimari.${SECRET_DOMAIN}"
             paths:
@@ -121,6 +120,7 @@ spec:
         tls:
           - hosts:
               - "hajimari.${SECRET_DOMAIN}"
+            secretName: "${SECRET_DOMAIN//./-}-tls"
     persistence:
       data:
         enabled: true
