@@ -15,7 +15,7 @@ spec:
         path: /
         backend:
           service:
-            name: webhook-receiver
+            name: flux-system-reciever
             port:
               number: 80
   tls:
