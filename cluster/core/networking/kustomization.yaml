@@ -8,3 +8,4 @@ resources:
   - wildcard-certificate
   - secret-reflector
   #- kpc # pfSense controller moved to its own 
+  - webhooks
