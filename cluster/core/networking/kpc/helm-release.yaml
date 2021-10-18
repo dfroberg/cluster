@@ -8,8 +8,8 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://travisghansen.github.io/kubernetes-pfsense-controller-chart/
       # This helm chart DOES NOT WORK AT ALL, use deployment.yaml instead!
+      # renovate: registryUrl=https://travisghansen.github.io/kubernetes-pfsense-controller-chart/
       chart: kubernetes-pfsense-controller
       version: v0.1.2
       sourceRef:
