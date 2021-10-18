@@ -34,6 +34,12 @@ spec:
           TZ: "${CLUSTER_TZ}"
           IPTABLES_BACKEND: nft
           KILLSWITCH: "false"
+        securityContext:
+          capabilities:
+            add:
+              - CAP_NET_RAW
+              - CAP_NET_ADMIN
+              - CAP_NET_BIND_SERVICE
         configFileSecret: vpn-gateway-vpnconfig
         resources:
           requests:
