@@ -3,10 +3,10 @@ kind: Ingress
 metadata:
   name: webhook-receiver
   namespace: flux-system
-spec:
-  ingressClassName: traefik
   annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+spec:
+  ingressClassName: traefik
   rules:
   - host: flux-webhook.${SECRET_DOMAIN}
     http:
