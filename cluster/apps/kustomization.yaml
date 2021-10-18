@@ -5,5 +5,5 @@ resources:
   - system-upgrade
   - databases
 #  - k10
-#  - vpn-gateway
+  - vpn-gateway
   - media
