@@ -35,6 +35,11 @@ spec:
           IPTABLES_BACKEND: nft
           KILLSWITCH: "false"
         configFileSecret: vpn-gateway-vpnconfig
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+              - SYS_ADMIN
         resources:
           requests:
             cpu: 100m
@@ -65,11 +70,7 @@ spec:
                     cidr: ${NETWORK_K8S_CLUSTER_CIDR}
                 - ipBlock:
                     cidr: ${NETWORK_K8S_SERVICE_CIDR}
-        securityContext:
-          capabilities:
-            add:
-              - NET_ADMIN
-              - SYS_ADMIN
+
     routed_namespaces:
       - media
     settings:
