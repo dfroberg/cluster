@@ -24,12 +24,12 @@ spec:
         - name: html-volume
           mountPath: /usr/share/nginx/html
         resources:
-          limits:
-            cpu: 50m
-            memory: 500m
           requests:
-            cpu: 50m
-            memory: 500m
+            memory: 100Mi
+            cpu: 500m
+          limits:
+            memory: 500Mi
+            cpu: 500m
       volumes:
       - name: html-volume
         configMap:
