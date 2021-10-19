@@ -24,7 +24,6 @@ spec:
             - ${METALLB_ARP_RANGE}
     rbac:
       create: true
-
     psp:
       create: true
     prometheus:
