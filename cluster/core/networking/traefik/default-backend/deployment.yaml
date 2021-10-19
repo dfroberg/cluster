@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: default-http-backend
+  namespace: networking
+  labels:
+    app: default-http-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: default-http-backend
+  template:
+    metadata:
+      labels:
+        app: default-http-backend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: html-volume
+          mountPath: /usr/share/nginx/html
+        resources:
+          limits:
+            cpu: 50m
+            memory: 500m
+          requests:
+            cpu: 50m
+            memory: 500m
+      volumes:
+      - name: html-volume
+        configMap:
+          name: default-http-backend-html
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: default-http-backend-service
+  namespace: networking
+spec:
+  selector:
+    app: default-http-backend
+  ports:
+    - protocol: TCP
+      port: 80
+---

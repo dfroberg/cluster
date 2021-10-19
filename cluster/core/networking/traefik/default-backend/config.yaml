@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: default-http-backend-html
+  namespace: networking
+data: 
+  index.html: |-
+    <html>
+    <head><title>${SECRET_DOMAIN}</title>
+      <style>
+        html {
+          font-size: 62.5%;
+        }
+        body {
+          font-family: sans-serif;
+          background-color: midnightblue;
+          color: white;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          height: 100vh;
+        }
+        div {
+          text-align: center;
+          font-size: 8rem;
+          text-shadow: 3px 3px 4px dimgrey;
+        }
+      </style>
+    </head>
+    <body>
+      <div>Hello from ${SECRET_DOMAIN}!</div>
+    </body>
+    </html>

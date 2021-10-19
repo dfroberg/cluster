@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: default-http-backend-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.priority: "42"
+    traefik.ingress.kubernetes.io/router.tls.domains.0.main: default.${SECRET_DOMAIN}
+spec:
+  defaultBackend:
+    service:
+      name: default-http-backend-service
+      port:
+        number: 80
