@@ -42,7 +42,7 @@ spec:
       enabled: true
       logLevel: debug
     speaker:
-      enabled: yes
+      enabled: true
       logLevel: debug
       tolerateMaster: true
       tolerations:
