@@ -22,12 +22,23 @@ spec:
           protocol: layer2
           addresses:
             - "${METALLB_ARP_RANGE}"
+    rbac:
+      create: true
+
+    psp:
+      create: true
     prometheus:
       podMonitor:
         enabled: true
       prometheusRule:
         enabled: true
+    controller:
+      enabled: true
+      logLevel: debug
     speaker:
+      enabled: yes
+      logLevel: debug
+      tolerateMaster: true
       tolerations:
         - effect: "NoExecute"
           operator: "Exists"
