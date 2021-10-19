@@ -19,9 +19,20 @@ spec:
     configInline:
       address-pools:
         - name: default
-          protocol: bgp
+          protocol: layer2
           addresses:
-            - "${METALLB_LB_RANGE}"
+            - "${METALLB_ARP_RANGE}"
+    prometheus:
+      podMonitor:
+        enabled: true
+      prometheusRule:
+        enabled: true
+    speaker:
+      tolerations:
+        - effect: "NoExecute"
+          operator: "Exists"
+        - effect: "NoSchedule"
+          operator: "Exists"
     resources:
       requests:
         cpu: 25m

@@ -133,6 +133,11 @@ spec:
           gnetId: 13665
           revision: 1
           datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/14127
+        metallb:
+          gnetId: 14127
+          revision: 1
+          datasource: Prometheus
         flux-cluster:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
           datasource: Prometheus
