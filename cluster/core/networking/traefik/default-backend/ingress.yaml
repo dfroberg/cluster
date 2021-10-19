@@ -4,7 +4,7 @@ metadata:
   name: default-http-backend-ingress
   namespace: networking
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    traefik.ingress.kubernetes.io/router.entrypoints: "web"
     traefik.ingress.kubernetes.io/router.priority: "42"
     traefik.ingress.kubernetes.io/router.tls.domains.0.main: default.${SECRET_DOMAIN}
 spec:
