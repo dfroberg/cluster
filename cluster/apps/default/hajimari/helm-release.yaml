@@ -3,16 +3,9 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: hajimari
-  namespace: default
+  namespace: home
 spec:
   interval: 5m
-  install:
-    timeout: 10m
-    remediation:
-      retries: 3
-  upgrade:
-    remediation:
-      retries: 3
   chart:
     spec:
       # renovate: registryUrl=https://hajimari.io
@@ -22,27 +15,32 @@ spec:
         kind: HelmRepository
         name: hajimari-charts
         namespace: flux-system
+      interval: 5m
   values:
     image:
       repository: ghcr.io/toboshii/hajimari
       tag: v0.1.0
     env:
-      TZ: ${CLUSTER_TZ}
+      TZ: "${CLUSTER_TZ}"
     hajimari:
-      defaultEnable: true
+      defaultEnable: false
       namespaceSelector:
         matchNames:
-          - default
+          - home
+          - media
           - monitoring
           - networking
-          - rook-ceph
-          - kasten-io
-          - media
-      name: "${YOUR_NAME}"
-      # customApps:
-      #   - name: Some External Cluster Service
-      #     url: http://192.168.1.100:5000
-      #     icon: test-tube
+      name: "Danny"
+      customApps:
+        - name: Valetudo
+          url: "http://192.168.1.28"
+          icon: "robot-vacuum"
+        - name: PiAware
+          url: "http://192.168.150.25:8080"
+          icon: "airplane"
+        - name: HDHomeRun
+          url: "http://192.168.150.30"
+          icon: "antenna"
       groups:
         - name: Communicate
           links:
@@ -52,30 +50,30 @@ spec:
               url: "https://gmail.com"
             - name: Slack
               url: "https://slack.com/signin"
-        # - name: Cloud
+        - name: Cloud
+          links:
+            - name: Cloudflare
+              url: "https://dash.cloudflare.com"
+            - name: Dropbox
+              url: "https://dropbox.com"
+            - name: Drive
+              url: "https://drive.google.com"
+        # - name: Design
         #   links:
-        #     - name: Box
-        #       url: "https://box.com"
-        #     - name: Dropbox
-        #       url: "https://dropbox.com"
-        #     - name: Drive
-        #       url: "https://drive.google.com"
-        - name: Design
-          links:
-            - name: Awwwards
-              url: "https://awwwards.com"
-            - name: Dribbble
-              url: "https://dribbble.com"
-            - name: Muz.li
-              url: "https://medium.muz.li/"
-        - name: Dev
-          links:
-            - name: Codepen
-              url: "https://codepen.io/"
-            - name: Devdocs
-              url: "https://devdocs.io"
-            - name: Devhints
-              url: "https://devhints.io"
+        #     - name: Awwwards
+        #       url: "https://awwwards.com"
+        #     - name: Dribbble
+        #       url: "https://dribbble.com"
+        #     - name: Muz.li
+        #       url: "https://medium.muz.li/"
+        # - name: Dev
+        #   links:
+        #     - name: Codepen
+        #       url: "https://codepen.io/"
+        #     - name: Devdocs
+        #       url: "https://devdocs.io"
+        #     - name: Devhints
+        #       url: "https://devhints.io"
         # - name: Lifestyle
         #   links:
         #     - name: Design Milk
@@ -94,10 +92,10 @@ spec:
             #   url: "https://youtube.com/feed/subscriptions"
         - name: Reading
           links:
-            - name: AMN
-              url: "https://www.almasdarnews.com/u"
-            - name: Medium
-              url: "http://medium.com"
+            # - name: Instapaper
+            #   url: "https://www.instapaper.com/u"
+            # - name: Medium
+            #   url: "http://medium.com"
             - name: Reddit
               url: "http://reddit.com"
         - name: Tech
@@ -113,11 +111,7 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          hajimari.io/enable: "false"
-          hajimari.io/icon: "text"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          external-dns/is-public: "true"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
         hosts:
           - host: "hajimari.${SECRET_DOMAIN}"
             paths:
@@ -126,14 +120,13 @@ spec:
         tls:
           - hosts:
               - "hajimari.${SECRET_DOMAIN}"
-            secretName: "${SECRET_DOMAIN//./-}-tls"
     persistence:
       data:
         enabled: true
         existingClaim: hajimari-config-v1
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "hajimari-settings"
     resources:
       requests:
-        memory: 250Mi
-        cpu: 500m
-      limits:
-        memory: 1250Mi
+        cpu: 100m
+        memory: 128M
