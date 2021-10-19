@@ -20,7 +20,6 @@ spec:
     image:
       repository: ghcr.io/toboshii/hajimari
       tag: v0.1.0
-    updateStrategy: Recreate
     env:
       TZ: ${CLUSTER_TZ}
     hajimari:
