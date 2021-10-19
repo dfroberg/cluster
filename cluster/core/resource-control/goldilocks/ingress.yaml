@@ -23,5 +23,6 @@ spec:
                 port:
                   name: http
   tls:
+    - secretName: "${SECRET_DOMAIN//./-}-tls"
     - hosts:
         - "goldilocks.${SECRET_DOMAIN}"
