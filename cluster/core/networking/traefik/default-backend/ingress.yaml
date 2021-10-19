@@ -10,6 +10,5 @@ spec:
   defaultBackend:
     service:
       name: default-http-backend-service
-      namespace: networking
       port:
         number: 80
