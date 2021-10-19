@@ -33,7 +33,6 @@ spec:
           - rook-ceph
           - kasten-io
           - media
-          - home
       name: "${YOUR_NAME}"
       # customApps:
       #   - name: Some External Cluster Service
