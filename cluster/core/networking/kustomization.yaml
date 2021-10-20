@@ -6,6 +6,7 @@ resources:
   - traefik
   - error-pages
   - wildcard-certificate
+  - external-dns
   - secret-reflector
   #- kpc # pfSense controller moved to its own 
   - webhooks
