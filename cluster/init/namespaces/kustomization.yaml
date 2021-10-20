@@ -20,6 +20,7 @@ resources:
   - media.yaml
   - tools.yaml
   - security.yaml
+  - mailu.yaml
   
 
   
