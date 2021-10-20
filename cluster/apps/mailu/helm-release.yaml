@@ -1,0 +1,38 @@
+# mailu https://mailu.github.io/helm-charts/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mailu
+  namespace: mailu
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://mailu.github.io/helm-charts/
+      chart: mailu
+      version: 0.1.4
+      sourceRef:
+        kind: HelmRepository
+        name: mailu-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    mailuVersion: ">=1.8"
+    subnet: ${NETWORK_K8S_CLUSTER_CIDR}
+    # Services
+    webdav.enabled: "true"
+    domain: mail.${SECRET_DOMAIN}
+    hostnames:
+    - mail.${SECRET_DOMAIN}
+    initialAccount:
+      domain: mail.${SECRET_DOMAIN}
+      password: ${SECRET_MAILU_INITIAL_PASSWORD}
+      username: ${SECRET_MAILU_INITIAL_USERNAME}
+    logLevel: INFO
+    mail:
+      authRatelimit: 100/minute;3600/hour
+      messageSizeLimitInMegabytes: 200
+    persistence:
+      existingClaim: "mailu-data"
+    secretKey: ${SECRET_MAILU_SECRETKEY}

@@ -2,7 +2,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - jacket
+  #- jacket
   - bazarr
   #- doplarr
   #- jellyfin
@@ -20,3 +20,4 @@ resources:
   - mylar
   #- sonarr-uhd
   #- tautulli
+  - mailu

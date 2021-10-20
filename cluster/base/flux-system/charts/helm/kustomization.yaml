@@ -34,3 +34,5 @@ resources:
   - victoriametrics-charts.yaml
   - vmware-tanzu-charts.yaml
   - weaveworks-kured-charts.yaml
+  - maulu-charts.yaml
+  
