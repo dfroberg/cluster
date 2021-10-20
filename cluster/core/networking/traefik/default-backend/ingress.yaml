@@ -4,12 +4,34 @@ metadata:
   name: default-http-backend-ingress
   namespace: networking
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: "web"
+    traefik.ingress.kubernetes.io/router.entrypoints: "web,websecure"
     traefik.ingress.kubernetes.io/router.priority: "42"
     traefik.ingress.kubernetes.io/router.tls.domains.0.main: default.${SECRET_DOMAIN}
 spec:
+  tls:
+    - secretName: "${SECRET_DOMAIN//./-}-tls"
   defaultBackend:
     service:
       name: default-http-backend-service
       port:
         number: 80
+  rules:
+  - host: default.${SECRET_DOMAIN}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: default-http-backend-service
+            port:
+              number: 80
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: default-http-backend-service
+            port:
+              number: 80
