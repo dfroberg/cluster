@@ -32,7 +32,7 @@ spec:
         ingressClassName: "traefik"
         annotations:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
+          external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "text"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"

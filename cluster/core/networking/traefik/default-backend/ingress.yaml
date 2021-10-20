@@ -4,6 +4,8 @@ metadata:
   name: default-http-backend-ingress
   namespace: networking
   annotations:
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    external-dns/is-public: "true"
     haproxy-ingress-proxy.pfsense.org/enabled: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: "web,websecure"
     traefik.ingress.kubernetes.io/router.priority: "42"
