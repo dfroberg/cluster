@@ -45,6 +45,7 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
+          haproxy-ingress-proxy.pfsense.org/enabled: "true"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "false"
           hajimari.io/enable: "true"

@@ -35,6 +35,7 @@ spec:
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: "cloud-download"
+          haproxy-ingress-proxy.pfsense.org/enabled: "true"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - host: "qb-vpn.${SECRET_DOMAIN}"
