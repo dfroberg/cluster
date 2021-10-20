@@ -8,7 +8,6 @@ metadata:
     external-dns/is-public: "true"
     haproxy-ingress-proxy.pfsense.org/enabled: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: "web,websecure"
-    traefik.ingress.kubernetes.io/router.priority: "42"
     traefik.ingress.kubernetes.io/router.tls.domains.0.main: default.${SECRET_DOMAIN}
 spec:
   tls:
