@@ -7,3 +7,4 @@ resources:
 #  - k10
   - vpn-gateway
   - media
+  - mailu
