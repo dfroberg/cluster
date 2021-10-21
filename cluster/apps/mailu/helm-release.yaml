@@ -18,21 +18,279 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    mailuVersion: ">=1.8"
-    subnet: ${NETWORK_K8S_CLUSTER_CIDR}
-    # Services
-    webdav.enabled: "true"
-    domain: mail.${SECRET_MAILU_DOMAIN}
+    # Modified default settings
+    # A list of mail hostnames is required. The first will be used as primary mail hostname
     hostnames:
-    - mail.${SECRET_MAILU_DOMAIN}
+      - mail.${SECRET_MAILU_DOMAIN}
+      - imap.${SECRET_MAILU_DOMAIN}
+      - smtp.${SECRET_MAILU_DOMAIN}
+
+    # The mail domain is required. See https://github.com/Mailu/Mailu/blob/master/docs/faq.rst#what-is-the-difference-between-domain-and-hostnames
+    domain: ${SECRET_MAILU_DOMAIN}
+
+    # The secret key is required for protecting authentication cookies and must be set individually for each deployment
+    secretKey: ${SECRET_MAILU_SECRETKEY}
+
+    # An initial account can automatically be created:
     initialAccount:
-      domain: mail.${SECRET_MAILU_DOMAIN}
+      domain: ${SECRET_MAILU_DOMAIN}
       password: ${SECRET_MAILU_INITIAL_PASSWORD}
       username: ${SECRET_MAILU_INITIAL_USERNAME}
-    logLevel: INFO
-    mail:
-      authRatelimit: 100/minute;3600/hour
-      messageSizeLimitInMegabytes: 200
+
+
+    #nameOverride: ""
+    #fullnameOverride: ""
+    clusterDomain: cluster.local
+
+    nodeSelector: {}
+
+    # Tolerations for pod assignment
+    # Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+    tolerations: {}
+
+    # Affinity for pod assignment
+    # Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+    affinity: {}
+
+    database:
+      # type of the database for mailu (sqlite or mysql)
+      # default database is an embedded sqlite
+      # for mysql, see settings below
+      type: sqlite
+
+      # type of the database for roundcube (sqlite or mysql)
+      # default database is an embedded sqlite
+      # for mysql, see settings below
+      roundcubeType: sqlite
+
+    # For mysql/mariadb use the following config:
+    # Set the host to use an external database.
+    # If not host is set, a database instance is created by this chart.
+    #   type: mysql
+      mysql: {}
+        # host: external-db-hostname
+        # root password for mysql database
+        # rootPassword: chang3m3! # can only be set for embedded mysql
+
+        # settings for mailu (required if mailu database type is "mysql")
+        # database: mailu
+        # user: mailu
+        # password: chang3m3!
+
+      # For an external PostgreSQL database, use the following config:
+      postgresql: {}
+        # host: external-db-hostname
+        # database: mailu
+        # user: mailu
+        # password: chang3m3!
+
+        # settings for roundcube (required if roundcube database type is "mysql" or "postgresql")
+        # roundcubeDatabase: roundcube
+        # roundcubeUser: roundcube
+        # roundcubePassword: chang3m3!
+
+    external_relay: {}
+    #    host: "[domain.tld]:port"
+    #    username: username
+    #    password: SECRET
+
     persistence:
+      #size: 100Gi
+      #accessMode: ReadWriteOnce
+      #annotations:
+      #  "helm.sh/resource-policy": keep
+      #hostPath: /path/on/the/host
       existingClaim: "mailu-data"
-    secretKey: ${SECRET_MAILU_SECRETKEY}
+      #storageClass: "-"
+      #claimNameOverride: my-claim-name
+
+    # Change this if you're using different address ranges for pods
+    subnet: ${NETWORK_K8S_CLUSTER_CIDR}
+
+    # Version of mailu docker images to use when not specified otherwise
+    mailuVersion: 1.8
+
+    # default log level. can be overridden globally or per service
+    logLevel: WARNING
+
+    mail:
+      messageSizeLimitInMegabytes: 200
+      authRatelimit: 10/minute;1000/hour
+
+    # certmanager settings
+    certmanager:
+      enabled: true
+      issuerType: ClusterIssuer
+      issuerName: letsencrypt
+      apiVersion: cert-manager.io/v1alpha2
+
+    # Set ingress and loadbalancer config
+    ingress:
+      externalIngress: true
+      tlsFlavor: cert
+      annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+
+    # Frontend load balancer for non-HTTP(s) services
+    front:
+      logLevel: INFO
+      image:
+        repository: mailu/nginx
+        # tag defaults to mailuVersion
+        # tag: master
+      resources:
+        requests:
+          memory: 100Mi
+          cpu: 100m
+        limits:
+          memory: 200Mi
+          cpu: 200m
+      # Deployment or DaemonSet
+      controller:
+        kind: Deployment
+
+    admin:
+      logLevel: INFO
+      image:
+        repository: mailu/admin
+        # tag defaults to mailuVersion
+        # tag: master
+      resources:
+        requests:
+          memory: 500Mi
+          cpu: 500m
+        limits:
+          memory: 500Mi
+          cpu: 500m
+      podAnnotations: {}
+
+    redis:
+      image:
+        repository: redis
+        tag: 5-alpine
+      resources:
+        requests:
+          memory: 200Mi
+          cpu: 100m
+        limits:
+          memory: 300Mi
+          cpu: 200m
+
+    postfix:
+      # logLevel: WARNING
+      image:
+        repository: mailu/postfix
+        # tag defaults to mailuVersion
+        # tag: master
+      resources:
+        requests:
+          memory: 2Gi
+          cpu: 500m
+        limits:
+          memory: 2Gi
+          cpu: 500m
+
+    dovecot:
+      enabled: true
+      # logLevel: WARNING
+      image:
+        repository: mailu/dovecot
+        # tag defaults to mailuVersion
+        # tag: master
+      resources:
+        requests:
+          memory: 500Mi
+          cpu: 500m
+        limits:
+          memory: 500Mi
+          cpu: 500m
+      # enable dovecot overrides
+      # overrides:
+      #   dovecot.conf: |
+      #     # More info here: https://mailu.io/1.8/kubernetes/mailu/index.html#dovecot
+      #     mail_nfs_index = yes
+      #     mail_nfs_storage = yes
+      #     mail_fsync = always
+      #     mmap_disable = yes
+      #     mail_max_userip_connections=100
+
+    rspamd:
+      # logLevel: WARNING
+      image:
+        repository: mailu/rspamd
+        # tag defaults to mailuVersion
+        # tag: master
+      resources:
+        requests:
+          memory: 100Mi
+          cpu: 100m
+        limits:
+          memory: 200Mi
+          cpu: 200m
+
+    clamav:
+      enabled: true
+      # logLevel: WARNING
+      image:
+        repository: mailu/clamav
+        # tag defaults to mailuVersion
+        # tag: master
+      resources:
+        requests:
+          memory: 1Gi
+          cpu: 1000m
+        limits:
+          memory: 2Gi
+          cpu: 1000m
+
+    roundcube:
+      enabled: true
+      # logLevel: WARNING
+      image:
+        repository: mailu/roundcube
+        # tag defaults to mailuVersion
+        # tag: master
+      resources:
+        requests:
+          memory: 100Mi
+          cpu: 100m
+        limits:
+          memory: 200Mi
+          cpu: 200m
+
+
+    webdav:
+      enabled: false
+      # logLevel: WARNING
+      image:
+        repository: mailu/radicale
+        # tag defaults to mailuVersion
+        # tag: master
+
+    mysql:
+      image:
+        repository: library/mariadb
+        tag: 10.4.10
+      resources:
+        requests:
+          memory: 256Mi
+          cpu: 100m
+        limits:
+          memory: 512Mi
+          cpu: 200m
+
+    fetchmail:
+      enabled: false
+      # logLevel: WARNING
+      image:
+        repository: mailu/fetchmail
+        # tag defaults to mailuVersion
+        # tag: master
+      resources:
+        requests:
+          memory: 100Mi
+          cpu: 100m
+        limits:
+          memory: 200Mi
+          cpu: 200m
+      delay: 600
