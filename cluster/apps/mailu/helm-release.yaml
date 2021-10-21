@@ -22,11 +22,11 @@ spec:
     subnet: ${NETWORK_K8S_CLUSTER_CIDR}
     # Services
     webdav.enabled: "true"
-    domain: mail.${SECRET_DOMAIN}
+    domain: mail.${SECRET_MAILU_DOMAIN}
     hostnames:
-    - mail.${SECRET_DOMAIN}
+    - mail.${SECRET_MAILU_DOMAIN}
     initialAccount:
-      domain: mail.${SECRET_DOMAIN}
+      domain: mail.${SECRET_MAILU_DOMAIN}
       password: ${SECRET_MAILU_INITIAL_PASSWORD}
       username: ${SECRET_MAILU_INITIAL_USERNAME}
     logLevel: INFO
