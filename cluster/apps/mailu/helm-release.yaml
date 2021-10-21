@@ -34,7 +34,7 @@ spec:
     # An initial account can automatically be created:
     initialAccount:
       domain: ${SECRET_MAILU_DOMAIN}
-      password: ${SECRET_MAILU_INITIAL_PASSWORD}
+      password: "${SECRET_MAILU_INITIAL_PASSWORD}"
       username: ${SECRET_MAILU_INITIAL_USERNAME}
 
 
