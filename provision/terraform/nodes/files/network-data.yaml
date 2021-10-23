@@ -1,0 +1,7 @@
+version: 1
+config:
+    - type: nameserver
+      address:
+      - '${nameserver}'
+      search:
+      - '${search_domain}'

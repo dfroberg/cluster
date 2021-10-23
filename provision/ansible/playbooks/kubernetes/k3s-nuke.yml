@@ -41,4 +41,16 @@
         path: "{{ item.path }}"
         state: absent
       loop: "{{ files_to_delete.files }}"
-
+    - name: Delete /var/lib/rancher
+      ansible.builtin.file:
+        path: "/var/lib/rancher/"
+        state: absent
+    - name: Delete /var/lib/kubelet
+      ansible.builtin.file:
+        path: "/var/lib/kubelet/"
+        state: absent
+    # Just clean remnants
+    - name: Delete /var/lib/longhorn
+      ansible.builtin.file:
+        path: "/var/lib/longhorn/"
+        state: absent

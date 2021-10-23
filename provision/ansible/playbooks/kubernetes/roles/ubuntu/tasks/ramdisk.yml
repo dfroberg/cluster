@@ -153,6 +153,44 @@
   tags:
     - ramdisks
 
+  
+# No ramdisks
+- name: Remove up k3s ramdisk
+  ansible.posix.mount:
+    path: /var/lib/rancher
+    src: tmpfs
+    fstype: tmpfs
+    opts: rw,nodev,nosuid,size=12G
+    state: absent
+  when:
+    - ramdisk is defined and ( (ramdisk == 'no') or (ramdisk == false) )
+  tags:
+    - ramdisks
+
+- name: Remove up rook ramdisk
+  ansible.posix.mount:
+    path: /var/lib/rook
+    src: tmpfs
+    fstype: tmpfs
+    opts: rw,nodev,nosuid,size=512M
+    state: absent
+  when:
+    - ramdisk is defined and ( (ramdisk == 'no') or (ramdisk == false) )
+  tags:
+    - ramdisks
+
+- name: Remove up kubelet ramdisk
+  ansible.posix.mount:
+    path: /var/lib/kubelet
+    src: tmpfs
+    fstype: tmpfs
+    opts: rw,nodev,nosuid,size=200M
+    state: absent
+  when:
+    - ramdisk is defined and ( (ramdisk == 'no') or (ramdisk == false) )
+  tags:
+    - ramdisks
+
 - name: Put an empty file in each ramdisk for tests
   ansible.builtin.shell: >
     touch /var/lib/rancher/test

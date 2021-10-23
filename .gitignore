@@ -9,4 +9,8 @@ kubeconfig
 .decrypted~*.yaml
 # direnv keep it local
 .envrc
-
+# Keep teraform local
+.terraform
+*.tfstate*
+.terraform.lock.hcl
+vm-*-*data.yaml
