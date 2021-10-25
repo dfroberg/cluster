@@ -5,7 +5,7 @@
 cd ~/cluster
 export KUBECONFIG="/home/dfroberg/cluster/kubeconfig"
 #export RESOURCESTORESTORE="secrets,configmaps,persistentvolumeclaims,persistentvolumes"
-export RESOURCESTORESTORE="configmaps,persistentvolumeclaims,persistentvolumes"
+export RESOURCESTORESTORE="pods,persistentvolumeclaims,persistentvolumes"
 ALREADYRUNNING=$(velero get restores | grep -c -E "New|InProgress" || true)
 
 if [[ "$ALREADYRUNNING" != "0" ]]
@@ -74,10 +74,11 @@ echo "✔ Done restoring!"
 
 echo "► Completed:"
 velero get restores
-exit 1
+sleep 10
 
-flux resume helmrelease --all -n media
-flux resume kustomization apps
+#flux resume kustomization apps
+#flux resume helmrelease --all -n media
+
 echo "✔ Resumed cluster rebuild of apps"
 
 # To clean up run;

@@ -234,6 +234,13 @@ items:
                       description: matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
                       type: object
                   type: object
+                metadata:
+                  properties:
+                    labels:
+                      additionalProperties:
+                        type: string
+                      type: object
+                  type: object
                 orderedResources:
                   additionalProperties:
                     type: string
@@ -1648,7 +1655,7 @@ items:
                                                 type: object
                                             type: object
                                           startupProbe:
-                                            description: 'StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod''s lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. This is a beta feature enabled by the StartupProbe feature flag. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes'
+                                            description: 'StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod''s lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes'
                                             properties:
                                               exec:
                                                 description: One and only one of the following should be specified. Exec specifies the action to take.
@@ -2166,6 +2173,13 @@ items:
                           additionalProperties:
                             type: string
                           description: matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+                          type: object
+                      type: object
+                    metadata:
+                      properties:
+                        labels:
+                          additionalProperties:
+                            type: string
                           type: object
                       type: object
                     orderedResources:
