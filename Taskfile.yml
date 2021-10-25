@@ -18,3 +18,4 @@ includes:
   format: .taskfiles/format.yml
   lint: .taskfiles/lint.yml
   pre-commit: .taskfiles/pre-commit.yml
+  velero: .taskfiles/velero.yml

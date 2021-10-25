@@ -1,0 +1,13 @@
+---
+version: "3"
+
+tasks:
+  update-cli:
+    desc: Go get the latest cli
+    cmds:
+      - cd /tmp/
+      - wget https://github.com/vmware-tanzu/velero/releases/download/v1.7.0/velero-v1.7.0-linux-amd64.tar.gz 
+      - tar -xvzf velero-v1.7.0-linux-amd64.tar.gz 
+      - sudo cp velero-v1.7.0-linux-amd64/velero /usr/local/bin/
+      - velero version --client-only
+    silent: true
