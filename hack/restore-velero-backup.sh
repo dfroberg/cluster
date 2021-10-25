@@ -4,7 +4,7 @@
 
 export KUBECONFIG="/home/dfroberg/cluster/kubeconfig"
 RUNNING=$(velero get restores | grep -c -E "New|InProgress" || true)
-echo $RUNNING
+
 if [$RUNNING -gt 0]
 then
     echo "► Restoration already running\n   Skipping, check \n     velero get restores\n  clear queue with;\n    velero get restores "
