@@ -100,7 +100,7 @@ spec:
       #annotations:
       #  "helm.sh/resource-policy": keep
       #hostPath: /path/on/the/host
-      existingClaim: "mailu-data"
+      existingClaim: mailu-data
       #storageClass: "-"
       #claimNameOverride: my-claim-name
 

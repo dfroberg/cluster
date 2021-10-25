@@ -1,63 +1,83 @@
+#!/bin/bash -e
 # Velero specific.
 # Deletes PVCs using the <deployment>-config-v<X> naming convention
 #
-
+cd ~/cluster
 export KUBECONFIG="/home/dfroberg/cluster/kubeconfig"
-RUNNING=$(velero get restores | grep -c -E "New|InProgress" || true)
+#export RESOURCESTORESTORE="secrets,configmaps,persistentvolumeclaims,persistentvolumes"
+export RESOURCESTORESTORE="configmaps,persistentvolumeclaims,persistentvolumes"
+ALREADYRUNNING=$(velero get restores | grep -c -E "New|InProgress" || true)
 
-if [$RUNNING -gt 0]
+if [[ "$ALREADYRUNNING" != "0" ]]
 then
-    echo "► Restoration already running\n   Skipping, check \n     velero get restores\n  clear queue with;\n    velero get restores "
+    echo "► Restoration already running 
+    Skipping, check 
+        velero get restores
+    clear queue with;
+        velero restore delete --all
+"
     exit 1
-else
-
-    NAMESPACE=media
-    DEPLOYMENTS=$(kubectl get deploy -n $NAMESPACE -owide | grep "$pvc" | awk '{print $1}' | grep -v "NAME")
-    # Turn off automatic rebuilds
-    echo "► Restoring in progress"
-    cd ~/cluster
-    flux suspend helmrelease --all -n media
-    flux suspend kustomization apps
-    echo "✔ Suspended cluster rebuild of apps"
-    # Scale deployments to 0
-    for deployment in $DEPLOYMENTS
-    do
-        echo "► Scaling $deployment"
-        kubectl scale -n $NAMESPACE deploy/$deployment --replicas 0 
-
-    done
-    echo "✔ Scaled all deployments to zero."
-    sleep 30
-    # Remove PVCs & PVs
-    for deployment in $DEPLOYMENTS
-    do
-        PVC=$(kubectl get pvc -n $NAMESPACE | grep -e "$deployment-config" | awk '{print $1}')
-        echo "► Deleting $PVC in $deployment"
-        kubectl delete pvc $PVC -n $NAMESPACE --wait
-
-    done
-    echo "✔ Done deleting!"
-    sleep 30
-
-
-    echo "► Begin restoration..."
-    for deployment in $DEPLOYMENTS
-    do
-        echo "► Restoring $deployment"
-        velero restore create --from-backup media-backup --selector "app.kubernetes.io/name=$deployment" --restore-volumes=true --include-resources secrets,configmaps,persistentvolumeclaims,persistentvolumes
-    done
-    echo "► Waiting for the restores to complete..."
-    while [$(velero get restores | grep -c -E "New|InProgress" || true) -gt 0]; 
-    do
-        sleep 1
-        echo -n "."
-    done
-    echo "✔ Done restoring!"
-
-    flux resume helmrelease --all -n media
-    flux resume kustomization apps
-    echo "✔ Resumed cluster rebuild of apps"
-
-    # To clean up run;
-    # velero restore delete --all
 fi
+
+
+NAMESPACE=media
+DEPLOYMENTS=$(kubectl get deploy -n $NAMESPACE -owide | grep "$pvc" | awk '{print $1}' | grep -v "NAME")
+# Turn off automatic rebuilds
+echo "► Restoring in progress"
+flux suspend helmrelease --all -n media
+flux suspend kustomization apps
+echo "✔ Suspended cluster rebuild of apps"
+# Scale deployments to 0
+for deployment in $DEPLOYMENTS
+do
+    echo "► Scaling $deployment"
+    kubectl scale -n $NAMESPACE deploy/$deployment --replicas 0 
+
+done
+echo "✔ Scaled all deployments to zero."
+sleep 5
+# Remove PVCs & PVs
+for deployment in $DEPLOYMENTS
+do
+    PVC="$(kubectl get pvc -n $NAMESPACE | grep -e "$deployment-config" | awk '{print $1}')"
+    if [[ ! -z "$PVC" ]]
+    then
+        echo "► Deleting $PVC in $deployment"
+        kubectl delete pvc $PVC -n $NAMESPACE --wait 
+    else
+        echo "► No PVC in $deployment, skipping."
+    fi
+
+
+done
+echo "✔ Done deleting!"
+sleep 5
+
+
+echo "► Schedule restorations:"
+for deployment in $DEPLOYMENTS
+do
+    echo "► Restoring $deployment"
+    velero restore create --from-backup media-backup --selector "app.kubernetes.io/name=$deployment" --restore-volumes=true --include-resources $RESOURCESTORESTORE
+    sleep 1 # for some reason duplicates are created if we don't wait
+done
+echo "► Currently scheduled:"
+velero get restores
+echo "► Waiting for the scheduled restores to complete..."
+
+while [[ "$(velero get restores | grep -c -E "New|InProgress" || true)" != "0" ]]; 
+do
+    sleep 1
+    echo -n "."
+done
+echo "✔ Done restoring!"
+echo "► Completed:"
+velero get restores
+exit 1
+
+flux resume helmrelease --all -n media
+flux resume kustomization apps
+echo "✔ Resumed cluster rebuild of apps"
+
+# To clean up run;
+# velero restore delete --all
