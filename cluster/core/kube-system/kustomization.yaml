@@ -5,8 +5,8 @@ resources:
   - nfs-subdir-external-provisioner
   - metrics-server
   - kube-cleanup-operator
-  - kured
+  #- kured
   - descheduler
   - node-feature-discovery
   - reloader
-  - node-problem-detector
+  #- node-problem-detector

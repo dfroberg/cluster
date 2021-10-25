@@ -39,7 +39,7 @@
     state: unmounted
   when:
     - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
-    - rook_mount_stat.stdout == "/var/lib/rancher is a mountpoint"
+    - rook_mount_stat.stdout == "/var/lib/rook is a mountpoint"
   tags:
     - ramdisks
 
@@ -49,7 +49,7 @@
     state: unmounted
   when:
     - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
-    - mount_kubelet_mount_statstat.stdout == "/var/lib/rancher is a mountpoint"
+    - kubelet_mount_stat.stdout == "/var/lib/kubelet is a mountpoint"
   tags:
     - ramdisks
 
@@ -122,7 +122,7 @@
     path: /var/lib/rancher
     src: tmpfs
     fstype: tmpfs
-    opts: rw,nodev,nosuid,size=12G
+    opts: rw,nodev,nosuid,size=16G
     state: mounted
   when:
     - ramdisk is defined and ( (ramdisk == 'yes') or (ramdisk == true) )
@@ -160,7 +160,7 @@
     path: /var/lib/rancher
     src: tmpfs
     fstype: tmpfs
-    opts: rw,nodev,nosuid,size=12G
+    opts: rw,nodev,nosuid,size=16G
     state: absent
   when:
     - ramdisk is defined and ( (ramdisk == 'no') or (ramdisk == false) )

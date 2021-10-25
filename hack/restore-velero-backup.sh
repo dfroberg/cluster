@@ -32,27 +32,26 @@ for deployment in $DEPLOYMENTS
 do
     echo "► Scaling $deployment"
     kubectl scale -n $NAMESPACE deploy/$deployment --replicas 0 
-
 done
 echo "✔ Scaled all deployments to zero."
 sleep 5
+
 # Remove PVCs & PVs
 for deployment in $DEPLOYMENTS
 do
     PVC="$(kubectl get pvc -n $NAMESPACE | grep -e "$deployment-config" | awk '{print $1}')"
     if [[ ! -z "$PVC" ]]
     then
+        echo "► Deleting deployment $deployment"
+        kubectl delete deployment $deployment -n $NAMESPACE --wait 
         echo "► Deleting $PVC in $deployment"
         kubectl delete pvc $PVC -n $NAMESPACE --wait 
     else
         echo "► No PVC in $deployment, skipping."
     fi
-
-
 done
 echo "✔ Done deleting!"
 sleep 5
-
 
 echo "► Schedule restorations:"
 for deployment in $DEPLOYMENTS
@@ -61,6 +60,7 @@ do
     velero restore create --from-backup media-backup --selector "app.kubernetes.io/name=$deployment" --restore-volumes=true --include-resources $RESOURCESTORESTORE
     sleep 1 # for some reason duplicates are created if we don't wait
 done
+
 echo "► Currently scheduled:"
 velero get restores
 echo "► Waiting for the scheduled restores to complete..."
@@ -71,6 +71,7 @@ do
     echo -n "."
 done
 echo "✔ Done restoring!"
+
 echo "► Completed:"
 velero get restores
 exit 1
