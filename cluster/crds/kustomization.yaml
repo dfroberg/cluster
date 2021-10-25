@@ -7,3 +7,5 @@ resources:
   - rook-ceph
   - traefik
   - kube-prometheus-stack
+  - velero
+
