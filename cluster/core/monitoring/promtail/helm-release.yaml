@@ -20,6 +20,8 @@ spec:
     image:
       registry: ghcr.io
       repository: k8s-at-home/promtail
+    nodeSelector: 
+      worker: yes
     config:
       lokiAddress: http://loki:3100/loki/api/v1/push
       snippets:

@@ -18,6 +18,8 @@ spec:
       interval: 5m
   values:
     fullnameOverride: snmp-exporter-pdu-0
+    nodeSelector: 
+      worker: yes
     extraArgs:
       - "--config.file=/config/snmp.yaml"
     extraConfigmapMounts:

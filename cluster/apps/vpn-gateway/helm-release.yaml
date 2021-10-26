@@ -51,6 +51,8 @@ spec:
             memory: 128Mi
           limits:
             memory: 512Mi
+        nodeSelector: 
+          worker: yes
         livenessProbe:
           exec:
             command:

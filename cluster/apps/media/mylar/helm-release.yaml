@@ -64,6 +64,8 @@ spec:
       pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
       post.hook.backup.velero.io/container: fsfreeze
       post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
+    nodeSelector: 
+      worker: yes
     resources:
       requests:
         memory: 100Mi

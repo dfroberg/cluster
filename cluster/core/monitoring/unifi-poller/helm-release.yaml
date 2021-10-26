@@ -20,6 +20,8 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/unpoller
       tag: 2.1.3
+    nodeSelector: 
+      worker: yes
     env:
       TZ: ${CLUSTER_TZ}
       UP_UNIFI_DEFAULT_ROLE: "lab-controller"

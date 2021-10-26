@@ -19,6 +19,8 @@ spec:
   values:
     interval: 5m
     logLevel: debug
+    nodeSelector: 
+      worker: yes
     provider: cloudflare
     env:
       - name: CF_API_EMAIL

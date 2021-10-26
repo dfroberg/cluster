@@ -27,6 +27,8 @@ spec:
     image:
       registry: public.ecr.aws
       repository: bitnami/thanos
+    nodeSelector: 
+      worker: yes
     storageClass: "rook-ceph-block"
     query:
       enabled: true

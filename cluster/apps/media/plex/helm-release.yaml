@@ -94,6 +94,8 @@ spec:
       post.hook.backup.velero.io/container: fsfreeze
       post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
       configmap.reloader.stakater.com/reload: "plex-promtail"
+    nodeSelector: 
+      worker: yes
     resources:
       requests:
         gpu.intel.com/i915: 1

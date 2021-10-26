@@ -27,6 +27,8 @@ spec:
       limits:
         cpu: 100m
         memory: 200M
+    nodeSelector: 
+      worker: yes
     env:
       GF_EXPLORE_ENABLED: true
       GF_PANELS_DISABLE_SANITIZE_HTML: true

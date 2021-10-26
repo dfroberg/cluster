@@ -24,6 +24,8 @@ spec:
       limits:
         cpu: 73m
         memory: 523M
+    nodeSelector: 
+      worker: yes
     communications:
       existingSecretName: "botkube-communications"
     serviceMonitor:

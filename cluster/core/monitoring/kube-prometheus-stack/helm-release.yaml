@@ -27,6 +27,8 @@ spec:
       limits:
         cpu: 1
         memory: 8G
+    nodeSelector: 
+      worker: yes
     fullnameOverride: prometheus
     alertmanager:
       config:

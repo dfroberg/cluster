@@ -23,6 +23,8 @@ spec:
     image:
       repository: ghcr.io/goauthentik/server
       tag: 2021.9.8
+    nodeSelector: 
+      worker: yes
     ingress:
       enabled: true
       ingressClassName: traefik

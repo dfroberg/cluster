@@ -55,6 +55,8 @@ spec:
             server: "${NAS_ADDR}"
             path: ${NAS_BASE_PATH}/
         mountPath: /media
+    nodeSelector: 
+      worker: yes
     podAnnotations:
       backup.velero.io/backup-volumes: config
       pre.hook.backup.velero.io/container: fsfreeze

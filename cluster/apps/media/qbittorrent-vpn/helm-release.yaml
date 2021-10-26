@@ -82,6 +82,8 @@ spec:
       post.hook.backup.velero.io/container: fsfreeze
       post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
       setGateway: "true"
+    nodeSelector: 
+      worker: yes
     resources:
       requests:
         memory: 250Mi

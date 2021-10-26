@@ -20,6 +20,8 @@ spec:
     image:
       repository: ghcr.io/miguelndecarvalho/speedtest-exporter
       tag: v3.3.3
+    nodeSelector: 
+      worker: yes
     prometheus:
       podMonitor:
         enabled: true

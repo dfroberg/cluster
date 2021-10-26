@@ -20,6 +20,8 @@ spec:
     - kind: ConfigMap
       name: kubernetes-pfsense-controller-config
   values:
+    nodeSelector: 
+      worker: yes
     replicaCount: 1
     rbac:
       enabled: true

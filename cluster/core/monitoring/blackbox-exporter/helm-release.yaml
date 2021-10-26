@@ -19,6 +19,8 @@ spec:
   values:
     fullnameOverride: blackbox-exporter
     allowIcmp: true
+    nodeSelector: 
+      worker: yes
     config:
       modules:
         icmp:
