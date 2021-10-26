@@ -42,7 +42,8 @@ spec:
     #fullnameOverride: ""
     clusterDomain: cluster.local
 
-    nodeSelector: {}
+    nodeSelector: 
+      worker: yes
 
     # Tolerations for pod assignment
     # Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
@@ -78,11 +79,11 @@ spec:
         # password: chang3m3!
 
       # For an external PostgreSQL database, use the following config:
-      postgresql: {}
-        # host: external-db-hostname
-        # database: mailu
-        # user: mailu
-        # password: chang3m3!
+      #postgresql: 
+      #  host: postgres.databases
+      #  database: mailu
+      #  user: mailu
+      #  password: chang3m3!
 
         # settings for roundcube (required if roundcube database type is "mysql" or "postgresql")
         # roundcubeDatabase: roundcube
