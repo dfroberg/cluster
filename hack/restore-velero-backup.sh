@@ -51,15 +51,16 @@ do
     fi
 done
 echo "✔ Done deleting!"
-sleep 5
+sleep 30
+# TBD: Make SURE everything is deleted
 
 echo "► Schedule restorations:"
-for deployment in $DEPLOYMENTS
-do
-    echo "► Restoring $deployment"
-    velero restore create --from-backup media-backup --selector "app.kubernetes.io/name=$deployment" --restore-volumes=true --include-resources $RESOURCESTORESTORE
-    sleep 1 # for some reason duplicates are created if we don't wait
-done
+#for deployment in $DEPLOYMENTS
+#do
+#    echo "► Restoring $deployment"
+    velero restore create --from-backup media-backup --restore-volumes=true #--selector "app.kubernetes.io/name=$deployment" --include-resources $RESOURCESTORESTORE
+#    sleep 1 # for some reason duplicates are created if we don't wait
+#done
 
 echo "► Currently scheduled:"
 velero get restores
