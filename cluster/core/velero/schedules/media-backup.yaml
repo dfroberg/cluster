@@ -1,14 +1,18 @@
 apiVersion: velero.io/v1
 kind: Schedule
 metadata:
-  name: media-backups
+  creationTimestamp: null
+  name: media-backup
   namespace: velero
 spec:
-  schedule: '@every 2h'
+  schedule: '@every 6h'
   template:
+    defaultVolumesToRestic: true
     hooks: {}
     includedNamespaces:
     - media
-    ttl: 72h0m0s
+    metadata: {}
+    storageLocation: default
+    ttl: 12h0m0s
   useOwnerReferencesInBackup: false
 status: {}
