@@ -1,7 +1,7 @@
 apiVersion: velero.io/v1
 kind: Schedule
 metadata:
-  name: media-backup
+  name: database-backup
   namespace: velero
 spec:
   schedule: '@every 6h'
@@ -9,7 +9,7 @@ spec:
     defaultVolumesToRestic: true
     hooks: {}
     includedNamespaces:
-    - media
+    - databases
     metadata: {}
     storageLocation: default
     ttl: 12h0m0s

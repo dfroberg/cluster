@@ -21,7 +21,8 @@ spec:
       registry: quay.io
       repository: bitnami/postgresql
       tag: 14.0.0
-    postgresqlPassword: "${SECRET_POSTGRES_PASSWORD}"
+    postgresqlUsername: ${SECRET_POSTGRES_USERNAME}
+    postgresqlPassword: ${SECRET_POSTGRES_PASSWORD}
     postgresqlDatabase: authentik
     metrics:
       enabled: true
@@ -30,3 +31,24 @@ spec:
     persistence:
       size: 5Gi
       existingClaim: postgresql-config-v1
+    primary:
+      podAnnotations:
+        backup.velero.io/backup-volumes: data
+        pre.hook.backup.velero.io/container: fsfreeze
+        pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/bitnami/postgresql"]'
+        post.hook.backup.velero.io/container: fsfreeze
+        post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/bitnami/postgresql"]'
+      additionalContainers:
+        fsfreeze:
+          name: fsfreeze
+          image: ubuntu:focal-20210827
+          imagePullPolicy: IfNotPresent
+          command:
+            - "/bin/bash"
+            - "-c"
+            - "sleep infinity"
+          volumeMounts:
+            - name: data
+              mountPath: /bitnami/postgresql
+          securityContext:
+            privileged: true
