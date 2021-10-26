@@ -11,6 +11,7 @@ metadata:
     #traefik.ingress.kubernetes.io/router.priority: "11"
     traefik.ingress.kubernetes.io/router.tls.domains.0.main: default.${SECRET_DOMAIN}
 spec:
+  ingressClassName: traefik
   tls:
     - secretName: "${SECRET_DOMAIN//./-}-tls"
   defaultBackend:
