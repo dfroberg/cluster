@@ -68,6 +68,18 @@ spec:
           operator: "Exists"
         - key: "CriticalAddonsOnly"
           operator: "Exists"
+        - effect: NoExecute
+          operator: Exists
+        - effect: NoSchedule
+          operator: Exists
+        - effect: NoExecute
+          key: node.kubernetes.io/not-ready
+          operator: Exists
+          tolerationSeconds: 300
+        - effect: NoExecute
+          key: node.kubernetes.io/unreachable
+          operator: Exists
+          tolerationSeconds: 300
       resources:
         requests:
           memory: 200Mi
