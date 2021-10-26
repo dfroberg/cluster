@@ -24,7 +24,7 @@ spec:
       name: ghcr.io/k8s-at-home/traefik
     deployment:
       kind: Deployment
-      replicas: 9
+      replicas: 3
     service:
       enabled: true
       type: LoadBalancer
