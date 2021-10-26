@@ -19,3 +19,8 @@ spec:
         - "{{ calico_node_cidr }}"
   nodeMetricsPort: 9091
   typhaMetricsPort: 9093
+  controlPlaneTolerations:
+    - effect: NoSchedule
+      operator: Exists
+    - effect: NoExecute
+      operator: Exists
