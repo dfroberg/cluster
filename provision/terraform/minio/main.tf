@@ -26,3 +26,6 @@ provider "minio" {
 resource "minio_bucket" "bucket" {
   name = "bucket"
 }
+resource "minio_bucket" "bucket" {
+  name = "velero"
+}
