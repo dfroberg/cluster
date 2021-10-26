@@ -27,3 +27,17 @@ spec:
       - --delete-evicted-pods-after=5m
       - --delete-orphaned-pods-after=0
       - --legacy-mode=false
+    tolerations:
+      - effect: NoExecute
+        operator: Exists
+      - effect: NoSchedule
+        operator: Exists
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+  

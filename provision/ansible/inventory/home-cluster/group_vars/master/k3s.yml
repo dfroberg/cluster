@@ -50,4 +50,4 @@ k3s_server:
   node-label:
      - "master=yes"
 
-
+# k3s-controlplane=true:NoSchedule

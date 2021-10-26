@@ -31,3 +31,9 @@ spec:
           enabled: true
         LowNodeUtilization:
           enabled: true
+    tolerations:
+      - effect: NoExecute
+        operator: Exists
+      - effect: NoSchedule
+        operator: Exists
+      
