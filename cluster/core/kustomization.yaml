@@ -4,7 +4,7 @@ resources:
   - kube-system
   #- networking   # Moved to own step in base
   #- velero       # Moved to own step in base
-  - security
+  #- security
   - resource-control
   - system-upgrade
   - monitoring
