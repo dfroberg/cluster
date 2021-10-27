@@ -14,16 +14,16 @@
 
 ### Set environment variables. Change these as necessary.
 ```sh
-export STORAGE_POOL="vm-data"
+export STORAGE_POOL="nas-nfs"
 export VM_ID="10000"
-export VM_NAME="ubuntu-20.04-cloudimg"
+export VM_NAME="ubuntu-20-04-cloudimg"
 ```
 
 ### Create Proxmox VM image from Ubuntu Cloud Image.
 ```sh
 qm create $VM_ID --memory 2048 --net0 virtio,bridge=vmbr30
 qm importdisk $VM_ID focal-server-cloudimg-amd64.img $STORAGE_POOL
-qm set $VM_ID --scsihw virtio-scsi-pci --scsi0 $STORAGE_POOL:vm-$VM_ID-disk-0
+qm set $VM_ID --scsihw virtio-scsi-pci --scsi0 $STORAGE_POOL:$VM_ID/vm-$VM_ID-disk-0.raw
 qm set $VM_ID --agent enabled=1,fstrim_cloned_disks=1
 qm set $VM_ID --name $VM_NAME
 ```
