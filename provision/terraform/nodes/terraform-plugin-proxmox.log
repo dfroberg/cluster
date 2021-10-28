@@ -11000,3 +11000,1166 @@ Pragma: no-cache
 Server: pve-api-daemon/3.0
 
 {"data":null}
+[90mThu, 28 Oct 2021 10:24:52 +0200[0m [32mINF[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/util.go:146[0m[36m >[0m Enabling the capture of log-library logs as ithe _capturelog flag was detected
+[90mThu, 28 Oct 2021 10:24:52 +0200[0m [32mINF[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/util.go:179[0m[36m >[0m Logging Started. Root Logger Set to level debug
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:52 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+[90mThu, 28 Oct 2021 10:24:54 +0200[0m [32mINF[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/util.go:146[0m[36m >[0m Enabling the capture of log-library logs as ithe _capturelog flag was detected
+[90mThu, 28 Oct 2021 10:24:54 +0200[0m [32mINF[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/util.go:179[0m[36m >[0m Logging Started. Root Logger Set to level debug
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [WARN] Truncating attribute path of 0 diagnostics for TypeSet
+2021/10/28 10:24:54 [DEBUG] setting computed for "unused_disk" from ComputedKeys
+2021/10/28 10:24:54 [DEBUG] setting computed for "unused_disk" from ComputedKeys
+2021/10/28 10:24:54 [DEBUG] setting computed for "unused_disk" from ComputedKeys
+[90mThu, 28 Oct 2021 10:24:54 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:654[0m[36m >[0m Invoking VM create with resource data:  '{"additional_wait":0,"agent":1,"args":"","balloon":0,"bios":"seabios","boot":"cdn","bootdisk":"scsi0","bridge":"","ci_wait":0,"cicustom":"user=nas-nfs:snippets/vm-4012-user-data.yml,meta=nas-nfs:snippets/vm-4012-meta-data.yml,network=nas-nfs:snippets/vm-4012-network-data.yml","cipassword":"","ciuser":"","clone":"ubuntu-20-04-cloudimg","clone_wait":0,"cloudinit_cdrom_storage":"nas-nfs","cores":8,"cpu":"host","default_ipv4_address":"","define_connection_info":true,"desc":"","disk":[{"backup":0,"cache":"none","discard":"on","file":"","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"30G","slot":0,"ssd":1,"storage":"nas-zfs","storage_type":"","type":"scsi","volume":""}],"disk_gb":0,"force_create":false,"force_recreate_on_change_of":"","full_clone":true,"guest_agent_ready_timeout":100,"hagroup":"","hastate":"","hotplug":"disk,network,usb,memory,cpu","ipconfig0":"ip=192.168.30.12/24,gw=192.168.30.1","ipconfig1":"ip=192.168.25.12/24","ipconfig2":"","ipconfig3":"","ipconfig4":"","ipconfig5":"","iso":"","kvm":true,"mac":"","memory":24576,"name":"k8s-master03","nameserver":"","network":[{"bridge":"vmbr30","firewall":true,"link_down":false,"macaddr":"68:b5:99:b3:da:03","model":"virtio","queues":0,"rate":0,"tag":-1},{"bridge":"vmbr25","firewall":false,"link_down":false,"macaddr":"","model":"virtio","queues":0,"rate":0,"tag":-1}],"nic":"","numa":true,"onboot":true,"os_network_config":"","os_type":"cloud-init","pool":"","preprovision":true,"qemu_os":"","reboot_required":false,"scsihw":"virtio-scsi-pci","searchdomain":"","serial":[{"id":0,"type":"socket"}],"sockets":1,"ssh_forward_ip":"","ssh_host":"","ssh_port":"","ssh_private_key":"","ssh_user":"","sshkeys":"","storage":"","storage_type":"","tablet":true,"tags":"","target_node":"pve3","unused_disk":[],"vcpus":0,"vga":[{"memory":0,"type":"qxl"}],"vlan":-1,"vmid":4012}' [36mloggerName=[0mresource_vm_create [36mvmid=[0m
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] checking for duplicate name
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+[90mThu, 28 Oct 2021 10:24:54 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:654[0m[36m >[0m Invoking VM create with resource data:  '{"additional_wait":0,"agent":1,"args":"","balloon":0,"bios":"seabios","boot":"cdn","bootdisk":"scsi0","bridge":"","ci_wait":0,"cicustom":"user=nas-nfs:snippets/vm-4010-user-data.yml,meta=nas-nfs:snippets/vm-4010-meta-data.yml,network=nas-nfs:snippets/vm-4010-network-data.yml","cipassword":"","ciuser":"","clone":"ubuntu-20-04-cloudimg","clone_wait":0,"cloudinit_cdrom_storage":"nas-nfs","cores":8,"cpu":"host","default_ipv4_address":"","define_connection_info":true,"desc":"","disk":[{"backup":0,"cache":"none","discard":"on","file":"","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"30G","slot":0,"ssd":1,"storage":"nas-zfs","storage_type":"","type":"scsi","volume":""}],"disk_gb":0,"force_create":false,"force_recreate_on_change_of":"","full_clone":true,"guest_agent_ready_timeout":100,"hagroup":"","hastate":"","hotplug":"disk,network,usb,memory,cpu","ipconfig0":"ip=192.168.30.10/24,gw=192.168.30.1","ipconfig1":"ip=192.168.25.10/24","ipconfig2":"","ipconfig3":"","ipconfig4":"","ipconfig5":"","iso":"","kvm":true,"mac":"","memory":24576,"name":"k8s-master01","nameserver":"","network":[{"bridge":"vmbr30","firewall":true,"link_down":false,"macaddr":"68:b5:99:b3:da:01","model":"virtio","queues":0,"rate":0,"tag":-1},{"bridge":"vmbr25","firewall":false,"link_down":false,"macaddr":"","model":"virtio","queues":0,"rate":0,"tag":-1}],"nic":"","numa":true,"onboot":true,"os_network_config":"","os_type":"cloud-init","pool":"","preprovision":true,"qemu_os":"","reboot_required":false,"scsihw":"virtio-scsi-pci","searchdomain":"","serial":[{"id":0,"type":"socket"}],"sockets":1,"ssh_forward_ip":"","ssh_host":"","ssh_port":"","ssh_private_key":"","ssh_user":"","sshkeys":"","storage":"","storage_type":"","tablet":true,"tags":"","target_node":"pve","unused_disk":[],"vcpus":0,"vga":[{"memory":0,"type":"qxl"}],"vlan":-1,"vmid":4010}' [36mloggerName=[0mresource_vm_create [36mvmid=[0m
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] checking for duplicate name
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+[90mThu, 28 Oct 2021 10:24:54 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:654[0m[36m >[0m Invoking VM create with resource data:  '{"additional_wait":0,"agent":1,"args":"","balloon":0,"bios":"seabios","boot":"cdn","bootdisk":"scsi0","bridge":"","ci_wait":0,"cicustom":"user=nas-nfs:snippets/vm-4011-user-data.yml,meta=nas-nfs:snippets/vm-4011-meta-data.yml,network=nas-nfs:snippets/vm-4011-network-data.yml","cipassword":"","ciuser":"","clone":"ubuntu-20-04-cloudimg","clone_wait":0,"cloudinit_cdrom_storage":"nas-nfs","cores":8,"cpu":"host","default_ipv4_address":"","define_connection_info":true,"desc":"","disk":[{"backup":0,"cache":"none","discard":"on","file":"","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"30G","slot":0,"ssd":1,"storage":"nas-zfs","storage_type":"","type":"scsi","volume":""}],"disk_gb":0,"force_create":false,"force_recreate_on_change_of":"","full_clone":true,"guest_agent_ready_timeout":100,"hagroup":"","hastate":"","hotplug":"disk,network,usb,memory,cpu","ipconfig0":"ip=192.168.30.11/24,gw=192.168.30.1","ipconfig1":"ip=192.168.25.11/24","ipconfig2":"","ipconfig3":"","ipconfig4":"","ipconfig5":"","iso":"","kvm":true,"mac":"","memory":24576,"name":"k8s-master02","nameserver":"","network":[{"bridge":"vmbr30","firewall":true,"link_down":false,"macaddr":"68:b5:99:b3:da:02","model":"virtio","queues":0,"rate":0,"tag":-1},{"bridge":"vmbr25","firewall":false,"link_down":false,"macaddr":"","model":"virtio","queues":0,"rate":0,"tag":-1}],"nic":"","numa":true,"onboot":true,"os_network_config":"","os_type":"cloud-init","pool":"","preprovision":true,"qemu_os":"","reboot_required":false,"scsihw":"virtio-scsi-pci","searchdomain":"","serial":[{"id":0,"type":"socket"}],"sockets":1,"ssh_forward_ip":"","ssh_host":"","ssh_port":"","ssh_private_key":"","ssh_user":"","sshkeys":"","storage":"","storage_type":"","tablet":true,"tags":"","target_node":"pve2","unused_disk":[],"vcpus":0,"vga":[{"memory":0,"type":"qxl"}],"vlan":-1,"vmid":4011}' [36mloggerName=[0mresource_vm_create [36mvmid=[0m
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] checking for duplicate name
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 [DEBUG] setting computed for "unused_disk" from ComputedKeys
+[90mThu, 28 Oct 2021 10:24:54 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:654[0m[36m >[0m Invoking VM create with resource data:  '{"additional_wait":0,"agent":1,"args":"","balloon":0,"bios":"seabios","boot":"cdn","bootdisk":"scsi0","bridge":"","ci_wait":0,"cicustom":"","cipassword":"!Ella2001","ciuser":"dfroberg","clone":"ubuntu-20-04-cloudimg","clone_wait":0,"cloudinit_cdrom_storage":"","cores":8,"cpu":"host","default_ipv4_address":"","define_connection_info":true,"desc":"","disk":[{"backup":0,"cache":"none","discard":"on","file":"","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"30G","slot":0,"ssd":1,"storage":"nas-zfs","storage_type":"","type":"scsi","volume":""}],"disk_gb":0,"force_create":false,"force_recreate_on_change_of":"","full_clone":true,"guest_agent_ready_timeout":100,"hagroup":"","hastate":"","hotplug":"disk,network,usb,memory,cpu","ipconfig0":"ip=192.168.30.20/24,gw=192.168.30.1","ipconfig1":"ip=192.168.25.20/24","ipconfig2":"","ipconfig3":"","ipconfig4":"","ipconfig5":"","iso":"","kvm":true,"mac":"","memory":24576,"name":"k8s-worker01","nameserver":"192.168.30.1","network":[{"bridge":"vmbr30","firewall":false,"link_down":false,"macaddr":"68:b5:99:b3:da:0A","model":"virtio","queues":0,"rate":0,"tag":-1},{"bridge":"vmbr25","firewall":false,"link_down":false,"macaddr":"","model":"virtio","queues":0,"rate":0,"tag":-1}],"nic":"","numa":true,"onboot":true,"os_network_config":"","os_type":"cloud-init","pool":"","preprovision":true,"qemu_os":"","reboot_required":false,"scsihw":"virtio-scsi-pci","searchdomain":"cs.aml.ink","serial":[{"id":0,"type":"socket"}],"sockets":1,"ssh_forward_ip":"","ssh_host":"","ssh_port":"","ssh_private_key":"","ssh_user":"","sshkeys":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCRSrGw/2bWOBdJo17vSOZ15D+NRKxgDxRd4K+5hqChs5E0NUx1cZf2tpkY/Db/skb3QaIBteYWXZsu6qtxw0tml/5VtXXVtXOF7bF/ZC/xhvKKGMjvDHQvvIX1Gn/DAHV3Hl3RPxjeo3Y/2ObTxMxDnZJiSO/CJJxC0rOkFKBHF7oZzbUWAsxKLxVTAxxp5jEyCrpPACW3K95n4k9d5jbITz3uFWIhXVv9If65uH6a72jyOK93H2Egbu8NlgaF1hZTKeVc9cH1YoanG+qUDd8NKZXd/qQ99gSDoVjR9RGrGVza+2h3wUqsWxfpbwodk0nB0eyr616xI2Vj0QdjNyzN","storage":"","storage_type":"","tablet":true,"tags":"","target_node":"pve","unused_disk":[],"vcpus":0,"vga":[{"memory":0,"type":"qxl"}],"vlan":-1,"vmid":4020}' [36mloggerName=[0mresource_vm_create [36mvmid=[0m
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] checking for duplicate name
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 [DEBUG] setting computed for "unused_disk" from ComputedKeys
+2021/10/28 10:24:54 [DEBUG] setting computed for "unused_disk" from ComputedKeys
+[90mThu, 28 Oct 2021 10:24:54 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:654[0m[36m >[0m Invoking VM create with resource data:  '{"additional_wait":0,"agent":1,"args":"","balloon":0,"bios":"seabios","boot":"cdn","bootdisk":"scsi0","bridge":"","ci_wait":0,"cicustom":"","cipassword":"!Ella2001","ciuser":"dfroberg","clone":"ubuntu-20-04-cloudimg","clone_wait":0,"cloudinit_cdrom_storage":"","cores":8,"cpu":"host","default_ipv4_address":"","define_connection_info":true,"desc":"","disk":[{"backup":0,"cache":"none","discard":"on","file":"","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"30G","slot":0,"ssd":1,"storage":"nas-zfs","storage_type":"","type":"scsi","volume":""}],"disk_gb":0,"force_create":false,"force_recreate_on_change_of":"","full_clone":true,"guest_agent_ready_timeout":100,"hagroup":"","hastate":"","hotplug":"disk,network,usb,memory,cpu","ipconfig0":"ip=192.168.30.21/24,gw=192.168.30.1","ipconfig1":"ip=192.168.25.21/24","ipconfig2":"","ipconfig3":"","ipconfig4":"","ipconfig5":"","iso":"","kvm":true,"mac":"","memory":24576,"name":"k8s-worker02","nameserver":"192.168.30.1","network":[{"bridge":"vmbr30","firewall":false,"link_down":false,"macaddr":"68:b5:99:b3:da:0B","model":"virtio","queues":0,"rate":0,"tag":-1},{"bridge":"vmbr25","firewall":false,"link_down":false,"macaddr":"","model":"virtio","queues":0,"rate":0,"tag":-1}],"nic":"","numa":true,"onboot":true,"os_network_config":"","os_type":"cloud-init","pool":"","preprovision":true,"qemu_os":"","reboot_required":false,"scsihw":"virtio-scsi-pci","searchdomain":"cs.aml.ink","serial":[{"id":0,"type":"socket"}],"sockets":1,"ssh_forward_ip":"","ssh_host":"","ssh_port":"","ssh_private_key":"","ssh_user":"","sshkeys":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCRSrGw/2bWOBdJo17vSOZ15D+NRKxgDxRd4K+5hqChs5E0NUx1cZf2tpkY/Db/skb3QaIBteYWXZsu6qtxw0tml/5VtXXVtXOF7bF/ZC/xhvKKGMjvDHQvvIX1Gn/DAHV3Hl3RPxjeo3Y/2ObTxMxDnZJiSO/CJJxC0rOkFKBHF7oZzbUWAsxKLxVTAxxp5jEyCrpPACW3K95n4k9d5jbITz3uFWIhXVv9If65uH6a72jyOK93H2Egbu8NlgaF1hZTKeVc9cH1YoanG+qUDd8NKZXd/qQ99gSDoVjR9RGrGVza+2h3wUqsWxfpbwodk0nB0eyr616xI2Vj0QdjNyzN","storage":"","storage_type":"","tablet":true,"tags":"","target_node":"pve2","unused_disk":[],"vcpus":0,"vga":[{"memory":0,"type":"qxl"}],"vlan":-1,"vmid":4021}' [36mloggerName=[0mresource_vm_create [36mvmid=[0m
+2021/10/28 10:24:54 [DEBUG] setting computed for "unused_disk" from ComputedKeys
+[90mThu, 28 Oct 2021 10:24:54 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:654[0m[36m >[0m Invoking VM create with resource data:  '{"additional_wait":0,"agent":1,"args":"","balloon":0,"bios":"seabios","boot":"cdn","bootdisk":"scsi0","bridge":"","ci_wait":0,"cicustom":"","cipassword":"!Ella2001","ciuser":"dfroberg","clone":"ubuntu-20-04-cloudimg","clone_wait":0,"cloudinit_cdrom_storage":"","cores":8,"cpu":"host","default_ipv4_address":"","define_connection_info":true,"desc":"","disk":[{"backup":0,"cache":"none","discard":"on","file":"","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"30G","slot":0,"ssd":1,"storage":"nas-zfs","storage_type":"","type":"scsi","volume":""},{"backup":0,"cache":"none","discard":"on","file":"","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"100G","slot":0,"ssd":1,"storage":"nas-zfs","storage_type":"","type":"scsi","volume":""}],"disk_gb":0,"force_create":false,"force_recreate_on_change_of":"","full_clone":true,"guest_agent_ready_timeout":100,"hagroup":"","hastate":"","hotplug":"disk,network,usb,memory,cpu","ipconfig0":"ip=192.168.30.32/24,gw=192.168.30.1","ipconfig1":"ip=192.168.25.32/24","ipconfig2":"","ipconfig3":"","ipconfig4":"","ipconfig5":"","iso":"","kvm":true,"mac":"","memory":24576,"name":"k8s-storage03","nameserver":"192.168.30.1","network":[{"bridge":"vmbr30","firewall":false,"link_down":false,"macaddr":"68:b5:99:b3:da:1C","model":"virtio","queues":0,"rate":0,"tag":-1},{"bridge":"vmbr25","firewall":false,"link_down":false,"macaddr":"","model":"virtio","queues":0,"rate":0,"tag":-1}],"nic":"","numa":true,"onboot":true,"os_network_config":"","os_type":"cloud-init","pool":"","preprovision":true,"qemu_os":"","reboot_required":false,"scsihw":"virtio-scsi-pci","searchdomain":"cs.aml.ink","serial":[{"id":0,"type":"socket"}],"sockets":1,"ssh_forward_ip":"","ssh_host":"","ssh_port":"","ssh_private_key":"","ssh_user":"","sshkeys":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCRSrGw/2bWOBdJo17vSOZ15D+NRKxgDxRd4K+5hqChs5E0NUx1cZf2tpkY/Db/skb3QaIBteYWXZsu6qtxw0tml/5VtXXVtXOF7bF/ZC/xhvKKGMjvDHQvvIX1Gn/DAHV3Hl3RPxjeo3Y/2ObTxMxDnZJiSO/CJJxC0rOkFKBHF7oZzbUWAsxKLxVTAxxp5jEyCrpPACW3K95n4k9d5jbITz3uFWIhXVv9If65uH6a72jyOK93H2Egbu8NlgaF1hZTKeVc9cH1YoanG+qUDd8NKZXd/qQ99gSDoVjR9RGrGVza+2h3wUqsWxfpbwodk0nB0eyr616xI2Vj0QdjNyzN","storage":"","storage_type":"","tablet":true,"tags":"","target_node":"pve3","unused_disk":[],"vcpus":0,"vga":[{"memory":0,"type":"qxl"}],"vlan":-1,"vmid":4032}' [36mloggerName=[0mresource_vm_create [36mvmid=[0m
+[90mThu, 28 Oct 2021 10:24:54 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:654[0m[36m >[0m Invoking VM create with resource data:  '{"additional_wait":0,"agent":1,"args":"","balloon":0,"bios":"seabios","boot":"cdn","bootdisk":"scsi0","bridge":"","ci_wait":0,"cicustom":"","cipassword":"!Ella2001","ciuser":"dfroberg","clone":"ubuntu-20-04-cloudimg","clone_wait":0,"cloudinit_cdrom_storage":"","cores":8,"cpu":"host","default_ipv4_address":"","define_connection_info":true,"desc":"","disk":[{"backup":0,"cache":"none","discard":"on","file":"","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"30G","slot":0,"ssd":1,"storage":"nas-zfs","storage_type":"","type":"scsi","volume":""}],"disk_gb":0,"force_create":false,"force_recreate_on_change_of":"","full_clone":true,"guest_agent_ready_timeout":100,"hagroup":"","hastate":"","hotplug":"disk,network,usb,memory,cpu","ipconfig0":"ip=192.168.30.22/24,gw=192.168.30.1","ipconfig1":"ip=192.168.25.22/24","ipconfig2":"","ipconfig3":"","ipconfig4":"","ipconfig5":"","iso":"","kvm":true,"mac":"","memory":24576,"name":"k8s-worker03","nameserver":"192.168.30.1","network":[{"bridge":"vmbr30","firewall":false,"link_down":false,"macaddr":"68:b5:99:b3:da:0C","model":"virtio","queues":0,"rate":0,"tag":-1},{"bridge":"vmbr25","firewall":false,"link_down":false,"macaddr":"","model":"virtio","queues":0,"rate":0,"tag":-1}],"nic":"","numa":true,"onboot":true,"os_network_config":"","os_type":"cloud-init","pool":"","preprovision":true,"qemu_os":"","reboot_required":false,"scsihw":"virtio-scsi-pci","searchdomain":"cs.aml.ink","serial":[{"id":0,"type":"socket"}],"sockets":1,"ssh_forward_ip":"","ssh_host":"","ssh_port":"","ssh_private_key":"","ssh_user":"","sshkeys":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCRSrGw/2bWOBdJo17vSOZ15D+NRKxgDxRd4K+5hqChs5E0NUx1cZf2tpkY/Db/skb3QaIBteYWXZsu6qtxw0tml/5VtXXVtXOF7bF/ZC/xhvKKGMjvDHQvvIX1Gn/DAHV3Hl3RPxjeo3Y/2ObTxMxDnZJiSO/CJJxC0rOkFKBHF7oZzbUWAsxKLxVTAxxp5jEyCrpPACW3K95n4k9d5jbITz3uFWIhXVv9If65uH6a72jyOK93H2Egbu8NlgaF1hZTKeVc9cH1YoanG+qUDd8NKZXd/qQ99gSDoVjR9RGrGVza+2h3wUqsWxfpbwodk0nB0eyr616xI2Vj0QdjNyzN","storage":"","storage_type":"","tablet":true,"tags":"","target_node":"pve3","unused_disk":[],"vcpus":0,"vga":[{"memory":0,"type":"qxl"}],"vlan":-1,"vmid":4022}' [36mloggerName=[0mresource_vm_create [36mvmid=[0m
+2021/10/28 10:24:54 [DEBUG] setting computed for "unused_disk" from ComputedKeys
+2021/10/28 10:24:54 [DEBUG] setting computed for "unused_disk" from ComputedKeys
+[90mThu, 28 Oct 2021 10:24:54 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:654[0m[36m >[0m Invoking VM create with resource data:  '{"additional_wait":0,"agent":1,"args":"","balloon":0,"bios":"seabios","boot":"cdn","bootdisk":"scsi0","bridge":"","ci_wait":0,"cicustom":"","cipassword":"!Ella2001","ciuser":"dfroberg","clone":"ubuntu-20-04-cloudimg","clone_wait":0,"cloudinit_cdrom_storage":"","cores":8,"cpu":"host","default_ipv4_address":"","define_connection_info":true,"desc":"","disk":[{"backup":0,"cache":"none","discard":"on","file":"","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"30G","slot":0,"ssd":1,"storage":"nas-zfs","storage_type":"","type":"scsi","volume":""},{"backup":0,"cache":"none","discard":"on","file":"","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"100G","slot":0,"ssd":1,"storage":"nas-zfs","storage_type":"","type":"scsi","volume":""}],"disk_gb":0,"force_create":false,"force_recreate_on_change_of":"","full_clone":true,"guest_agent_ready_timeout":100,"hagroup":"","hastate":"","hotplug":"disk,network,usb,memory,cpu","ipconfig0":"ip=192.168.30.30/24,gw=192.168.30.1","ipconfig1":"ip=192.168.25.30/24","ipconfig2":"","ipconfig3":"","ipconfig4":"","ipconfig5":"","iso":"","kvm":true,"mac":"","memory":24576,"name":"k8s-storage01","nameserver":"192.168.30.1","network":[{"bridge":"vmbr30","firewall":false,"link_down":false,"macaddr":"68:b5:99:b3:da:1A","model":"virtio","queues":0,"rate":0,"tag":-1},{"bridge":"vmbr25","firewall":false,"link_down":false,"macaddr":"","model":"virtio","queues":0,"rate":0,"tag":-1}],"nic":"","numa":true,"onboot":true,"os_network_config":"","os_type":"cloud-init","pool":"","preprovision":true,"qemu_os":"","reboot_required":false,"scsihw":"virtio-scsi-pci","searchdomain":"cs.aml.ink","serial":[{"id":0,"type":"socket"}],"sockets":1,"ssh_forward_ip":"","ssh_host":"","ssh_port":"","ssh_private_key":"","ssh_user":"","sshkeys":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCRSrGw/2bWOBdJo17vSOZ15D+NRKxgDxRd4K+5hqChs5E0NUx1cZf2tpkY/Db/skb3QaIBteYWXZsu6qtxw0tml/5VtXXVtXOF7bF/ZC/xhvKKGMjvDHQvvIX1Gn/DAHV3Hl3RPxjeo3Y/2ObTxMxDnZJiSO/CJJxC0rOkFKBHF7oZzbUWAsxKLxVTAxxp5jEyCrpPACW3K95n4k9d5jbITz3uFWIhXVv9If65uH6a72jyOK93H2Egbu8NlgaF1hZTKeVc9cH1YoanG+qUDd8NKZXd/qQ99gSDoVjR9RGrGVza+2h3wUqsWxfpbwodk0nB0eyr616xI2Vj0QdjNyzN","storage":"","storage_type":"","tablet":true,"tags":"","target_node":"pve","unused_disk":[],"vcpus":0,"vga":[{"memory":0,"type":"qxl"}],"vlan":-1,"vmid":4030}' [36mloggerName=[0mresource_vm_create [36mvmid=[0m
+[90mThu, 28 Oct 2021 10:24:54 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:654[0m[36m >[0m Invoking VM create with resource data:  '{"additional_wait":0,"agent":1,"args":"","balloon":0,"bios":"seabios","boot":"cdn","bootdisk":"scsi0","bridge":"","ci_wait":0,"cicustom":"","cipassword":"!Ella2001","ciuser":"dfroberg","clone":"ubuntu-20-04-cloudimg","clone_wait":0,"cloudinit_cdrom_storage":"","cores":8,"cpu":"host","default_ipv4_address":"","define_connection_info":true,"desc":"","disk":[{"backup":0,"cache":"none","discard":"on","file":"","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"30G","slot":0,"ssd":1,"storage":"nas-zfs","storage_type":"","type":"scsi","volume":""},{"backup":0,"cache":"none","discard":"on","file":"","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"100G","slot":0,"ssd":1,"storage":"nas-zfs","storage_type":"","type":"scsi","volume":""}],"disk_gb":0,"force_create":false,"force_recreate_on_change_of":"","full_clone":true,"guest_agent_ready_timeout":100,"hagroup":"","hastate":"","hotplug":"disk,network,usb,memory,cpu","ipconfig0":"ip=192.168.30.31/24,gw=192.168.30.1","ipconfig1":"ip=192.168.25.31/24","ipconfig2":"","ipconfig3":"","ipconfig4":"","ipconfig5":"","iso":"","kvm":true,"mac":"","memory":24576,"name":"k8s-storage02","nameserver":"192.168.30.1","network":[{"bridge":"vmbr30","firewall":false,"link_down":false,"macaddr":"68:b5:99:b3:da:1B","model":"virtio","queues":0,"rate":0,"tag":-1},{"bridge":"vmbr25","firewall":false,"link_down":false,"macaddr":"","model":"virtio","queues":0,"rate":0,"tag":-1}],"nic":"","numa":true,"onboot":true,"os_network_config":"","os_type":"cloud-init","pool":"","preprovision":true,"qemu_os":"","reboot_required":false,"scsihw":"virtio-scsi-pci","searchdomain":"cs.aml.ink","serial":[{"id":0,"type":"socket"}],"sockets":1,"ssh_forward_ip":"","ssh_host":"","ssh_port":"","ssh_private_key":"","ssh_user":"","sshkeys":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCRSrGw/2bWOBdJo17vSOZ15D+NRKxgDxRd4K+5hqChs5E0NUx1cZf2tpkY/Db/skb3QaIBteYWXZsu6qtxw0tml/5VtXXVtXOF7bF/ZC/xhvKKGMjvDHQvvIX1Gn/DAHV3Hl3RPxjeo3Y/2ObTxMxDnZJiSO/CJJxC0rOkFKBHF7oZzbUWAsxKLxVTAxxp5jEyCrpPACW3K95n4k9d5jbITz3uFWIhXVv9If65uH6a72jyOK93H2Egbu8NlgaF1hZTKeVc9cH1YoanG+qUDd8NKZXd/qQ99gSDoVjR9RGrGVza+2h3wUqsWxfpbwodk0nB0eyr616xI2Vj0QdjNyzN","storage":"","storage_type":"","tablet":true,"tags":"","target_node":"pve2","unused_disk":[],"vcpus":0,"vga":[{"memory":0,"type":"qxl"}],"vlan":-1,"vmid":4031}' [36mloggerName=[0mresource_vm_create [36mvmid=[0m
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"diskwrite":0,"type":"qemu","maxmem":2147483648,"netin":0,"diskread":0,"maxdisk":2361393152,"mem":0,"status":"stopped","cpu":0,"id":"qemu/10000","maxcpu":1,"disk":0,"vmid":10000,"netout":0,"uptime":0,"template":1,"name":"ubuntu-20-04-cloudimg","node":"pve"},{"disk":0,"maxcpu":8,"id":"qemu/130","cpu":0.8448409503654,"status":"running","mem":20924692693,"node":"pve","name":"master01","template":0,"uptime":241152,"netout":226455821584,"vmid":130,"netin":2252488526202,"maxmem":25769803776,"type":"qemu","diskwrite":932675289088,"maxdisk":37794873344,"pool":"cluster1","diskread":2700631552},{"maxdisk":37794873344,"pool":"cluster1","diskread":451111936,"netin":43628770801,"maxmem":25769803776,"type":"qemu","diskwrite":280074833920,"node":"pve2","name":"master02","template":0,"uptime":241090,"netout":154477161708,"vmid":131,"maxcpu":8,"disk":0,"id":"qemu/131","cpu":0.123518549612638,"mem":18754267841,"status":"running"},{"mem":21232010931,"status":"running","id":"qemu/134","cpu":0.0850188476729187,"maxcpu":8,"disk":0,"vmid":134,"netout":351831800928,"uptime":509018,"template":0,"name":"master03","node":"pve3","diskwrite":1026945915392,"type":"qemu","maxmem":25769803776,"netin":924774181010,"diskread":4776222208,"pool":"cluster1","maxdisk":37794873344},{"mem":10389502281,"status":"running","maxcpu":8,"disk":0,"id":"qemu/135","cpu":0.106690264469078,"uptime":241029,"vmid":135,"netout":8062367385,"node":"pve","template":0,"name":"worker01","maxmem":25769803776,"diskwrite":13391478784,"type":"qemu","netin":5805330441,"maxdisk":27057455104,"diskread":487988224,"pool":"cluster1"},{"uptime":509028,"netout":12776446823,"vmid":136,"node":"pve2","name":"worker02","template":0,"mem":11191243082,"status":"running","maxcpu":8,"disk":0,"cpu":0.0599874923323672,"id":"qemu/136","maxdisk":27057455104,"pool":"cluster1","diskread":3212613632,"maxmem":25769803776,"type":"qemu","diskwrite":37476936192,"netin":577851761570},{"name":"worker03","template":0,"node":"pve3","netout":400806382837,"vmid":137,"uptime":509014,"cpu":0.0560684641980887,"id":"qemu/137","maxcpu":8,"disk":0,"mem":11818118941,"status":"running","pool":"cluster1","diskread":56757225472,"maxdisk":27057455104,"netin":869946907640,"type":"qemu","diskwrite":378004965888,"maxmem":25769803776},{"netin":655883863930,"maxmem":25769803776,"type":"qemu","diskwrite":257891220992,"maxdisk":27057455104,"pool":"cluster1","diskread":44350136320,"disk":0,"maxcpu":8,"cpu":0.0727204868668952,"id":"qemu/140","mem":14801074114,"status":"running","node":"pve","name":"storage01","template":0,"uptime":509032,"netout":121171004800,"vmid":140},{"node":"pve2","name":"storage02","template":0,"uptime":241112,"netout":164494707159,"vmid":141,"maxcpu":8,"disk":0,"id":"qemu/141","cpu":0.0827675527117471,"mem":16278409676,"status":"running","maxdisk":27057455104,"pool":"cluster1","diskread":71769874432,"netin":1201553770629,"maxmem":25769803776,"type":"qemu","diskwrite":119627143680},{"uptime":241201,"vmid":142,"netout":96930961172,"node":"pve3","template":0,"name":"storage03","mem":10665803776,"status":"running","maxcpu":8,"disk":0,"id":"qemu/142","cpu":0.16771677852718,"maxdisk":27057455104,"diskread":59829084160,"pool":"cluster1","maxmem":25769803776,"diskwrite":319151573504,"type":"qemu","netin":296454824009},{"pool":"cluster1","diskread":0,"maxdisk":27057455104,"netin":0,"type":"qemu","diskwrite":0,"maxmem":8589934592,"name":"workerXX","template":0,"node":"pve","netout":0,"vmid":199,"uptime":0,"id":"qemu/199","cpu":0,"maxcpu":8,"disk":0,"mem":0,"status":"stopped"},{"netin":0,"maxmem":8565817344,"type":"qemu","diskwrite":0,"maxdisk":2361393152,"pool":"cluster1","diskread":0,"maxcpu":8,"disk":0,"id":"qemu/8000","cpu":0,"mem":0,"status":"stopped","node":"pve","name":"ubuntu-ci","template":1,"uptime":0,"netout":0,"vmid":8000}]}
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"mem":0,"status":"stopped","cpu":0,"id":"qemu/10000","maxcpu":1,"disk":0,"vmid":10000,"netout":0,"uptime":0,"template":1,"name":"ubuntu-20-04-cloudimg","node":"pve","diskwrite":0,"type":"qemu","maxmem":2147483648,"netin":0,"diskread":0,"maxdisk":2361393152},{"template":0,"name":"master01","node":"pve","vmid":130,"netout":226455821584,"uptime":241152,"id":"qemu/130","cpu":0.8448409503654,"maxcpu":8,"disk":0,"status":"running","mem":20924692693,"diskread":2700631552,"pool":"cluster1","maxdisk":37794873344,"netin":2252488526202,"diskwrite":932675289088,"type":"qemu","maxmem":25769803776},{"mem":18754267841,"status":"running","maxcpu":8,"disk":0,"cpu":0.123518549612638,"id":"qemu/131","uptime":241090,"vmid":131,"netout":154477161708,"node":"pve2","template":0,"name":"master02","maxmem":25769803776,"diskwrite":280074833920,"type":"qemu","netin":43628770801,"maxdisk":37794873344,"diskread":451111936,"pool":"cluster1"},{"diskwrite":1026945915392,"type":"qemu","maxmem":25769803776,"netin":924774181010,"diskread":4776222208,"pool":"cluster1","maxdisk":37794873344,"mem":21232010931,"status":"running","cpu":0.0850188476729187,"id":"qemu/134","maxcpu":8,"disk":0,"vmid":134,"netout":351831800928,"uptime":509018,"template":0,"name":"master03","node":"pve3"},{"disk":0,"maxcpu":8,"cpu":0.106690264469078,"id":"qemu/135","status":"running","mem":10389502281,"node":"pve","name":"worker01","template":0,"uptime":241029,"netout":8062367385,"vmid":135,"netin":5805330441,"maxmem":25769803776,"type":"qemu","diskwrite":13391478784,"maxdisk":27057455104,"pool":"cluster1","diskread":487988224},{"maxmem":25769803776,"diskwrite":37476936192,"type":"qemu","netin":577851761570,"maxdisk":27057455104,"diskread":3212613632,"pool":"cluster1","status":"running","mem":11191243082,"disk":0,"maxcpu":8,"cpu":0.0599874923323672,"id":"qemu/136","uptime":509028,"vmid":136,"netout":12776446823,"node":"pve2","template":0,"name":"worker02"},{"netin":869946907640,"maxmem":25769803776,"diskwrite":378004965888,"type":"qemu","maxdisk":27057455104,"diskread":56757225472,"pool":"cluster1","disk":0,"maxcpu":8,"cpu":0.0560684641980887,"id":"qemu/137","status":"running","mem":11818118941,"node":"pve3","template":0,"name":"worker03","uptime":509014,"vmid":137,"netout":400806382837},{"vmid":140,"netout":121171004800,"uptime":509032,"template":0,"name":"storage01","node":"pve","status":"running","mem":14801074114,"id":"qemu/140","cpu":0.0727204868668952,"maxcpu":8,"disk":0,"diskread":44350136320,"pool":"cluster1","maxdisk":27057455104,"diskwrite":257891220992,"type":"qemu","maxmem":25769803776,"netin":655883863930},{"status":"running","mem":16278409676,"id":"qemu/141","cpu":0.0827675527117471,"disk":0,"maxcpu":8,"netout":164494707159,"vmid":141,"uptime":241112,"name":"storage02","template":0,"node":"pve2","type":"qemu","diskwrite":119627143680,"maxmem":25769803776,"netin":1201553770629,"pool":"cluster1","diskread":71769874432,"maxdisk":27057455104},{"maxdisk":27057455104,"pool":"cluster1","diskread":59829084160,"netin":296454824009,"maxmem":25769803776,"type":"qemu","diskwrite":319151573504,"node":"pve3","name":"storage03","template":0,"uptime":241201,"netout":96930961172,"vmid":142,"maxcpu":8,"disk":0,"id":"qemu/142","cpu":0.16771677852718,"status":"running","mem":10665803776},{"netin":0,"type":"qemu","diskwrite":0,"maxmem":8589934592,"pool":"cluster1","diskread":0,"maxdisk":27057455104,"id":"qemu/199","cpu":0,"maxcpu":8,"disk":0,"status":"stopped","mem":0,"name":"workerXX","template":0,"node":"pve","netout":0,"vmid":199,"uptime":0},{"maxcpu":8,"disk":0,"id":"qemu/8000","cpu":0,"status":"stopped","mem":0,"node":"pve","name":"ubuntu-ci","template":1,"uptime":0,"netout":0,"vmid":8000,"netin":0,"maxmem":8565817344,"type":"qemu","diskwrite":0,"maxdisk":2361393152,"pool":"cluster1","diskread":0}]}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"maxmem":2147483648,"type":"qemu","diskwrite":0,"netin":0,"maxdisk":2361393152,"diskread":0,"mem":0,"status":"stopped","disk":0,"maxcpu":1,"cpu":0,"id":"qemu/10000","uptime":0,"netout":0,"vmid":10000,"node":"pve","name":"ubuntu-20-04-cloudimg","template":1},{"pool":"cluster1","diskread":2700631552,"maxdisk":37794873344,"type":"qemu","diskwrite":932675289088,"maxmem":25769803776,"netin":2252488526202,"netout":226455821584,"vmid":130,"uptime":241152,"name":"master01","template":0,"node":"pve","status":"running","mem":20924692693,"cpu":0.8448409503654,"id":"qemu/130","maxcpu":8,"disk":0},{"diskwrite":280074833920,"type":"qemu","maxmem":25769803776,"netin":43628770801,"diskread":451111936,"pool":"cluster1","maxdisk":37794873344,"mem":18754267841,"status":"running","id":"qemu/131","cpu":0.123518549612638,"disk":0,"maxcpu":8,"vmid":131,"netout":154477161708,"uptime":241090,"template":0,"name":"master02","node":"pve2"},{"vmid":134,"netout":351831800928,"uptime":509018,"template":0,"name":"master03","node":"pve3","mem":21232010931,"status":"running","id":"qemu/134","cpu":0.0850188476729187,"maxcpu":8,"disk":0,"diskread":4776222208,"pool":"cluster1","maxdisk":37794873344,"diskwrite":1026945915392,"type":"qemu","maxmem":25769803776,"netin":924774181010},{"uptime":241029,"vmid":135,"netout":8062367385,"node":"pve","template":0,"name":"worker01","status":"running","mem":10389502281,"maxcpu":8,"disk":0,"id":"qemu/135","cpu":0.106690264469078,"maxdisk":27057455104,"diskread":487988224,"pool":"cluster1","maxmem":25769803776,"diskwrite":13391478784,"type":"qemu","netin":5805330441},{"uptime":509028,"vmid":136,"netout":12776446823,"node":"pve2","template":0,"name":"worker02","status":"running","mem":11191243082,"disk":0,"maxcpu":8,"cpu":0.0599874923323672,"id":"qemu/136","maxdisk":27057455104,"diskread":3212613632,"pool":"cluster1","maxmem":25769803776,"diskwrite":37476936192,"type":"qemu","netin":577851761570},{"netin":869946907640,"diskwrite":378004965888,"type":"qemu","maxmem":25769803776,"diskread":56757225472,"pool":"cluster1","maxdisk":27057455104,"cpu":0.0560684641980887,"id":"qemu/137","disk":0,"maxcpu":8,"status":"running","mem":11818118941,"template":0,"name":"worker03","node":"pve3","vmid":137,"netout":400806382837,"uptime":509014},{"node":"pve","name":"storage01","template":0,"uptime":509032,"netout":121171004800,"vmid":140,"disk":0,"maxcpu":8,"cpu":0.0727204868668952,"id":"qemu/140","status":"running","mem":14801074114,"maxdisk":27057455104,"pool":"cluster1","diskread":44350136320,"netin":655883863930,"maxmem":25769803776,"type":"qemu","diskwrite":257891220992},{"status":"running","mem":16278409676,"id":"qemu/141","cpu":0.0827675527117471,"disk":0,"maxcpu":8,"netout":164494707159,"vmid":141,"uptime":241112,"name":"storage02","template":0,"node":"pve2","type":"qemu","diskwrite":119627143680,"maxmem":25769803776,"netin":1201553770629,"pool":"cluster1","diskread":71769874432,"maxdisk":27057455104},{"maxmem":25769803776,"diskwrite":319151573504,"type":"qemu","netin":296454824009,"maxdisk":27057455104,"diskread":59829084160,"pool":"cluster1","status":"running","mem":10665803776,"disk":0,"maxcpu":8,"cpu":0.16771677852718,"id":"qemu/142","uptime":241201,"vmid":142,"netout":96930961172,"node":"pve3","template":0,"name":"storage03"},{"pool":"cluster1","diskread":0,"maxdisk":27057455104,"netin":0,"type":"qemu","diskwrite":0,"maxmem":8589934592,"name":"workerXX","template":0,"node":"pve","netout":0,"vmid":199,"uptime":0,"id":"qemu/199","cpu":0,"disk":0,"maxcpu":8,"status":"stopped","mem":0},{"pool":"cluster1","diskread":0,"maxdisk":2361393152,"type":"qemu","diskwrite":0,"maxmem":8565817344,"netin":0,"netout":0,"vmid":8000,"uptime":0,"name":"ubuntu-ci","template":1,"node":"pve","mem":0,"status":"stopped","cpu":0,"id":"qemu/8000","disk":0,"maxcpu":8}]}
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 14
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":"101"}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=102 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null,"errors":{"vmid":"VM 102 already exists"}}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=103 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"diskread":0,"maxdisk":2361393152,"netin":0,"type":"qemu","diskwrite":0,"maxmem":2147483648,"name":"ubuntu-20-04-cloudimg","template":1,"node":"pve","netout":0,"vmid":10000,"uptime":0,"id":"qemu/10000","cpu":0,"maxcpu":1,"disk":0,"mem":0,"status":"stopped"},{"maxmem":25769803776,"diskwrite":932675289088,"type":"qemu","netin":2252488526202,"maxdisk":37794873344,"diskread":2700631552,"pool":"cluster1","status":"running","mem":20924692693,"disk":0,"maxcpu":8,"cpu":0.8448409503654,"id":"qemu/130","uptime":241152,"vmid":130,"netout":226455821584,"node":"pve","template":0,"name":"master01"},{"netin":43628770801,"maxmem":25769803776,"diskwrite":280074833920,"type":"qemu","maxdisk":37794873344,"diskread":451111936,"pool":"cluster1","disk":0,"maxcpu":8,"cpu":0.123518549612638,"id":"qemu/131","status":"running","mem":18754267841,"node":"pve2","template":0,"name":"master02","uptime":241090,"vmid":131,"netout":154477161708},{"node":"pve3","name":"master03","template":0,"uptime":509018,"netout":351831800928,"vmid":134,"maxcpu":8,"disk":0,"cpu":0.0850188476729187,"id":"qemu/134","status":"running","mem":21232010931,"maxdisk":37794873344,"pool":"cluster1","diskread":4776222208,"netin":924774181010,"maxmem":25769803776,"type":"qemu","diskwrite":1026945915392},{"mem":10389502281,"status":"running","cpu":0.106690264469078,"id":"qemu/135","disk":0,"maxcpu":8,"netout":8062367385,"vmid":135,"uptime":241029,"name":"worker01","template":0,"node":"pve","type":"qemu","diskwrite":13391478784,"maxmem":25769803776,"netin":5805330441,"pool":"cluster1","diskread":487988224,"maxdisk":27057455104},{"name":"worker02","template":0,"node":"pve2","netout":12776446823,"vmid":136,"uptime":509028,"cpu":0.0599874923323672,"id":"qemu/136","maxcpu":8,"disk":0,"status":"running","mem":11191243082,"pool":"cluster1","diskread":3212613632,"maxdisk":27057455104,"netin":577851761570,"type":"qemu","diskwrite":37476936192,"maxmem":25769803776},{"uptime":509014,"vmid":137,"netout":400806382837,"node":"pve3","template":0,"name":"worker03","mem":11818118941,"status":"running","disk":0,"maxcpu":8,"cpu":0.0560684641980887,"id":"qemu/137","maxdisk":27057455104,"diskread":56757225472,"pool":"cluster1","maxmem":25769803776,"diskwrite":378004965888,"type":"qemu","netin":869946907640},{"pool":"cluster1","diskread":44350136320,"maxdisk":27057455104,"type":"qemu","diskwrite":257891220992,"maxmem":25769803776,"netin":655883863930,"netout":121171004800,"vmid":140,"uptime":509032,"name":"storage01","template":0,"node":"pve","status":"running","mem":14801074114,"id":"qemu/140","cpu":0.0727204868668952,"disk":0,"maxcpu":8},{"cpu":0.0827675527117471,"id":"qemu/141","maxcpu":8,"disk":0,"status":"running","mem":16278409676,"template":0,"name":"storage02","node":"pve2","vmid":141,"netout":164494707159,"uptime":241112,"netin":1201553770629,"diskwrite":119627143680,"type":"qemu","maxmem":25769803776,"diskread":71769874432,"pool":"cluster1","maxdisk":27057455104},{"diskread":59829084160,"pool":"cluster1","maxdisk":27057455104,"diskwrite":319151573504,"type":"qemu","maxmem":25769803776,"netin":296454824009,"vmid":142,"netout":96930961172,"uptime":241201,"template":0,"name":"storage03","node":"pve3","mem":10665803776,"status":"running","id":"qemu/142","cpu":0.16771677852718,"maxcpu":8,"disk":0},{"pool":"cluster1","diskread":0,"maxdisk":27057455104,"type":"qemu","diskwrite":0,"maxmem":8589934592,"netin":0,"netout":0,"vmid":199,"uptime":0,"name":"workerXX","template":0,"node":"pve","mem":0,"status":"stopped","id":"qemu/199","cpu":0,"maxcpu":8,"disk":0},{"mem":0,"status":"stopped","cpu":0,"id":"qemu/8000","disk":0,"maxcpu":8,"vmid":8000,"netout":0,"uptime":0,"template":1,"name":"ubuntu-ci","node":"pve","diskwrite":0,"type":"qemu","maxmem":8565817344,"netin":0,"diskread":0,"pool":"cluster1","maxdisk":2361393152}]}
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"disk":0,"maxcpu":1,"id":"qemu/10000","cpu":0,"mem":0,"status":"stopped","node":"pve","template":1,"name":"ubuntu-20-04-cloudimg","uptime":0,"vmid":10000,"netout":0,"netin":0,"maxmem":2147483648,"diskwrite":0,"type":"qemu","maxdisk":2361393152,"diskread":0},{"netin":2252488526202,"type":"qemu","diskwrite":932675289088,"maxmem":25769803776,"pool":"cluster1","diskread":2700631552,"maxdisk":37794873344,"id":"qemu/130","cpu":0.8448409503654,"maxcpu":8,"disk":0,"mem":20924692693,"status":"running","name":"master01","template":0,"node":"pve","netout":226455821584,"vmid":130,"uptime":241152},{"template":0,"name":"master02","node":"pve2","vmid":131,"netout":154477161708,"uptime":241090,"id":"qemu/131","cpu":0.123518549612638,"maxcpu":8,"disk":0,"mem":18754267841,"status":"running","diskread":451111936,"pool":"cluster1","maxdisk":37794873344,"netin":43628770801,"diskwrite":280074833920,"type":"qemu","maxmem":25769803776},{"disk":0,"maxcpu":8,"id":"qemu/134","cpu":0.0850188476729187,"mem":21232010931,"status":"running","node":"pve3","template":0,"name":"master03","uptime":509018,"vmid":134,"netout":351831800928,"netin":924774181010,"maxmem":25769803776,"diskwrite":1026945915392,"type":"qemu","maxdisk":37794873344,"diskread":4776222208,"pool":"cluster1"},{"status":"running","mem":10389502281,"id":"qemu/135","cpu":0.106690264469078,"disk":0,"maxcpu":8,"vmid":135,"netout":8062367385,"uptime":241029,"template":0,"name":"worker01","node":"pve","diskwrite":13391478784,"type":"qemu","maxmem":25769803776,"netin":5805330441,"diskread":487988224,"pool":"cluster1","maxdisk":27057455104},{"maxdisk":27057455104,"diskread":3212613632,"pool":"cluster1","netin":577851761570,"maxmem":25769803776,"diskwrite":37476936192,"type":"qemu","node":"pve2","template":0,"name":"worker02","uptime":509028,"vmid":136,"netout":12776446823,"disk":0,"maxcpu":8,"id":"qemu/136","cpu":0.0599874923323672,"mem":11191243082,"status":"running"},{"vmid":137,"netout":400806382837,"uptime":509014,"template":0,"name":"worker03","node":"pve3","mem":11818118941,"status":"running","id":"qemu/137","cpu":0.0560684641980887,"disk":0,"maxcpu":8,"diskread":56757225472,"pool":"cluster1","maxdisk":27057455104,"diskwrite":378004965888,"type":"qemu","maxmem":25769803776,"netin":869946907640},{"status":"running","mem":14801074114,"id":"qemu/140","cpu":0.0727204868668952,"disk":0,"maxcpu":8,"netout":121171004800,"vmid":140,"uptime":509032,"name":"storage01","template":0,"node":"pve","type":"qemu","diskwrite":257891220992,"maxmem":25769803776,"netin":655883863930,"pool":"cluster1","diskread":44350136320,"maxdisk":27057455104},{"vmid":141,"netout":164494707159,"uptime":241112,"template":0,"name":"storage02","node":"pve2","status":"running","mem":16278409676,"cpu":0.0827675527117471,"id":"qemu/141","disk":0,"maxcpu":8,"diskread":71769874432,"pool":"cluster1","maxdisk":27057455104,"diskwrite":119627143680,"type":"qemu","maxmem":25769803776,"netin":1201553770629},{"diskwrite":319151573504,"type":"qemu","maxmem":25769803776,"netin":296454824009,"diskread":59829084160,"pool":"cluster1","maxdisk":27057455104,"mem":10665803776,"status":"running","id":"qemu/142","cpu":0.16771677852718,"disk":0,"maxcpu":8,"vmid":142,"netout":96930961172,"uptime":241201,"template":0,"name":"storage03","node":"pve3"},{"template":0,"name":"workerXX","node":"pve","vmid":199,"netout":0,"uptime":0,"id":"qemu/199","cpu":0,"maxcpu":8,"disk":0,"status":"stopped","mem":0,"diskread":0,"pool":"cluster1","maxdisk":27057455104,"netin":0,"diskwrite":0,"type":"qemu","maxmem":8589934592},{"maxdisk":2361393152,"diskread":0,"pool":"cluster1","maxmem":8565817344,"diskwrite":0,"type":"qemu","netin":0,"uptime":0,"vmid":8000,"netout":0,"node":"pve","template":1,"name":"ubuntu-ci","mem":0,"status":"stopped","maxcpu":8,"disk":0,"id":"qemu/8000","cpu":0}]}
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] cloning VM
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+POST /api2/json/nodes/pve/qemu/10000/clone HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Content-Length: 63
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Content-Type: application/x-www-form-urlencoded
+Accept-Encoding: gzip
+
+full=1&name=k8s-master03&newid=4012&storage=nas-zfs&target=pve3
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"errors":{"vmid":"VM 103 already exists"},"data":null}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=104 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 403 Permission check failed
+Connection: close
+Content-Length: 13
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null}
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"errors":{"vmid":"VM 104 already exists"},"data":null}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=105 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null,"errors":{"vmid":"VM 105 already exists"}}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=106 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 14
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":"106"}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=107 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null,"errors":{"vmid":"VM 107 already exists"}}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=108 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"mem":0,"status":"stopped","cpu":0,"id":"qemu/10000","maxcpu":1,"disk":0,"vmid":10000,"netout":0,"uptime":0,"template":1,"name":"ubuntu-20-04-cloudimg","node":"pve","diskwrite":0,"type":"qemu","maxmem":2147483648,"netin":0,"diskread":0,"maxdisk":2361393152},{"pool":"cluster1","diskread":2700631552,"maxdisk":37794873344,"type":"qemu","diskwrite":932675289088,"maxmem":25769803776,"netin":2252488526202,"netout":226455821584,"vmid":130,"uptime":241152,"name":"master01","template":0,"node":"pve","status":"running","mem":20924692693,"id":"qemu/130","cpu":0.8448409503654,"maxcpu":8,"disk":0},{"vmid":131,"netout":154477161708,"uptime":241090,"template":0,"name":"master02","node":"pve2","status":"running","mem":18754267841,"id":"qemu/131","cpu":0.123518549612638,"disk":0,"maxcpu":8,"diskread":451111936,"pool":"cluster1","maxdisk":37794873344,"diskwrite":280074833920,"type":"qemu","maxmem":25769803776,"netin":43628770801},{"vmid":134,"netout":351831800928,"uptime":509018,"template":0,"name":"master03","node":"pve3","status":"running","mem":21232010931,"id":"qemu/134","cpu":0.0850188476729187,"disk":0,"maxcpu":8,"diskread":4776222208,"pool":"cluster1","maxdisk":37794873344,"diskwrite":1026945915392,"type":"qemu","maxmem":25769803776,"netin":924774181010},{"maxcpu":8,"disk":0,"id":"qemu/135","cpu":0.106690264469078,"status":"running","mem":10389502281,"node":"pve","name":"worker01","template":0,"uptime":241029,"netout":8062367385,"vmid":135,"netin":5805330441,"maxmem":25769803776,"type":"qemu","diskwrite":13391478784,"maxdisk":27057455104,"pool":"cluster1","diskread":487988224},{"vmid":136,"netout":12776446823,"uptime":509028,"template":0,"name":"worker02","node":"pve2","mem":11191243082,"status":"running","id":"qemu/136","cpu":0.0599874923323672,"disk":0,"maxcpu":8,"diskread":3212613632,"pool":"cluster1","maxdisk":27057455104,"diskwrite":37476936192,"type":"qemu","maxmem":25769803776,"netin":577851761570},{"maxdisk":27057455104,"pool":"cluster1","diskread":56757225472,"maxmem":25769803776,"type":"qemu","diskwrite":378004965888,"netin":869946907640,"uptime":509014,"netout":400806382837,"vmid":137,"node":"pve3","name":"worker03","template":0,"status":"running","mem":11818118941,"disk":0,"maxcpu":8,"id":"qemu/137","cpu":0.0560684641980887},{"template":0,"name":"storage01","node":"pve","vmid":140,"netout":121171004800,"uptime":509032,"cpu":0.0727204868668952,"id":"qemu/140","disk":0,"maxcpu":8,"status":"running","mem":14801074114,"diskread":44350136320,"pool":"cluster1","maxdisk":27057455104,"netin":655883863930,"diskwrite":257891220992,"type":"qemu","maxmem":25769803776},{"diskwrite":119627143680,"type":"qemu","maxmem":25769803776,"netin":1201553770629,"diskread":71769874432,"pool":"cluster1","maxdisk":27057455104,"status":"running","mem":16278409676,"cpu":0.0827675527117471,"id":"qemu/141","disk":0,"maxcpu":8,"vmid":141,"netout":164494707159,"uptime":241112,"template":0,"name":"storage02","node":"pve2"},{"status":"running","mem":10665803776,"cpu":0.16771677852718,"id":"qemu/142","maxcpu":8,"disk":0,"netout":96930961172,"vmid":142,"uptime":241201,"name":"storage03","template":0,"node":"pve3","type":"qemu","diskwrite":319151573504,"maxmem":25769803776,"netin":296454824009,"pool":"cluster1","diskread":59829084160,"maxdisk":27057455104},{"netin":0,"type":"qemu","diskwrite":0,"maxmem":8589934592,"pool":"cluster1","diskread":0,"maxdisk":27057455104,"id":"qemu/199","cpu":0,"disk":0,"maxcpu":8,"status":"stopped","mem":0,"name":"workerXX","template":0,"node":"pve","netout":0,"vmid":199,"uptime":0},{"cpu":0,"id":"qemu/8000","disk":0,"maxcpu":8,"mem":0,"status":"stopped","template":1,"name":"ubuntu-ci","node":"pve","vmid":8000,"netout":0,"uptime":0,"netin":0,"diskwrite":0,"type":"qemu","maxmem":8565817344,"diskread":0,"pool":"cluster1","maxdisk":2361393152}]}
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] cloning VM
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+POST /api2/json/nodes/pve/qemu/10000/clone HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Content-Length: 62
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Content-Type: application/x-www-form-urlencoded
+Accept-Encoding: gzip
+
+full=1&name=k8s-master01&newid=4010&storage=nas-zfs&target=pve
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"errors":{"vmid":"VM 108 already exists"},"data":null}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=109 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null,"errors":{"vmid":"VM 109 already exists"}}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=110 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 403 Permission check failed
+Connection: close
+Content-Length: 13
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null}
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"errors":{"vmid":"VM 110 already exists"},"data":null}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=111 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"errors":{"vmid":"VM 111 already exists"},"data":null}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=112 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 14
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":"112"}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=113 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 14
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":"113"}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] checking for duplicate name
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] checking for duplicate name
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"node":"pve","template":1,"name":"ubuntu-20-04-cloudimg","uptime":0,"vmid":10000,"netout":0,"disk":0,"maxcpu":1,"cpu":0,"id":"qemu/10000","status":"stopped","mem":0,"maxdisk":2361393152,"diskread":0,"netin":0,"maxmem":2147483648,"diskwrite":0,"type":"qemu"},{"netin":2252488526202,"type":"qemu","diskwrite":932675289088,"maxmem":25769803776,"pool":"cluster1","diskread":2700631552,"maxdisk":37794873344,"cpu":0.8448409503654,"id":"qemu/130","maxcpu":8,"disk":0,"status":"running","mem":20924692693,"name":"master01","template":0,"node":"pve","netout":226455821584,"vmid":130,"uptime":241152},{"template":0,"name":"master02","node":"pve2","vmid":131,"netout":154477161708,"uptime":241090,"cpu":0.123518549612638,"id":"qemu/131","maxcpu":8,"disk":0,"mem":18754267841,"status":"running","diskread":451111936,"pool":"cluster1","maxdisk":37794873344,"netin":43628770801,"diskwrite":280074833920,"type":"qemu","maxmem":25769803776},{"diskwrite":1026945915392,"type":"qemu","maxmem":25769803776,"netin":924774181010,"diskread":4776222208,"pool":"cluster1","maxdisk":37794873344,"status":"running","mem":21232010931,"cpu":0.0850188476729187,"id":"qemu/134","disk":0,"maxcpu":8,"vmid":134,"netout":351831800928,"uptime":509018,"template":0,"name":"master03","node":"pve3"},{"maxdisk":27057455104,"pool":"cluster1","diskread":487988224,"netin":5805330441,"maxmem":25769803776,"type":"qemu","diskwrite":13391478784,"node":"pve","name":"worker01","template":0,"uptime":241029,"netout":8062367385,"vmid":135,"disk":0,"maxcpu":8,"cpu":0.106690264469078,"id":"qemu/135","status":"running","mem":10389502281},{"status":"running","mem":11191243082,"maxcpu":8,"disk":0,"id":"qemu/136","cpu":0.0599874923323672,"uptime":509028,"vmid":136,"netout":12776446823,"node":"pve2","template":0,"name":"worker02","maxmem":25769803776,"diskwrite":37476936192,"type":"qemu","netin":577851761570,"maxdisk":27057455104,"diskread":3212613632,"pool":"cluster1"},{"netin":869946907640,"diskwrite":378004965888,"type":"qemu","maxmem":25769803776,"diskread":56757225472,"pool":"cluster1","maxdisk":27057455104,"id":"qemu/137","cpu":0.0560684641980887,"maxcpu":8,"disk":0,"mem":11818118941,"status":"running","template":0,"name":"worker03","node":"pve3","vmid":137,"netout":400806382837,"uptime":509014},{"uptime":509032,"vmid":140,"netout":121171004800,"node":"pve","template":0,"name":"storage01","status":"running","mem":14801074114,"disk":0,"maxcpu":8,"cpu":0.0727204868668952,"id":"qemu/140","maxdisk":27057455104,"diskread":44350136320,"pool":"cluster1","maxmem":25769803776,"diskwrite":257891220992,"type":"qemu","netin":655883863930},{"disk":0,"maxcpu":8,"cpu":0.0827675527117471,"id":"qemu/141","mem":16278409676,"status":"running","node":"pve2","name":"storage02","template":0,"uptime":241112,"netout":164494707159,"vmid":141,"netin":1201553770629,"maxmem":25769803776,"type":"qemu","diskwrite":119627143680,"maxdisk":27057455104,"pool":"cluster1","diskread":71769874432},{"status":"running","mem":10665803776,"disk":0,"maxcpu":8,"id":"qemu/142","cpu":0.16771677852718,"uptime":241201,"vmid":142,"netout":96930961172,"node":"pve3","template":0,"name":"storage03","maxmem":25769803776,"diskwrite":319151573504,"type":"qemu","netin":296454824009,"maxdisk":27057455104,"diskread":59829084160,"pool":"cluster1"},{"diskread":0,"pool":"cluster1","maxdisk":27057455104,"netin":0,"diskwrite":0,"type":"qemu","maxmem":8589934592,"template":0,"name":"workerXX","node":"pve","vmid":199,"netout":0,"uptime":0,"cpu":0,"id":"qemu/199","disk":0,"maxcpu":8,"mem":0,"status":"stopped"},{"maxdisk":2361393152,"diskread":0,"pool":"cluster1","netin":0,"maxmem":8565817344,"diskwrite":0,"type":"qemu","node":"pve","template":1,"name":"ubuntu-ci","uptime":0,"vmid":8000,"netout":0,"disk":0,"maxcpu":8,"cpu":0,"id":"qemu/8000","mem":0,"status":"stopped"}]}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] cloning VM
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+POST /api2/json/nodes/pve/qemu/10000/clone HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Content-Length: 63
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Content-Type: application/x-www-form-urlencoded
+Accept-Encoding: gzip
+
+full=1&name=k8s-master02&newid=4011&storage=nas-zfs&target=pve2
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"mem":0,"status":"stopped","id":"qemu/10000","cpu":0,"disk":0,"maxcpu":1,"netout":0,"vmid":10000,"uptime":0,"name":"ubuntu-20-04-cloudimg","template":1,"node":"pve","type":"qemu","diskwrite":0,"maxmem":2147483648,"netin":0,"diskread":0,"maxdisk":2361393152},{"maxdisk":37794873344,"diskread":2700631552,"pool":"cluster1","maxmem":25769803776,"diskwrite":932675289088,"type":"qemu","netin":2252488526202,"uptime":241152,"vmid":130,"netout":226455821584,"node":"pve","template":0,"name":"master01","mem":20924692693,"status":"running","disk":0,"maxcpu":8,"cpu":0.8448409503654,"id":"qemu/130"},{"uptime":241090,"netout":154477161708,"vmid":131,"node":"pve2","name":"master02","template":0,"mem":18754267841,"status":"running","disk":0,"maxcpu":8,"cpu":0.123518549612638,"id":"qemu/131","maxdisk":37794873344,"pool":"cluster1","diskread":451111936,"maxmem":25769803776,"type":"qemu","diskwrite":280074833920,"netin":43628770801},{"netin":924774181010,"type":"qemu","diskwrite":1026945915392,"maxmem":25769803776,"pool":"cluster1","diskread":4776222208,"maxdisk":37794873344,"cpu":0.0850188476729187,"id":"qemu/134","disk":0,"maxcpu":8,"mem":21232010931,"status":"running","name":"master03","template":0,"node":"pve3","netout":351831800928,"vmid":134,"uptime":509018},{"node":"pve","template":0,"name":"worker01","uptime":241029,"vmid":135,"netout":8062367385,"disk":0,"maxcpu":8,"cpu":0.106690264469078,"id":"qemu/135","mem":10389502281,"status":"running","maxdisk":27057455104,"diskread":487988224,"pool":"cluster1","netin":5805330441,"maxmem":25769803776,"diskwrite":13391478784,"type":"qemu"},{"vmid":136,"netout":12776446823,"uptime":509028,"template":0,"name":"worker02","node":"pve2","status":"running","mem":11191243082,"id":"qemu/136","cpu":0.0599874923323672,"maxcpu":8,"disk":0,"diskread":3212613632,"pool":"cluster1","maxdisk":27057455104,"diskwrite":37476936192,"type":"qemu","maxmem":25769803776,"netin":577851761570},{"maxdisk":27057455104,"pool":"cluster1","diskread":56757225472,"netin":869946907640,"maxmem":25769803776,"type":"qemu","diskwrite":378004965888,"node":"pve3","name":"worker03","template":0,"uptime":509014,"netout":400806382837,"vmid":137,"maxcpu":8,"disk":0,"cpu":0.0560684641980887,"id":"qemu/137","mem":11818118941,"status":"running"},{"diskwrite":257891220992,"type":"qemu","maxmem":25769803776,"netin":655883863930,"diskread":44350136320,"pool":"cluster1","maxdisk":27057455104,"mem":14801074114,"status":"running","id":"qemu/140","cpu":0.0727204868668952,"disk":0,"maxcpu":8,"vmid":140,"netout":121171004800,"uptime":509032,"template":0,"name":"storage01","node":"pve"},{"diskread":71769874432,"pool":"cluster1","maxdisk":27057455104,"netin":1201553770629,"diskwrite":119627143680,"type":"qemu","maxmem":25769803776,"template":0,"name":"storage02","node":"pve2","vmid":141,"netout":164494707159,"uptime":241112,"cpu":0.0827675527117471,"id":"qemu/141","disk":0,"maxcpu":8,"status":"running","mem":16278409676},{"pool":"cluster1","diskread":59829084160,"maxdisk":27057455104,"type":"qemu","diskwrite":319151573504,"maxmem":25769803776,"netin":296454824009,"netout":96930961172,"vmid":142,"uptime":241201,"name":"storage03","template":0,"node":"pve3","mem":10665803776,"status":"running","id":"qemu/142","cpu":0.16771677852718,"disk":0,"maxcpu":8},{"netin":0,"type":"qemu","diskwrite":0,"maxmem":8589934592,"pool":"cluster1","diskread":0,"maxdisk":27057455104,"id":"qemu/199","cpu":0,"disk":0,"maxcpu":8,"status":"stopped","mem":0,"name":"workerXX","template":0,"node":"pve","netout":0,"vmid":199,"uptime":0},{"pool":"cluster1","diskread":0,"maxdisk":2361393152,"netin":0,"type":"qemu","diskwrite":0,"maxmem":8565817344,"name":"ubuntu-ci","template":1,"node":"pve","netout":0,"vmid":8000,"uptime":0,"id":"qemu/8000","cpu":0,"disk":0,"maxcpu":8,"status":"stopped","mem":0}]}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=114 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"diskread":0,"maxdisk":2361393152,"netin":0,"diskwrite":0,"type":"qemu","maxmem":2147483648,"template":1,"name":"ubuntu-20-04-cloudimg","node":"pve","vmid":10000,"netout":0,"uptime":0,"id":"qemu/10000","cpu":0,"maxcpu":1,"disk":0,"status":"stopped","mem":0},{"node":"pve","template":0,"name":"master01","uptime":241152,"vmid":130,"netout":226455821584,"disk":0,"maxcpu":8,"cpu":0.8448409503654,"id":"qemu/130","mem":20924692693,"status":"running","maxdisk":37794873344,"diskread":2700631552,"pool":"cluster1","netin":2252488526202,"maxmem":25769803776,"diskwrite":932675289088,"type":"qemu"},{"netin":43628770801,"diskwrite":280074833920,"type":"qemu","maxmem":25769803776,"diskread":451111936,"pool":"cluster1","maxdisk":37794873344,"cpu":0.123518549612638,"id":"qemu/131","maxcpu":8,"disk":0,"mem":18754267841,"status":"running","template":0,"name":"master02","node":"pve2","vmid":131,"netout":154477161708,"uptime":241090},{"status":"running","mem":21232010931,"id":"qemu/134","cpu":0.0850188476729187,"disk":0,"maxcpu":8,"vmid":134,"netout":351831800928,"uptime":509018,"template":0,"name":"master03","node":"pve3","diskwrite":1026945915392,"type":"qemu","maxmem":25769803776,"netin":924774181010,"diskread":4776222208,"pool":"cluster1","maxdisk":37794873344},{"maxdisk":27057455104,"pool":"cluster1","diskread":487988224,"netin":5805330441,"maxmem":25769803776,"type":"qemu","diskwrite":13391478784,"node":"pve","name":"worker01","template":0,"uptime":241029,"netout":8062367385,"vmid":135,"disk":0,"maxcpu":8,"cpu":0.106690264469078,"id":"qemu/135","mem":10389502281,"status":"running"},{"mem":11191243082,"status":"running","cpu":0.0599874923323672,"id":"qemu/136","disk":0,"maxcpu":8,"vmid":136,"netout":12776446823,"uptime":509028,"template":0,"name":"worker02","node":"pve2","diskwrite":37476936192,"type":"qemu","maxmem":25769803776,"netin":577851761570,"diskread":3212613632,"pool":"cluster1","maxdisk":27057455104},{"id":"qemu/137","cpu":0.0560684641980887,"disk":0,"maxcpu":8,"status":"running","mem":11818118941,"name":"worker03","template":0,"node":"pve3","netout":400806382837,"vmid":137,"uptime":509014,"netin":869946907640,"type":"qemu","diskwrite":378004965888,"maxmem":25769803776,"pool":"cluster1","diskread":56757225472,"maxdisk":27057455104},{"maxcpu":8,"disk":0,"id":"qemu/140","cpu":0.0727204868668952,"status":"running","mem":14801074114,"node":"pve","name":"storage01","template":0,"uptime":509032,"netout":121171004800,"vmid":140,"netin":655883863930,"maxmem":25769803776,"type":"qemu","diskwrite":257891220992,"maxdisk":27057455104,"pool":"cluster1","diskread":44350136320},{"node":"pve2","template":0,"name":"storage02","uptime":241112,"vmid":141,"netout":164494707159,"maxcpu":8,"disk":0,"cpu":0.0827675527117471,"id":"qemu/141","status":"running","mem":16278409676,"maxdisk":27057455104,"diskread":71769874432,"pool":"cluster1","netin":1201553770629,"maxmem":25769803776,"diskwrite":119627143680,"type":"qemu"},{"node":"pve3","template":0,"name":"storage03","uptime":241201,"vmid":142,"netout":96930961172,"maxcpu":8,"disk":0,"cpu":0.16771677852718,"id":"qemu/142","mem":10665803776,"status":"running","maxdisk":27057455104,"diskread":59829084160,"pool":"cluster1","netin":296454824009,"maxmem":25769803776,"diskwrite":319151573504,"type":"qemu"},{"netin":0,"maxmem":8589934592,"type":"qemu","diskwrite":0,"maxdisk":27057455104,"pool":"cluster1","diskread":0,"maxcpu":8,"disk":0,"cpu":0,"id":"qemu/199","status":"stopped","mem":0,"node":"pve","name":"workerXX","template":0,"uptime":0,"netout":0,"vmid":199},{"cpu":0,"id":"qemu/8000","maxcpu":8,"disk":0,"mem":0,"status":"stopped","template":1,"name":"ubuntu-ci","node":"pve","vmid":8000,"netout":0,"uptime":0,"netin":0,"diskwrite":0,"type":"qemu","maxmem":8565817344,"diskread":0,"pool":"cluster1","maxdisk":2361393152}]}
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] cloning VM
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+POST /api2/json/nodes/pve/qemu/10000/clone HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Content-Length: 62
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Content-Type: application/x-www-form-urlencoded
+Accept-Encoding: gzip
+
+full=1&name=k8s-worker01&newid=4020&storage=nas-zfs&target=pve
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 403 Permission check failed
+Connection: close
+Content-Length: 13
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null}
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 403 Permission check failed
+Connection: close
+Content-Length: 13
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null}
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"maxdisk":2361393152,"diskread":0,"netin":0,"maxmem":2147483648,"diskwrite":0,"type":"qemu","node":"pve","template":1,"name":"ubuntu-20-04-cloudimg","uptime":0,"vmid":10000,"netout":0,"disk":0,"maxcpu":1,"cpu":0,"id":"qemu/10000","status":"stopped","mem":0},{"pool":"cluster1","diskread":2700631552,"maxdisk":37794873344,"type":"qemu","diskwrite":932675289088,"maxmem":25769803776,"netin":2252488526202,"netout":226455821584,"vmid":130,"uptime":241152,"name":"master01","template":0,"node":"pve","status":"running","mem":20924692693,"cpu":0.8448409503654,"id":"qemu/130","disk":0,"maxcpu":8},{"diskwrite":280074833920,"type":"qemu","maxmem":25769803776,"netin":43628770801,"diskread":451111936,"pool":"cluster1","maxdisk":37794873344,"mem":18754267841,"status":"running","cpu":0.123518549612638,"id":"qemu/131","maxcpu":8,"disk":0,"vmid":131,"netout":154477161708,"uptime":241090,"template":0,"name":"master02","node":"pve2"},{"disk":0,"maxcpu":8,"cpu":0.0850188476729187,"id":"qemu/134","mem":21232010931,"status":"running","node":"pve3","name":"master03","template":0,"uptime":509018,"netout":351831800928,"vmid":134,"netin":924774181010,"maxmem":25769803776,"type":"qemu","diskwrite":1026945915392,"maxdisk":37794873344,"pool":"cluster1","diskread":4776222208},{"status":"running","mem":10389502281,"disk":0,"maxcpu":8,"id":"qemu/135","cpu":0.106690264469078,"uptime":241029,"netout":8062367385,"vmid":135,"node":"pve","name":"worker01","template":0,"maxmem":25769803776,"type":"qemu","diskwrite":13391478784,"netin":5805330441,"maxdisk":27057455104,"pool":"cluster1","diskread":487988224},{"pool":"cluster1","diskread":3212613632,"maxdisk":27057455104,"netin":577851761570,"type":"qemu","diskwrite":37476936192,"maxmem":25769803776,"name":"worker02","template":0,"node":"pve2","netout":12776446823,"vmid":136,"uptime":509028,"id":"qemu/136","cpu":0.0599874923323672,"maxcpu":8,"disk":0,"status":"running","mem":11191243082},{"node":"pve3","name":"worker03","template":0,"uptime":509014,"netout":400806382837,"vmid":137,"disk":0,"maxcpu":8,"id":"qemu/137","cpu":0.0560684641980887,"mem":11818118941,"status":"running","maxdisk":27057455104,"pool":"cluster1","diskread":56757225472,"netin":869946907640,"maxmem":25769803776,"type":"qemu","diskwrite":378004965888},{"status":"running","mem":14801074114,"id":"qemu/140","cpu":0.0727204868668952,"maxcpu":8,"disk":0,"vmid":140,"netout":121171004800,"uptime":509032,"template":0,"name":"storage01","node":"pve","diskwrite":257891220992,"type":"qemu","maxmem":25769803776,"netin":655883863930,"diskread":44350136320,"pool":"cluster1","maxdisk":27057455104},{"mem":16278409676,"status":"running","id":"qemu/141","cpu":0.0827675527117471,"disk":0,"maxcpu":8,"netout":164494707159,"vmid":141,"uptime":241112,"name":"storage02","template":0,"node":"pve2","type":"qemu","diskwrite":119627143680,"maxmem":25769803776,"netin":1201553770629,"pool":"cluster1","diskread":71769874432,"maxdisk":27057455104},{"id":"qemu/142","cpu":0.16771677852718,"maxcpu":8,"disk":0,"status":"running","mem":10665803776,"name":"storage03","template":0,"node":"pve3","netout":96930961172,"vmid":142,"uptime":241201,"netin":296454824009,"type":"qemu","diskwrite":319151573504,"maxmem":25769803776,"pool":"cluster1","diskread":59829084160,"maxdisk":27057455104},{"diskread":0,"pool":"cluster1","maxdisk":27057455104,"netin":0,"diskwrite":0,"type":"qemu","maxmem":8589934592,"template":0,"name":"workerXX","node":"pve","vmid":199,"netout":0,"uptime":0,"cpu":0,"id":"qemu/199","maxcpu":8,"disk":0,"mem":0,"status":"stopped"},{"netin":0,"diskwrite":0,"type":"qemu","maxmem":8565817344,"diskread":0,"pool":"cluster1","maxdisk":2361393152,"cpu":0,"id":"qemu/8000","maxcpu":8,"disk":0,"status":"stopped","mem":0,"template":1,"name":"ubuntu-ci","node":"pve","vmid":8000,"netout":0,"uptime":0}]}
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"errors":{"vmid":"VM 114 already exists"},"data":null}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=115 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"errors":{"vmid":"VM 115 already exists"},"data":null}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=116 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"errors":{"vmid":"VM 116 already exists"},"data":null}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=117 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null,"errors":{"vmid":"VM 117 already exists"}}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=118 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"errors":{"vmid":"VM 118 already exists"},"data":null}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=119 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"errors":{"vmid":"VM 119 already exists"},"data":null}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=120 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"errors":{"vmid":"VM 120 already exists"},"data":null}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=121 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 400 Parameter verification failed.
+Connection: close
+Content-Length: 55
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"errors":{"vmid":"VM 121 already exists"},"data":null}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=122 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 14
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":"122"}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] checking for duplicate name
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] checking for duplicate name
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=123 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 14
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":"123"}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"netin":0,"type":"qemu","diskwrite":0,"maxmem":2147483648,"diskread":0,"maxdisk":2361393152,"id":"qemu/10000","cpu":0,"disk":0,"maxcpu":1,"status":"stopped","mem":0,"name":"ubuntu-20-04-cloudimg","template":1,"node":"pve","netout":0,"vmid":10000,"uptime":0},{"status":"running","mem":20924692693,"id":"qemu/130","cpu":0.8448409503654,"maxcpu":8,"disk":0,"vmid":130,"netout":226455821584,"uptime":241152,"template":0,"name":"master01","node":"pve","diskwrite":932675289088,"type":"qemu","maxmem":25769803776,"netin":2252488526202,"diskread":2700631552,"pool":"cluster1","maxdisk":37794873344},{"netin":43628770801,"diskwrite":280074833920,"type":"qemu","maxmem":25769803776,"diskread":451111936,"pool":"cluster1","maxdisk":37794873344,"cpu":0.123518549612638,"id":"qemu/131","maxcpu":8,"disk":0,"status":"running","mem":18754267841,"template":0,"name":"master02","node":"pve2","vmid":131,"netout":154477161708,"uptime":241090},{"maxmem":25769803776,"diskwrite":1026945915392,"type":"qemu","netin":924774181010,"maxdisk":37794873344,"diskread":4776222208,"pool":"cluster1","mem":21232010931,"status":"running","disk":0,"maxcpu":8,"cpu":0.0850188476729187,"id":"qemu/134","uptime":509018,"vmid":134,"netout":351831800928,"node":"pve3","template":0,"name":"master03"},{"mem":10389502281,"status":"running","maxcpu":8,"disk":0,"id":"qemu/135","cpu":0.106690264469078,"uptime":241029,"netout":8062367385,"vmid":135,"node":"pve","name":"worker01","template":0,"maxmem":25769803776,"type":"qemu","diskwrite":13391478784,"netin":5805330441,"maxdisk":27057455104,"pool":"cluster1","diskread":487988224},{"maxcpu":8,"disk":0,"cpu":0.0599874923323672,"id":"qemu/136","status":"running","mem":11191243082,"node":"pve2","name":"worker02","template":0,"uptime":509028,"netout":12776446823,"vmid":136,"netin":577851761570,"maxmem":25769803776,"type":"qemu","diskwrite":37476936192,"maxdisk":27057455104,"pool":"cluster1","diskread":3212613632},{"netin":869946907640,"type":"qemu","diskwrite":378004965888,"maxmem":25769803776,"pool":"cluster1","diskread":56757225472,"maxdisk":27057455104,"id":"qemu/137","cpu":0.0560684641980887,"maxcpu":8,"disk":0,"mem":11818118941,"status":"running","name":"worker03","template":0,"node":"pve3","netout":400806382837,"vmid":137,"uptime":509014},{"status":"running","mem":14801074114,"id":"qemu/140","cpu":0.0727204868668952,"disk":0,"maxcpu":8,"vmid":140,"netout":121171004800,"uptime":509032,"template":0,"name":"storage01","node":"pve","diskwrite":257891220992,"type":"qemu","maxmem":25769803776,"netin":655883863930,"diskread":44350136320,"pool":"cluster1","maxdisk":27057455104},{"disk":0,"maxcpu":8,"id":"qemu/141","cpu":0.0827675527117471,"status":"running","mem":16278409676,"node":"pve2","template":0,"name":"storage02","uptime":241112,"vmid":141,"netout":164494707159,"netin":1201553770629,"maxmem":25769803776,"diskwrite":119627143680,"type":"qemu","maxdisk":27057455104,"diskread":71769874432,"pool":"cluster1"},{"pool":"cluster1","diskread":59829084160,"maxdisk":27057455104,"netin":296454824009,"type":"qemu","diskwrite":319151573504,"maxmem":25769803776,"name":"storage03","template":0,"node":"pve3","netout":96930961172,"vmid":142,"uptime":241201,"cpu":0.16771677852718,"id":"qemu/142","disk":0,"maxcpu":8,"status":"running","mem":10665803776},{"netin":0,"maxmem":8589934592,"diskwrite":0,"type":"qemu","maxdisk":27057455104,"diskread":0,"pool":"cluster1","maxcpu":8,"disk":0,"cpu":0,"id":"qemu/199","status":"stopped","mem":0,"node":"pve","template":0,"name":"workerXX","uptime":0,"vmid":199,"netout":0},{"maxdisk":2361393152,"pool":"cluster1","diskread":0,"maxmem":8565817344,"type":"qemu","diskwrite":0,"netin":0,"uptime":0,"netout":0,"vmid":8000,"node":"pve","name":"ubuntu-ci","template":1,"status":"stopped","mem":0,"maxcpu":8,"disk":0,"id":"qemu/8000","cpu":0}]}
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] cloning VM
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+POST /api2/json/nodes/pve/qemu/10000/clone HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Content-Length: 63
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Content-Type: application/x-www-form-urlencoded
+Accept-Encoding: gzip
+
+full=1&name=k8s-worker02&newid=4021&storage=nas-zfs&target=pve2
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"type":"qemu","diskwrite":0,"maxmem":2147483648,"netin":0,"diskread":0,"maxdisk":2361393152,"status":"stopped","mem":0,"cpu":0,"id":"qemu/10000","disk":0,"maxcpu":1,"netout":0,"vmid":10000,"uptime":0,"name":"ubuntu-20-04-cloudimg","template":1,"node":"pve"},{"pool":"cluster1","diskread":2700631552,"maxdisk":37794873344,"netin":2252488526202,"type":"qemu","diskwrite":932675289088,"maxmem":25769803776,"name":"master01","template":0,"node":"pve","netout":226455821584,"vmid":130,"uptime":241152,"id":"qemu/130","cpu":0.8448409503654,"disk":0,"maxcpu":8,"status":"running","mem":20924692693},{"diskread":451111936,"pool":"cluster1","maxdisk":37794873344,"netin":43628770801,"diskwrite":280074833920,"type":"qemu","maxmem":25769803776,"template":0,"name":"master02","node":"pve2","vmid":131,"netout":154477161708,"uptime":241090,"cpu":0.123518549612638,"id":"qemu/131","maxcpu":8,"disk":0,"status":"running","mem":18754267841},{"diskwrite":1026945915392,"type":"qemu","maxmem":25769803776,"netin":924774181010,"diskread":4776222208,"pool":"cluster1","maxdisk":37794873344,"status":"running","mem":21232010931,"id":"qemu/134","cpu":0.0850188476729187,"disk":0,"maxcpu":8,"vmid":134,"netout":351831800928,"uptime":509018,"template":0,"name":"master03","node":"pve3"},{"diskread":487988224,"pool":"cluster1","maxdisk":27057455104,"diskwrite":13391478784,"type":"qemu","maxmem":25769803776,"netin":5805330441,"vmid":135,"netout":8062367385,"uptime":241029,"template":0,"name":"worker01","node":"pve","status":"running","mem":10389502281,"cpu":0.106690264469078,"id":"qemu/135","disk":0,"maxcpu":8},{"netout":12776446823,"vmid":136,"uptime":509028,"name":"worker02","template":0,"node":"pve2","mem":11191243082,"status":"running","cpu":0.0599874923323672,"id":"qemu/136","maxcpu":8,"disk":0,"pool":"cluster1","diskread":3212613632,"maxdisk":27057455104,"type":"qemu","diskwrite":37476936192,"maxmem":25769803776,"netin":577851761570},{"maxmem":25769803776,"type":"qemu","diskwrite":378004965888,"netin":869946907640,"maxdisk":27057455104,"pool":"cluster1","diskread":56757225472,"status":"running","mem":11818118941,"disk":0,"maxcpu":8,"id":"qemu/137","cpu":0.0560684641980887,"uptime":509014,"netout":400806382837,"vmid":137,"node":"pve3","name":"worker03","template":0},{"template":0,"name":"storage01","node":"pve","vmid":140,"netout":121171004800,"uptime":509032,"cpu":0.0727204868668952,"id":"qemu/140","maxcpu":8,"disk":0,"status":"running","mem":14801074114,"diskread":44350136320,"pool":"cluster1","maxdisk":27057455104,"netin":655883863930,"diskwrite":257891220992,"type":"qemu","maxmem":25769803776},{"name":"storage02","template":0,"node":"pve2","netout":164494707159,"vmid":141,"uptime":241112,"cpu":0.0827675527117471,"id":"qemu/141","disk":0,"maxcpu":8,"status":"running","mem":16278409676,"pool":"cluster1","diskread":71769874432,"maxdisk":27057455104,"netin":1201553770629,"type":"qemu","diskwrite":119627143680,"maxmem":25769803776},{"type":"qemu","diskwrite":319151573504,"maxmem":25769803776,"netin":296454824009,"pool":"cluster1","diskread":59829084160,"maxdisk":27057455104,"status":"running","mem":10665803776,"cpu":0.16771677852718,"id":"qemu/142","maxcpu":8,"disk":0,"netout":96930961172,"vmid":142,"uptime":241201,"name":"storage03","template":0,"node":"pve3"},{"diskread":0,"pool":"cluster1","maxdisk":27057455104,"diskwrite":0,"type":"qemu","maxmem":8589934592,"netin":0,"vmid":199,"netout":0,"uptime":0,"template":0,"name":"workerXX","node":"pve","mem":0,"status":"stopped","id":"qemu/199","cpu":0,"maxcpu":8,"disk":0},{"template":1,"name":"ubuntu-ci","node":"pve","vmid":8000,"netout":0,"uptime":0,"cpu":0,"id":"qemu/8000","maxcpu":8,"disk":0,"mem":0,"status":"stopped","diskread":0,"pool":"cluster1","maxdisk":2361393152,"netin":0,"diskwrite":0,"type":"qemu","maxmem":8565817344}]}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=124 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"name":"ubuntu-20-04-cloudimg","template":1,"node":"pve","netout":0,"vmid":10000,"uptime":0,"id":"qemu/10000","cpu":0,"maxcpu":1,"disk":0,"mem":0,"status":"stopped","diskread":0,"maxdisk":2361393152,"netin":0,"type":"qemu","diskwrite":0,"maxmem":2147483648},{"node":"pve","template":0,"name":"master01","uptime":241152,"vmid":130,"netout":226455821584,"maxcpu":8,"disk":0,"cpu":0.8448409503654,"id":"qemu/130","status":"running","mem":20924692693,"maxdisk":37794873344,"diskread":2700631552,"pool":"cluster1","netin":2252488526202,"maxmem":25769803776,"diskwrite":932675289088,"type":"qemu"},{"maxdisk":37794873344,"pool":"cluster1","diskread":451111936,"netin":43628770801,"maxmem":25769803776,"type":"qemu","diskwrite":280074833920,"node":"pve2","name":"master02","template":0,"uptime":241090,"netout":154477161708,"vmid":131,"maxcpu":8,"disk":0,"cpu":0.123518549612638,"id":"qemu/131","status":"running","mem":18754267841},{"maxdisk":37794873344,"pool":"cluster1","diskread":4776222208,"netin":924774181010,"maxmem":25769803776,"type":"qemu","diskwrite":1026945915392,"node":"pve3","name":"master03","template":0,"uptime":509018,"netout":351831800928,"vmid":134,"disk":0,"maxcpu":8,"id":"qemu/134","cpu":0.0850188476729187,"status":"running","mem":21232010931},{"netin":5805330441,"type":"qemu","diskwrite":13391478784,"maxmem":25769803776,"pool":"cluster1","diskread":487988224,"maxdisk":27057455104,"cpu":0.106690264469078,"id":"qemu/135","disk":0,"maxcpu":8,"status":"running","mem":10389502281,"name":"worker01","template":0,"node":"pve","netout":8062367385,"vmid":135,"uptime":241029},{"disk":0,"maxcpu":8,"cpu":0.0599874923323672,"id":"qemu/136","status":"running","mem":11191243082,"node":"pve2","name":"worker02","template":0,"uptime":509028,"netout":12776446823,"vmid":136,"netin":577851761570,"maxmem":25769803776,"type":"qemu","diskwrite":37476936192,"maxdisk":27057455104,"pool":"cluster1","diskread":3212613632},{"maxdisk":27057455104,"diskread":56757225472,"pool":"cluster1","maxmem":25769803776,"diskwrite":378004965888,"type":"qemu","netin":869946907640,"uptime":509014,"vmid":137,"netout":400806382837,"node":"pve3","template":0,"name":"worker03","status":"running","mem":11818118941,"disk":0,"maxcpu":8,"id":"qemu/137","cpu":0.0560684641980887},{"uptime":509032,"netout":121171004800,"vmid":140,"node":"pve","name":"storage01","template":0,"mem":14801074114,"status":"running","disk":0,"maxcpu":8,"cpu":0.0727204868668952,"id":"qemu/140","maxdisk":27057455104,"pool":"cluster1","diskread":44350136320,"maxmem":25769803776,"type":"qemu","diskwrite":257891220992,"netin":655883863930},{"disk":0,"maxcpu":8,"id":"qemu/141","cpu":0.0827675527117471,"status":"running","mem":16278409676,"node":"pve2","template":0,"name":"storage02","uptime":241112,"vmid":141,"netout":164494707159,"netin":1201553770629,"maxmem":25769803776,"diskwrite":119627143680,"type":"qemu","maxdisk":27057455104,"diskread":71769874432,"pool":"cluster1"},{"pool":"cluster1","diskread":59829084160,"maxdisk":27057455104,"netin":296454824009,"type":"qemu","diskwrite":319151573504,"maxmem":25769803776,"name":"storage03","template":0,"node":"pve3","netout":96930961172,"vmid":142,"uptime":241201,"id":"qemu/142","cpu":0.16771677852718,"disk":0,"maxcpu":8,"mem":10665803776,"status":"running"},{"pool":"cluster1","diskread":0,"maxdisk":27057455104,"type":"qemu","diskwrite":0,"maxmem":8589934592,"netin":0,"netout":0,"vmid":199,"uptime":0,"name":"workerXX","template":0,"node":"pve","status":"stopped","mem":0,"id":"qemu/199","cpu":0,"disk":0,"maxcpu":8},{"netin":0,"maxmem":8565817344,"diskwrite":0,"type":"qemu","maxdisk":2361393152,"diskread":0,"pool":"cluster1","maxcpu":8,"disk":0,"id":"qemu/8000","cpu":0,"status":"stopped","mem":0,"node":"pve","template":1,"name":"ubuntu-ci","uptime":0,"vmid":8000,"netout":0}]}
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 14
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":"124"}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=125 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 14
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":"125"}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 403 Permission check failed
+Connection: close
+Content-Length: 13
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null}
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] checking for duplicate name
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"uptime":0,"netout":0,"vmid":10000,"node":"pve","name":"ubuntu-20-04-cloudimg","template":1,"status":"stopped","mem":0,"maxcpu":1,"disk":0,"id":"qemu/10000","cpu":0,"maxdisk":2361393152,"diskread":0,"maxmem":2147483648,"type":"qemu","diskwrite":0,"netin":0},{"pool":"cluster1","diskread":2700631552,"maxdisk":37794873344,"netin":2252488526202,"type":"qemu","diskwrite":932675289088,"maxmem":25769803776,"name":"master01","template":0,"node":"pve","netout":226455821584,"vmid":130,"uptime":241152,"cpu":0.8448409503654,"id":"qemu/130","maxcpu":8,"disk":0,"status":"running","mem":20924692693},{"name":"master02","template":0,"node":"pve2","netout":154477161708,"vmid":131,"uptime":241090,"cpu":0.123518549612638,"id":"qemu/131","disk":0,"maxcpu":8,"status":"running","mem":18754267841,"pool":"cluster1","diskread":451111936,"maxdisk":37794873344,"netin":43628770801,"type":"qemu","diskwrite":280074833920,"maxmem":25769803776},{"diskread":4776222208,"pool":"cluster1","maxdisk":37794873344,"netin":924774181010,"diskwrite":1026945915392,"type":"qemu","maxmem":25769803776,"template":0,"name":"master03","node":"pve3","vmid":134,"netout":351831800928,"uptime":509018,"cpu":0.0850188476729187,"id":"qemu/134","maxcpu":8,"disk":0,"status":"running","mem":21232010931},{"type":"qemu","diskwrite":13391478784,"maxmem":25769803776,"netin":5805330441,"pool":"cluster1","diskread":487988224,"maxdisk":27057455104,"mem":10389502281,"status":"running","cpu":0.106690264469078,"id":"qemu/135","disk":0,"maxcpu":8,"netout":8062367385,"vmid":135,"uptime":241029,"name":"worker01","template":0,"node":"pve"},{"netin":577851761570,"maxmem":25769803776,"type":"qemu","diskwrite":37476936192,"maxdisk":27057455104,"pool":"cluster1","diskread":3212613632,"maxcpu":8,"disk":0,"cpu":0.0599874923323672,"id":"qemu/136","mem":11191243082,"status":"running","node":"pve2","name":"worker02","template":0,"uptime":509028,"netout":12776446823,"vmid":136},{"netin":869946907640,"type":"qemu","diskwrite":378004965888,"maxmem":25769803776,"pool":"cluster1","diskread":56757225472,"maxdisk":27057455104,"cpu":0.0560684641980887,"id":"qemu/137","maxcpu":8,"disk":0,"mem":11818118941,"status":"running","name":"worker03","template":0,"node":"pve3","netout":400806382837,"vmid":137,"uptime":509014},{"status":"running","mem":14801074114,"disk":0,"maxcpu":8,"cpu":0.0727204868668952,"id":"qemu/140","uptime":509032,"vmid":140,"netout":121171004800,"node":"pve","template":0,"name":"storage01","maxmem":25769803776,"diskwrite":257891220992,"type":"qemu","netin":655883863930,"maxdisk":27057455104,"diskread":44350136320,"pool":"cluster1"},{"node":"pve2","name":"storage02","template":0,"uptime":241112,"netout":164494707159,"vmid":141,"disk":0,"maxcpu":8,"id":"qemu/141","cpu":0.0827675527117471,"mem":16278409676,"status":"running","maxdisk":27057455104,"pool":"cluster1","diskread":71769874432,"netin":1201553770629,"maxmem":25769803776,"type":"qemu","diskwrite":119627143680},{"netin":296454824009,"maxmem":25769803776,"diskwrite":319151573504,"type":"qemu","maxdisk":27057455104,"diskread":59829084160,"pool":"cluster1","disk":0,"maxcpu":8,"id":"qemu/142","cpu":0.16771677852718,"status":"running","mem":10665803776,"node":"pve3","template":0,"name":"storage03","uptime":241201,"vmid":142,"netout":96930961172},{"netin":0,"diskwrite":0,"type":"qemu","maxmem":8589934592,"diskread":0,"pool":"cluster1","maxdisk":27057455104,"id":"qemu/199","cpu":0,"maxcpu":8,"disk":0,"mem":0,"status":"stopped","template":0,"name":"workerXX","node":"pve","vmid":199,"netout":0,"uptime":0},{"uptime":0,"netout":0,"vmid":8000,"node":"pve","name":"ubuntu-ci","template":1,"status":"stopped","mem":0,"maxcpu":8,"disk":0,"cpu":0,"id":"qemu/8000","maxdisk":2361393152,"pool":"cluster1","diskread":0,"maxmem":8565817344,"type":"qemu","diskwrite":0,"netin":0}]}
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] cloning VM
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+POST /api2/json/nodes/pve/qemu/10000/clone HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Content-Length: 64
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Content-Type: application/x-www-form-urlencoded
+Accept-Encoding: gzip
+
+full=1&name=k8s-storage03&newid=4032&storage=nas-zfs&target=pve3
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"status":"stopped","mem":0,"disk":0,"maxcpu":1,"id":"qemu/10000","cpu":0,"uptime":0,"netout":0,"vmid":10000,"node":"pve","name":"ubuntu-20-04-cloudimg","template":1,"maxmem":2147483648,"type":"qemu","diskwrite":0,"netin":0,"maxdisk":2361393152,"diskread":0},{"template":0,"name":"master01","node":"pve","vmid":130,"netout":226455821584,"uptime":241152,"id":"qemu/130","cpu":0.8448409503654,"disk":0,"maxcpu":8,"mem":20924692693,"status":"running","diskread":2700631552,"pool":"cluster1","maxdisk":37794873344,"netin":2252488526202,"diskwrite":932675289088,"type":"qemu","maxmem":25769803776},{"pool":"cluster1","diskread":451111936,"maxdisk":37794873344,"netin":43628770801,"type":"qemu","diskwrite":280074833920,"maxmem":25769803776,"name":"master02","template":0,"node":"pve2","netout":154477161708,"vmid":131,"uptime":241090,"id":"qemu/131","cpu":0.123518549612638,"disk":0,"maxcpu":8,"mem":18754267841,"status":"running"},{"cpu":0.0850188476729187,"id":"qemu/134","disk":0,"maxcpu":8,"status":"running","mem":21232010931,"template":0,"name":"master03","node":"pve3","vmid":134,"netout":351831800928,"uptime":509018,"netin":924774181010,"diskwrite":1026945915392,"type":"qemu","maxmem":25769803776,"diskread":4776222208,"pool":"cluster1","maxdisk":37794873344},{"netin":5805330441,"maxmem":25769803776,"diskwrite":13391478784,"type":"qemu","maxdisk":27057455104,"diskread":487988224,"pool":"cluster1","disk":0,"maxcpu":8,"cpu":0.106690264469078,"id":"qemu/135","mem":10389502281,"status":"running","node":"pve","template":0,"name":"worker01","uptime":241029,"vmid":135,"netout":8062367385},{"status":"running","mem":11191243082,"id":"qemu/136","cpu":0.0599874923323672,"disk":0,"maxcpu":8,"netout":12776446823,"vmid":136,"uptime":509028,"name":"worker02","template":0,"node":"pve2","type":"qemu","diskwrite":37476936192,"maxmem":25769803776,"netin":577851761570,"pool":"cluster1","diskread":3212613632,"maxdisk":27057455104},{"netin":869946907640,"maxmem":25769803776,"type":"qemu","diskwrite":378004965888,"maxdisk":27057455104,"pool":"cluster1","diskread":56757225472,"disk":0,"maxcpu":8,"cpu":0.0560684641980887,"id":"qemu/137","status":"running","mem":11818118941,"node":"pve3","name":"worker03","template":0,"uptime":509014,"netout":400806382837,"vmid":137},{"netin":655883863930,"diskwrite":257891220992,"type":"qemu","maxmem":25769803776,"diskread":44350136320,"pool":"cluster1","maxdisk":27057455104,"id":"qemu/140","cpu":0.0727204868668952,"maxcpu":8,"disk":0,"mem":14801074114,"status":"running","template":0,"name":"storage01","node":"pve","vmid":140,"netout":121171004800,"uptime":509032},{"pool":"cluster1","diskread":71769874432,"maxdisk":27057455104,"type":"qemu","diskwrite":119627143680,"maxmem":25769803776,"netin":1201553770629,"netout":164494707159,"vmid":141,"uptime":241112,"name":"storage02","template":0,"node":"pve2","status":"running","mem":16278409676,"id":"qemu/141","cpu":0.0827675527117471,"maxcpu":8,"disk":0},{"pool":"cluster1","diskread":59829084160,"maxdisk":27057455104,"netin":296454824009,"type":"qemu","diskwrite":319151573504,"maxmem":25769803776,"name":"storage03","template":0,"node":"pve3","netout":96930961172,"vmid":142,"uptime":241201,"id":"qemu/142","cpu":0.16771677852718,"maxcpu":8,"disk":0,"mem":10665803776,"status":"running"},{"name":"workerXX","template":0,"node":"pve","netout":0,"vmid":199,"uptime":0,"cpu":0,"id":"qemu/199","disk":0,"maxcpu":8,"mem":0,"status":"stopped","pool":"cluster1","diskread":0,"maxdisk":27057455104,"netin":0,"type":"qemu","diskwrite":0,"maxmem":8589934592},{"mem":0,"status":"stopped","maxcpu":8,"disk":0,"cpu":0,"id":"qemu/8000","uptime":0,"vmid":8000,"netout":0,"node":"pve","template":1,"name":"ubuntu-ci","maxmem":8565817344,"diskwrite":0,"type":"qemu","netin":0,"maxdisk":2361393152,"diskread":0,"pool":"cluster1"}]}
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] cloning VM
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+POST /api2/json/nodes/pve/qemu/10000/clone HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Content-Length: 63
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Content-Type: application/x-www-form-urlencoded
+Accept-Encoding: gzip
+
+full=1&name=k8s-worker03&newid=4022&storage=nas-zfs&target=pve3
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 403 Permission check failed
+Connection: close
+Content-Length: 13
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null}
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"netout":0,"vmid":10000,"uptime":0,"name":"ubuntu-20-04-cloudimg","template":1,"node":"pve","mem":0,"status":"stopped","cpu":0,"id":"qemu/10000","maxcpu":1,"disk":0,"diskread":0,"maxdisk":2361393152,"type":"qemu","diskwrite":0,"maxmem":2147483648,"netin":0},{"node":"pve","template":0,"name":"master01","uptime":241152,"vmid":130,"netout":226455821584,"maxcpu":8,"disk":0,"id":"qemu/130","cpu":0.8448409503654,"mem":20924692693,"status":"running","maxdisk":37794873344,"diskread":2700631552,"pool":"cluster1","netin":2252488526202,"maxmem":25769803776,"diskwrite":932675289088,"type":"qemu"},{"netin":43628770801,"maxmem":25769803776,"type":"qemu","diskwrite":280074833920,"maxdisk":37794873344,"pool":"cluster1","diskread":451111936,"disk":0,"maxcpu":8,"cpu":0.123518549612638,"id":"qemu/131","mem":18754267841,"status":"running","node":"pve2","name":"master02","template":0,"uptime":241090,"netout":154477161708,"vmid":131},{"mem":21232010931,"status":"running","disk":0,"maxcpu":8,"id":"qemu/134","cpu":0.0850188476729187,"uptime":509018,"netout":351831800928,"vmid":134,"node":"pve3","name":"master03","template":0,"maxmem":25769803776,"type":"qemu","diskwrite":1026945915392,"netin":924774181010,"maxdisk":37794873344,"pool":"cluster1","diskread":4776222208},{"status":"running","mem":10389502281,"id":"qemu/135","cpu":0.106690264469078,"maxcpu":8,"disk":0,"vmid":135,"netout":8062367385,"uptime":241029,"template":0,"name":"worker01","node":"pve","diskwrite":13391478784,"type":"qemu","maxmem":25769803776,"netin":5805330441,"diskread":487988224,"pool":"cluster1","maxdisk":27057455104},{"diskread":3212613632,"pool":"cluster1","maxdisk":27057455104,"netin":577851761570,"diskwrite":37476936192,"type":"qemu","maxmem":25769803776,"template":0,"name":"worker02","node":"pve2","vmid":136,"netout":12776446823,"uptime":509028,"cpu":0.0599874923323672,"id":"qemu/136","disk":0,"maxcpu":8,"status":"running","mem":11191243082},{"uptime":509014,"netout":400806382837,"vmid":137,"node":"pve3","name":"worker03","template":0,"mem":11818118941,"status":"running","disk":0,"maxcpu":8,"cpu":0.0560684641980887,"id":"qemu/137","maxdisk":27057455104,"pool":"cluster1","diskread":56757225472,"maxmem":25769803776,"type":"qemu","diskwrite":378004965888,"netin":869946907640},{"maxmem":25769803776,"type":"qemu","diskwrite":257891220992,"netin":655883863930,"maxdisk":27057455104,"pool":"cluster1","diskread":44350136320,"mem":14801074114,"status":"running","disk":0,"maxcpu":8,"id":"qemu/140","cpu":0.0727204868668952,"uptime":509032,"netout":121171004800,"vmid":140,"node":"pve","name":"storage01","template":0},{"maxcpu":8,"disk":0,"id":"qemu/141","cpu":0.0827675527117471,"mem":16278409676,"status":"running","node":"pve2","template":0,"name":"storage02","uptime":241112,"vmid":141,"netout":164494707159,"netin":1201553770629,"maxmem":25769803776,"diskwrite":119627143680,"type":"qemu","maxdisk":27057455104,"diskread":71769874432,"pool":"cluster1"},{"id":"qemu/142","cpu":0.16771677852718,"disk":0,"maxcpu":8,"status":"running","mem":10665803776,"name":"storage03","template":0,"node":"pve3","netout":96930961172,"vmid":142,"uptime":241201,"netin":296454824009,"type":"qemu","diskwrite":319151573504,"maxmem":25769803776,"pool":"cluster1","diskread":59829084160,"maxdisk":27057455104},{"pool":"cluster1","diskread":0,"maxdisk":27057455104,"type":"qemu","diskwrite":0,"maxmem":8589934592,"netin":0,"netout":0,"vmid":199,"uptime":0,"name":"workerXX","template":0,"node":"pve","mem":0,"status":"stopped","cpu":0,"id":"qemu/199","disk":0,"maxcpu":8},{"mem":0,"status":"stopped","disk":0,"maxcpu":8,"id":"qemu/8000","cpu":0,"uptime":0,"netout":0,"vmid":8000,"node":"pve","name":"ubuntu-ci","template":1,"maxmem":8565817344,"type":"qemu","diskwrite":0,"netin":0,"maxdisk":2361393152,"pool":"cluster1","diskread":0}]}
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] cloning VM
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+POST /api2/json/nodes/pve/qemu/10000/clone HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Content-Length: 63
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Content-Type: application/x-www-form-urlencoded
+Accept-Encoding: gzip
+
+full=1&name=k8s-storage01&newid=4030&storage=nas-zfs&target=pve
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 403 Permission check failed
+Connection: close
+Content-Length: 13
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null}
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 403 Permission check failed
+Connection: close
+Content-Length: 13
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null}
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"netin":0,"diskwrite":0,"type":"qemu","maxmem":2147483648,"diskread":0,"maxdisk":2361393152,"cpu":0,"id":"qemu/10000","maxcpu":1,"disk":0,"status":"stopped","mem":0,"template":1,"name":"ubuntu-20-04-cloudimg","node":"pve","vmid":10000,"netout":0,"uptime":0},{"type":"qemu","diskwrite":932675289088,"maxmem":25769803776,"netin":2252488526202,"pool":"cluster1","diskread":2700631552,"maxdisk":37794873344,"mem":20924692693,"status":"running","id":"qemu/130","cpu":0.8448409503654,"maxcpu":8,"disk":0,"netout":226455821584,"vmid":130,"uptime":241152,"name":"master01","template":0,"node":"pve"},{"status":"running","mem":18754267841,"cpu":0.123518549612638,"id":"qemu/131","maxcpu":8,"disk":0,"vmid":131,"netout":154477161708,"uptime":241090,"template":0,"name":"master02","node":"pve2","diskwrite":280074833920,"type":"qemu","maxmem":25769803776,"netin":43628770801,"diskread":451111936,"pool":"cluster1","maxdisk":37794873344},{"pool":"cluster1","diskread":4776222208,"maxdisk":37794873344,"netin":924774181010,"type":"qemu","diskwrite":1026945915392,"maxmem":25769803776,"name":"master03","template":0,"node":"pve3","netout":351831800928,"vmid":134,"uptime":509018,"cpu":0.0850188476729187,"id":"qemu/134","disk":0,"maxcpu":8,"status":"running","mem":21232010931},{"name":"worker01","template":0,"node":"pve","netout":8062367385,"vmid":135,"uptime":241029,"id":"qemu/135","cpu":0.106690264469078,"maxcpu":8,"disk":0,"mem":10389502281,"status":"running","pool":"cluster1","diskread":487988224,"maxdisk":27057455104,"netin":5805330441,"type":"qemu","diskwrite":13391478784,"maxmem":25769803776},{"netin":577851761570,"maxmem":25769803776,"type":"qemu","diskwrite":37476936192,"maxdisk":27057455104,"pool":"cluster1","diskread":3212613632,"disk":0,"maxcpu":8,"id":"qemu/136","cpu":0.0599874923323672,"mem":11191243082,"status":"running","node":"pve2","name":"worker02","template":0,"uptime":509028,"netout":12776446823,"vmid":136},{"maxmem":25769803776,"diskwrite":378004965888,"type":"qemu","netin":869946907640,"maxdisk":27057455104,"diskread":56757225472,"pool":"cluster1","mem":11818118941,"status":"running","maxcpu":8,"disk":0,"cpu":0.0560684641980887,"id":"qemu/137","uptime":509014,"vmid":137,"netout":400806382837,"node":"pve3","template":0,"name":"worker03"},{"netin":655883863930,"type":"qemu","diskwrite":257891220992,"maxmem":25769803776,"pool":"cluster1","diskread":44350136320,"maxdisk":27057455104,"cpu":0.0727204868668952,"id":"qemu/140","maxcpu":8,"disk":0,"mem":14801074114,"status":"running","name":"storage01","template":0,"node":"pve","netout":121171004800,"vmid":140,"uptime":509032},{"diskread":71769874432,"pool":"cluster1","maxdisk":27057455104,"netin":1201553770629,"diskwrite":119627143680,"type":"qemu","maxmem":25769803776,"template":0,"name":"storage02","node":"pve2","vmid":141,"netout":164494707159,"uptime":241112,"id":"qemu/141","cpu":0.0827675527117471,"disk":0,"maxcpu":8,"status":"running","mem":16278409676},{"maxmem":25769803776,"diskwrite":319151573504,"type":"qemu","netin":296454824009,"maxdisk":27057455104,"diskread":59829084160,"pool":"cluster1","status":"running","mem":10665803776,"maxcpu":8,"disk":0,"cpu":0.16771677852718,"id":"qemu/142","uptime":241201,"vmid":142,"netout":96930961172,"node":"pve3","template":0,"name":"storage03"},{"node":"pve","name":"workerXX","template":0,"uptime":0,"netout":0,"vmid":199,"disk":0,"maxcpu":8,"id":"qemu/199","cpu":0,"status":"stopped","mem":0,"maxdisk":27057455104,"pool":"cluster1","diskread":0,"netin":0,"maxmem":8589934592,"type":"qemu","diskwrite":0},{"node":"pve","name":"ubuntu-ci","template":1,"uptime":0,"netout":0,"vmid":8000,"maxcpu":8,"disk":0,"id":"qemu/8000","cpu":0,"mem":0,"status":"stopped","maxdisk":2361393152,"pool":"cluster1","diskread":0,"netin":0,"maxmem":8565817344,"type":"qemu","diskwrite":0}]}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/nextid?vmid=126 HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 14
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":"126"}
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Accept-Encoding: gzip
+
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 3815
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"uptime":0,"vmid":10000,"netout":0,"node":"pve","template":1,"name":"ubuntu-20-04-cloudimg","mem":0,"status":"stopped","disk":0,"maxcpu":1,"cpu":0,"id":"qemu/10000","maxdisk":2361393152,"diskread":0,"maxmem":2147483648,"diskwrite":0,"type":"qemu","netin":0},{"disk":0,"maxcpu":8,"cpu":0.8448409503654,"id":"qemu/130","status":"running","mem":20924692693,"node":"pve","template":0,"name":"master01","uptime":241152,"vmid":130,"netout":226455821584,"netin":2252488526202,"maxmem":25769803776,"diskwrite":932675289088,"type":"qemu","maxdisk":37794873344,"diskread":2700631552,"pool":"cluster1"},{"maxmem":25769803776,"diskwrite":280074833920,"type":"qemu","netin":43628770801,"maxdisk":37794873344,"diskread":451111936,"pool":"cluster1","mem":18754267841,"status":"running","maxcpu":8,"disk":0,"id":"qemu/131","cpu":0.123518549612638,"uptime":241090,"vmid":131,"netout":154477161708,"node":"pve2","template":0,"name":"master02"},{"cpu":0.0850188476729187,"id":"qemu/134","disk":0,"maxcpu":8,"mem":21232010931,"status":"running","name":"master03","template":0,"node":"pve3","netout":351831800928,"vmid":134,"uptime":509018,"netin":924774181010,"type":"qemu","diskwrite":1026945915392,"maxmem":25769803776,"pool":"cluster1","diskread":4776222208,"maxdisk":37794873344},{"uptime":241029,"vmid":135,"netout":8062367385,"node":"pve","template":0,"name":"worker01","status":"running","mem":10389502281,"disk":0,"maxcpu":8,"cpu":0.106690264469078,"id":"qemu/135","maxdisk":27057455104,"diskread":487988224,"pool":"cluster1","maxmem":25769803776,"diskwrite":13391478784,"type":"qemu","netin":5805330441},{"cpu":0.0599874923323672,"id":"qemu/136","maxcpu":8,"disk":0,"status":"running","mem":11191243082,"name":"worker02","template":0,"node":"pve2","netout":12776446823,"vmid":136,"uptime":509028,"netin":577851761570,"type":"qemu","diskwrite":37476936192,"maxmem":25769803776,"pool":"cluster1","diskread":3212613632,"maxdisk":27057455104},{"netin":869946907640,"diskwrite":378004965888,"type":"qemu","maxmem":25769803776,"diskread":56757225472,"pool":"cluster1","maxdisk":27057455104,"id":"qemu/137","cpu":0.0560684641980887,"disk":0,"maxcpu":8,"status":"running","mem":11818118941,"template":0,"name":"worker03","node":"pve3","vmid":137,"netout":400806382837,"uptime":509014},{"netout":121171004800,"vmid":140,"uptime":509032,"name":"storage01","template":0,"node":"pve","mem":14801074114,"status":"running","id":"qemu/140","cpu":0.0727204868668952,"disk":0,"maxcpu":8,"pool":"cluster1","diskread":44350136320,"maxdisk":27057455104,"type":"qemu","diskwrite":257891220992,"maxmem":25769803776,"netin":655883863930},{"cpu":0.0827675527117471,"id":"qemu/141","maxcpu":8,"disk":0,"mem":16278409676,"status":"running","template":0,"name":"storage02","node":"pve2","vmid":141,"netout":164494707159,"uptime":241112,"netin":1201553770629,"diskwrite":119627143680,"type":"qemu","maxmem":25769803776,"diskread":71769874432,"pool":"cluster1","maxdisk":27057455104},{"netin":296454824009,"maxmem":25769803776,"type":"qemu","diskwrite":319151573504,"maxdisk":27057455104,"pool":"cluster1","diskread":59829084160,"maxcpu":8,"disk":0,"cpu":0.16771677852718,"id":"qemu/142","status":"running","mem":10665803776,"node":"pve3","name":"storage03","template":0,"uptime":241201,"netout":96930961172,"vmid":142},{"netout":0,"vmid":199,"uptime":0,"name":"workerXX","template":0,"node":"pve","mem":0,"status":"stopped","id":"qemu/199","cpu":0,"maxcpu":8,"disk":0,"pool":"cluster1","diskread":0,"maxdisk":27057455104,"type":"qemu","diskwrite":0,"maxmem":8589934592,"netin":0},{"node":"pve","template":1,"name":"ubuntu-ci","uptime":0,"vmid":8000,"netout":0,"maxcpu":8,"disk":0,"id":"qemu/8000","cpu":0,"mem":0,"status":"stopped","maxdisk":2361393152,"diskread":0,"pool":"cluster1","netin":0,"maxmem":8565817344,"diskwrite":0,"type":"qemu"}]}
+2021/10/28 10:24:54 [DEBUG][QemuVmCreate] cloning VM
+2021/10/28 10:24:54 >>>>>>>>>> REQUEST:
+POST /api2/json/nodes/pve/qemu/10000/clone HTTP/1.1
+Host: 192.168.3.100:8006
+User-Agent: Go-http-client/1.1
+Content-Length: 64
+Accept: application/json
+Authorization: PVEAPIToken=terraform-prov@pve!mytoken=21e59138-2243-4a61-ba90-c45f862e7e33
+Content-Type: application/x-www-form-urlencoded
+Accept-Encoding: gzip
+
+full=1&name=k8s-storage02&newid=4031&storage=nas-zfs&target=pve2
+2021/10/28 10:24:54 <<<<<<<<<< RESULT:
+HTTP/1.1 403 Permission check failed
+Connection: close
+Content-Length: 13
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 28 Oct 2021 08:24:56 GMT
+Expires: Thu, 28 Oct 2021 08:24:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null}
