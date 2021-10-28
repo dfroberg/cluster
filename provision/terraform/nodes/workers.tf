@@ -38,6 +38,7 @@ resource "proxmox_vm_qemu" "kube-worker" {
   os_type      = "cloud-init"
   ipconfig0    = "ip=${each.value.cidr},gw=${each.value.gw}"
   ipconfig1    = "ip=${each.value.ceph_cidr}"
+  cicustom     = "user=nas-nfs:snippets/vm-${each.value.id}-user-data.yml,meta=nas-nfs:snippets/vm-${each.value.id}-meta-data.yml,network=nas-nfs:snippets/vm-${each.value.id}-network-data.yml"
   ciuser       = "dfroberg"
   cipassword   = data.sops_file.secrets.data["k8s.user_password"]
   searchdomain = var.common.search_domain

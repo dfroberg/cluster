@@ -39,11 +39,11 @@ resource "proxmox_vm_qemu" "kube-master" {
   ipconfig0    = "ip=${each.value.cidr},gw=${each.value.gw}"
   ipconfig1    = "ip=${each.value.ceph_cidr}"
   cicustom     = "user=nas-nfs:snippets/vm-${each.value.id}-user-data.yml,meta=nas-nfs:snippets/vm-${each.value.id}-meta-data.yml,network=nas-nfs:snippets/vm-${each.value.id}-network-data.yml"
-  #ciuser       = "dfroberg"
-  #cipassword   = data.sops_file.secrets.data["k8s.user_password"]
-  #searchdomain = var.common.search_domain
-  #nameserver   = var.common.nameserver
-  #sshkeys      = data.sops_file.secrets.data["k8s.ssh_key"]
+  ciuser       = "dfroberg"
+  cipassword   = data.sops_file.secrets.data["k8s.user_password"]
+  searchdomain = var.common.search_domain
+  nameserver   = var.common.nameserver
+  sshkeys      = data.sops_file.secrets.data["k8s.ssh_key"]
   cloudinit_cdrom_storage = "nas-nfs"
   numa         = "1"
   hotplug      = "disk,network,usb,memory,cpu"

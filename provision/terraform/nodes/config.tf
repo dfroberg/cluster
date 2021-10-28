@@ -58,14 +58,14 @@ resource "null_resource" "cloud_init_config_files" {
 
   provisioner "file" {
     source      = local_file.cloud_init_user_data_file[each.key].filename
-    destination = "/mnt/pve/nas-nfs/snippets/vm-${each.value.id}-user-data.yaml"
+    destination = "/mnt/pve/nas-nfs/snippets/vm-${each.value.id}-user-data.yml"
   }
   provisioner "file" {
     source      = local_file.cloud_init_meta_data_file[each.key].filename
-    destination = "/mnt/pve/nas-nfs/snippets/vm-${each.value.id}-meta-data.yaml"
+    destination = "/mnt/pve/nas-nfs/snippets/vm-${each.value.id}-meta-data.yml"
   }
   provisioner "file" {
     source      = local_file.cloud_init_network_data_file[each.key].filename
-    destination = "/mnt/pve/nas-nfs/snippets/vm-${each.value.id}-network-data.yaml"
+    destination = "/mnt/pve/nas-nfs/snippets/vm-${each.value.id}-network-data.yml"
   }
 }
