@@ -27,6 +27,13 @@ provider "proxmox" {
   pm_parallel         = 4
   pm_api_token_id     = data.sops_file.global_secrets.data["proxmox.pm_api_token_id"]
   pm_api_token_secret = data.sops_file.global_secrets.data["proxmox.pm_api_token_secret"]
+  pm_log_enable       = true
+  pm_log_file         = "terraform-plugin-proxmox.log"
+  pm_debug            = true
+  pm_log_levels       = {
+    _default          = "debug"
+    _capturelog       = ""
+  }
 }
 
 provider "sops" {}

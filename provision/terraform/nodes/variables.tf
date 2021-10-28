@@ -3,7 +3,7 @@ variable "common" {
   type = map(string)
   default = {
     os_type       = "ubuntu"
-    clone         = "ubuntu-20.04-cloudimg"
+    clone         = "ubuntu-20-04-cloudimg"
     search_domain = "cs.aml.ink"
     nameserver    = "192.168.30.1"
     username      = "dfroberg"
