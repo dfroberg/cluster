@@ -4,7 +4,7 @@ terraform {
   required_providers {
     proxmox = {
       source = "Telmate/proxmox"
-      version = "2.9.0"
+      version = "2.8.0"
     }
     minio = {
       source = "refaktory/minio"
@@ -31,7 +31,7 @@ provider "proxmox" {
   pm_password         = data.sops_file.global_secrets.data["proxmox.pm_password"]
   pm_log_enable       = true
   pm_log_file         = "terraform-plugin-proxmox.log"
-  pm_debug            = true
+  #pm_debug            = true
   pm_log_levels       = {
     _default          = "debug"
     _capturelog       = ""
