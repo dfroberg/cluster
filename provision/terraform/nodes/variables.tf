@@ -22,6 +22,7 @@ variable "masters" {
       macaddr     = "68:b5:99:b3:da:01"
       memory      = 24576
       disk        = "30G"
+      disk_slot   = 0
       target_node = "pve"
     },
     k8s-master02 = {
@@ -33,6 +34,7 @@ variable "masters" {
       macaddr     = "68:b5:99:b3:da:02"
       memory      = 24576
       disk        = "30G"
+      disk_slot   = 0
       target_node = "pve2"
     },
     k8s-master03 = {
@@ -44,6 +46,7 @@ variable "masters" {
       macaddr     = "68:b5:99:b3:da:03"
       memory      = 24576
       disk        = "30G"
+      disk_slot   = 0
       target_node = "pve3"
     }
   }
@@ -61,6 +64,7 @@ variable "workers" {
       macaddr     = "68:b5:99:b3:da:0A"
       memory      = 24576
       disk        = "30G"
+      disk_slot   = 0
       target_node = "pve"
     },
     k8s-worker02 = {
@@ -72,6 +76,7 @@ variable "workers" {
       macaddr     = "68:b5:99:b3:da:0B"
       memory      = 24576
       disk        = "30G"
+      disk_slot   = 0
       target_node = "pve2"
     },
     k8s-worker03 = {
@@ -83,6 +88,7 @@ variable "workers" {
       macaddr     = "68:b5:99:b3:da:0C"
       memory      = 24576
       disk        = "30G"
+      disk_slot   = 0
       target_node = "pve3"
     },
   }
@@ -100,7 +106,9 @@ variable "storage" {
       macaddr     = "68:b5:99:b3:da:1A"
       memory      = 24576
       disk        = "30G"
+      disk_slot   = 0
       storage_disk= "100G"
+      storage_disk_slot   = 1
       target_node = "pve"
     },
     k8s-storage02 = {
@@ -112,7 +120,9 @@ variable "storage" {
       macaddr     = "68:b5:99:b3:da:1B"
       memory      = 24576
       disk        = "30G"
+      disk_slot   = 0
       storage_disk= "100G"
+      storage_disk_slot   = 1
       target_node = "pve2"
     },
     k8s-storage03 = {
@@ -124,7 +134,9 @@ variable "storage" {
       macaddr     = "68:b5:99:b3:da:1C"
       memory      = 24576
       disk        = "30G"
+      disk_slot   = 0
       storage_disk= "100G"
+      storage_disk_slot   = 1
       target_node = "pve3"
     },
   }

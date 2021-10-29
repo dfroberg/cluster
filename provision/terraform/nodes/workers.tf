@@ -22,6 +22,7 @@ resource "proxmox_vm_qemu" "kube-worker" {
     bridge   = "vmbr25"
   }
   disk {
+    slot    = each.value.disk_slot # needed to prevent recreate
     type    = "scsi"
     storage = "nas-zfs"
     size    = each.value.disk
@@ -38,7 +39,7 @@ resource "proxmox_vm_qemu" "kube-worker" {
   os_type      = "cloud-init"
   ipconfig0    = "ip=${each.value.cidr},gw=${each.value.gw}"
   ipconfig1    = "ip=${each.value.ceph_cidr}"
-  cicustom     = "user=nas-nfs:snippets/vm-${each.value.id}-user-data.yml,meta=nas-nfs:snippets/vm-${each.value.id}-meta-data.yml,network=nas-nfs:snippets/vm-${each.value.id}-network-data.yml"
+  cicustom     = "user=nas-nfs:snippets/vm-${each.value.id}-user-data.yaml,meta=nas-nfs:snippets/vm-${each.value.id}-meta-data.yaml,network=nas-nfs:snippets/vm-${each.value.id}-network-data.yaml"
   ciuser       = "dfroberg"
   cipassword   = data.sops_file.secrets.data["k8s.user_password"]
   searchdomain = var.common.search_domain
