@@ -17,6 +17,7 @@ variable "masters" {
       id          = 4010
       cidr        = "192.168.30.10/24"
       ceph_cidr   = "192.168.25.10/24"
+      vcpus       = 1
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:01"
@@ -24,11 +25,13 @@ variable "masters" {
       disk        = "30G"
       disk_slot   = 0
       target_node = "pve"
+      storage_pool     = "vm-data"
     },
     k8s-master02 = {
       id          = 4011
       cidr        = "192.168.30.11/24"
       ceph_cidr   = "192.168.25.11/24"
+      vcpus       = 1
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:02"
@@ -36,11 +39,13 @@ variable "masters" {
       disk        = "30G"
       disk_slot   = 0
       target_node = "pve2"
+      storage_pool     = "vm-data"
     },
     k8s-master03 = {
       id          = 4012
       cidr        = "192.168.30.12/24"
       ceph_cidr   = "192.168.25.12/24"
+      vcpus       = 1
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:03"
@@ -48,6 +53,7 @@ variable "masters" {
       disk        = "30G"
       disk_slot   = 0
       target_node = "pve3"
+      storage_pool     = "hdd500thin"
     }
   }
 }
@@ -59,6 +65,7 @@ variable "workers" {
       id          = 4020
       cidr        = "192.168.30.20/24"
       ceph_cidr   = "192.168.25.20/24"
+      vcpus       = 1
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:0A"
@@ -66,11 +73,13 @@ variable "workers" {
       disk        = "30G"
       disk_slot   = 0
       target_node = "pve"
+      storage_pool     = "vm-data"
     },
     k8s-worker02 = {
       id          = 4021
       cidr        = "192.168.30.21/24"
       ceph_cidr   = "192.168.25.21/24"
+      vcpus       = 1
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:0B"
@@ -78,11 +87,13 @@ variable "workers" {
       disk        = "30G"
       disk_slot   = 0
       target_node = "pve2"
+      storage_pool     = "vm-data"
     },
     k8s-worker03 = {
       id          = 4022
       cidr        = "192.168.30.22/24"
       ceph_cidr   = "192.168.25.22/24"
+      vcpus       = 1
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:0C"
@@ -90,6 +101,7 @@ variable "workers" {
       disk        = "30G"
       disk_slot   = 0
       target_node = "pve3"
+      storage_pool= "hdd500thin"
     },
   }
 }
@@ -101,6 +113,7 @@ variable "storage" {
       id          = 4030
       cidr        = "192.168.30.30/24"
       ceph_cidr   = "192.168.25.30/24"
+      vcpus       = 1
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:1A"
@@ -110,11 +123,14 @@ variable "storage" {
       storage_disk= "100G"
       storage_disk_slot   = 1
       target_node = "pve"
+      storage_pool     = "vm-data"
+      storage_pool_disk_storage = "nas-zfs"
     },
     k8s-storage02 = {
       id          = 4031
       cidr        = "192.168.30.31/24"
       ceph_cidr   = "192.168.25.31/24"
+      vcpus       = 1
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:1B"
@@ -124,11 +140,14 @@ variable "storage" {
       storage_disk= "100G"
       storage_disk_slot   = 1
       target_node = "pve2"
+      storage_pool     = "vm-data"
+      storage_pool_disk_storage = "nas-zfs"
     },
     k8s-storage03 = {
       id          = 4032
       cidr        = "192.168.30.32/24"
       ceph_cidr   = "192.168.25.32/24"
+      vcpus       = 1
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:1C"
@@ -138,6 +157,8 @@ variable "storage" {
       storage_disk= "100G"
       storage_disk_slot   = 1
       target_node = "pve3"
+      storage_pool     = "hdd500thin"
+      storage_pool_disk_storage = "nas-zfs"
     },
   }
 }

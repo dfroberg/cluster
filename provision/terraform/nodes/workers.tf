@@ -8,6 +8,7 @@ resource "proxmox_vm_qemu" "kube-worker" {
   vmid        = each.value.id
   memory      = each.value.memory
   cores       = each.value.cores
+  vcpus       = each.value.vcpus
   vga {
     type = "qxl"
   }
@@ -24,7 +25,7 @@ resource "proxmox_vm_qemu" "kube-worker" {
   disk {
     slot    = each.value.disk_slot # needed to prevent recreate
     type    = "scsi"
-    storage = "nas-zfs"
+    storage = each.value.storage_pool
     size    = each.value.disk
     format  = "raw"
     ssd     = 1
