@@ -31,6 +31,16 @@ spec:
           enabled: true
         LowNodeUtilization:
           enabled: true
+        RemoveFailedPods:
+          enabled: true
+          params:
+            failedPods:
+              reasons:
+              - "NodeAffinity"
+              includingInitContainers: true
+              excludeOwnerKinds:
+              - "Job"
+              minPodLifeTimeSeconds: 3600
     tolerations:
       - effect: NoExecute
         operator: Exists
