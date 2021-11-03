@@ -7,8 +7,10 @@ resource "proxmox_vm_qemu" "kube-worker" {
   clone       = var.common.clone
   vmid        = each.value.id
   memory      = each.value.memory
+  sockets     = each.value.sockets
   cores       = each.value.cores
   vcpus       = each.value.vcpus
+  cpulimit    = each.value.cpulimit
   vga {
     type = "qxl"
   }
