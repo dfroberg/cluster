@@ -2,7 +2,7 @@
 # This script depends on setting up a TCP LoadBalancer first
 
 export USER=dfroberg
-export SERVER_IP=192.168.30.70
+export SERVER_IP=192.168.30.50
 export K3S_VERSION=v1.21.4+k3s1
 export LB=192.168.30.60
 
@@ -16,9 +16,9 @@ k3sup install \
 --node-taint CriticalAddonsOnly=true:NoExecute \
 --node-label master=yes \
 --tls-san 192.168.30.60 \
---tls-san 192.168.30.70 \
---tls-san 192.168.30.71 \
---tls-san 192.168.30.72 \
+--tls-san 192.168.30.50 \
+--tls-san 192.168.30.51 \
+--tls-san 192.168.30.52 \
 --write-kubeconfig-mode 644 \
 --disable servicelb \
 --disable traefik \
@@ -31,7 +31,7 @@ sed --in-place='' --expression="s/$SERVER_IP/$LB/g" /home/dfroberg/cluster/kubec
 
 
 echo "Master 02"
-export NEXT_SERVER_IP=192.168.30.71
+export NEXT_SERVER_IP=192.168.30.51
 
 k3sup join \
   --ip $NEXT_SERVER_IP \
@@ -44,9 +44,9 @@ k3sup join \
 --node-taint CriticalAddonsOnly=true:NoExecute \
 --node-label master=yes \
 --tls-san 192.168.30.60 \
---tls-san 192.168.30.70 \
---tls-san 192.168.30.71 \
---tls-san 192.168.30.72 \
+--tls-san 192.168.30.50 \
+--tls-san 192.168.30.51 \
+--tls-san 192.168.30.52 \
 --write-kubeconfig-mode 644 \
 --disable servicelb \
 --disable traefik \
@@ -54,7 +54,7 @@ k3sup join \
 "
 sleep 5
 echo "Master 03"
-export NEXT_SERVER_IP=192.168.30.72
+export NEXT_SERVER_IP=192.168.30.52
 
 k3sup join \
   --ip $NEXT_SERVER_IP \
@@ -67,9 +67,9 @@ k3sup join \
 --node-taint CriticalAddonsOnly=true:NoExecute \
 --node-label master=yes \
 --tls-san 192.168.30.60 \
---tls-san 192.168.30.70 \
---tls-san 192.168.30.71 \
---tls-san 192.168.30.72 \
+--tls-san 192.168.30.50 \
+--tls-san 192.168.30.51 \
+--tls-san 192.168.30.52 \
 --write-kubeconfig-mode 644 \
 --disable servicelb \
 --disable traefik \

@@ -50,5 +50,6 @@ k3s_server:
   node-label:
      - "master=yes"
   node-taint:
-    - "k3s-controlplane=true:NoSchedule"
+    #- "k3s-controlplane=true:NoSchedule"
+    - "CriticalAddonsOnly=true:NoSchedule"
 
