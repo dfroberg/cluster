@@ -4,7 +4,7 @@ variable "common" {
   default = {
     os_type       = "ubuntu"
     clone         = "ubuntu-20-04-cloudimg"
-    search_domain = "cs.aml.ink"
+    search_domain = ""  # Ensure this one is blank or coredns will not wor properly
     nameserver    = "192.168.30.1"
     username      = "dfroberg"
   }
