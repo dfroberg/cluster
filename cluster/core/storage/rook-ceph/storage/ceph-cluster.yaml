@@ -59,6 +59,8 @@ spec:
       limits:
         memory: 2048Mi
     osd:
+      tolerations:
+        - operator: "Exists"
       requests:
         cpu: 350m
         memory: 2048Mi
