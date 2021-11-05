@@ -4,7 +4,7 @@ resources:
   - rook-config-override.yaml
   - ceph-block-pool.yaml
   - ceph-cluster.yaml
-  - ceph-object.yaml
+  #- ceph-object.yaml
   - storage-class.yaml
   - volume-snapshot-class.yaml
   - ceph-bucket.yaml
