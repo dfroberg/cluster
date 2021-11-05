@@ -31,7 +31,7 @@ spec:
         aws:
           bucketnames: loki
           endpoint: ${SECRET_MINIO_HOST}
-          region: us-west1
+          region: minio
           access_key_id: ${SECRET_MINIO_ACCESS_KEY}
           secret_access_key: ${SECRET_MINIO_SECRET_KEY}
           insecure: false

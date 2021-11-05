@@ -28,7 +28,7 @@ spec:
         bucket: velero
         default: true
         config:
-          region: us-east-1
+          region: minio
           s3ForcePathStyle: true
           s3Url: https://${SECRET_MINIO_HOST}
           publicUrl: https://${SECRET_MINIO_HOST}
