@@ -70,9 +70,9 @@ spec:
     config:
       osdsPerDevice: "1"
     nodes:
-      - name: "storage01.${SECRET_NODE_DOMAIN}"
+      - name: "storage01"
         deviceFilter: "sd[b-z]"
-      - name: "storage02.${SECRET_NODE_DOMAIN}"
+      - name: "storage02"
         deviceFilter: "sd[b-z]"
-      - name: "storage03.${SECRET_NODE_DOMAIN}"
+      - name: "storage03"
         deviceFilter: "sd[b-z]"
