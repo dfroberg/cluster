@@ -15,4 +15,6 @@ k3s_agent:
   # node-label:
   #   - "node-role.kubernetes.io/worker=true"
   node-label:
-     - "storage=yes"
+    - "storage=yes"
+  node-taint:
+    - "StorageOnly=true:NoSchedule"
