@@ -3,8 +3,8 @@ kind: Kustomization
 resources:
   - default
   - system-upgrade
-  - databases
+#  - databases
 #  - k10
   - vpn-gateway
   - media
-  - mailu
+#  - mailu
