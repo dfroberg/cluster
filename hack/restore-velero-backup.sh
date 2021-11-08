@@ -42,8 +42,8 @@ do
     PVC="$(kubectl get pvc -n $NAMESPACE | grep -e "$deployment-config" | awk '{print $1}')"
     if [[ ! -z "$PVC" ]]
     then
-        echo "► Deleting deployment $deployment"
-        kubectl delete deployment $deployment -n $NAMESPACE --wait 
+#        echo "► Deleting deployment $deployment"
+#        kubectl delete deployment $deployment -n $NAMESPACE --wait 
         echo "► Deleting $PVC in $deployment"
         kubectl delete pvc $PVC -n $NAMESPACE --wait 
     else
