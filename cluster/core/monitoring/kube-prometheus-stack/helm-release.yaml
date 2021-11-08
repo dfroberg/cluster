@@ -115,6 +115,8 @@ spec:
       fullnameOverride: kube-state-metrics
     prometheus-node-exporter:
       fullnameOverride: node-exporter
+      tolerations:
+        - operator: Exists
     grafana:
       enabled: false
       forceDeployDashboards: true
