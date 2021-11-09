@@ -71,11 +71,11 @@ spec:
         requests:
           cpu: 512m
           memory: 263M
-          ephemeral-storage: "2Gi"
+          ephemeral-storage: "4Gi"
         limits:
           cpu: 2048m
           memory: 512M
-          ephemeral-storage: "4Gi"
+          ephemeral-storage: "8Gi"
     storegateway:
       enabled: true
       persistence:
