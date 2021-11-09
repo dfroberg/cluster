@@ -76,8 +76,8 @@ spec:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "false"
           hajimari.io/enable: "false"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure,web"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-auth@kubernetescrd"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          #traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-auth@kubernetescrd"
         hosts:
           - host: "hajimari.${SECRET_DOMAIN}"
             paths:
