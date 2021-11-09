@@ -5,6 +5,5 @@ resources:
 #  - system-upgrade
 #  - databases
 #  - k10
-  - vpn-gateway
   - media
 #  - mailu
