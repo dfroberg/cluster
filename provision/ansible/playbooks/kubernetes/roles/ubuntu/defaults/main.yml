@@ -30,6 +30,7 @@ apt_install_packages:
   - scsitools
   - cloud-utils
   - wireguard
+  - tmux
   
 
 apt_remove_packages:
@@ -52,6 +53,5 @@ apt_remove_packages:
   - popularity-contest
   - snapd
   - sosreport
-  - tmux
   - ubuntu-advantage-tools
   - ufw
