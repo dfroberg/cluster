@@ -11,7 +11,7 @@
     dest: "/etc/systemd/journald.conf"
     section: Journal
     option: Storage
-    value: "Persistent"
+    value: "persistent"
     no_extra_spaces: yes
 - name: set SystemMaxFiles limit
   ini_file:

@@ -1,0 +1,32 @@
+---
+- hosts:
+    - master
+    - worker
+    - storage
+  pre_tasks:
+  - name: get current python interpreter (for pip virtualenvs)
+    command: which python
+    register: which_interpreter
+    tags: always
+    changed_when: False
+
+  - name: Use the current python path instead of system python
+    set_fact:
+      ansible_python_interpreter: "{{ which_interpreter.stdout }}"
+    tags: always
+
+- name: Load PVE variables into the global namespace
+  community.sops.load_vars:
+    file: pve.sops.yml
+    
+# Ensure the nodes are started
+- name: Get VM current state
+  community.general.proxmox_kvm:
+    api_user: "{{ proxmox_api_user }}"
+    api_password: "{{ proxmox_api_password }}"
+    api_host: "127.0.0.1"
+    name: "{{ inventory_hostname }}"
+    node: "{{ pve_host }}"
+    state: current
+  tags:
+    - pve
