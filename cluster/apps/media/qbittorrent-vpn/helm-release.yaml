@@ -28,6 +28,18 @@ spec:
         ports:
           http:
             port: 8080
+      bittorrent:
+        enabled: true
+        type: LoadBalancer
+        externalIPs:
+          - "${SVC_QBITTORRENT_ADDR}"
+        ports:
+          bittorrent:
+            enabled: true
+            port: 50413
+            protocol: TCP
+            targetPort: 50413
+        externalTrafficPolicy: Local
     ingress:
       main:
         enabled: true
