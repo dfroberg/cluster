@@ -18,3 +18,4 @@ k3s_agent:
     - "storage=yes"
   node-taint:
     - "StorageOnly=true:NoSchedule"
+    - "StorageOnly=true:NoExecute"
