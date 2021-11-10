@@ -78,6 +78,8 @@ spec:
                   protocol: TCP
                 - port: ${VPN_GATEWAY_VPN_PORT}
                   protocol: UDP
+                - port: ${VPN_PORT}
+                  protocol: UDP
             - to:
                 - ipBlock:
                     cidr: ${NETWORK_K8S_CLUSTER_CIDR}
