@@ -30,17 +30,16 @@ spec:
             port: 8080
       bittorrent:
         enabled: true
-        type: ClusterIP
-#        type: LoadBalancer
-#        externalIPs:
-#          - "${SVC_QBITTORRENT_ADDR}"
+        type: LoadBalancer
+        externalIPs:
+          - "${SVC_QBITTORRENT_ADDR}"
         ports:
           bittorrent-tcp:
             enabled: true
             port: 50413
             protocol: TCP
             targetPort: 50413
-          bittorrent-udp:
+          bittorrent:
             enabled: true
             port: 50413
             protocol: UDP
