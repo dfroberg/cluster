@@ -5,7 +5,7 @@ metadata:
   name: vpn-gateway
   namespace: vpn-gateway
 spec:
-  interval: 5m
+  interval: 1m
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
@@ -15,7 +15,7 @@ spec:
         kind: HelmRepository
         name: k8s-at-home-charts
         namespace: flux-system
-      interval: 5m
+      interval: 1m
   # See https://github.com/k8s-at-home/charts/blob/master/charts/pod-gateway/values.yaml
   values:
     image:
