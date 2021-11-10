@@ -60,10 +60,10 @@ spec:
       resources:
         limits:
           cpu: 125m
-          memory: 128Mi
+          memory: 512Mi
         requests:
           cpu: 25m
-          memory: 32Mi
+          memory: 256Mi
     nodeSelector:
       worker: yes
     affinity:
