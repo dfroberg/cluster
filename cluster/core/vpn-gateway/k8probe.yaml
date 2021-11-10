@@ -28,6 +28,8 @@ spec:
           wait $!;
           done
         imagePullPolicy: IfNotPresent
+        podAnnotations:
+          setGateway: "true"
         resources:
           limits:
             cpu: 50m
