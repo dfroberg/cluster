@@ -64,6 +64,10 @@ spec:
           failureThreshold: 1
         networkPolicy:
           enabled: true
+          ingress:
+            - from:
+              - ipBlock:
+                  cidr: 0.0.0.0/0
           egress:
             - to:
                 - ipBlock:
@@ -71,6 +75,8 @@ spec:
               ports:
                 # VPN traffic
                 - port: 443
+                  protocol: TCP
+                - port: 80
                   protocol: TCP
                 - port: 53
                   protocol: UDP
