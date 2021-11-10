@@ -70,6 +70,12 @@ spec:
                     cidr: 0.0.0.0/0
               ports:
                 # VPN traffic
+                - port: 443
+                  protocol: TCP
+                - port: 53
+                  protocol: UDP
+                - port: 53
+                  protocol: TCP
                 - port: ${VPN_GATEWAY_VPN_PORT}
                   protocol: UDP
             - to:
@@ -92,9 +98,9 @@ spec:
       - hostname: qbittorrent-vpn
         IP: 10
         ports:
-          - type: tcp
+          - type: TCP
             port: ${VPN_FORWARDED_PORT_1}
-          - type: tcp
+          - type: UDP
             port: ${VPN_FORWARDED_PORT_1}
     webhook:
       image:
