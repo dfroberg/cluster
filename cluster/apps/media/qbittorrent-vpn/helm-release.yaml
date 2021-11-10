@@ -34,16 +34,16 @@ spec:
         externalIPs:
           - "${SVC_QBITTORRENT_ADDR}"
         ports:
-          bittorrent-tcp:
+          bittorrentTcp:
             enabled: true
-            port: 50413
+            port: ${VPN_FORWARDED_PORT_1}
             protocol: TCP
-            targetPort: 50413
+            targetPort: ${VPN_FORWARDED_PORT_1}
           bittorrent:
             enabled: true
-            port: 50413
+            port: ${VPN_FORWARDED_PORT_1}
             protocol: UDP
-            targetPort: 50413
+            targetPort: ${VPN_FORWARDED_PORT_1}
         externalTrafficPolicy: Local
     ingress:
       main:

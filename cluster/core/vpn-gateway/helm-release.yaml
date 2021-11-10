@@ -47,15 +47,15 @@ spec:
           KILLSWITCH: "true"
         # configFileSecret: vpn-gateway-vpnconfig
         configFile: |-
-            [Interface]
-            PrivateKey = ${VPN_INTERFACE_PRIVATE_KEY}
-            Address = ${VPN_INTERFACE_ADDRESS}
-            DNS = 1.1.1.1
-            [Peer]
-            PublicKey = ${VPN_PEER_PUBLIC_KEY}
-            AllowedIPs = 0.0.0.0/0, ::/0
-            Endpoint = ${VPN_PEER_ENDPOINT}
-            PersistentKeepalive = 25
+          [Interface]
+          PrivateKey = ${VPN_INTERFACE_PRIVATE_KEY}
+          Address = ${VPN_INTERFACE_ADDRESS}
+          DNS = 1.1.1.1
+          [Peer]
+          PublicKey = ${VPN_PEER_PUBLIC_KEY}
+          AllowedIPs = 0.0.0.0/0, ::/0
+          Endpoint = ${VPN_PEER_ENDPOINT}
+          PersistentKeepalive = 25
         resources:
           requests:
             cpu: 100m
@@ -91,7 +91,7 @@ spec:
     routed_namespaces:
       - media
     settings:
-      DNS_LOCAL_CIDRS: ${LOCAL_DOMAIN}
+      DNS_LOCAL_CIDRS: ${CLUSTER_DOMAIN}
       VPN_INTERFACE: wg0
       VPN_BLOCK_OTHER_TRAFFIC: true
       VPN_TRAFFIC_PORT: ${VPN_PORT}
