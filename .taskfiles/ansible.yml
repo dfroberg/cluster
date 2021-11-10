@@ -46,6 +46,12 @@ tasks:
     cmds:
       - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'rm -rf /var/ramdisk-backup/*'"
     silent: true
+  fstrim:
+    desc: Fstrim all the hosts
+    dir: ansible
+    cmds:
+      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'fstrim /'"
+    silent: true
   ping:
     desc: Ping all the hosts
     dir: ansible
