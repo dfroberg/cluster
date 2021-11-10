@@ -27,6 +27,7 @@ spec:
           - NET_ADMIN
           - SYS_ADMIN
     updateStrategy: Recreate
+    clusterName: ${CLUSTER_DOMAIN}
     addons:
       vpn:
         enabled: true
@@ -44,7 +45,17 @@ spec:
           TZ: "${CLUSTER_TZ}"
           IPTABLES_BACKEND: nft
           KILLSWITCH: "true"
-        configFileSecret: vpn-gateway-vpnconfig
+        # configFileSecret: vpn-gateway-vpnconfig
+        configFile: |-
+            [Interface]
+            PrivateKey = ${VPN_INTERFACE_PRIVATE_KEY}
+            Address = ${VPN_INTERFACE_ADDRESS}
+            DNS = 1.1.1.1
+            [Peer]
+            PublicKey = ${VPN_PEER_PUBLIC_KEY}
+            AllowedIPs = 0.0.0.0/0, ::/0
+            Endpoint = ${VPN_PEER_ENDPOINT}
+            PersistentKeepalive = 25
         resources:
           requests:
             cpu: 100m
@@ -64,26 +75,11 @@ spec:
           failureThreshold: 1
         networkPolicy:
           enabled: true
-          ingress:
-            - from:
-              - ipBlock:
-                  cidr: 0.0.0.0/0
           egress:
             - to:
                 - ipBlock:
                     cidr: 0.0.0.0/0
               ports:
-                # VPN traffic
-                - port: 443
-                  protocol: TCP
-                - port: 80
-                  protocol: TCP
-                - port: 53
-                  protocol: UDP
-                - port: 53
-                  protocol: TCP
-                - port: ${VPN_GATEWAY_VPN_PORT}
-                  protocol: UDP
                 - port: ${VPN_PORT}
                   protocol: UDP
             - to:
@@ -91,18 +87,17 @@ spec:
                     cidr: ${NETWORK_K8S_CLUSTER_CIDR}
                 - ipBlock:
                     cidr: ${NETWORK_K8S_SERVICE_CIDR}
-                - ipBlock:
-                    cidr: ${NETWORK_SERVER_CIDR}
 
     routed_namespaces:
       - media
     settings:
-      VXLAN_ID: 42
+      DNS_LOCAL_CIDRS: ${LOCAL_DOMAIN}
       VPN_INTERFACE: wg0
       VPN_BLOCK_OTHER_TRAFFIC: true
-      VPN_TRAFFIC_PORT: "${VPN_GATEWAY_VPN_PORT}"
-      NOT_ROUTED_TO_GATEWAY_CIDRS: "${NETWORK_K8S_CLUSTER_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVER_CIDR}"
-      VPN_LOCAL_CIDRS: "${NETWORK_K8S_CLUSTER_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVER_CIDR}"
+      VPN_TRAFFIC_PORT: ${VPN_PORT}
+      VXLAN_ID: 42
+      NOT_ROUTED_TO_GATEWAY_CIDRS: ${NETWORK_K8S_CLUSTER_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVER_CIDR}
+      VPN_LOCAL_CIDRS: ${NETWORK_K8S_CLUSTER_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVER_CIDR}
       # Use a different VXLAN network segment that does not conflict with the above
       #VXLAN_IP_NETWORK: "${VXLAN_IP_NETWORK}"
     publicPorts:
