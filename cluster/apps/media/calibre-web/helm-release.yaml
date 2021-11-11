@@ -57,7 +57,7 @@ spec:
           - "books.${SECRET_DOMAIN}"
     resources:
       requests:
-        memory: 256Mi
+        memory: 1256Mi
     probes:
       startup:
         spec:
