@@ -22,8 +22,8 @@ spec:
       tag: version-0.6.13
     env:
       TZ: "${CLUSTER_TZ}"
-      PUID: 1000
-      PGID: 1000
+      PUID: 1002
+      PGID: 1002
       DOCKER_MODS: "linuxserver/calibre-web:calibre|ghcr.io/gilbn/theme.park:calibre-web"
       TP_THEME: "dracula"
     podSecurityContext:
