@@ -37,7 +37,7 @@ spec:
           nfs:
             server: "${NAS_ADDR}"
             path: ${NAS_BASE_PATH}/media/books
-        mountPath: /data/media
+        mountPath: /media
     ingress:
       main:
         enabled: true
