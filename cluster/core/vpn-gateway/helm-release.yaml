@@ -41,6 +41,7 @@ spec:
               add:
                 - NET_ADMIN
                 - SYS_ADMIN
+                - sysctl net.ipv4.conf.all.src_valid_mark=1
         env:
           TZ: "${CLUSTER_TZ}"
           IPTABLES_BACKEND: nft
