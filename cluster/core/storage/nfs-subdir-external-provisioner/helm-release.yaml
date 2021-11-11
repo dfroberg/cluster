@@ -29,6 +29,7 @@ spec:
     storageClass:
       defaultClass: true
       pathPattern: "${.PVC.namespace}-${.PVC.name}"
+      reclaimPolicy: Retain 
     affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
