@@ -74,8 +74,8 @@ spec:
           ephemeral-storage: "4Gi"
         limits:
           cpu: 2048m
-          memory: 512M
-          ephemeral-storage: "8Gi"
+          memory: 2512M
+          ephemeral-storage: "12Gi"
     storegateway:
       enabled: true
       persistence:
