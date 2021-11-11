@@ -63,7 +63,7 @@ spec:
         cpu: 350m
         memory: 2048Mi
       limits:
-        memory: 4096Mi
+        memory: 2048Mi
   storage:
     useAllNodes: false
     useAllDevices: false
