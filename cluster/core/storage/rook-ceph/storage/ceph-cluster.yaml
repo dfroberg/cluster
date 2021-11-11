@@ -45,12 +45,11 @@ spec:
     machineDisruptionBudgetNamespace: openshift-machine-api
   resources:
     mgr:
-      limits:
-        cpu: "1500m"
-        memory: 2048Mi
       requests:
         cpu: 1500m
         memory: 1024Mi
+      limits:
+        memory: 2048Mi
     mon:
       requests:
         cpu: 350m
@@ -60,7 +59,7 @@ spec:
     osd:
       requests:
         cpu: 350m
-        memory: 2048Mi
+        memory: 1024Mi
       limits:
         memory: 2048Mi
   storage:
