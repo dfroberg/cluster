@@ -23,6 +23,7 @@ spec:
     - apiVersion: apps/v1
       kind: Deployment
       name: nfs-subdir-external-provisioner
+      namespace: kube-system
     # - apiVersion: apps/v1
     #   kind: Deployment
     #   name: rook-ceph-operator
