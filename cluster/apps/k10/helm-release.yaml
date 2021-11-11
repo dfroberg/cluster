@@ -24,7 +24,7 @@ spec:
       email: "${SECRET_EMAIL}"
     global:
       persistence:
-        storageClass: rook-ceph-block
+        storageClass: nfs-client
     auth:
       tokenAuth:
         enabled: true

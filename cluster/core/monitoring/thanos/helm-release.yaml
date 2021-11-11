@@ -29,7 +29,7 @@ spec:
       repository: bitnami/thanos
     nodeSelector: 
       worker: yes
-    storageClass: "rook-ceph-block"
+    storageClass: "nfs-client"
     query:
       enabled: true
       replicaLabels:
