@@ -22,28 +22,31 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: rook-ceph-operator
-      namespace: rook-ceph
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: snapshot-controller
-      namespace: rook-ceph
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: rook-ceph-mgr-a
-      namespace: rook-ceph
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: rook-ceph-osd-0
-      namespace: rook-ceph
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: rook-ceph-osd-1
-      namespace: rook-ceph
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: rook-ceph-osd-2
-      namespace: rook-ceph
+      name: nfs-subdir-external-provisioner
+    # - apiVersion: apps/v1
+    #   kind: Deployment
+    #   name: rook-ceph-operator
+    #   namespace: rook-ceph
+    # - apiVersion: apps/v1
+    #   kind: Deployment
+    #   name: snapshot-controller
+    #   namespace: rook-ceph
+    # - apiVersion: apps/v1
+    #   kind: Deployment
+    #   name: rook-ceph-mgr-a
+    #   namespace: rook-ceph
+    # - apiVersion: apps/v1
+    #   kind: Deployment
+    #   name: rook-ceph-osd-0
+    #   namespace: rook-ceph
+    # - apiVersion: apps/v1
+    #   kind: Deployment
+    #   name: rook-ceph-osd-1
+    #   namespace: rook-ceph
+    # - apiVersion: apps/v1
+    #   kind: Deployment
+    #   name: rook-ceph-osd-2
+    #   namespace: rook-ceph
   postBuild:
     substitute: {}
     substituteFrom:
