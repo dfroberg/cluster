@@ -20,3 +20,4 @@ resources:
   - mylar
   #- sonarr-uhd
   #- tautulli
+  - calibre-web
