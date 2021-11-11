@@ -61,4 +61,4 @@ spec:
     probes:
       startup:
         spec:
-          periodSeconds: 15
+          periodSeconds: 55
