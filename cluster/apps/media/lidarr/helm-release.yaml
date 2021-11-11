@@ -100,7 +100,8 @@ spec:
         memory: 250Mi
         cpu: 500m
       limits:
-        memory: 1500Mi
+        memory: 2500Mi
+        cpu: 2500m
     additionalContainers:
       fsfreeze:
         name: fsfreeze
