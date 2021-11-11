@@ -68,9 +68,9 @@ spec:
         livenessProbe:
           exec:
             command:
-              - sh
+              - bash
               - -c
-              - if [ $(curl -s https://ipinfo.io/country) = '${VPN_COUNTRY}' ]; then exit 0; else exit $?; fi
+              - if [ "$(curl -s https://ipinfo.io/country)" == "${VPN_COUNTRY}" ]; then exit 0; else exit $?; fi
           initialDelaySeconds: 30
           periodSeconds: 60
           failureThreshold: 1
