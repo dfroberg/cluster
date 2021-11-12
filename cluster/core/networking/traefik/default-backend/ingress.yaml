@@ -30,12 +30,3 @@ spec:
             name: default-http-backend-service
             port:
               number: 80
-  - http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: default-http-backend-service
-            port:
-              number: 80
