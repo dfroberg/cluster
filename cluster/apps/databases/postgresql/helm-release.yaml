@@ -20,7 +20,7 @@ spec:
     image:
       registry: quay.io
       repository: bitnami/postgresql
-      tag: 14.0.0
+      tag: 14.1.0
     postgresqlUsername: ${SECRET_POSTGRES_USERNAME}
     postgresqlPassword: ${SECRET_POSTGRES_PASSWORD}
     postgresqlDatabase: authentik
