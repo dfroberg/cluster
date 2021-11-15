@@ -1,0 +1,30 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: traefik-dashboard
+  namespace: networking
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    #traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-auth@kubernetescrd"
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "web"
+    hajimari.io/appName: "hajimari"
+spec:
+  ingressClassName: "traefik"
+  tls:
+    - hosts:
+        - "hajimari.${SECRET_DOMAIN}"
+      secretName: "${SECRET_DOMAIN//./-}-tls"
+  rules:
+    - host: "hajimari.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: traefik
+                port:
+                  number: 3000
