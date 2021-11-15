@@ -70,7 +70,7 @@ spec:
               url: "https://news.ycombinator.com/"
     ingress:
       main:
-        enabled: true
+        enabled: false
         ingressClassName: "traefik"
         annotations:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
