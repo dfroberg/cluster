@@ -16,6 +16,7 @@ spec:
   tls:
     - hosts:
         - "hajimari.${SECRET_DOMAIN}"
+        - "home.${SECRET_DOMAIN}"
       secretName: "${SECRET_DOMAIN//./-}-tls"
   rules:
     - host: "hajimari.${SECRET_DOMAIN}"
