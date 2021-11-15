@@ -16,6 +16,11 @@ spec:
         name: rook-ceph-charts
         namespace: flux-system
   values:
+    placement:
+      all:
+        tolerations:
+          - key: "StorageOnly"
+            operator: "Exists"
     crds:
       enabled: false
     resources:
