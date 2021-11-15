@@ -28,6 +28,7 @@ data:
   SVC_QBITTORRENT_ADDR: "192.168.30.115"
   NAS_ADDR: "192.168.3.113"
   NAS_BASE_PATH: "/mnt/data/nfs/Recordings"
+  NAS_BACKUP_PATH: "/mnt/data/nfs/backups"
   NAS_PVC_PATH: "/mnt/data/nfs/PersistentVolumeClaims"
   #
   VPN_PORT: "51820"
