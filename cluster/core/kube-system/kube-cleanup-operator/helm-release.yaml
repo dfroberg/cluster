@@ -23,9 +23,9 @@ spec:
     args:
       - --delete-failed-after=10m
       - --delete-successful-after=0
-      - --delete-pending-pods-after=0
+      - --delete-pending-pods-after=5m
       - --delete-evicted-pods-after=5m
-      - --delete-orphaned-pods-after=0
+      - --delete-orphaned-pods-after=5m
       - --legacy-mode=false
     tolerations:
       - effect: NoExecute
