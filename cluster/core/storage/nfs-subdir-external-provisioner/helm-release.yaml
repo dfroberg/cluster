@@ -27,7 +27,7 @@ spec:
       mountOptions:
         - noatime
     storageClass:
-      defaultClass: true
+      defaultClass: false
       pathPattern: "${.PVC.namespace}-${.PVC.name}"
       reclaimPolicy: Retain 
     affinity:
