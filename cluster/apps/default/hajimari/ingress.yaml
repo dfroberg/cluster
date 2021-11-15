@@ -2,8 +2,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: traefik-dashboard
-  namespace: networking
+  name: hajimari
+  namespace: default
   annotations:
     external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
     #traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-auth@kubernetescrd"
