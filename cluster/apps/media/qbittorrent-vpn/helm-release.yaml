@@ -104,7 +104,7 @@ spec:
     resources:
       requests:
         memory: 250Mi
-        cpu: 500m
+        cpu: 1500m
       limits:
         memory: 2000Mi
     additionalContainers:
