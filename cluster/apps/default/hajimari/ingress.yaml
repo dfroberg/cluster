@@ -25,6 +25,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: traefik
+                name: hajimari
                 port:
                   number: 3000
