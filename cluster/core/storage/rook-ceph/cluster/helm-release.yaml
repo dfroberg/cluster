@@ -36,6 +36,18 @@ spec:
           tolerations:
           - key: "StorageOnly"
             operator: "Exists"
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - storage01
+                    - storage02
+                    - storage03
+
         csi:
           tolerations:
             operator: "Exists"
