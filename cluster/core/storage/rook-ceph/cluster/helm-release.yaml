@@ -54,7 +54,7 @@ spec:
 
         csi:
           tolerations:
-            operator: "Exists"
+            - operator: "Exists"
       dashboard:
         enabled: true
         urlPrefix: /
