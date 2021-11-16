@@ -41,19 +41,16 @@ spec:
       placement:
         all:
           tolerations:
-          - key: "StorageOnly"
-            operator: "Exists"
+            - key: StorageOnly
+              operator: Exists
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
               nodeSelectorTerms:
-              - matchExpressions:
                 - matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: In
-                    values:
-                      - storage01
-                      - storage02
-                      - storage03
+                    - key: storage
+                      operator: In
+                      values:
+                        -"yes"
 
         csi:
           tolerations:
