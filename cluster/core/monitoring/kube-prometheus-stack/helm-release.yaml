@@ -98,7 +98,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: "nfs-client"
+              storageClassName: "ceph-block"
               resources:
                 requests:
                   storage: 1Gi

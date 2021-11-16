@@ -24,11 +24,11 @@ spec:
       email: "${SECRET_EMAIL}"
     global:
       persistence:
-        storageClass: nfs-client
+        storageClass: ceph-block
     auth:
       tokenAuth:
         enabled: true
-    clusterName: k8s
+    clusterName: lab-cluster
     ingress:
       create: true
       host: "k10.${SECRET_DOMAIN}"

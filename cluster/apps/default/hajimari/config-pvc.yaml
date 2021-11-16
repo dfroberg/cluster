@@ -9,7 +9,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: nfs-client
+  storageClassName: ceph-block
   resources:
     requests:
       storage: 256Mi
