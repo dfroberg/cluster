@@ -6,5 +6,5 @@ resources:
   - prometheus-rule.yaml
   - secret.sops.yaml
   - schedules
-  - change-storage-class-config.yaml
-  
+  - change-storageclassname-config.yaml
+
