@@ -50,7 +50,7 @@ spec:
                     - key: storage
                       operator: In
                       values:
-                        -"yes"
+                        - "yes"
 
         csi:
           tolerations:
