@@ -12,6 +12,6 @@ spec:
     - media
     metadata: {}
     storageLocation: default
-    ttl: 12h0m0s
+    ttl: 72h0m0s
   useOwnerReferencesInBackup: false
 status: {}
