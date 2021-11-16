@@ -28,7 +28,7 @@ spec:
     namespace: rook-ceph
   values:
     global:
-      storageClass: "nfs-client"
+      storageClass: "ceph-block"
     image:
       registry: docker.io
       repository: bitnami/influxdb
@@ -441,7 +441,7 @@ spec:
       ## If undefined (the default) or set to null, no storageClassName spec is
       ## set, choosing the default provisioner.
       ##
-      storageClass: "nfs-client"
+      storageClass: "ceph-block"
       ## @param persistence.accessModes Access mode of data volume
       ##
       accessModes:

@@ -29,7 +29,7 @@ spec:
       repository: bitnami/thanos
     nodeSelector: 
       worker: yes
-    storageClass: "nfs-client"
+    storageClass: "ceph-block"
     query:
       enabled: true
       replicaLabels:
@@ -80,7 +80,7 @@ spec:
       enabled: true
       persistence:
         enabled: true
-        size: 5Gi
+        size: 15Gi
     ruler:
       enabled: false
     metrics:
