@@ -7,4 +7,5 @@ metadata:
     velero.io/plugin-config: ""
     velero.io/change-storage-class: RestoreItemAction
 data:
-  rook-ceph-block: nfs-client
+  #rook-ceph-block: nfs-client
+  nfs-client: rook-ceph-block
