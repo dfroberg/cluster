@@ -41,16 +41,36 @@
         path: "{{ item.path }}"
         state: absent
       loop: "{{ files_to_delete.files }}"
-    - name: Delete /var/lib/rancher
+
+    - name: Gather list of /var/lib/rancher files to delete
+      find:
+        paths: /var/lib/rancher
+        patterns: "*"
+      register: files_to_delete
+    - name: Delete /var/lib/rancher files
       ansible.builtin.file:
-        path: "/var/lib/rancher/"
+        path: "{{ item.path }}"
         state: absent
-    - name: Delete /var/lib/kubelet
+      loop: "{{ files_to_delete.files }}"
+    
+    - name: Gather list of /var/lib/kubelet files to delete
+      find:
+        paths: /var/lib/rancher
+        patterns: "*"
+      register: files_to_delete
+    - name: Delete /var/lib/kubelet files
       ansible.builtin.file:
-        path: "/var/lib/kubelet/"
+        path: "{{ item.path }}"
         state: absent
-    # Just clean remnants
-    - name: Delete /var/lib/longhorn
+      loop: "{{ files_to_delete.files }}"
+
+    - name: Gather list of /var/lib/longhorn files to delete
+      find:
+        paths: /var/lib/rancher
+        patterns: "*"
+      register: files_to_delete
+    - name: Delete /var/lib/longhorn files
       ansible.builtin.file:
-        path: "/var/lib/longhorn/"
+        path: "{{ item.path }}"
         state: absent
+      loop: "{{ files_to_delete.files }}"
