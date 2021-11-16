@@ -5,7 +5,7 @@ metadata:
   name: rook-ceph
   namespace: rook-ceph
 spec:
-  interval: 5m
+  interval: 1m
   chart:
     spec:
       # renovate: registryUrl=https://charts.rook.io/release
@@ -15,6 +15,13 @@ spec:
         kind: HelmRepository
         name: rook-ceph-charts
         namespace: flux-system
+  install:
+    timeout: 30m
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
   values:
     placement:
       all:
