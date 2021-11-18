@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - default
   - backup-system
-  - system-upgrade
 #  - databases
 #  - k10
   - media
