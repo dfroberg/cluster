@@ -4,3 +4,4 @@ resources:
   - _pvc
   - benji
   - velero
+#  - k10

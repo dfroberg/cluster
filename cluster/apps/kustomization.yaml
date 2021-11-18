@@ -4,6 +4,5 @@ resources:
   - default
   - backup-system
 #  - databases
-#  - k10
   - media
 #  - mailu
