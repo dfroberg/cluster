@@ -14,7 +14,7 @@ spec:
   storageClassName: nfs-client
   nfs:
     server: "${NAS_ADDR}"
-    path: "${NAS_BACKUP_PATH}"
+    path: ${NAS_BACKUP_PATH}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
