@@ -12,9 +12,6 @@ spec:
     name: backup-system-nfs-tank-share-pvc
     namespace: backup-system
   storageClassName: nfs-client
-  nfs:
-    server: "${NAS_ADDR}"
-    path: ${NAS_BACKUP_PATH}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
