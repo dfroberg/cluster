@@ -75,7 +75,7 @@ spec:
         limits:
           cpu: 2048m
           memory: 2512M
-          ephemeral-storage: "16Gi"
+          ephemeral-storage: "32Gi"
     storegateway:
       enabled: true
       persistence:
