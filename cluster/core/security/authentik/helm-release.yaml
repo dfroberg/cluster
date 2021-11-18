@@ -46,28 +46,28 @@ spec:
         host: "${SECRET_SMTP}"
         port: 587
         use_tls: true
-        username: "${SECRET_EMAIL}"
-        password: "${AUTHENTIK_EMAIL_PASSWORD}"
-        from: "${SECRET_EMAIL}"
-      secret_key: "${AUTHENTIK_SECRET_KEY}"
+        username: "${SECRET_SMTP_USER}"
+        password: "${SECRET_SMTP_PASSWORD}"
+        from: "Authentik <${SECRET_SMTP_USER}>"
+      secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
       log_level: debug
       outposts:
         docker_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
       error_reporting:
         enabled: false
       postgresql:
-        host: postgresql.databases
+        host: '{{ .Release.Name }}-postgresql'
         name: authentik
         user: authentik
-        password: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
+        password: ${SECRET_AUTHENTIK_POSTGRES_PASSWORD}
         s3_backup:
           access_key: "${SECRET_MINIO_ACCESS_KEY}"
           secret_key: "${SECRET_MINIO_SECRET_KEY}"
           bucket: authentik
           host: https://${SECRET_MINIO_HOST}
       redis:
-        host: redis-master.databases
-        password: "${SECRET_REDIS_PASSWORD}"
+        host: '{{ .Release.Name }}-redis-master'
+        password: ${SECRET_AUTHENTIK_REDIS_PASSWORD}
     prometheus:
       serviceMonitor:
         create: true
@@ -75,3 +75,18 @@ spec:
         scrapeTimeout: 3s
       rules:
         create: true
+    postgresql:
+      enabled: true
+      persistence:
+        enabled: true
+        existingClaim: authentik-postgresql
+
+      postgresqlUsername: authentik
+      postgresqlDatabase: authentik
+      postgresqlPassword: ${SECRET_AUTHENTIK_POSTGRES_PASSWORD}
+
+    redis:
+      enabled: true
+      auth:
+        enabled: true
+        password: ${SECRET_AUTHENTIK_REDIS_PASSWORD}
