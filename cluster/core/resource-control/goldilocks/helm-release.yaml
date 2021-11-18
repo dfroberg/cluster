@@ -59,10 +59,10 @@ spec:
       # dashboard.resources -- A resources block for the dashboard.
       resources:
         limits:
-          cpu: 125m
-          memory: 512Mi
+          cpu: 250m
+          memory: 1024Mi
         requests:
-          cpu: 25m
+          cpu: 125m
           memory: 256Mi
     nodeSelector:
       worker: yes
