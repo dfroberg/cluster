@@ -15,6 +15,8 @@ spec:
   nfs:
     server: "${NAS_ADDR}"
     path: ${NAS_BACKUP_PATH}
+    mountOptions:
+      - noatime
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
