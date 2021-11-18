@@ -8,5 +8,5 @@ resources:
   - security
   - resource-control
   #- system-upgrade
-  - monitoring
+  #- monitoring
 
