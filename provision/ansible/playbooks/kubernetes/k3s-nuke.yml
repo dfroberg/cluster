@@ -13,7 +13,7 @@
   tasks:
     - name: Gather ramdisk backups to delete
       find:
-        paths: /var/ramdisk-backup
+        paths: /var/ramdisk-backup/
         patterns: "*"
       register: files_to_delete
     - name: Delete ramdisk backup files
@@ -21,6 +21,14 @@
         path: "{{ item.path }}"
         state: absent
       loop: "{{ files_to_delete.files }}"
+
+    - name: Ensure /var/ramdisk-backup is not there
+      ansible.builtin.file:
+        state: absent
+        path: "{{ item }}"
+      loop:
+        - "/var/ramdisk-backup"
+
     - name: Kill k3s
       ansible.builtin.command: /usr/local/bin/k3s-killall.sh
     - name: Uninstall k3s
@@ -46,31 +54,31 @@
       find:
         paths: /var/lib/rancher
         patterns: "*"
-      register: files_to_delete
+      register: rancher_files_to_delete
     - name: Delete /var/lib/rancher files
       ansible.builtin.file:
         path: "{{ item.path }}"
         state: absent
-      loop: "{{ files_to_delete.files }}"
+      loop: "{{ rancher_files_to_delete.files }}"
     
     - name: Gather list of /var/lib/kubelet files to delete
       find:
-        paths: /var/lib/rancher
+        paths: /var/lib/kubelet
         patterns: "*"
-      register: files_to_delete
+      register: kubelet_files_to_delete
     - name: Delete /var/lib/kubelet files
       ansible.builtin.file:
         path: "{{ item.path }}"
         state: absent
-      loop: "{{ files_to_delete.files }}"
+      loop: "{{ kubelet_files_to_delete.files }}"
 
     - name: Gather list of /var/lib/longhorn files to delete
       find:
-        paths: /var/lib/rancher
+        paths: /var/lib/longhorn
         patterns: "*"
-      register: files_to_delete
+      register: longhorn_files_to_delete
     - name: Delete /var/lib/longhorn files
       ansible.builtin.file:
         path: "{{ item.path }}"
         state: absent
-      loop: "{{ files_to_delete.files }}"
+      loop: "{{ longhorn_files_to_delete.files }}"

@@ -104,6 +104,18 @@
     - ramdisk is not defined or ( (ramdisk == 'no') or (ramdisk == false) )
   tags:
     - ramdisks
+    
+- name: Ensure /var/ramdisk-backup is not there
+  ansible.builtin.file:
+    state: absent
+    path: "{{ item }}"
+  loop:
+    - "/var/ramdisk-backup"
+  when:
+    - ramdisk is not defined or ( (ramdisk == 'no') or (ramdisk == false) )
+  tags:
+    - ramdisks
+
 
 - name: "Ensure RAM Disk cron is Removed"
   ansible.builtin.cron:
