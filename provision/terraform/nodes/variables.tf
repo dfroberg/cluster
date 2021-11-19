@@ -23,7 +23,7 @@ variable "masters" {
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:01"
-      memory      = 16384
+      memory      = 10240
       disk        = "30G"
       disk_slot   = 0
       target_node = "pve"
@@ -39,7 +39,7 @@ variable "masters" {
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:02"
-      memory      = 16384
+      memory      = 10240
       disk        = "30G"
       disk_slot   = 0
       target_node = "pve"
@@ -55,7 +55,7 @@ variable "masters" {
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:03"
-      memory      = 16384
+      memory      = 10240
       disk        = "30G"
       disk_slot   = 0
       target_node = "pve"
@@ -76,7 +76,7 @@ variable "storage" {
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:1A"
-      memory      = 8192
+      memory      = 4096
       disk        = "30G"
       disk_slot   = 0
       storage_disk= "100G"
@@ -95,7 +95,7 @@ variable "storage" {
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:1B"
-      memory      = 8192
+      memory      = 4096
       disk        = "30G"
       disk_slot   = 0
       storage_disk= "100G"
@@ -114,7 +114,7 @@ variable "storage" {
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:1C"
-      memory      = 8192
+      memory      = 4096
       disk        = "30G"
       disk_slot   = 0
       storage_disk= "100G"
@@ -138,7 +138,7 @@ variable "workers" {
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:0A"
-      memory      = 32768
+      memory      = 20480
       disk        = "40G"
       disk_slot   = 0
       target_node = "pve"
@@ -154,7 +154,7 @@ variable "workers" {
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:0B"
-      memory      = 32768
+      memory      = 20480
       disk        = "40G"
       disk_slot   = 0
       target_node = "pve"
@@ -170,7 +170,7 @@ variable "workers" {
       cores       = 8
       gw          = "192.168.30.1"
       macaddr     = "68:b5:99:b3:da:0C"
-      memory      = 32768
+      memory      = 20480
       disk        = "40G"
       disk_slot   = 0
       target_node = "pve"
