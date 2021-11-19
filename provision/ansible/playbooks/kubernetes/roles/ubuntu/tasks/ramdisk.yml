@@ -94,6 +94,17 @@
   tags:
     - ramdisks
 
+- name: Ensure /etc/init.d/ramdisk is not there
+  ansible.builtin.file:
+    state: absent
+    path: "{{ item }}"
+  loop:
+    - "/etc/init.d/ramdisk"
+  when:
+    - ramdisk is not defined or ( (ramdisk == 'no') or (ramdisk == false) )
+  tags:
+    - ramdisks
+
 - name: "Ensure RAM Disk cron is Removed"
   ansible.builtin.cron:
     name: "Sync RAM Disk"
