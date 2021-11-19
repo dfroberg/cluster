@@ -44,8 +44,8 @@ k3s_server_config_yaml_d_files:
 k3s_server_manifests_templates:
 #   - "home-dns/home-dns-rbac.yaml.j2"
    - "calico/calico-installation.yaml.j2"
-#   - "calico/calico-bgpconfiguration.yaml.j2"
-#   - "calico/calico-bgppeer.yaml.j2"
+   - "calico/calico-bgpconfiguration.yaml.j2"
+   - "calico/calico-bgppeer.yaml.j2"
 #   - "kube-vip/kube-vip-rbac.yaml.j2"
 #   - "kube-vip/kube-vip-daemonset.yaml.j2"
 
