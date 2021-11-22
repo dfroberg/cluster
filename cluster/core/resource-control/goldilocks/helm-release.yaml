@@ -17,13 +17,14 @@ spec:
         namespace: flux-system
   values:
     # Resources for controller
-    resources:
-      limits:
-        cpu: 250m
-        memory: 1024Mi
-      requests:
-        cpu: 125m
-        memory: 256Mi
+    controller:
+      resources:
+        limits:
+          cpu: 250m
+          memory: 1024Mi
+        requests:
+          cpu: 125m
+          memory: 256Mi
     vpa:
       # vpa.enabled -- If true, the vpa will be installed as a sub-chart
       enabled: false
