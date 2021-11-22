@@ -11,10 +11,10 @@ spec:
   claimRef:
     name: backup-system-nfs-tank-share-pvc
     namespace: backup-system
-  storageClassName: nfs
+  storageClassName: nfs-client
   nfs:
     server: "${NAS_ADDR}"
-    path: ${NAS_BACKUP_PATH}
+    path: /mnt/data/nfs/PersistentVolumeClaims/backups/
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -24,7 +24,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: nfs
+  storageClassName: nfs-client
   resources:
     requests:
       storage: 1Mi
