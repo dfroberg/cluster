@@ -34,7 +34,7 @@ spec:
         externalIPs:
           - "${SVC_QBITTORRENT_ADDR}"
         ports:
-          bittorrentTcp:
+          bittorrenttcp:
             enabled: true
             port: ${VPN_FORWARDED_PORT_1}
             protocol: TCP
