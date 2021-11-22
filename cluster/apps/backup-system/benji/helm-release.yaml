@@ -65,24 +65,24 @@ spec:
             - benji-backup-pvc
             - --namespace
             - media
-        - name: backup-collab
-          schedule: "00 04 * * *"
-          command:
-            - benji-backup-pvc
-            - --namespace
-            - collab
-        - name: backup-home
-          schedule: "00 05 * * *"
-          command:
-            - benji-backup-pvc
-            - --namespace
-            - home
-        - name: backup-mail
-          schedule: "00 06 * * *"
-          command:
-            - benji-backup-pvc
-            - --namespace
-            - mail
+        # - name: backup-collab
+        #   schedule: "00 04 * * *"
+        #   command:
+        #     - benji-backup-pvc
+        #     - --namespace
+        #     - collab
+        # - name: backup-home
+        #   schedule: "00 05 * * *"
+        #   command:
+        #     - benji-backup-pvc
+        #     - --namespace
+        #     - home
+        # - name: backup-mail
+        #   schedule: "00 06 * * *"
+        #   command:
+        #     - benji-backup-pvc
+        #     - --namespace
+        #     - mail
         - name: enforce
           schedule: "00 07 * * *"
           command:
