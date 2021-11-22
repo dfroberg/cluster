@@ -14,7 +14,7 @@ spec:
   storageClassName: nfs-client
   nfs:
     server: "192.168.3.113"
-    path: /mnt/data/nfs/PersistentVolumeClaims/backups/
+    path: /mnt/data/nfs/PersistentVolumeClaims/backups
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
