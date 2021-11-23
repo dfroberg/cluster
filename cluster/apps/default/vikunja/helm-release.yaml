@@ -44,7 +44,7 @@ spec:
           - name: VIKUNJA_SERVICE_JWTSECRET
             value: ${SECRET_VIKUNJA_JWT_SECRET}
           - name: VIKUNJA_DATABASE_HOST
-            value: vikunja-postgresql.collab.svc.cluster.local.
+            value: vikunja-postgresql.default.svc.cluster.local.
           - name: VIKUNJA_DATABASE_DATABASE
             value: vikunja
           - name: VIKUNJA_DATABASE_USER
@@ -58,7 +58,7 @@ spec:
           - name: VIKUNJA_MAILER_ENABLED
             value: "true"
           - name: VIKUNJA_MAILER_HOST
-            value: mailu-postfix.mail.svc.cluster.local
+            value: mailu-postfix.mailu.svc.cluster.local
           - name: VIKUNJA_MAILER_PORT
             value: "25"
         volumeMounts:
@@ -103,7 +103,7 @@ spec:
         volumeSpec:
           configMap:
             name: vikunja-config-yml
-
+ 
     postgresql:
       postgresqlPostgresPassword: ${SECRET_VIKUNJA_POSTGRES_ADMIN_PASSWORD}
       postgresqlUsername: vikunja
