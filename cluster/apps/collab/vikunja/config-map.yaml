@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: vikunja-config-yml
-  namespace: default
+  namespace: collab
 data:
   config.yml: |
     auth:

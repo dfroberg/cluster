@@ -7,6 +7,8 @@ resources:
   - calico-system.yaml
   - downloads.yaml
   - cert-manager.yaml
+  - collab.yaml
+  - comms.yaml
   - metallb-system.yaml
   - goldilocks.yaml
   - networking.yaml

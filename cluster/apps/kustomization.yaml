@@ -6,3 +6,6 @@ resources:
 #  - databases
   - media
 #  - mailu
+  - comms
+  - collab
+  
