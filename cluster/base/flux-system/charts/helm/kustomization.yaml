@@ -37,3 +37,5 @@ resources:
   - vmware-tanzu-charts.yaml
   - weaveworks-kured-charts.yaml
   - mailu-charts.yaml
+  - yourls-charts.yaml
+  
