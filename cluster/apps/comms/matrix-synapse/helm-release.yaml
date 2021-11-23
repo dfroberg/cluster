@@ -98,7 +98,6 @@ spec:
       tls:
         - secretName: "${SECRET_DOMAIN//./-}-tls"
           hosts:
-            - ${SECRET_DOMAIN}
             - matrix.${SECRET_DOMAIN}
 
     postgresql:
