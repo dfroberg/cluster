@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: matrix-synapse-signingkey
-  namespace: comms
-data:
-  signing.key: test
