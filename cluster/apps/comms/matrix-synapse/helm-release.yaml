@@ -25,6 +25,8 @@ spec:
     wellknown:
       enabled: true
 
+    registration_shared_secret: "${SECRET_MATRIX_REGISTRATION_SECRET}"
+
     workers:
       media_repository:
         enabled: false
