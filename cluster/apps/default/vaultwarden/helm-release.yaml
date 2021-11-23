@@ -23,7 +23,7 @@ spec:
     env:
       DATA_FOLDER: "config"
       DOMAIN: https://vaultwarden.${SECRET_DOMAIN}
-      SIGNUPS_ALLOWED: "false"
+      SIGNUPS_ALLOWED: "true"
       TZ: "${CLUSTER_TZ}"
       WEBSOCKET_ADDRESS: 0.0.0.0
       WEBSOCKET_ENABLED: true
