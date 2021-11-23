@@ -59,7 +59,7 @@ spec:
           paths:
             - "/_matrix/media"
       tls:
-        - secretName: matrix-cert
+        - secretName: "${SECRET_DOMAIN//./-}-tls"
           hosts:
             - matrix.${SECRET_DOMAIN}
 
