@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: yourls-mysql-pvc
-  namespace: comms
+  namespace: collab
 spec:
   accessModes:
     - ReadWriteOnce
