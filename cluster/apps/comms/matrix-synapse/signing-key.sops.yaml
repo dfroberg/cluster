@@ -3,16 +3,16 @@ kind: Secret
 metadata:
     name: matrix-synapse-signingkey
     namespace: comms
-stringData:
-    signing.key: ENC[AES256_GCM,data:W3BIVHJKqez7a6tKDMlamAfuVtgxBs6mbOM0x0Rd+gCLp6AGvWZSE93M5r9O0beqMvJXt2XYneALHVuLy7VQVWj5AA==,iv:XoTz8Zmlb6UZHqrEZsKQpm5OXV9T2zlXgVbq29FZXeM=,tag:o7T5ZJn04qipH1H5Qncn4A==,type:str]
+data:
+    signing.key: ENC[AES256_GCM,data:9ekl4LGtvMvaidQzrlGnWMx2ElP6C5pHE6T2YS6fA9+SrMGvZVjMckrvhN5gLzfzi3f0zuY0BHqx2mZZtERknFiGcQ/WxXZAP3xdGQRBh24b8Wm71Q8oSdDrJaG6YXByWGG/LqUx+N8J1E/Saqv0etl3qri7FUG1wMILXTtdCGDZxCKlKoG8T/akSKHDg/cVhiSZQek/Uxo10bFBR0HdZZlWiaiFys94l1uekhtnPPiZwLKVAAk+4g==,iv:LjQG6vVyIRBKgmvmYSDnMMxqEy+Ra3dXN2p2B+xo4Rk=,tag:bCUIdELGSv+Nsy4rZighUw==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2021-11-23T14:00:35Z"
-    mac: ENC[AES256_GCM,data:+hoTnj90BQIUZA7mwBER7pKZK2z+YkC14Bw4vYSTQNY+czhU6JxRvRpXUjHN6rry59QbGboJ4E2fWbNhhqZ4rQFhxAIMMLVFR9yzANeZDexzaOVFqyR917JIfsn7E8YkJBOigUnUcMtnUGbKBoVyQ4flHHOmWCFnkZf7SJNCipw=,iv:+ao8hs1BhfnUxXnhHC+V4hUl1R5nyhPIMX7+fN0gc/E=,tag:yBK43vGXws4/Tp8EfjWi/w==,type:str]
+    lastmodified: "2021-11-23T14:15:04Z"
+    mac: ENC[AES256_GCM,data:XgmxO3xKnpg++7/4BP3R6J7bb6jyXNMSnBjdclFljW9a9PYDeK+R1+j/HnJh0ojKnI8dzWU8wB8KJ70T3TWFRKtPv3Jt5X8yKFD0p+yf2CtjSSDkIj1Mb0+m7gaPrshb9I2OaSra+Xpn693ozKYqH13+iF/t5OMpQUwU1Sw+92c=,iv:bYAfuwnkDJnX2l9kzqnj0G/lADLTIq0QduzjEtynKWw=,tag:wNig0+xdUv2T/E7aVMjmRg==,type:str]
     pgp:
         - created_at: "2021-11-23T13:19:54Z"
           enc: |
