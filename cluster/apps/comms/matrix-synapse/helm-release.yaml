@@ -24,9 +24,9 @@ spec:
     publicServerName: matrix.${SECRET_DOMAIN}
     wellknown:
       enabled: true
-    config:
-      enableRegistration: false
-      registrationSharedSecret: "${SECRET_MATRIX_REGISTRATION_SECRET}"
+
+    enableRegistration: false
+    registrationSharedSecret: "${SECRET_MATRIX_REGISTRATION_SECRET}"
 
     workers:
       media_repository:
