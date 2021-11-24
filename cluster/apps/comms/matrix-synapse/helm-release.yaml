@@ -51,11 +51,15 @@ spec:
       #     - name: matrix-slack
       #       mountPath: /data/matrix-slack
     extraConfig:
+      config:
+        enableRegistration: false
+        registrationSharedSecret: "${SECRET_MATRIX_REGISTRATION_SECRET}"
+        
       email:
-        smtp_host: smtp.mailgun.org
+        smtp_host: ${SECRET_SMTP}
         smtp_port: 587
-        smtp_user: ${SECRET_MAILGUN_USERNAME}
-        smtp_pass: ${SECRET_MAILGUN_PASSWORD}
+        smtp_user: ${SECRET_SMTP_USER}
+        smtp_pass: ${SECRET_SMTP_PASSWORD}
         notif_from: "Your Friendly %(app)s homeserver <noreply@${SECRET_DOMAIN}>"
 
       enable_3pid_lookup: true
