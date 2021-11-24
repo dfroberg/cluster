@@ -10,6 +10,8 @@ resources:
   - blakeshome-charts.yaml
   - coredns-charts.yaml
   - deliveryhero-charts.yaml
+  - dex-charts.yaml
+  - dexidp-charts.yaml
   - emqx-charts.yaml
   - falco-security-charts.yaml
   - grafana-charts.yaml
@@ -21,6 +23,7 @@ resources:
   - kasten-charts.yaml
   - kuberhealthy-charts.yaml
   - kpc-charts.yaml
+  - oauth2-proxy-charts.yaml
   - descheduler-charts.yaml
   - external-dns-charts.yaml
   - lwolf-charts.yaml
@@ -29,6 +32,7 @@ resources:
   - nfs-subdir-external-provisioner-charts.yaml
   - node-feature-discovery-charts.yaml
   - prometheus-community-charts.yaml
+  - pomerium-charts.yaml
   - rook-ceph-charts.yaml
   - stakater-charts.yaml
   - traefik-charts.yaml
@@ -38,4 +42,4 @@ resources:
   - weaveworks-kured-charts.yaml
   - mailu-charts.yaml
   - yourls-charts.yaml
-  
+
