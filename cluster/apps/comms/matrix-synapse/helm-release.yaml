@@ -51,10 +51,9 @@ spec:
       #     - name: matrix-slack
       #       mountPath: /data/matrix-slack
     extraConfig:
-      config:
-        enableRegistration: false
-        registrationSharedSecret: "${SECRET_MATRIX_REGISTRATION_SECRET}"
-        
+      enable_registration: false
+      registration_shared_secret: "${SECRET_MATRIX_REGISTRATION_SECRET}"
+
       email:
         smtp_host: ${SECRET_SMTP}
         smtp_port: 587
