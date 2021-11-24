@@ -86,8 +86,8 @@ spec:
             redirectURI: https://dex.${SECRET_DOMAIN}/callback
             # 'orgs' can be used to map groups from Github
             # https://github.com/coreos/dex/blob/master/Documentation/connectors/github.md
-            orgs:
-              - name: lab
+            #orgs:
+            #  - name: lab
 
       staticClients:
         - id: dex-k8s-authenticator
