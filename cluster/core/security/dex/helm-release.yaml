@@ -88,6 +88,8 @@ spec:
             # https://github.com/coreos/dex/blob/master/Documentation/connectors/github.md
             #orgs:
             #  - name: lab
+            # Flag which indicates that all user groups and teams should be loaded.
+            loadAllGroups: true
 
       staticClients:
         - id: dex-k8s-authenticator
