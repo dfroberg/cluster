@@ -25,4 +25,4 @@ spec:
               service:
                 name: dex-k8s-authenticator
                 port:
-                  number: 80
+                  number: 5555
