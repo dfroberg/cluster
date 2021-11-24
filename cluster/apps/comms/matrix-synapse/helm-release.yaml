@@ -20,13 +20,13 @@ spec:
     image:
       repository: matrixdotorg/synapse
       tag: v1.47.1
-    serverName: matrix.${SECRET_DOMAIN}
-    publicServerName: matrix.${SECRET_DOMAIN}
+    server_name: matrix.${SECRET_DOMAIN}
+    public_server_name: matrix.${SECRET_DOMAIN}
     wellknown:
       enabled: true
 
-    enableRegistration: true
-    registrationSharedSecret: "${SECRET_MATRIX_REGISTRATION_SECRET}"
+    enable_registration: true
+    registration_shared_secret: "${SECRET_MATRIX_REGISTRATION_SECRET}"
 
     workers:
       media_repository:
