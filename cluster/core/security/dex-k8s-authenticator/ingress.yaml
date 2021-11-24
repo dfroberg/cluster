@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dex-k8s-authenticator
+  namespace: security
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    external-dns/is-public: "true"
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+spec:
+  ingressClassName: "traefik"
+  tls:
+    - hosts:
+        - "login.${SECRET_DOMAIN}"
+      secretName: dex-k8s-authenticator-cert
+  rules:
+    - host: "login.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dex-k8s-authenticator
+                port:
+                  number: 9000
