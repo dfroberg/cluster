@@ -25,7 +25,7 @@ spec:
     wellknown:
       enabled: true
 
-    enableRegistration: false
+    enableRegistration: true
     registrationSharedSecret: "${SECRET_MATRIX_REGISTRATION_SECRET}"
 
     workers:
@@ -51,7 +51,7 @@ spec:
       #     - name: matrix-slack
       #       mountPath: /data/matrix-slack
     extraConfig:
-      enable_registration: false
+      enable_registration: true
       registration_shared_secret: "${SECRET_MATRIX_REGISTRATION_SECRET}"
 
       email:
