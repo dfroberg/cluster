@@ -23,7 +23,7 @@ spec:
       repository: mintel/dex-k8s-authenticator
       tag: 1.4.0
     ingress:
-      enabled: true
+      enabled: false
       annotations:
         kubernetes.io/ingress.class: "traefik"
         kubernetes.io/tls-acme: "true"

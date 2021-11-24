@@ -26,4 +26,4 @@ spec:
               service:
                 name: dex-k8s-authenticator
                 port:
-                  number: 9000
+                  number: 80
