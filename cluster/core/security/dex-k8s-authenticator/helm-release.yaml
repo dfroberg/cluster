@@ -67,3 +67,20 @@ spec:
           NlAKUnZNOTE4NmV3ekFDSVFDL1VmaXRlUUd5K1ZaZFBMTVhXQWNUZmFIWGlsdmUz
           U3NydWRoRDMzVVBVdz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
           -----END CERTIFICATE-----
+  postRenderers:
+    - kustomize:
+        patchesJson6902:
+          - target:
+              kind: Ingress
+              name: dex-k8s-authenticator
+            patch:
+              - op: add
+                path: apiVersion
+                value: networking.k8s.io/v1
+          - target:
+              kind: Ingress
+              name: dex-k8s-authenticator
+            patch:
+              - op: add
+                path: /spec/ingressClassName
+                value: traefik
