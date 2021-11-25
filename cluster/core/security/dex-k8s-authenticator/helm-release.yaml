@@ -48,7 +48,7 @@ spec:
         short_description: "Lab k8s cluster"
         description: "Main lab k8s cluster"
         client_secret: ${SECRET_DEX_K8S_AUTHENTICATOR_CLIENT_SECRET}
-        issuer: https://dex.${SECRET_DOMAIN}
+        issuer: https://dex.${SECRET_DOMAIN}/
         k8s_master_uri: https://k8s.${SECRET_DOMAIN}:6443
         client_id: dex-k8s-authenticator
         redirect_uri: https://login.${SECRET_DOMAIN}/callback/
@@ -63,6 +63,11 @@ spec:
           MwlYKycwCgYIKoZIzj0EAwIDSAAwRQIgIhZQU4fbm19mj2f986vmWXjmX2be5S6P
           RvM9186ewzACIQC/UfiteQGy+VZdPLMXWAcTfaHXilve3SsrudhD33UPUw==
           -----END CERTIFICATE-----
+        scopes:
+          - prefered_username
+          - email
+          - profile
+          - openid
   # postRenderers:
   #   - kustomize:
   #       patchesJson6902:
