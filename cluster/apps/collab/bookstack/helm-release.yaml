@@ -63,11 +63,11 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
-          - host: bookstack.${SECRET_CLUSTER_DOMAIN}
+          - host: bookstack.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "bookstack.${SECRET_CLUSTER_DOMAIN}"
+              - "bookstack.${SECRET_DOMAIN}"
 
