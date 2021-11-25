@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hajimari
+  name: hajimari-home
   namespace: default
   annotations:
     external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
@@ -15,20 +15,9 @@ spec:
   ingressClassName: "traefik"
   tls:
     - hosts:
-        - "hajimari.${SECRET_DOMAIN}"
         - "home.${SECRET_DOMAIN}"
       secretName: "${SECRET_DOMAIN//./-}-tls"
   rules:
-    - host: "hajimari.${SECRET_DOMAIN}"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: hajimari
-                port:
-                  number: 3000
     - host: "home.${SECRET_DOMAIN}"
       http:
         paths:
