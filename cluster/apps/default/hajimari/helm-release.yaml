@@ -111,7 +111,12 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          #traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-auth@kubernetescrd"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "web"
+          hajimari.io/appName: "hajimari"
         hosts:
           - host: "hajimari.${SECRET_DOMAIN}"
             paths:
