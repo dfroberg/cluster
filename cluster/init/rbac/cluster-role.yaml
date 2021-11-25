@@ -11,5 +11,17 @@ subjects:
     kind: Group
     name: "oidc:froberg-co:admin"
   - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: "froberg-co:admin"
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: "oidc:froberg-co:ops"
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: "froberg-co:ops"
+  - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: "oidc:dfroberg"
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: "dfroberg"
