@@ -43,7 +43,7 @@ spec:
           secretName: dex-cert
 
     config:
-      issuer: https://dex.${SECRET_DOMAIN}
+      issuer: https://dex.${SECRET_DOMAIN}/
 
       storage:
         type: kubernetes
