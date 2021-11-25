@@ -64,7 +64,6 @@ spec:
           RvM9186ewzACIQC/UfiteQGy+VZdPLMXWAcTfaHXilve3SsrudhD33UPUw==
           -----END CERTIFICATE-----
         scopes:
-          - prefered_username
           - email
           - profile
           - openid
