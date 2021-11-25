@@ -23,12 +23,13 @@ spec:
     env:
       TZ: "${CLUSTER_TZ}"
     hajimari:
-      defaultEnable: false
+      defaultEnable: true
       namespaceSelector:
         matchNames:
           - home
           - media
           - monitoring
+          - rook-ceph
           - networking
       name: "${YOUR_NAME}"
       customApps:
