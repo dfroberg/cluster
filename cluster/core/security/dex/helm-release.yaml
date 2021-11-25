@@ -92,9 +92,6 @@ spec:
             loadAllGroups: true
 
       staticClients:
-      
-        staticClients:
-
         - id: dex-k8s-authenticator
           name: dex-k8s-authenticator
           secret: ${SECRET_DEX_K8S_AUTHENTICATOR_CLIENT_SECRET}
