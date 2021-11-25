@@ -23,7 +23,7 @@ spec:
       tag: "version-v21.10.3"
 
     env:
-      APP_URL: https://bookstack.${SECRET_CLUSTER_DOMAIN}/
+      APP_URL: https://bookstack.${SECRET_DOMAIN}/
       DB_HOST: bookstack-mariadb
       DB_DATABASE: bookstack
       DB_USERNAME: bookstack
