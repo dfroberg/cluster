@@ -45,6 +45,8 @@ k3s_server:
   # Required for HAProxy health-checks
   kube-apiserver-arg:
     - "anonymous-auth=true"
+    - "oidc-issuer-url=https://dex.k8s.aml.ink/"
+    - "oidc-client-id=dex-k8s-authenticator"
   node-label:
      - "master=yes"
   node-taint:
