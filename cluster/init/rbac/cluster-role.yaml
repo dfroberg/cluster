@@ -25,3 +25,6 @@ subjects:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: "dfroberg"
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: "danny-k8s"
