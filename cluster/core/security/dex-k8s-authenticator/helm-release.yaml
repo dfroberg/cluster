@@ -67,6 +67,7 @@ spec:
           - email
           - profile
           - openid
+          - groups
   # postRenderers:
   #   - kustomize:
   #       patchesJson6902:
