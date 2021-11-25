@@ -7,27 +7,9 @@ roleRef:
   kind: ClusterRole
   name: cluster-admin
 subjects:
-  - apiGroup: rbac.authorization.k8s.io
-    kind: Group
-    name: "oidc:froberg-co:admin"
-  - apiGroup: rbac.authorization.k8s.io
-    kind: Group
+  - kind: Group
     name: "froberg-co:admin"
-  - apiGroup: rbac.authorization.k8s.io
-    kind: Group
-    name: "oidc:froberg-co:ops"
-  - apiGroup: rbac.authorization.k8s.io
-    kind: Group
+    apiGroup: rbac.authorization.k8s.io
+  - kind: Group
     name: "froberg-co:ops"
-  - apiGroup: rbac.authorization.k8s.io
-    kind: User
-    name: "oidc:dfroberg"
-  - apiGroup: rbac.authorization.k8s.io
-    kind: User
-    name: "dfroberg"
-  - apiGroup: rbac.authorization.k8s.io
-    kind: User
-    name: "oidc:danny-k8s"
-  - apiGroup: rbac.authorization.k8s.io
-    kind: User
-    name: "danny-k8s"
+    apiGroup: rbac.authorization.k8s.io
