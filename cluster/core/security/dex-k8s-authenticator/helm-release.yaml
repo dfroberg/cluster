@@ -52,17 +52,10 @@ spec:
         k8s_master_uri: https://k8s.${SECRET_DOMAIN}:6443
         client_id: dex-k8s-authenticator
         redirect_uri: https://login.${SECRET_DOMAIN}/callback/
-        k8s_ca_pem: |
-          -----BEGIN CERTIFICATE-----
-          MIIBdzCCAR2gAwIBAgIBADAKBggqhkjOPQQDAjAjMSEwHwYDVQQDDBhrM3Mtc2Vy
-          dmVyLWNhQDE2MzczMzA0NjIwHhcNMjExMTE5MTQwMTAyWhcNMzExMTE3MTQwMTAy
-          WjAjMSEwHwYDVQQDDBhrM3Mtc2VydmVyLWNhQDE2MzczMzA0NjIwWTATBgcqhkjO
-          PQIBBggqhkjOPQMBBwNCAARZNMqEYFZMWFujm3tSGAh8rSjdULsITCK4fawslshk
-          lftFheO6DPy0fdAufF5Icfc2anISWkb05U/sZe8vkLiOo0IwQDAOBgNVHQ8BAf8E
-          BAMCAqQwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUefaFTLFKI2EDEdSXZjmQ
-          MwlYKycwCgYIKoZIzj0EAwIDSAAwRQIgIhZQU4fbm19mj2f986vmWXjmX2be5S6P
-          RvM9186ewzACIQC/UfiteQGy+VZdPLMXWAcTfaHXilve3SsrudhD33UPUw==
-          -----END CERTIFICATE-----
+        # k8s_ca_pem: |
+        #   -----BEGIN CERTIFICATE-----
+        #   -----END CERTIFICATE-----
+        k8s_ca_uri: https://192.168.30.60:6443/cacerts
         scopes:
           - email
           - profile

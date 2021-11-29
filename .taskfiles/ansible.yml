@@ -142,6 +142,13 @@ tasks:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/ubuntu-upgrade.yml"
     silent: true
 
+  playbook:ubuntu-resizefs:
+    desc: Upgrade all the k8s nodes operating system
+    dir: ansible
+    cmds:
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/ubuntu-prepare.yml --tags partitions"
+    silent: true
+
   playbook:cluster-install:
     desc: Install Kubernetes on the nodes
     dir: ansible
