@@ -53,6 +53,12 @@ spec:
         activeDeadlineSeconds: null
         startingDeadlineSeconds: null
       crontab:
+        - name: backup-default
+          schedule: "15 00 * * *"
+          command:
+            - benji-backup-pvc
+            - --namespace
+            - default
         - name: backup-tools
           schedule: "00 01 * * *"
           command:
@@ -149,6 +155,38 @@ spec:
             patch:
               - op: add
                 path: /spec/template/spec/initContainers
+                value:
+                  - name: generate-ceph-files
+                    image: rook/ceph:v1.7.8
+                    imagePullPolicy: Always
+                    command: ["/usr/bin/bash"]
+                    args:
+                      [
+                        "-c",
+                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/apps/backup-system/benji/generate-ceph.sh | bash",
+                      ]
+                    volumeMounts:
+                      - name: mon-endpoint-volume
+                        mountPath: /etc/rook
+                      - name: ceph-data
+                        mountPath: /etc/ceph
+                    env:
+                      - name: ROOK_CEPH_USERNAME
+                        valueFrom:
+                          secretKeyRef:
+                            name: rook-ceph-mon
+                            key: ceph-username
+                      - name: ROOK_CEPH_SECRET
+                        valueFrom:
+                          secretKeyRef:
+                            name: rook-ceph-mon
+                            key: ceph-secret
+          - target:
+              kind: CronJob
+              name: benji-backup-default
+            patch:
+              - op: add
+                path: /spec/jobTemplate/spec/template/spec/initContainers
                 value:
                   - name: generate-ceph-files
                     image: rook/ceph:v1.7.8
