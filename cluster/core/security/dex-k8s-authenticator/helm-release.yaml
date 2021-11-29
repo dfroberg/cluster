@@ -49,13 +49,13 @@ spec:
         description: "Main lab k8s cluster"
         client_secret: ${SECRET_DEX_K8S_AUTHENTICATOR_CLIENT_SECRET}
         issuer: https://dex.${SECRET_DOMAIN}/
-        k8s_master_uri: https://k8s.${SECRET_DOMAIN}:6443
+        k8s_master_uri: https://${SECRET_DOMAIN}:6443
         client_id: dex-k8s-authenticator
         redirect_uri: https://login.${SECRET_DOMAIN}/callback/
         # k8s_ca_pem: |
         #   -----BEGIN CERTIFICATE-----
         #   -----END CERTIFICATE-----
-        k8s_ca_uri: https://192.168.30.60:6443/cacerts
+        k8s_ca_uri: https://${SECRET_DOMAIN}:6443/cacerts
         scopes:
           - email
           - profile
