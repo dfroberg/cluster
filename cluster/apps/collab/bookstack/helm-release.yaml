@@ -33,7 +33,7 @@ spec:
       OIDC_DISPLAY_NAME_CLAIMS: name
       OIDC_CLIENT_ID: bookshelf
       OIDC_CLIENT_SECRET: ${SECRET_BOOKSTACK_OIDC_CLIENT_SECRET}
-      OIDC_ISSUER: https://id.${SECRET_DOMAIN}/application/o/bookshelf/
+      OIDC_ISSUER: https://id.${SECRET_DOMAIN}/application/o/bookstack/
       OIDC_ISSUER_DISCOVER: true
       OIDC_AUTH_ENDPOINT: https://id.${SECRET_DOMAIN}/application/o/authorize/
       OIDC_TOKEN_ENDPOINT: https://id.${SECRET_DOMAIN}/application/o/token/
