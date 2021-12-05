@@ -1,6 +1,6 @@
 ---
 # Encapsulation type
-calico_encapsulation: "VXLAN"
+calico_encapsulation: "None"
 # BGP Peer IP
 # (usually your router IP address)
 calico_bgp_peer_ip: 192.168.30.1
