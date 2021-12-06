@@ -32,6 +32,7 @@ variable "masters" {
       disk_slot   = 0
       target_node = "esxi01"
       storage_pool     = "vmdata"
+      resource_pool_name = "High"
     },
     master02 = {
       id          = 4011
@@ -48,6 +49,7 @@ variable "masters" {
       disk_slot   = 0
       target_node = "esxi01"
       storage_pool     = "vmdata"
+      resource_pool_name = "High"
     },
     master03 = {
       id          = 4012
@@ -64,6 +66,7 @@ variable "masters" {
       disk_slot   = 0
       target_node = "esxi01"
       storage_pool     = "vmdata"
+      resource_pool_name = "High"
     }
   }
 }
@@ -88,6 +91,7 @@ variable "storage" {
       target_node = "esxi01"
       storage_pool     = "vmdata"
       storage_pool_disk_storage = "nas-zfs"
+      resource_pool_name = "Normal"
     },
     storage02 = {
       id          = 4031
@@ -107,6 +111,7 @@ variable "storage" {
       target_node = "esxi01"
       storage_pool     = "vmdata"
       storage_pool_disk_storage = "nas-zfs"
+      resource_pool_name = "Normal"
     },
     storage03 = {
       id          = 4032
@@ -126,6 +131,7 @@ variable "storage" {
       target_node = "esxi01"
       storage_pool     = "vmdata"
       storage_pool_disk_storage = "nas-zfs"
+      resource_pool_name = "Normal"
     },
   }
 }
@@ -147,6 +153,7 @@ variable "workers" {
       disk_slot   = 0
       target_node = "esxi01"
       storage_pool     = "vmdata"
+      resource_pool_name = "Normal"
     },
     worker02 = {
       id          = 4021
@@ -163,6 +170,7 @@ variable "workers" {
       disk_slot   = 0
       target_node = "esxi01"
       storage_pool     = "vmdata"
+      resource_pool_name = "Normal"
     },
     worker03 = {
       id          = 4022
@@ -179,6 +187,7 @@ variable "workers" {
       disk_slot   = 0
       target_node = "esxi01"
       storage_pool= "vmdata"
+      resource_pool_name = "Normal"
     },
   }
 }

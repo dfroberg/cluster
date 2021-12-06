@@ -9,6 +9,7 @@ resource "esxi_guest" "kube-worker" {
   disk_store      = each.value.storage_pool
   boot_disk_type = "thin"
   boot_disk_size  = each.value.disk
+  resource_pool_name = each.value.resource_pool_name
   
    
   guestinfo = {

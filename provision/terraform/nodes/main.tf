@@ -32,3 +32,27 @@ provider "esxi" {
 }
 
 provider "sops" {}
+
+# Global resources
+resource "esxi_resource_pool" "High" {
+  resource_pool_name  = "High"
+  cpu_min             = 10000
+  cpu_min_expandable  = true
+  cpu_max             = 30000
+  cpu_shares          = 8000
+  mem_min             = 30720
+  mem_min_expandable  = true
+  mem_max             = 30720
+  mem_shares          = 327680
+}
+resource "esxi_resource_pool" "Normal" {
+  resource_pool_name  = "Normal"
+  cpu_min             = 10000
+  cpu_min_expandable  = true
+  cpu_max             = 30000
+  cpu_shares          = 4000
+  mem_min             = 16384
+  mem_min_expandable  = true
+  mem_max             = 16384
+  mem_shares          = 163840
+}
