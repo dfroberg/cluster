@@ -1,62 +1,80 @@
-resource "proxmox_vm_qemu" "kube-storage" {
-  for_each = var.storage
+# esxi_virtual_disk.storage01_disk1:
+resource "esxi_virtual_disk" "storage01_disk1" {
+    virtual_disk_dir = "/vmfs/volumes/"
+    virtual_disk_disk_store = "vmdata"
+    virtual_disk_size = 50
+}
 
-  name        = each.key
-  target_node = each.value.target_node
-  agent       = 1
-  clone       = var.common.clone
-  vmid        = each.value.id
-  memory      = each.value.memory
-  sockets     = each.value.sockets
-  cores       = each.value.cores
-  vcpus       = each.value.vcpus
-  cpulimit    = each.value.cpulimit
-  vga {
-    type = "qxl"
+# esxi_virtual_disk.storage02_disk1:
+resource "esxi_virtual_disk" "storage02_disk1" {
+    virtual_disk_dir = "/vmfs/volumes/"
+    virtual_disk_disk_store = "vmdata"
+    virtual_disk_size = 50
+}
+
+# esxi_virtual_disk.storage03_disk1:
+resource "esxi_virtual_disk" "storage03_disk1" {
+    virtual_disk_dir = "/vmfs/volumes/"
+    virtual_disk_disk_store = "vmdata"
+    virtual_disk_size = 50
+}
+
+resource "esxi_guest" "kube-storage" {
+  for_each = var.storage
+  guest_name      = each.key
+
+  clone_from_vm   = "ubuntu-20.04-server-cloudimg-amd64"
+  power           = "on"
+  memsize         = each.value.memory
+  numvcpus        = each.value.vcpus
+  disk_store      = each.value.storage_pool
+  boot_disk_type = "thin"
+  boot_disk_size  = each.value.disk
+  
+   
+  guestinfo = {
+    "metadata" = base64encode(templatefile("${path.module}/templates/metadata.yml.tpl", {
+      node_hostname          = each.key,
+      node_ip                = each.value.cidr,
+      node_gateway           = each.value.gw,
+      node_dns               = var.common.nameserver,
+      node_dns_search_domain = var.common.search_domain
+      storage_node_ip        = each.value.ceph_cidr,
+      storage_node_gateway   = var.common.ceph_gw,
+      storage_node_dns       = var.common.ceph_nameserver,
+      storage_node_dns_search_domain = var.common.search_domain
+    }))
+
+    "metadata.encoding" = "base64"
+
+    "userdata" = base64encode(templatefile("${path.module}/templates/userdata.yml.tpl", {
+        vm_ssh_user = var.common.username,
+        vm_ssh_key = data.sops_file.secrets.data["k8s.ssh_key"]
+        vm_ssh_password = data.sops_file.secrets.data["k8s.ssh_password"]
+    }))
+
+    "userdata.encoding" = "base64"
   }
-  network {
-    model    = "virtio"
-    macaddr  = each.value.macaddr
-    bridge   = "vmbr30"
-    firewall = false
+  virtual_disks {
+    virtual_disk_id = "${each.key}_disk1"
+    slot            = "0:1"
   }
-  network {
-    model    = "virtio"
-    bridge   = "vmbr25"
+
+  network_interfaces {
+    nic_type = "vmxnet3"
+    virtual_network = "k3s"
+    mac_address     = each.value.macaddr
   }
-  disk {
-    slot    = each.value.disk_slot # needed to prevent recreate
-    type    = "scsi"
-    storage = each.value.storage_pool
-    size    = each.value.disk
-    format  = "raw"
-    ssd     = 1
-    discard = "on"
+  network_interfaces {
+    nic_type = "vmxnet3"
+    virtual_network = "iscsi"
+    mac_address     = each.value.ceph_macaddr
   }
-  disk {
-    slot    = each.value.storage_disk_slot # needed to prevent recreate
-    type    = "scsi"
-    storage = each.value.storage_pool_disk_storage
-    size    = each.value.storage_disk
-    format  = "raw"
-    ssd     = 1
-    discard = "on"
-  }
-  serial {
-    id = 0
-    type = "socket"
-  }
-  bootdisk     = "scsi0"
-  scsihw       = "virtio-scsi-pci"
-  os_type      = "cloud-init"
-  ipconfig0    = "ip=${each.value.cidr},gw=${each.value.gw}"
-  ipconfig1    = "ip=${each.value.ceph_cidr}"
-  #cicustom     = "user=nas-nfs:snippets/vm-${each.value.id}-user-data.yaml,meta=nas-nfs:snippets/vm-${each.value.id}-meta-data.yaml,network=nas-nfs:snippets/vm-${each.value.id}-network-data.yaml"
-  ciuser       = "dfroberg"
-  cipassword   = data.sops_file.secrets.data["k8s.user_password"]
-  searchdomain = var.common.search_domain
-  nameserver   = var.common.nameserver
-  sshkeys      = data.sops_file.secrets.data["k8s.ssh_key"]
-  numa         = "1"
-  hotplug      = "disk,network,usb,memory,cpu"
+  # bootdisk     = "pvscsi"
+  # scsihw       = "virtio-scsi-pci"
+  # os_type      = "cloud-init"
+  #ipconfig0    = "ip=${each.value.cidr},gw=${each.value.gw}"
+  #ipconfig1    = "ip=${each.value.ceph_cidr}"
+  #ciuser       = "dfroberg"
+  #cipassword   = data.sops_file.secrets.data["k8s.user_password"]
 }

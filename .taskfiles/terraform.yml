@@ -1,0 +1,68 @@
+---
+version: "3"
+
+env:
+  ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/ansible.cfg"
+
+vars:
+  ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
+  ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+
+tasks:
+  show:nodes:
+    desc: Terraform Show nodes
+    dir: provision/terraform/nodes
+    cmds:
+      - "terraform show"
+    silent: true
+  plan:nodes:
+    desc: Terraform Plan nodes
+    dir: provision/terraform/nodes
+    cmds:
+      - "terraform plan"
+    silent: true
+  apply:nodes:
+    desc: Terraform Apply nodes
+    dir: provision/terraform/nodes
+    cmds:
+      - "terraform apply"
+    silent: true
+  show:minio:
+    desc: Terraform Show minio
+    dir: provision/terraform/minio
+    cmds:
+      - "terraform show"
+    silent: true
+  plan:minio:
+    desc: Terraform Plan minio
+    dir: provision/terraform/minio
+    cmds:
+      - "terraform plan"
+    silent: true
+  apply:minio:
+    desc: Terraform Apply minio
+    dir: provision/terraform/minio
+    cmds:
+      - "terraform apply"
+    silent: true
+  show:cloudflare:
+    desc: Terraform Show cloudflare
+    dir: provision/terraform/cloudflare
+    cmds:
+      - "terraform show"
+    silent: true
+  plan:cloudflare:
+    desc: Terraform Plan cloudflare
+    dir: provision/terraform/cloudflare
+    cmds:
+      - "terraform plan"
+    silent: true
+  apply:cloudflare:
+    desc: Terraform Apply cloudflare
+    dir: provision/terraform/cloudflare
+    cmds:
+      - "terraform apply"
+    silent: true
+
+
+
