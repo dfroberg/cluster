@@ -158,9 +158,9 @@ fi
 if [[ $REBUILD_FLAG == 1 ]]
 then 
     echo "► Resuming kustomizations:"
-    flux resume kustomization apps
+    flux resume kustomization $KUSTOMIZATION
     echo "► Resuming helmreleases:"
-    flux resume helmrelease --all -n media
+    flux resume helmrelease --all -n $NAMESPACE
     echo "✔ Resumed cluster rebuild of apps"
 else
     echo "► Skipped resuming kustomizations and helmreleases:"
