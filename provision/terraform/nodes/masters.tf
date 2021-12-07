@@ -11,26 +11,32 @@ resource "esxi_guest" "kube-master" {
   boot_disk_type = "thin"
   boot_disk_size  = each.value.disk
   resource_pool_name = each.value.resource_pool_name
-   
+  guestos         = "ubuntu-64"
+  notes           = "CIDR: ${each.value.cidr}"
+  virthwver       = "14"
+
   guestinfo = {
     "metadata" = base64encode(templatefile("${path.module}/templates/metadata.yml.tpl", {
-      node_hostname = each.key,
-      node_ip       = each.value.cidr,
-      node_gateway  = each.value.gw,
-      node_dns      = var.common.nameserver,
+      node_hostname = each.key
+      node_ip       = each.value.cidr
+      node_gateway  = var.common.gw
+      node_dns      = var.common.nameserver
+      node_mac_address     = each.value.macaddr
       node_dns_search_domain = var.common.search_domain
-      storage_node_ip       = each.value.ceph_cidr,
+      storage_node_ip       = each.value.ceph_cidr
       storage_node_gateway  = var.common.ceph_gw,
-      storage_node_dns      = var.common.ceph_nameserver,
+      storage_node_dns      = var.common.ceph_nameserver
+      storage_node_mac_address     = each.value.ceph_macaddr
       storage_node_dns_search_domain = var.common.search_domain
     }))
 
     "metadata.encoding" = "base64"
 
     "userdata" = base64encode(templatefile("${path.module}/templates/userdata.yml.tpl", {
-        vm_ssh_user = var.common.username,
+        vm_ssh_user = data.sops_file.secrets.data["k8s.ssh_username"]
         vm_ssh_key = data.sops_file.secrets.data["k8s.ssh_key"]
         vm_ssh_password = data.sops_file.secrets.data["k8s.ssh_password"]
+        vm_ssh_root_password = data.sops_file.secrets.data["k8s.ssh_root_password"]
     }))
 
     "userdata.encoding" = "base64"

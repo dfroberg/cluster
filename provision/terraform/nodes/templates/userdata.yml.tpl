@@ -1,17 +1,12 @@
 #cloud-config
+manage_etc_hosts: true
+user: ${vm_ssh_user}
+password: ${vm_ssh_password}
+ssh_authorized_keys:
+  - ${vm_ssh_key}
+sudo: All=(ALL) NOPASSWD:ALL
+chpasswd:
+  expire: False
 users:
-  - name: ${vm_ssh_user}
-    ssh-authorized-keys:
-      - ${vm_ssh_key}
-    sudo: ALL=(ALL) NOPASSWD:ALL
-    ssh_import_id:
-      - gh: ${vm_ssh_user}
-    passwd: ${vm_ssh_password}
-    shell: /bin/bash
-  - name: root
-    ssh-authorized-keys:
-      - ${vm_ssh_key}
-    ssh_import_id:
-      - gh: ${vm_ssh_user}
-    passwd: ${vm_ssh_password}
-    shell: /bin/bash
+  - default
+package_upgrade: true

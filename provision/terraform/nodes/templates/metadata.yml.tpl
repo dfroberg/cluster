@@ -2,25 +2,28 @@ network:
   version: 2
   ethernets:
     eth0:
+      match:
+        macaddress: '${node_mac_address}'
+      wakeonlan: true
       dhcp4: false
       addresses:
         - ${node_ip}
       gateway4: ${node_gateway}
       nameservers:
-        addresses:
-          - ${node_dns}
-        search:
-        - '${node_dns_search_domain}'
+        search: ['${node_dns_search_domain}']
+        addresses: [${node_dns}]
     eth1:
+      match:
+        macaddress: '${storage_node_mac_address}'
+      wakeonlan: true
       dhcp4: false
       addresses:
         - ${storage_node_ip}
       gateway4: ${storage_node_gateway}
       nameservers:
-        addresses:
-          - ${storage_node_dns}
-        search:
-        - '${storage_node_dns_search_domain}'
+        search: ['${storage_node_dns_search_domain}']
+        addresses: [${storage_node_dns}]
+      mtu: 9000
 
 locale: en_US.UTF-8
 timezone: Europe/Stockholm

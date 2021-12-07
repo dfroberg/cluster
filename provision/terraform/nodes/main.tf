@@ -56,3 +56,27 @@ resource "esxi_resource_pool" "Normal" {
   mem_max             = 16384
   mem_shares          = 163840
 }
+
+# esxi_virtual_disk.storage01_disk1:
+resource "esxi_virtual_disk" "storage01_disk1" {
+    virtual_disk_name  = "storage01_disk1.vmdk"
+    virtual_disk_dir = "storage01"
+    virtual_disk_disk_store = "vmdata"
+    virtual_disk_size = 50
+}
+
+# esxi_virtual_disk.storage02_disk1:
+resource "esxi_virtual_disk" "storage02_disk1" {
+    virtual_disk_name  = "storage02_disk1.vmdk"
+    virtual_disk_dir = "storage02"
+    virtual_disk_disk_store = "vmdata"
+    virtual_disk_size = 50
+}
+
+# esxi_virtual_disk.storage03_disk1:
+resource "esxi_virtual_disk" "storage03_disk1" {
+    virtual_disk_name  = "storage03_disk1.vmdk"
+    virtual_disk_dir = "storage03"
+    virtual_disk_disk_store = "vmdata"
+    virtual_disk_size = 50
+}

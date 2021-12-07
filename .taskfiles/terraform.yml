@@ -27,6 +27,12 @@ tasks:
     cmds:
       - "terraform apply"
     silent: true
+  destroy:nodes:
+    desc: Terraform destroy nodes
+    dir: provision/terraform/nodes
+    cmds:
+      - "terraform destroy"
+    silent: true
   show:minio:
     desc: Terraform Show minio
     dir: provision/terraform/minio
