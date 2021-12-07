@@ -50,3 +50,7 @@
 - include: user.yml
   tags:
     - user
+
+- include: vmware.yml
+  tags:
+    - vmware

@@ -1,0 +1,15 @@
+---
+- name: copy key to host
+  copy:
+    src: "{{ certs_path }}/{{ crt_common_name }}.pem"
+    dest: "/etc/vmware/ssl/rui.key"
+
+- name: copy cert to host
+  copy:
+    src: "{{ certs_path }}/{{ crt_common_name }}-fullchain.crt"
+    dest: "/etc/vmware/ssl/rui.crt"
+  register: cert
+
+- name: restart hostd
+  command: /etc/init.d/hostd restart
+  when: cert is changed

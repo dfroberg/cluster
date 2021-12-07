@@ -1,0 +1,9 @@
+---
+ansible_python_interpreter: /usr/bin/python3
+ansible_connection: ssh
+ansible_user: root
+ansible_ssh_private_key_file: ~/.ssh/id_rsa
+ansible_shell_executable: /bin/sh
+certs_path: ~/lets-encrypt
+crt_common_name: cs.aml.ink
+crt_subject_alt_name: '- *.cs.aml.ink'
