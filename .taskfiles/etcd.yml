@@ -54,6 +54,11 @@ tasks:
     cmds:
       - etcdctl check perf --load='l'
     silent: true
+  health:
+    desc: Check cluster health
+    cmds:
+      - etcdctl endpoint health
+    silent: true
   metrics:
     desc: Endpoint metrics
     cmds:

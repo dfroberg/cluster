@@ -38,7 +38,7 @@
         --cluster-init \
         --cluster-reset \
         --etcd-s3 \
-        --cluster-reset-restore-path=etcd-snapshot--1633426500 \
+        --cluster-reset-restore-path=etcd-snapshot-master01-1638878100 \
         --etcd-s3-endpoint="{{ etcd_s3_endpoint }}"
         --etcd-s3-bucket="{{ etcd_s3_bucket }}" \
         --etcd-s3-access-key="{{ etcd_s3_access_key }}" \
@@ -47,10 +47,11 @@
         - ansible_hostname == "master01"  
       tags:
         - etcdrestore
+        
     # Allow master01 to settle
-    - name: Pausing for 120 seconds...
+    - name: Pausing for 60 seconds...
       pause:
-        seconds: 120
+        seconds: 60
       tags:
         - etcdrestore
     - name: Start and enable k3s
