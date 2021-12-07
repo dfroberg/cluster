@@ -1,48 +1,49 @@
 ---
 # Set autoStart order so masters and storage starts first.
-- name: Update for powerInfo config of virtual machine.
-  community.vmware.vmware_host_auto_start:
+# - name: Update for powerInfo config of virtual machine.
+#   community.vmware.vmware_host_auto_start:
+#     hostname: "{{ esxi_hostname }}"
+#     username: "{{ esxi_username }}"
+#     password: "{{ esxi_password }}"
+#     esxi_hostname: "{{ esxi_hostname }}"
+#     name: "{{ inventory_hostname }}"
+#     validate_certs: false
+#     power_info:
+#       start_action: powerOn
+#       start_delay: 10
+#       start_order: "{{ start_order }}"
+#       stop_action: powerOff
+#       wait_for_heartbeat: true
+#   delegate_to: localhost
+#   tags:
+#     - vmware
+
+- name: Get VM UUID
+  vmware_guest_facts:
     hostname: "{{ esxi_hostname }}"
     username: "{{ esxi_username }}"
     password: "{{ esxi_password }}"
-    esxi_hostname: "{{ esxi_hostname }}"
+    datacenter: "ha-datacenter"
+    folder: "/ha-datacenter/vm"
     name: "{{ inventory_hostname }}"
-    validate_certs: false
-    power_info:
-      start_action: powerOn
-      start_delay: 10
-      start_order: "{{ start_order }}"
-      stop_action: powerOff
-      wait_for_heartbeat: true
   delegate_to: localhost
+  register: vm_facts
   tags:
     - vmware
-
-# - name: Get VM UUID
-#   vmware_guest_facts:
-#     hostname: "{{ vcenter_hostname }}"
-#     username: "{{ vcenter_username }}"
-#     password: "{{ vcenter_password }}"
-#     datacenter: "{{ datacenter }}"
-#     folder: "/{{datacenter}}/vm"
-#     name: "{{ vm_name }}"
-#   delegate_to: localhost
-#   register: vm_facts
-
-# - name: Upgrade VMware Tools using uuid
-#   community.vmware.vmware_guest_tools_upgrade:
-#     hostname: "{{ vcenter_hostname }}"
-#     username: "{{ vcenter_username }}"
-#     password: "{{ vcenter_password }}"
-#     datacenter: "{{ datacenter_name }}"
-#     uuid: "{{ vm_facts.instance.hw_product_uuid }}"
-#   delegate_to: localhost
+- name: Upgrade VMware Tools using uuid
+  community.vmware.vmware_guest_tools_upgrade:
+    hostname: "{{ esxi_hostname }}"
+    username: "{{ esxi_username }}"
+    password: "{{ esxi_password }}"
+    datacenter: "ha-datacenter"
+    uuid: "{{ vm_facts.instance.hw_product_uuid }}"
+  delegate_to: localhost
 
 # - name: Upgrade VMware Tools using MoID
 #   community.vmware.vmware_guest_tools_upgrade:
-#     hostname: "{{ vcenter_hostname }}"
-#     username: "{{ vcenter_username }}"
-#     password: "{{ vcenter_password }}"
-#     datacenter: "{{ datacenter_name }}"
+#     hostname: "{{ esxi_hostname }}"
+#     username: "{{ esxi_username }}"
+#     password: "{{ esxi_password }}"
+#     datacenter: "ha-datacenter"
 #     moid: vm-42
 #   delegate_to: localhost

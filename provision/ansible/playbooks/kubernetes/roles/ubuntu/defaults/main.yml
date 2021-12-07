@@ -17,6 +17,7 @@ apt_install_packages:
   - ntpdate
   - nvme-cli
   - open-iscsi
+  - open-vm-tools
   - psmisc
   - smartmontools
   - socat

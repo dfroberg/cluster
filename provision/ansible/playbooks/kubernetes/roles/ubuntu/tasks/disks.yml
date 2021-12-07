@@ -10,7 +10,7 @@
     - partitions
 
 - name: 'Extend the FS'
-  filesystem:
+  community.general.filesystem:
     fstype: 'ext4'
     dev: '/dev/sda1'
     resizefs: yes
