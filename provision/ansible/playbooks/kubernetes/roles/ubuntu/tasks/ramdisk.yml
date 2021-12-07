@@ -61,7 +61,7 @@
       Before=unmount.target
       [Service]
       Type=oneshot
-      User=user
+      User=root
       ExecStart=/usr/bin/rsync -ar /var/ramdisk-backup/ /var/lib/rancher/k3s/server/db/etcd/ 
       ExecStop=/usr/bin/rsync -ar /var/lib/rancher/k3s/server/db/etcd/ /var/ramdisk-backup/
       ExecReload=/usr/bin/rsync -ar /var/lib/rancher/k3s/server/db/etcd/ /var/ramdisk-backup/
