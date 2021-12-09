@@ -21,7 +21,7 @@ spec:
                 ]
               env:
                 - name: PGPASSWORD
-                  value: secret
+                  value: ${SECRET_BENJI_POSTGRES_PASSWORD}
               volumeMounts:
                 - mountPath: /var/backups
                   name: postgres-storage
