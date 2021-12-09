@@ -163,7 +163,7 @@ spec:
                     args:
                       [
                         "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/apps/backup-system/benji/generate-ceph.sh | bash",
+                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
                       ]
                     volumeMounts:
                       - name: mon-endpoint-volume
@@ -195,7 +195,7 @@ spec:
                     args:
                       [
                         "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/apps/backup-system/benji/generate-ceph.sh | bash",
+                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
                       ]
                     volumeMounts:
                       - name: mon-endpoint-volume
@@ -227,7 +227,7 @@ spec:
                     args:
                       [
                         "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/apps/backup-system/benji/generate-ceph.sh | bash",
+                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
                       ]
                     volumeMounts:
                       - name: mon-endpoint-volume
@@ -259,7 +259,7 @@ spec:
                     args:
                       [
                         "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/apps/backup-system/benji/generate-ceph.sh | bash",
+                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
                       ]
                     volumeMounts:
                       - name: mon-endpoint-volume
@@ -291,7 +291,7 @@ spec:
                     args:
                       [
                         "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/apps/backup-system/benji/generate-ceph.sh | bash",
+                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
                       ]
                     volumeMounts:
                       - name: mon-endpoint-volume
@@ -323,7 +323,7 @@ spec:
                     args:
                       [
                         "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/apps/backup-system/benji/generate-ceph.sh | bash",
+                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
                       ]
                     volumeMounts:
                       - name: mon-endpoint-volume
@@ -355,7 +355,7 @@ spec:
                     args:
                       [
                         "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/apps/backup-system/benji/generate-ceph.sh | bash",
+                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
                       ]
                     volumeMounts:
                       - name: mon-endpoint-volume
@@ -387,7 +387,7 @@ spec:
                     args:
                       [
                         "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/apps/backup-system/benji/generate-ceph.sh | bash",
+                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
                       ]
                     volumeMounts:
                       - name: mon-endpoint-volume
@@ -419,7 +419,7 @@ spec:
                     args:
                       [
                         "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/apps/backup-system/benji/generate-ceph.sh | bash",
+                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
                       ]
                     volumeMounts:
                       - name: mon-endpoint-volume
@@ -451,7 +451,7 @@ spec:
                     args:
                       [
                         "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/apps/backup-system/benji/generate-ceph.sh | bash",
+                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
                       ]
                     volumeMounts:
                       - name: mon-endpoint-volume
@@ -483,7 +483,7 @@ spec:
                     args:
                       [
                         "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/apps/backup-system/benji/generate-ceph.sh | bash",
+                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
                       ]
                     volumeMounts:
                       - name: mon-endpoint-volume
@@ -515,7 +515,7 @@ spec:
                     args:
                       [
                         "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/apps/backup-system/benji/generate-ceph.sh | bash",
+                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
                       ]
                     volumeMounts:
                       - name: mon-endpoint-volume
