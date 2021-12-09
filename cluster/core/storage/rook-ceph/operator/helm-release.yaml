@@ -28,6 +28,14 @@ spec:
         tolerations:
           - key: "StorageOnly"
             operator: "Exists"
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: storage
+                    operator: In
+                    values:
+                      - "yes"
     crds:
       enabled: false
     resources:
