@@ -26,7 +26,7 @@ spec:
         pullPolicy: IfNotPresent
       configuration:
         configurationVersion: "1"
-        databaseEngine: postgresql://benji:secret@${SECRET_POSTGRES_HOST}:${SECRET_POSTGRES_HOSTPORT}/benji
+        databaseEngine: postgresql://benji:${SECRET_BENJI_POSTGRES_PASSWORD}@${SECRET_POSTGRES_HOST}:${SECRET_POSTGRES_HOSTPORT}/benji
         defaultStorage: storage-1
         storages:
           - name: storage-1
@@ -133,7 +133,7 @@ spec:
     fsfreeze:
       enabled: true
     postgresql:
-      enabled: true
+      enabled: false
       postgresqlUsername: benji
       postgresqlDatabase: benji
       postgresqlPassword: secret

@@ -12,9 +12,10 @@ spec:
       template:
         spec:
           containers:
+          # Get the latest backup file that is over 100k 
           - args:
             - -c
-            - psql -U benji -h ${SECRET_POSTGRES_HOST} benji -f /var/backups/benji/$(ls -lart /var/backups/benji/| tail -1 | awk '{ print $9}')
+            - psql -U benji -h ${SECRET_POSTGRES_HOST} benji -f /var/backups/benji/$(find /var/backups/benji/ -size +100k -maxdepth 1 -name "*.sql" -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 | cut -d " " -f 4-)
             command:
             - /bin/sh
             env:

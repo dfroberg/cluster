@@ -7,6 +7,7 @@ k3s_control_node: true
 
 # k3s settings for all control-plane nodes
 k3s_server:
+  datastore-endpoint: postgres://cluster:{{ SECRET_POSTGRES_PASSWORD }}@{{ SECRET_POSTGRES_HOST }}:{{ SECRET_POSTGRES_HOSTPORT }}/cluster?sslmode=disable
   node-ip: "{{ ansible_host }}"
   tls-san:
     # kube-vip
