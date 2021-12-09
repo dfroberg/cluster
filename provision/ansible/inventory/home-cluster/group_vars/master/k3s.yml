@@ -30,20 +30,35 @@ k3s_server:
   cluster-cidr: "10.69.0.0/16"
   # Network CIDR to use for service IPs
   service-cidr: "10.96.0.0/16"
-  
+  # Required to monitor component with kube-prometheus-stack
+  etcd-expose-metrics: true
   kubelet-arg:
-    - "feature-gates=GracefulNodeShutdown=true"
+    - "feature-gates=EphemeralContainers=true"
     - "feature-gates=MixedProtocolLBService=true"
+    - "feature-gates=ReadWriteOncePod=true"
+    - "feature-gates=GracefulNodeShutdown=true"
   # Required to use monitor these components with kube-prometheus-stack
   kube-controller-manager-arg:
+    - "feature-gates=EphemeralContainers=true"
+    - "feature-gates=MixedProtocolLBService=true"
+    - "feature-gates=ReadWriteOncePod=true"
     - "bind-address=0.0.0.0"
   kube-proxy-arg:
+    - "feature-gates=EphemeralContainers=true"
+    - "feature-gates=MixedProtocolLBService=true"
+    - "feature-gates=ReadWriteOncePod=true"
     - "metrics-bind-address=0.0.0.0"
   kube-scheduler-arg:
+    - "feature-gates=EphemeralContainers=true"
+    - "feature-gates=MixedProtocolLBService=true"
+    - "feature-gates=ReadWriteOncePod=true"
     - "bind-address=0.0.0.0"
   etcd-expose-metrics: true
   # Required for HAProxy health-checks
   kube-apiserver-arg:
+    - "feature-gates=EphemeralContainers=true"
+    - "feature-gates=MixedProtocolLBService=true"
+    - "feature-gates=ReadWriteOncePod=true"
     - "anonymous-auth=true"
     - "oidc-issuer-url=https://dex.k8s.aml.ink/"
     - "oidc-client-id=dex-k8s-authenticator"
