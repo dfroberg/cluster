@@ -20,7 +20,7 @@ spec:
             - /bin/sh
             env:
             - name: PGPASSWORD
-              value: secret
+              value: ${SECRET_BENJI_POSTGRES_PASSWORD}
             image: postgres:12
             imagePullPolicy: IfNotPresent
             name: postgres-backup
