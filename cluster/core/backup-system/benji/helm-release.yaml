@@ -36,7 +36,7 @@ spec:
               path: /backup-nas/k8s-backups
         ios:
           - module: rbdaio
-            name: rbd 
+            name: ceph-block
             configuration:
               simultaneousReads: 3
               simultaneousWrites: 3
@@ -89,18 +89,18 @@ spec:
             - benji-backup-pvc
             - --namespace
             - comms
-        # - name: backup-home
-        #   schedule: "00 06 * * *"
-        #   command:
-        #     - benji-backup-pvc
-        #     - --namespace
-        #     - home
-        # - name: backup-mail
-        #   schedule: "00 07 * * *"
-        #   command:
-        #     - benji-backup-pvc
-        #     - --namespace
-        #     - mail
+        - name: backup-home
+          schedule: "00 06 * * *"
+          command:
+            - benji-backup-pvc
+            - --namespace
+            - home
+        - name: backup-mail
+          schedule: "00 07 * * *"
+          command:
+            - benji-backup-pvc
+            - --namespace
+            - mailu
         - name: enforce
           schedule: "00 07 * * *"
           command:
