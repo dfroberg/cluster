@@ -3,10 +3,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - config-map.yaml
-  #- benji-postgresql-pvc.yaml
+  #- benji-postgresql-pvc.yaml # moved to external server
   - helm-release.yaml
   - keyring-secret.sops.yaml
   - backup-pgsql-cronjob.yaml
   - backup-pgsql-cronjob-authentik.yaml
   - benji-restore-job.yaml
+  - benji-restore-job-authentik.yaml
   - service-monitor.yaml
