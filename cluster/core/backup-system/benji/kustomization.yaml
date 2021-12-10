@@ -7,5 +7,6 @@ resources:
   - helm-release.yaml
   - keyring-secret.sops.yaml
   - backup-pgsql-cronjob.yaml
+  - backup-pgsql-cronjob-authentik.yaml
   - benji-restore-job.yaml
   - service-monitor.yaml
