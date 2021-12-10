@@ -8,8 +8,6 @@ spec:
   template:
     metadata:
       name: postgres-backup-restore-benji
-      completions: 1
-      parallelism: 1
       spec:
         containers:
           image: postgres:12
