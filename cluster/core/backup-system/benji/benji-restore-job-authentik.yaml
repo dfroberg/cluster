@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   generation: 1
-  name: postgres-backup-restore
+  name: postgres-backup-restore-authentik
   namespace: backup-system
 spec:
   template:
@@ -18,12 +18,12 @@ spec:
             # Get the latest backup file that is over 100k 
             - args:
               - -c
-              - psql -U benji -h ${SECRET_POSTGRES_HOST} benji -f $(find /var/backups/benji/ -size +100k -maxdepth 1 -name "*.sql" -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 | cut -d " " -f 4-)
+              - psql -U authentik -h ${SECRET_POSTGRES_HOST} authentik -f $(find /var/backups/authentik/ -size +100k -maxdepth 1 -name "*.sql" -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 | cut -d " " -f 4-)
               command:
               - /bin/sh
               env:
               - name: PGPASSWORD
-                value: ${SECRET_BENJI_POSTGRES_PASSWORD}
+                value: ${SECRET_AUTHENTIK_POSTGRES_PASSWORD}
               image: postgres:12
               imagePullPolicy: IfNotPresent
               name: postgres-backup
