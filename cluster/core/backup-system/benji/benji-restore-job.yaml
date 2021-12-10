@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   generation: 1
-  name: postgres-backup-restore
+  name: postgres-backup-restore-benji
   namespace: backup-system
 spec:
   suspend: true
