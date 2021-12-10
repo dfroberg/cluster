@@ -5,6 +5,12 @@ metadata:
   name: postgres-backup-restore
   namespace: backup-system
 spec:
+  suspend: true
+  completions: 1
+  parallelism: 1
+  backoffLimit: 1
+  activeDeadlineSeconds: 100
+  ttlSecondsAfterFinished: 100
   template:
     metadata:
       name: postgres-backup-restore-benji
