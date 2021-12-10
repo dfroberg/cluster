@@ -8,33 +8,33 @@ spec:
   template:
     metadata:
       name: postgres-backup-restore-benji
-      spec:
-        containers:
-          image: postgres:12
-          name: postgres-backup
-          imagePullPolicy: IfNotPresent
-          args:
-            - -c
-            - psql -U benji -h ${SECRET_POSTGRES_HOST} benji -f $(find /var/backups/benji/ -size +100k -maxdepth 1 -name "*.sql" -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 | cut -d " " -f 4-)
-          command:
-            - /bin/sh
-          env:
-          - name: PGPASSWORD
-            value: ${SECRET_BENJI_POSTGRES_PASSWORD}
-          
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          volumeMounts:
-          - mountPath: /var/backups
-            name: postgres-storage
-        dnsPolicy: ClusterFirst
-        restartPolicy: Never
-        schedulerName: default-scheduler
-        securityContext: {}
-        terminationGracePeriodSeconds: 30
-        volumes:
-        - name: postgres-storage
-          persistentVolumeClaim:
-            claimName: backup-system-nfs-tank-share-pvc
+    spec:
+      containers:
+      - image: postgres:12
+        name: postgres-backup
+        imagePullPolicy: IfNotPresent
+        args:
+          - -c
+          - psql -U benji -h ${SECRET_POSTGRES_HOST} benji -f $(find /var/backups/benji/ -size +100k -maxdepth 1 -name "*.sql" -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 | cut -d " " -f 4-)
+        command:
+          - /bin/sh
+        env:
+        - name: PGPASSWORD
+          value: ${SECRET_BENJI_POSTGRES_PASSWORD}
+        
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/backups
+          name: postgres-storage
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: postgres-storage
+        persistentVolumeClaim:
+          claimName: backup-system-nfs-tank-share-pvc
 
