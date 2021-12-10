@@ -17,7 +17,7 @@ spec:
               args:
                 [
                   "-c",
-                  'pg_dump -U authentik -h authentik-postgresql-headless.security.svc.cluster.local benji > /var/backups/authentik/backup-$(date +"%m-%d-%Y-%H-%M").sql',
+                  'pg_dump -U authentik -h authentik-postgresql-headless.security.svc.cluster.local authentik > /var/backups/authentik/backup-$(date +"%m-%d-%Y-%H-%M").sql',
                 ]
               env:
                 - name: PGPASSWORD
