@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: postgres-backup
+  name: postgres-backup-authentik
   namespace: backup-system
 spec:
   # Backup the database every day at 2AM
