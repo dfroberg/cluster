@@ -1,0 +1,32 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: postgres-backup
+  namespace: backup-system
+spec:
+  # Backup the database every day at 2AM
+  schedule: "01 00 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: postgres-backup
+              image: postgres:12
+              command: ["/bin/sh"]
+              args:
+                [
+                  "-c",
+                  'pg_dump -U authentik -h authentik-postgresql-headless.security.svc.cluster.local benji > /var/backups/authentik/backup-$(date +"%m-%d-%Y-%H-%M").sql',
+                ]
+              env:
+                - name: PGPASSWORD
+                  value: ${SECRET_AUTHENTIK_POSTGRES_PASSWORD}
+              volumeMounts:
+                - mountPath: /var/backups
+                  name: postgres-storage
+          restartPolicy: Never
+          volumes:
+            - name: postgres-storage
+              persistentVolumeClaim:
+                claimName: backup-system-nfs-tank-share-pvc
