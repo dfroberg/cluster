@@ -56,7 +56,7 @@ spec:
       error_reporting:
         enabled: false
       postgresql:
-        host: '{{ .Release.Name }}-postgresql' # '${SECRET_POSTGRES_HOST}'
+        host: '${SECRET_POSTGRES_HOST}' # '{{ .Release.Name }}-postgresql' # 
         name: authentik
         user: authentik
         password: ${SECRET_AUTHENTIK_POSTGRES_PASSWORD}
@@ -76,9 +76,9 @@ spec:
       rules:
         create: true
     postgresql:
-      enabled: true
+      enabled: false
       persistence:
-        enabled: true
+        enabled: false
         existingClaim: authentik-postgresql
 
       postgresqlUsername: authentik
