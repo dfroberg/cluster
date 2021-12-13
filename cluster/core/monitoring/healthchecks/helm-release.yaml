@@ -23,9 +23,14 @@ spec:
       pullPolicy: IfNotPresent
 
     env:
+      TZ: ${CLUSTER_TZ}
       SECRET_KEY: ${SECRET_HEALTHECKS_SECRET_KEY}
       REGENERATE_SETTINGS: "True"
       EMAIL_USE_TLS: "True"
+      EMAIL_HOST: ${SECRET_SMTP}
+      EMAIL_PORT: 587
+      EMAIL_HOST_USER: ${SECRET_SMTP_USER}
+      EMAIL_HOST_PASSWORD: ${SECRET_SMTP_PASSWORD}
       ALLOWED_HOSTS: "*"
       DB: postgres
       DB_HOST: ${SECRET_POSTGRES_HOST}
@@ -39,7 +44,7 @@ spec:
       DISCORD_CLIENT_SECRET: ${SECRET_HEALTHCHECKS_DISCORD_CLIENT_SECRET}
       SITE_ROOT: "https://healthchecks.${SECRET_DOMAIN}"
       SITE_NAME: "Lab HealthChecks"
-      SITE_LOGO_URL: "https://image.flaticon.com/icons/svg/3629/3629830.svg"
+      SITE_LOGO_URL: "https://cdn-icons-png.flaticon.com/512/6266/6266888.png"
 
     persistence:
       config:
