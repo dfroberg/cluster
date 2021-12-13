@@ -24,13 +24,18 @@ spec:
 
     env:
       TZ: ${CLUSTER_TZ}
+      SITE_ROOT: "https://healthchecks.${SECRET_DOMAIN}"
+      SITE_NAME: "Lab HealthChecks"
+      SITE_LOGO_URL: "https://cdn-icons-png.flaticon.com/512/6266/6266888.png"
       SECRET_KEY: ${SECRET_HEALTHECKS_SECRET_KEY}
+      REGISTRATION_OPEN: "True"
       REGENERATE_SETTINGS: "True"
       EMAIL_USE_TLS: "True"
       EMAIL_HOST: ${SECRET_SMTP}
       EMAIL_PORT: 587
       EMAIL_HOST_USER: ${SECRET_SMTP_USER}
       EMAIL_HOST_PASSWORD: ${SECRET_SMTP_PASSWORD}
+      EMAIL_USE_VERIFICATION: "True"
       DEFAULT_FROM_EMAIL: Lab HealthChecks <${SECRET_SMTP_USER}>
       ALLOWED_HOSTS: "*"
       DB: postgres
@@ -43,9 +48,6 @@ spec:
       SUPERUSER_PASSWORD: ${SECRET_HEALTHCHECKS_SUPERUSER_PASSWORD}
       DISCORD_CLIENT_ID: ${SECRET_HEALTHCHECKS_DISCORD_CLIENT_ID}
       DISCORD_CLIENT_SECRET: ${SECRET_HEALTHCHECKS_DISCORD_CLIENT_SECRET}
-      SITE_ROOT: "https://healthchecks.${SECRET_DOMAIN}"
-      SITE_NAME: "Lab HealthChecks"
-      SITE_LOGO_URL: "https://cdn-icons-png.flaticon.com/512/6266/6266888.png"
 
     persistence:
       config:
