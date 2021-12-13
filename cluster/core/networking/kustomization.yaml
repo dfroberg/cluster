@@ -3,10 +3,12 @@ kind: Kustomization
 resources:
   - metallb-system
   - cert-manager
+  - wildcard-certificate
   - traefik
   - error-pages
-  - wildcard-certificate
   - external-dns
   - secret-reflector
   #- kpc # pfSense controller moved to its own 
   - webhooks
+  - ingress-nginx
+  - k8s-gateway

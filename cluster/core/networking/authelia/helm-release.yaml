@@ -104,6 +104,8 @@ spec:
               - alert-manager.${SECRET_DOMAIN}
               - prometheus.${SECRET_DOMAIN}
               - thanos.${SECRET_DOMAIN}
+              - rook.${SECRET_DOMAIN}
+              - goldilocks.${SECRET_DOMAIN}
             subject: ["group:users"]
             policy: deny
 
