@@ -31,11 +31,11 @@ spec:
         external-dns/is-public: "true"
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
       hosts:
-        - "login.${SECRET_DOMAIN}"
+        - "kubeconf.${SECRET_DOMAIN}"
       tls:
         - hosts:
-            - "login.${SECRET_DOMAIN}"
-          secretName: dex-k8s-authenticator-cert
+            - "kubeconf.${SECRET_DOMAIN}"
+          secretName: "${SECRET_DOMAIN//./-}-tls"
     # resources:
     #   requests:
     #     memory: 350Mi
@@ -51,7 +51,7 @@ spec:
         issuer: https://dex.${SECRET_DOMAIN}/
         k8s_master_uri: https://${SECRET_DOMAIN}:6443
         client_id: dex-k8s-authenticator
-        redirect_uri: https://login.${SECRET_DOMAIN}/callback/
+        redirect_uri: https://kubeconf.${SECRET_DOMAIN}/callback/
         # k8s_ca_pem: |
         #   -----BEGIN CERTIFICATE-----
         #   -----END CERTIFICATE-----

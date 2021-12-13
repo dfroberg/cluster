@@ -7,3 +7,11 @@ resources:
   - secret.sops.yaml
   - basic-auth.yaml
   - secure-headers.yaml
+  - authelia.yaml
+  - authentik.yaml
+  - buffering-large.yaml
+  - buffering-medium.yaml
+  - buffering-small.yaml
+  - ratelimit.yaml
+  - forward-auth.yaml
+

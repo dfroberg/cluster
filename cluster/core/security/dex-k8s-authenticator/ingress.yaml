@@ -13,10 +13,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - "login.${SECRET_DOMAIN}"
+        - "kubeconf.${SECRET_DOMAIN}"
       secretName: dex-k8s-authenticator-cert
   rules:
-    - host: "login.${SECRET_DOMAIN}"
+    - host: "kubeconf.${SECRET_DOMAIN}"
       http:
         paths:
           - path: /

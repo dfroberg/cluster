@@ -209,6 +209,7 @@ spec:
       ingressClassName: "traefik"
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        traefik.ingress.kubernetes.io/router.middlewares: networking-forward-auth@kubernetescrd
       hosts:
         - "grafana.${SECRET_DOMAIN}"
       tls:

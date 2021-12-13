@@ -1,0 +1,27 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: authelia-config-custom
+  namespace: networking
+data:
+  users_database.yml: |
+    users:
+      Danny:
+        displayname: "Danny"
+        password: "${SECRET_AUTHELIA_USER_DANNY_PASSWORD}"
+        email: ${SECRET_AUTHELIA_USER_DANNY_EMAIL}
+        groups:
+          - admins
+      Cissi:
+        displayname: "Cissi"
+        password: "${SECRET_AUTHELIA_USER_CISSI_PASSWORD}"
+        email: ${SECRET_AUTHELIA_USER_CISSI_EMAIL}
+        groups:
+          - users
+      visitor:
+        displayname: "Visitor"
+        password: "${SECRET_AUTHELIA_USER_VISITOR_PASSWORD}"
+        email: ${SECRET_AUTHELIA_USER_VISITOR_EMAIL}
+        groups:
+          - users
