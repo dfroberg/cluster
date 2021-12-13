@@ -21,3 +21,5 @@ resources:
   #- sonarr-uhd
   #- tautulli
   - calibre-web
+  - jobs
+  
