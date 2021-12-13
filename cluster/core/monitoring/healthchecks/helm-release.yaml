@@ -51,7 +51,9 @@ spec:
 
     persistence:
       config:
-        enabled: false
+        enabled: true
+        existingClaim: healthchecks-config-v1
+        mountpath: /config
 
     service:
       main:
