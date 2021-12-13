@@ -4,5 +4,5 @@ resources:
   - config-pvc.yaml
   - helm-release.yaml
   - tag-tracker-errors
-  - qbittorrent-upgrade-p2pblocklist.yaml
-  
+  - upgrade-p2pblocklist-job.yaml
+
