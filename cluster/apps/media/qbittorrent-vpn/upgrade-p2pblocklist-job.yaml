@@ -1,0 +1,36 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: qbittorrent-upgrade-p2pblocklist
+  namespace: media
+spec:
+  schedule: "@daily"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: qbittorrent-upgrade-p2pblocklist
+        spec:
+          serviceAccountName: jobs
+          containers:
+            - name: qbittorrent-upgrade-p2pblocklist
+              image: ghcr.io/k8s-at-home/kubectl:v1.23.0
+              imagePullPolicy: IfNotPresent
+              command:
+                - "/bin/sh"
+                - "-ec"
+                - |
+                  #!/bin/sh
+
+                  set -o nounset
+                  set -o errexit
+
+                  curl --location https://github.com/DavidMoore/ipfilter/releases/download/lists/ipfilter.dat.gz --output /tmp/ipfilter.dat.gz
+                  gunzip /tmp/ipfilter.dat.gz
+                  result=$(kubectl get pod --selector app.kubernetes.io/name=qbittorrent --output custom-columns=:metadata.name --namespace media)
+                  QBITTORRENT_POD=$(echo $result | awk '{ print $NF }')
+                  echo $QBITTORRENT_POD | grep qbittorrent
+                  test $? -eq 0 && kubectl cp /tmp/ipfilter.dat media/$QBITTORRENT_POD:/config/ipfilter.dat
+                  curl -m 10 --retry 5 http://healthchecks.monitoring.svc.cluster.local.:8000/ping/b4651e4f-5058-436b-a237-0df660e9de9e
+          restartPolicy: Never
