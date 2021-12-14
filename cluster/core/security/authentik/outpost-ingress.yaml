@@ -15,7 +15,7 @@ spec:
               # Or, to use an external Outpost, create an ExternalName service and reference that here.
               # See https://kubernetes.io/docs/concepts/services-networking/service/#externalname
               service:
-                name: ak-outpost-example-outpost
+                name: ak-outpost-authentik-embedded-outpost
                 port:
                   number: 9000
 
