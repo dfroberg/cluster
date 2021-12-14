@@ -5,3 +5,5 @@ resources:
   #- authentik-postgresql-pvc.yaml
   - helm-release.yaml
   - secret.sops.yaml
+  - outpost-ingress.yaml
+  
