@@ -104,6 +104,7 @@ spec:
               - email
               - groups
               - preferred_username
+            loadAllGroups: true
       staticClients:
         - id: dex-k8s-authenticator
           name: dex-k8s-authenticator
