@@ -24,3 +24,14 @@ spec:
         name: cluster-settings
       - kind: Secret
         name: cluster-secrets
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Provider
+metadata:
+  name: matrix-notifications
+  namespace: flux-system
+spec:
+  type: matrix
+  channel: "!djeZYQVrgWaZwgMZyU:matrix.${SECRET_DOMAIN}"
+  secretRef:
+    name: matrix-token
