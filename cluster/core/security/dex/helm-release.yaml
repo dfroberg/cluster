@@ -91,10 +91,10 @@ spec:
         #     # Flag which indicates that all user groups and teams should be loaded.
         #     loadAllGroups: true
         - type: oidc
-          id: authentik
+          id: dex
           name: Authentik
           config:
-            issuer: https://id.${SECRET_DOMAIN}
+            issuer: https://id.${SECRET_DOMAIN}/application/o/dex/
             clientID: ${SECRET_DEX_AUTHENTIK_OIDC_CLIENT_ID}
             clientSecret: ${SECRET_DEX_AUTHENTIK_OIDC_CLIENT_SECRET}
             redirectURI: https://dex.${SECRET_DOMAIN}/callback
@@ -103,6 +103,7 @@ spec:
               - profile
               - email
               - groups
+              - preferred_username
       staticClients:
         - id: dex-k8s-authenticator
           name: dex-k8s-authenticator
