@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ananace-charts.yaml
   - appscode-charts.yaml
+  - authelia-charts.yaml
   - metallb-charts.yaml
   - fairwinds-charts.yaml
   - authentik-charts.yaml
