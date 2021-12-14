@@ -6,6 +6,7 @@ metadata:
   namespace: flux-system
 data:
   YOUR_NAME: Danny
+  DEX_KUBECTL_USERNAME: dfroberg
   CLUSTER_TZ: "Europe/Stockholm"
   METALLB_LB_RANGE: "192.168.30.100-192.168.30.150"
   METALLB_ARP_RANGE: 192.168.30.100-192.168.30.150
