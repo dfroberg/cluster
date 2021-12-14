@@ -5,3 +5,4 @@ resources:
   - authentik
   - dex
   - dex-k8s-authenticator
+  - authelia
