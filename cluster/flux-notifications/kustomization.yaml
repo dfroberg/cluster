@@ -4,5 +4,6 @@ namespace: flux-system
 resources:
   - secret.sops.yaml
   - slack.yaml
+  - matrix.yaml
   - alerts.yaml
   
