@@ -35,17 +35,17 @@ spec:
           - "${SVC_PLEX_ADDR}"
         externalTrafficPolicy: Local
         annotations:
-          traefik.ingress.kubernetes.io/service.serversscheme: https
+          #traefik.ingress.kubernetes.io/service.serversscheme: https
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        ingressClassName: "nginx"
         annotations:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "plex"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          # traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - host: "plex.${SECRET_DOMAIN}"
             paths:

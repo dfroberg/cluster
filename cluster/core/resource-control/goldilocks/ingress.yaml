@@ -5,12 +5,12 @@ metadata:
   name: goldilocks-dashboard
   namespace: goldilocks
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
   labels:
     app.kubernetes.io/instance: goldilocks-dashboard
     app.kubernetes.io/name: goldilocks-dashboard
 spec:
-  ingressClassName: "traefik"
+  ingressClassName: "nginx"
   rules:
     - host: "goldilocks.${SECRET_DOMAIN}"
       http:

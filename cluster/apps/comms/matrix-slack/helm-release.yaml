@@ -41,11 +41,11 @@ spec:
     ingress:
       main:
         enabled: false
-        ingressClassName: "traefik"
+        ingressClassName: "nginx"
         annotations:
           kubernetes.io/tls-acme: "true"
           cert-manager.io/cluster-issuer: letsencrypt-production
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - host: "ma-slack.${SECRET_DOMAIN}"
             paths:

@@ -27,10 +27,10 @@ spec:
       worker: yes
     ingress:
       enabled: true
-      ingressClassName: traefik
+      ingressClassName: nginx
       annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918-ips@kubernetescrd
+        #traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        #traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918-ips@kubernetescrd
         cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
         - host: "id.${SECRET_DOMAIN}"

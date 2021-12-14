@@ -206,10 +206,10 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      ingressClassName: "traefik"
+      ingressClassName: "nginx"
       annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        traefik.ingress.kubernetes.io/router.middlewares: networking-forward-auth@kubernetescrd
+        #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        #traefik.ingress.kubernetes.io/router.middlewares: networking-forward-auth@kubernetescrd
       hosts:
         - "grafana.${SECRET_DOMAIN}"
       tls:

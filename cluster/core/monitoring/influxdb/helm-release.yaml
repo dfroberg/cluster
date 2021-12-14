@@ -275,7 +275,7 @@ spec:
     ##
     ingress:
       enabled: true
-      ingressClassName: "traefik"
+      ingressClassName: "nginx"
       tls: true
       ## @param ingress.certManager Add annotations for cert-manager
       ##

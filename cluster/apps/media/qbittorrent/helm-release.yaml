@@ -43,14 +43,14 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        ingressClassName: "nginx"
         annotations:
           haproxy-ingress-proxy.pfsense.org/enabled: "true"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "cloud-download"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - host: "qb.${SECRET_DOMAIN}"
             paths:

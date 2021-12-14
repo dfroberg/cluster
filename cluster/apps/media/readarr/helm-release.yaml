@@ -26,14 +26,14 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        ingressClassName: "nginx"
         annotations:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "book-open"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-auth@kubernetescrd"
+          #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          #traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-auth@kubernetescrd"
         hosts:
           - host: "readarr.${SECRET_DOMAIN}"
             paths:
@@ -45,9 +45,9 @@ spec:
               - "readarr.${SECRET_DOMAIN}"
       api:
         enabled: true
-        ingressClassName: "traefik"
+        ingressClassName: "nginx"
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - host: "readarr.${SECRET_DOMAIN}"
             paths:

@@ -30,23 +30,24 @@ spec:
         enabled: true
     clusterName: lab-cluster
     ingress:
+      ingressClassName: "nginx"
       create: true
       host: "k10.${SECRET_DOMAIN}"
       annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       urlPath: 
       hosts:
         - "k10.${SECRET_DOMAIN}"
       tls:
         enabled: true
         secretName: "${SECRET_DOMAIN//./-}-tls"
-  postRenderers:
-    - kustomize:
-        patchesJson6902:
-          - target:
-              kind: Ingress
-              name: k10-ingress
-            patch:
-              - op: add
-                path: /spec/ingressClassName
-                value: traefik
+  # postRenderers:
+  #   - kustomize:
+  #       patchesJson6902:
+  #         - target:
+  #             kind: Ingress
+  #             name: k10-ingress
+  #           patch:
+  #             - op: add
+  #               path: /spec/ingressClassName
+  #               value: traefik
