@@ -128,12 +128,12 @@ spec:
         redis:
           enabled: true
           enabledSecret: true
-          host: redis-master.database.svc.cluster.local
+          host: redis-master.databases.svc.cluster.local
 
       storage:
         postgres:
           enabled: true
-          host: postgresql-kube.database.svc.cluster.local
+          host: postgresql-kube.databases.svc.cluster.local
 
       notifier:
         smtp:
