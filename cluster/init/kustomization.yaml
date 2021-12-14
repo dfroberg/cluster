@@ -7,6 +7,5 @@ resources:
   - cluster-sops-keys/cluster-secrets.sops.yaml
   - cluster-sops-keys/cluster-secrets-repo.yaml
   - cluster-sops-keys/regcred.sops.yaml
-  - rbac
 patchesStrategicMerge: []
   #- ./init-patches.yaml
