@@ -24,6 +24,7 @@ resources:
   - kasten-charts.yaml
   - kuberhealthy-charts.yaml
   - kpc-charts.yaml
+  - k8s-gateway-charts.yaml
   - oauth2-proxy-charts.yaml
   - descheduler-charts.yaml
   - external-dns-charts.yaml
