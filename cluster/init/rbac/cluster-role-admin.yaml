@@ -8,6 +8,6 @@ roleRef:
   name: cluster-admin
 subjects:
   - kind: User
-    name: "CghkZnJvYmVyZxIDZGV4"
+    name: "https://dex.k8s.aml.ink/#dfroberg"
     apiGroup: rbac.authorization.k8s.io
 
