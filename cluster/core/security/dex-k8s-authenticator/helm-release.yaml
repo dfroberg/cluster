@@ -56,7 +56,7 @@ spec:
         # k8s_ca_pem: |
         #   -----BEGIN CERTIFICATE-----
         #   -----END CERTIFICATE-----
-        #k8s_ca_uri: https://${SECRET_DOMAIN}:6443/cacerts
+        k8s_ca_uri: https://${SECRET_DOMAIN}:6443/cacerts
         scopes:
           - email
           - profile

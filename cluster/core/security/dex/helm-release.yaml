@@ -77,20 +77,27 @@ spec:
       connectors:
         # GitHub configure 'OAuth Apps' -> 'New OAuth App', add callback URL
         # https://github.com/settings/developers
-        - type: github
-          id: github
-          name: GitHub
+        # - type: github
+        #   id: github
+        #   name: GitHub
+        #   config:
+        #     clientID: ${SECRET_DEX_GITHUB_CLIENT_ID}
+        #     clientSecret: ${SECRET_DEX_GITHUB_CLIENT_SECRET}
+        #     redirectURI: https://dex.${SECRET_DOMAIN}/callback
+        #     # 'orgs' can be used to map groups from Github
+        #     # https://github.com/coreos/dex/blob/master/Documentation/connectors/github.md
+        #     orgs:
+        #       - name: froberg-co
+        #     # Flag which indicates that all user groups and teams should be loaded.
+        #     loadAllGroups: true
+        - type: oidc
+          id: authentik
+          name: Authentik
           config:
-            clientID: ${SECRET_DEX_GITHUB_CLIENT_ID}
-            clientSecret: ${SECRET_DEX_GITHUB_CLIENT_SECRET}
+            issuer: https://authentik.${SECRET_DOMAIN}
+            clientID: ${SECRET_DEX_AUTHENTIK_OIDC_CLIENT_ID}
+            clientSecret: ${SECRET_DEX_AUTHENTIK_OIDC_CLIENT_SECRET}
             redirectURI: https://dex.${SECRET_DOMAIN}/callback
-            # 'orgs' can be used to map groups from Github
-            # https://github.com/coreos/dex/blob/master/Documentation/connectors/github.md
-            orgs:
-              - name: froberg-co
-            # Flag which indicates that all user groups and teams should be loaded.
-            loadAllGroups: true
-
       staticClients:
         - id: dex-k8s-authenticator
           name: dex-k8s-authenticator
