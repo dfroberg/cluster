@@ -7,9 +7,9 @@ metadata:
   annotations:
     #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     nginx.ingress.kubernetes.io/auth-url: |
-      http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local./akprox/auth/nginx
+      http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local.:9000/akprox/auth/nginx
     nginx.ingress.kubernetes.io/auth-signin: |
-      http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local./akprox/start?rd=$escaped_request_uri
+      http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local.:9000/akprox/start?rd=$escaped_request_uri
     nginx.ingress.kubernetes.io/auth-response-headers: |
       Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
     nginx.ingress.kubernetes.io/auth-snippet: |
