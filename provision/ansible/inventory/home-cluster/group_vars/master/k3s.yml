@@ -65,6 +65,7 @@ k3s_server:
     - "oidc-client-id=dex-k8s-authenticator"
     - "oidc-username-claim=preferred_username"
     - "oidc-groups-claim=groups"
+    - "oidc-profile-claim=profile"
   node-label:
      - "master=yes"
   node-taint:
