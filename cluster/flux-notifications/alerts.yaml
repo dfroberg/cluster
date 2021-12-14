@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   providerRef:
-    name: matrix
+    name: matrix-notifications
   eventSeverity: info
   eventSources:
     - kind: GitRepository
