@@ -54,7 +54,7 @@ k3s_server:
     - "feature-gates=MixedProtocolLBService=true"
     - "feature-gates=ReadWriteOncePod=true"
     - "bind-address=0.0.0.0"
-  etcd-expose-metrics: true
+  
   # Required for HAProxy health-checks
   kube-apiserver-arg:
     - "feature-gates=EphemeralContainers=true"
@@ -63,6 +63,8 @@ k3s_server:
     - "anonymous-auth=true"
     - "oidc-issuer-url=https://dex.k8s.aml.ink/"
     - "oidc-client-id=dex-k8s-authenticator"
+    - "oidc-username-claim=prefered_username"
+    - "oidc-groups-claim=groups"
   node-label:
      - "master=yes"
   node-taint:
