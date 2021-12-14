@@ -92,8 +92,8 @@ spec:
 
     ingress:
       enabled: true
-      #traefikPaths: true
-      className: nginx
+      traefikPaths: true
+      className: traefik
       annotations:
         kubernetes.io/tls-acme: "true"
         cert-manager.io/cluster-issuer: letsencrypt-production

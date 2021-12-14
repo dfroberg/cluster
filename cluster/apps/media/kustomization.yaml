@@ -13,12 +13,10 @@ resources:
   #- qbittorrent
   - qbittorrent-vpn
   - radarr
-  #- radarr-uhd
   - readarr
   - sabnzbd
   - sonarr
   - mylar
-  #- sonarr-uhd
   #- tautulli
   - calibre-web
   - jobs

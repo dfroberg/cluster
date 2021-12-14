@@ -38,6 +38,8 @@ spec:
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/overseerr/nord.css"></head>';
             sub_filter_once on;
           #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
+          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
         hosts:
           - host: "requests.${SECRET_DOMAIN}"
             paths:

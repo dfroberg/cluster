@@ -31,6 +31,8 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "text"
           #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
+          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
         hosts:
           - host: "jackett.${SECRET_DOMAIN}"
             paths:
