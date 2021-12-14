@@ -3,6 +3,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: authentik-outpost
+  namespace: security
 spec:
   rules:
     - host: "*.${SECRET_DOMAIN}"
