@@ -96,7 +96,7 @@ spec:
           name: dex-k8s-authenticator
           secret: ${SECRET_DEX_K8S_AUTHENTICATOR_CLIENT_SECRET}
           redirectURIs:
-            - https://login.${SECRET_DOMAIN}/callback/
+            - https://kubeconf.${SECRET_DOMAIN}/callback/
             - http://localhost:8000
             - http://localhost:18000
 

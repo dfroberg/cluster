@@ -4,7 +4,7 @@ kind: Ingress
 metadata:
   name: goldilocks-dashboard
   namespace: goldilocks
-  annotations:
+  #annotations:
     #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
   labels:
     app.kubernetes.io/instance: goldilocks-dashboard

@@ -34,6 +34,10 @@ spec:
           hajimari.io/icon: "book-open"
           #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           #traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-auth@kubernetescrd"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/readarr/nord.css"></head>';
+            sub_filter_once on;
         hosts:
           - host: "readarr.${SECRET_DOMAIN}"
             paths:

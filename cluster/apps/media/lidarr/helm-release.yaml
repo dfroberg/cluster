@@ -48,6 +48,12 @@ spec:
         ingressClassName: "nginx"
         annotations:
           #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "music-box"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/lidarr/nord.css"></head>';
+            sub_filter_once on;
         hosts:
           - host: "lidarr.${SECRET_DOMAIN}"
             paths:
