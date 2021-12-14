@@ -42,7 +42,7 @@ spec:
 
       env:
         - name: TZ
-          value: Europe/Paris
+          value: ${CLUSTER_TZ}
 
       extraVolumeMounts:
         - name: config-custom
@@ -128,22 +128,22 @@ spec:
         redis:
           enabled: true
           enabledSecret: true
-          host: redis-master.data.svc.cluster.local
+          host: redis-master.database.svc.cluster.local
 
       storage:
         postgres:
           enabled: true
-          host: postgresql-kube.data.svc.cluster.local
+          host: postgresql-kube.database.svc.cluster.local
 
       notifier:
         smtp:
-          enabled: true
-          enabledSecret: true
-          host: smtp.gmail.com
-          port: 587
-          username: ${SECRET_SMTP_USER}
-          sender: ${SECRET_SMTP_USER_EMAIL}
-          identifier: ${SECRET_DOMAIN}
+          enabled: false
+          # enabledSecret: true
+          # host: smtp.gmail.com
+          # port: 587
+          # username: ${SECRET_SMTP_USER}
+          # sender: ${SECRET_SMTP_USER_EMAIL}
+          # identifier: ${SECRET_DOMAIN}
 
     secret:
       storage:

@@ -7,14 +7,14 @@ metadata:
 data:
   users_database.yml: |
     users:
-      Danny:
-        displayname: "Danny"
+      dfroberg:
+        displayname: "Danny Froberg"
         password: "${SECRET_AUTHELIA_USER_DANNY_PASSWORD}"
         email: ${SECRET_AUTHELIA_USER_DANNY_EMAIL}
         groups:
           - admins
-      Cissi:
-        displayname: "Cissi"
+      cfroberg:
+        displayname: "Cissi Froberg"
         password: "${SECRET_AUTHELIA_USER_CISSI_PASSWORD}"
         email: ${SECRET_AUTHELIA_USER_CISSI_EMAIL}
         groups:
