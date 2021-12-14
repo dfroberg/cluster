@@ -63,7 +63,7 @@ k3s_server:
     - "anonymous-auth=true"
     - "oidc-issuer-url=https://dex.k8s.aml.ink/"
     - "oidc-client-id=dex-k8s-authenticator"
-    - "oidc-username-claim=prefered_username"
+    - "oidc-username-claim=preferred_username"
     - "oidc-groups-claim=groups"
   node-label:
      - "master=yes"
