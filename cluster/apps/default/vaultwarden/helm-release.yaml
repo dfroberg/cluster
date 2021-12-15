@@ -24,6 +24,7 @@ spec:
       DATA_FOLDER: "config"
       DOMAIN: https://vaultwarden.${SECRET_DOMAIN}
       SIGNUPS_ALLOWED: "true"
+      ADMIN_TOKEN: "${SECRET_VAULTWARDEN_ADMIN_TOKEN}"
       TZ: "${CLUSTER_TZ}"
       WEBSOCKET_ADDRESS: 0.0.0.0
       WEBSOCKET_ENABLED: true
@@ -60,6 +61,8 @@ spec:
         annotations:
           #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           #traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+          nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
+          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
         hosts:
           - host: "vaultwarden.${SECRET_DOMAIN}"
             paths:
