@@ -71,9 +71,9 @@ spec:
         repository: ghcr.io/181192/custom-error-pages
         tag: latest
 
-      extraEnvs:
-        - name: ERROR_FILES_PATH
-          value: ./themes/noise
+      # extraEnvs:
+      #   - name: ERROR_FILES_PATH
+      #     value: ./themes/noise
 
       resources:
         requests:
