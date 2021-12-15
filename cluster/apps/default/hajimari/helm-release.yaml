@@ -24,10 +24,10 @@ spec:
       TZ: "${CLUSTER_TZ}"
     hajimari:
       defaultEnable: false
-      namespaceSelector:
-        matchNames:
-          - media
-         # - monitoring
+      # namespaceSelector:
+      #   matchNames:
+      #    # - media
+      #    # - monitoring
       name: "${YOUR_NAME}"
       customApps:
         - name: GW
