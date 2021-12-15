@@ -100,7 +100,7 @@ spec:
         # provide in core/rbac/cluster-role-admin.yaml.
         # Once applied have whomever you want to give access to open a browser to
         # https://kubeconf.${SECRET_DOMAIN} they'll be greeted with an authentik login 
-        # and once completed all the steps to install and generate a working .kube/conf
+        # and once completed, all the steps to install and generate a working .kube/conf
         - type: oidc
           id: dex
           name: Authentik
