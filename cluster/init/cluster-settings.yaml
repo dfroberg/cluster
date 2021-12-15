@@ -5,9 +5,14 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
+  # User for i.e. Hajimari to greet you with your name
   YOUR_NAME: Danny
+  # Used in ClusterRoleBinding to allow access via https://kubeconf.${SECRET_DOMAIN} generated kubeconf
   DEX_KUBECTL_USERNAME: dfroberg
+  DEX_KUBECTL_ADMIN_GROUP: admins
+  # What TimeZone are your cluster located in
   CLUSTER_TZ: "Europe/Stockholm"
+  # CIDRs
   METALLB_LB_RANGE: "192.168.30.100-192.168.30.150"
   METALLB_ARP_RANGE: 192.168.30.100-192.168.30.150
   SVC_METALLB_CIDR: "192.168.30.1/24"
@@ -19,7 +24,7 @@ data:
   NETWORK_SERVER_CIDR: "192.168.30.0/24"
   NETWORK_GUEST_CIDR: "192.168.100.0/24"
   NETWORK_IOT_CIDR: "192.168.99.0/24"
-  #
+  # Loadbalancers
   CLUSTER_LB_K8SGATEWAY: "192.168.30.104"
   CLUSTER_LB_NGINX: "192.168.30.103"
   #
@@ -29,11 +34,12 @@ data:
   SVC_JELLYFIN_ADDR: "192.168.30.113"
   SVC_PLEX_ADDR: "192.168.30.114"
   SVC_QBITTORRENT_ADDR: "192.168.30.102"
+  # NAS NFS Configs
   NAS_ADDR: "192.168.3.113"
   NAS_BASE_PATH: "/mnt/data/nfs/Recordings"
   NAS_BACKUP_PATH: "/mnt/data/nfs/backups"
   NAS_PVC_PATH: "/mnt/data/nfs/PersistentVolumeClaims"
-  #
+  # vpn-gateway Config
   VPN_PORT: "51820"
   VPN_COUNTRY:  "NL"
   VPN_GATEWAY_VPN_PORT: "57683"
