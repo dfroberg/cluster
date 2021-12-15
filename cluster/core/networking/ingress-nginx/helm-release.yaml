@@ -73,8 +73,8 @@ spec:
 
       extraEnvs:
         - name: ERROR_FILES_PATH
-          value: ./themes/ghost
-          
+          value: ./themes/noise
+
       resources:
         requests:
           memory: 250Mi
