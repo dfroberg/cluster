@@ -13,12 +13,14 @@ metadata:
 spec:
   ingressClassName: traefik
   tls:
-    - secretName: "${SECRET_DOMAIN//./-}-tls"
-  defaultBackend:
-    service:
-      name: default-http-backend-service
-      port:
-        number: 80
+    - hosts:
+        - "default.${SECRET_DOMAIN}"
+      secretName: "${SECRET_DOMAIN//./-}-tls"
+  # defaultBackend:
+  #   service:
+  #     name: default-http-backend-service
+  #     port:
+  #       number: 80
   rules:
   - host: default.${SECRET_DOMAIN}
     http:
