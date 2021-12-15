@@ -5,12 +5,12 @@ metadata:
   name: traefik-dashboard
   namespace: networking
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     hajimari.io/enable: "false"
     hajimari.io/icon: "web"
     hajimari.io/appName: "traefik"
 spec:
-  ingressClassName: "traefik"
+  ingressClassName: "nginx"
   tls:
     - hosts:
         - "traefik.${SECRET_DOMAIN}"
