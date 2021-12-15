@@ -23,14 +23,11 @@ spec:
     env:
       TZ: "${CLUSTER_TZ}"
     hajimari:
-      defaultEnable: true
+      defaultEnable: false
       namespaceSelector:
         matchNames:
-          - home
           - media
           - monitoring
-          - rook-ceph
-          - networking
       name: "${YOUR_NAME}"
       customApps:
         - name: Valetudo
@@ -39,7 +36,7 @@ spec:
         - name: PiAware
           url: "http://192.168.150.25:8080"
           icon: "airplane"
-        - name: HDHomeRun
+        - name: Kodi
           url: "http://192.168.150.30"
           icon: "antenna"
       groups:
@@ -55,8 +52,6 @@ spec:
           links:
             - name: Cloudflare
               url: "https://dash.cloudflare.com"
-            - name: Dropbox
-              url: "https://dropbox.com"
             - name: Drive
               url: "https://drive.google.com"
         # - name: Design
@@ -110,22 +105,6 @@ spec:
     ingress:
       main:
         enabled: false
-        ingressClassName: "nginx"
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "web"
-          hajimari.io/appName: "hajimari"
-          nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
-          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
-        hosts:
-          - host: "hajimari.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - "hajimari.${SECRET_DOMAIN}"
     persistence:
       data:
         enabled: true
