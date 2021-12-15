@@ -24,7 +24,6 @@ spec:
       DATA_FOLDER: "config"
       DOMAIN: https://vaultwarden.${SECRET_DOMAIN}
       SIGNUPS_ALLOWED: "true"
-      ADMIN_TOKEN: "${SECRET_VAULTWARDEN_ADMIN_TOKEN}"
       TZ: "${CLUSTER_TZ}"
       WEBSOCKET_ADDRESS: 0.0.0.0
       WEBSOCKET_ENABLED: true
