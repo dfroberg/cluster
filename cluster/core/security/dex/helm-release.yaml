@@ -99,7 +99,7 @@ spec:
             clientSecret: ${SECRET_DEX_AUTHENTIK_OIDC_CLIENT_SECRET}
             redirectURI: https://dex.${SECRET_DOMAIN}/callback
             getUserInfo: true
-            userNameKey: preferred_username
+            #userNameKey: preferred_username
             insecureEnableGroups: true
             scopes:
               - oidc
@@ -107,9 +107,10 @@ spec:
               - email
               - groups
               - preferred_username
-            loadAllGroups: true
+            #loadAllGroups: true
             claimMapping:
               name: user_name
+              user_name: preferred_username
       staticClients:
         - id: dex-k8s-authenticator
           name: dex-k8s-authenticator
