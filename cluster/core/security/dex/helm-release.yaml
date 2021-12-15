@@ -90,6 +90,8 @@ spec:
         #       - name: froberg-co
         #     # Flag which indicates that all user groups and teams should be loaded.
         #     loadAllGroups: true
+
+        # Use authentik as your OIDC provider for your cluster
         - type: oidc
           id: dex
           name: Authentik

@@ -7,9 +7,12 @@ roleRef:
   kind: ClusterRole
   name: cluster-admin
 subjects:
+  # If you want to use a single user; Uncomment this
   # - kind: User
   #   name: "https://dex.${SECRET_DOMAIN}/#${DEX_KUBECTL_USERNAME}"
   #   apiGroup: rbac.authorization.k8s.io
+
+  # If you want to use multiple users
   - kind: Group
     name: "${DEX_KUBECTL_ADMIN_GROUP}"
     apiGroup: rbac.authorization.k8s.io
