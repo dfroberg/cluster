@@ -85,13 +85,22 @@ spec:
         #     clientSecret: ${SECRET_DEX_GITHUB_CLIENT_SECRET}
         #     redirectURI: https://dex.${SECRET_DOMAIN}/callback
         #     # 'orgs' can be used to map groups from Github
-        #     # https://github.com/coreos/dex/blob/master/Documentation/connectors/github.md
         #     orgs:
         #       - name: froberg-co
         #     # Flag which indicates that all user groups and teams should be loaded.
         #     loadAllGroups: true
 
+        # Instructions:
         # Use authentik as your OIDC provider for your cluster
+        # create an Application named "dex" with an OIDC provider named "dex"
+        # and store the client_id and client_secret in your secrets.
+        # add the users and groups your want to use and assign them.
+        # set the DEX_KUBECTL_ADMIN_GROUP and / or DEX_KUBECTL_USERNAME
+        # in cluster-settings.yaml now uncomment the type of access your wish to 
+        # provide in core/rbac/cluster-role-admin.yaml.
+        # Once applied have whomever you want to give access to open a browser to
+        # https://kubeconf.${SECRET_DOMAIN} they'll be greeted with an authentik login 
+        # and once completed all the steps to install and generate a working .kube/conf
         - type: oidc
           id: dex
           name: Authentik
