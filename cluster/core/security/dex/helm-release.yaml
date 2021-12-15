@@ -100,6 +100,7 @@ spec:
             redirectURI: https://dex.${SECRET_DOMAIN}/callback
             getUserInfo: true
             scopes:
+              - oidc
               - profile
               - email
               - groups
