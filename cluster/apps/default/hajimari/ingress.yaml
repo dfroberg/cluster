@@ -8,17 +8,27 @@ metadata:
     external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
     #traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-auth@kubernetescrd"
     #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    hajimari.io/enable: "true"
-    hajimari.io/icon: "web"
-    hajimari.io/appName: "hajimari"
+    nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
+    nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
 spec:
   ingressClassName: "nginx"
   tls:
     - hosts:
         - "home.${SECRET_DOMAIN}"
+        - "hajimari.${SECRET_DOMAIN}"
       secretName: "${SECRET_DOMAIN//./-}-tls"
   rules:
     - host: "home.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hajimari
+                port:
+                  number: 3000
+    - host: "hajimari.${SECRET_DOMAIN}"
       http:
         paths:
           - path: /

@@ -109,7 +109,7 @@ spec:
             #   url: "https://www.technologyreview.com/"
     ingress:
       main:
-        enabled: true
+        enabled: false
         ingressClassName: "nginx"
         annotations:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
