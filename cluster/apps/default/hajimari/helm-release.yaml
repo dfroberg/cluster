@@ -27,7 +27,7 @@ spec:
       namespaceSelector:
         matchNames:
           - media
-          - monitoring
+         # - monitoring
       name: "${YOUR_NAME}"
       customApps:
         - name: GW
