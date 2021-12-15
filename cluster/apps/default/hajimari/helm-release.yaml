@@ -30,14 +30,14 @@ spec:
           - monitoring
       name: "${YOUR_NAME}"
       customApps:
-        - name: Valetudo
-          url: "http://192.168.1.28"
+        - name: GW
+          url: "http://192.168.3.1:8443"
           icon: "robot-vacuum"
-        - name: PiAware
-          url: "http://192.168.150.25:8080"
+        - name: UniFI
+          url: "http://192.168.10.91:8443"
           icon: "airplane"
         - name: Kodi
-          url: "http://192.168.150.30"
+          url: "http://192.168.3.203:8080/"
           icon: "antenna"
       groups:
         - name: Communicate
