@@ -91,25 +91,28 @@ spec:
         ##
         ## loadBalancerSourceRanges:
         ## - 10.10.10.0/24
-        loadBalancerSourceRanges: []
+        #loadBalancerSourceRanges: []
          # - ${SVC_METALLB_CIDR}
+        loadBalancerSourceRanges:
+          - 10.0.0.0/8
+          - 192.168.0.0/16
         ## @param influxdb.service.clusterIP Static clusterIP or None for headless services
         ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#choosing-your-own-ip-address
         ## e.g:
         ## clusterIP: None
         ##
-        clusterIP: ""
+        #clusterIP: ""
         ## @param influxdb.service.annotations Annotations for InfluxDB&trade; service
         ##
-        annotations: {}
+        #annotations: {}
         ## @param influxdb.service.sessionAffinity Session affinity for the InfluxDB&trade; service
         ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-userspace
-        sessionAffinity: ""
+        #sessionAffinity: ""
         ## @param influxdb.service.sessionAffinityConfig Additional settings for the sessionAffinity
         ## sessionAffinityConfig:
         ##   clientIP:
         ##     timeoutSeconds: 300
-        sessionAffinityConfig: {}
+        #sessionAffinityConfig: {}
 
     ## @section InfluxDB Relay&trade; parameters
 
