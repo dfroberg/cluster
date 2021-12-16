@@ -17,12 +17,12 @@ _... managed with Flux and Renovate_ :robot:
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=for-the-badge)](https://github.com/pre-commit/pre-commit)
 [![renovate](https://img.shields.io/badge/renovate-enabled-brightgreen?style=for-the-badge&logo=renovatebot&logoColor=white)](https://github.com/renovatebot/renovate)
 [![Lines of code](https://img.shields.io/tokei/lines/github/dfroberg/cluster?style=for-the-badge&color=brightgreen&label=lines&logo=codefactor&logoColor=white)](https://github.com/dfroberg/cluster/graphs/contributors)
-  
+
 </div>
 
 <div align="center">
 
-<a href="https://github.com/dfroberg/cluster/tree/main/cluster/core/monitoring/healthchecks"></a><img src='https://healthchecks.k8s.aml.ink/badge/d462aef9-22af-48cb-b729-5ffc1947f2a5/LeDDBdvu-2.svg'></a>
+[![Lab-Healthchecks](https://healthchecks.k8s.aml.ink/badge/d462aef9-22af-48cb-b729-5ffc1947f2a5/LeDDBdvu-2.svg)](https://github.com/dfroberg/cluster/tree/main/cluster/core/monitoring/healthchecks)
 
 </div>
 ---
