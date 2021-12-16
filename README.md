@@ -16,16 +16,13 @@ _... managed with Flux and Renovate_ :robot:
 [![k3s](https://img.shields.io/badge/k3s-v1.22.3-brightgreen?style=for-the-badge&logo=kubernetes&logoColor=white)](https://k3s.io/)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=for-the-badge)](https://github.com/pre-commit/pre-commit)
 [![renovate](https://img.shields.io/badge/renovate-enabled-brightgreen?style=for-the-badge&logo=renovatebot&logoColor=white)](https://github.com/renovatebot/renovate)
-[![Lines of code](https://img.shields.io/tokei/lines/github/onedr0p/home-cluster?style=for-the-badge&color=brightgreen&label=lines&logo=codefactor&logoColor=white)](https://github.com/onedr0p/home-cluster/graphs/contributors)
+[![Lines of code](https://img.shields.io/tokei/lines/github/dfroberg/cluster?style=for-the-badge&color=brightgreen&label=lines&logo=codefactor&logoColor=white)](https://github.com/dfroberg/cluster/graphs/contributors)
   
 </div>
 
 <div align="center">
-
-[![Lab-Internet](https://img.shields.io/uptimerobot/status/m784591389-ddbc4c84041a70eb6f6a3fb4?color=important&label=lab%20internet&style=flat-square&logo=pfSense&logoColor=white)](https://uptimerobot.com)
-
+[![Lab Healthchecks](https://healthchecks.k8s.aml.ink/badge/d462aef9-22af-48cb-b729-5ffc1947f2a5/LeDDBdvu-2.svg)]
 </div>
-
 ---
 
 ## :book:&nbsp; Overview
