@@ -22,7 +22,7 @@ _... managed with Flux and Renovate_ :robot:
 
 <div align="center">
 
-[![Lab-Healthchecks](https://healthchecks.k8s.aml.ink/badge/d462aef9-22af-48cb-b729-5ffc1947f2a5/LeDDBdvu-2.svg)](https://github.com/dfroberg/cluster/tree/main/cluster/core/monitoring/healthchecks)
+<a href="https://github.com/dfroberg/cluster/tree/main/cluster/core/monitoring/healthchecks"></a><img src='https://healthchecks.k8s.aml.ink/badge/d462aef9-22af-48cb-b729-5ffc1947f2a5/LeDDBdvu-2.svg'></a>
 
 </div>
 ---
