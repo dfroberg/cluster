@@ -18,7 +18,7 @@ spec:
                 [
                   "-c",
                   'pg_dump -U benji -h ${SECRET_POSTGRES_HOST} benji > /var/backups/benji/backup-$(date +"%m-%d-%Y-%H-%M").sql',
-                  '&& curl -fsS -m 10 --retry 5 -o /dev/null https://healthchecks.k8s.aml.ink/ping/73ec5213-d30b-4cc3-9ec2-1c2436ce0401'
+                  "&& curl -fsS -m 10 --retry 5 -o /dev/null https://healthchecks.k8s.aml.ink/ping/73ec5213-d30b-4cc3-9ec2-1c2436ce0401",
                 ]
               env:
                 - name: PGPASSWORD
