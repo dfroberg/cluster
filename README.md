@@ -20,14 +20,10 @@ _... managed with Flux and Renovate_ :robot:
   
 </div>
 
-
-<div align="center"></div>
-
-[![Lab-Internet](https://img.shields.io/uptimerobot/status/m784591389-ddbc4c84041a70eb6f6a3fb4?color=important&label=lab%20internet&style=flat-square&logo=pfSense&logoColor=white)](https://uptimerobot.com)
-
-</div>
 <div align="center">
-[![Lab Healthchecks](https://healthchecks.k8s.aml.ink/badge/d462aef9-22af-48cb-b729-5ffc1947f2a5/LeDDBdvu-2.svg)](https://github.com/dfroberg/cluster/tree/main/cluster/core/monitoring/healthchecks)
+
+[![Lab-Healthchecks](https://healthchecks.k8s.aml.ink/badge/d462aef9-22af-48cb-b729-5ffc1947f2a5/LeDDBdvu-2.svg)](https://github.com/dfroberg/cluster/tree/main/cluster/core/monitoring/healthchecks)
+
 </div>
 ---
 
