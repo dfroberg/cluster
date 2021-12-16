@@ -27,18 +27,27 @@ spec:
       UP_UNIFI_DEFAULT_ROLE: "lab-controller"
       UP_UNIFI_DEFAULT_URL: "https://192.168.10.91:8443/"
       UP_UNIFI_DEFAULT_VERIFY_SSL: false
-      UP_UNIFI_DEFAULT_USER: "unifipoller"
-      UP_UNIFI_DEFAULT_PASS: "unifipoller"
+      UP_UNIFI_DEFAULT_USER: unifipoller
+      UP_UNIFI_DEFAULT_PASS: unifipoller
       UP_UNIFI_DEFAULT_SAVE_SITES: true
       UP_UNIFI_DEFAULT_SAVE_DPI: false
+      UP_UNIFI_DEFAULT_SAVE_ALARMS: "true"
+      UP_UNIFI_DEFAULT_SAVE_ANOMALIES: "true"
+      UP_UNIFI_DEFAULT_SAVE_EVENTS: "true"
+      UP_UNIFI_DEFAULT_SAVE_IDS: "true"
       UP_UNIFI_DEFAULT_SITE_0: "default"
       UP_INFLUXDB_DISABLE: true
       UP_PROMETHEUS_DISABLE: false
       UP_PROMETHEUS_NAMESPACE: "unifipoller"
+      UP_LOKI_URL: http://loki.monitoring.svc.cluster.local:3100
       UP_POLLER_DEBUG: true
     prometheus:
       serviceMonitor:
         enabled: true
+    logging:
+      driver: loki
+      options:
+        loki-url: http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push
     resources:
       requests:
         cpu: 25m
