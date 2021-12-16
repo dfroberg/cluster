@@ -12,12 +12,12 @@ spec:
         spec:
           containers:
             - name: postgres-backup
-              image: postgres:12
+              image: postgres:12-alpine
               command: ["/bin/sh"]
               args:
                 [
                   "-c",
-                  'pg_dump -U authentik -h ${SECRET_POSTGRES_HOST} authentik > /var/backups/authentik/backup-$(date +"%m-%d-%Y-%H-%M").sql',
+                  'apk --no-cache add wget && pg_dump -U authentik -h ${SECRET_POSTGRES_HOST} authentik > /var/backups/authentik/backup-$(date +"%m-%d-%Y-%H-%M").sql',
                 ]
               env:
                 - name: PGPASSWORD
