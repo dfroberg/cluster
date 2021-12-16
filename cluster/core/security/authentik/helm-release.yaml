@@ -22,7 +22,7 @@ spec:
       replicas: 1
     image:
       repository: ghcr.io/goauthentik/server
-      tag: 2021.10.4
+      tag: 2021.12.1
     nodeSelector: 
       worker: yes
     ingress:
