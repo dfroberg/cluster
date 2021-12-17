@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - metrics-rbac.yaml
   - helm-release.yaml
-
+  - ingress.yaml

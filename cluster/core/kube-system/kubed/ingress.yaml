@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubed-ingress
+  namespace: kube-system
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    external-dns/is-public: "false"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - "kubed.${SECRET_DOMAIN}"
+      secretName: "${SECRET_DOMAIN//./-}-tls"
+  rules:
+  - host: kubed.${SECRET_DOMAIN}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: kubed
+            port:
+              number: 443
