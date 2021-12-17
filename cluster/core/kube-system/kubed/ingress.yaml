@@ -22,4 +22,4 @@ spec:
           service:
             name: kubed
             port:
-              number: 443
+              name: api
