@@ -6,6 +6,9 @@ metadata:
   namespace: networking
 spec:
   secretName: "${SECRET_DOMAIN//./-}-tls"
+  secretTemplate:
+    annotations:
+      kubed.appscode.com/sync: "app=kubed"
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
