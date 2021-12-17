@@ -110,9 +110,14 @@ spec:
               - sabnzbd.${SECRET_DOMAIN}
               - books.${SECRET_DOMAIN}
               - bazarr.${SECRET_DOMAIN}
+              - grafana.${SECRET_DOMAIN}
+              - matrix-admin.${SECRET_DOMAIN}
             policy: bypass
             resources:
               - "^/api([/?].*)?$"
+              - "^/(.*)/api([/?].*)?$"
+              - "^/static([/?].*)?$"
+              - "^/manifest[.]json$"
               
           # Deny admin services to users
           - domain:
