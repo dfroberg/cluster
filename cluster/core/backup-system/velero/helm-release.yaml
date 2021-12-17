@@ -1,8 +1,9 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: velero
-  namespace: backup-system
+  namespace: velero
 spec:
   interval: 5m
   chart:
@@ -17,14 +18,7 @@ spec:
       interval: 5m
   values:
     image:
-      repository: velero/velero
-      tag: v1.7.1
-    credentials:
-      secretContents:
-        cloud: |
-          [default]
-          aws_access_key_id = ${SECRET_MINIO_ACCESS_KEY}
-          aws_secret_access_key = ${SECRET_MINIO_SECRET_KEY}
+      repository: ghcr.io/k8s-at-home/velero
     configuration:
       extraEnvVars:
         TZ: "${CLUSTER_TZ}"
@@ -32,81 +26,69 @@ spec:
       backupStorageLocation:
         name: default
         bucket: velero
+        default: true
         config:
           region: minio
           s3ForcePathStyle: true
           s3Url: https://${SECRET_MINIO_HOST}
           publicUrl: https://${SECRET_MINIO_HOST}
-      volumeSnapshotLocation:
-        name: aws
-        config:
-          region: minio
       resticTimeout: 6h
     initContainers:
       - name: velero-plugin-for-aws
-        image: velero/velero-plugin-for-aws:v1.3.0
+        image: ghcr.io/k8s-at-home/velero-plugin-for-aws:v1.3.0
         imagePullPolicy: IfNotPresent
         volumeMounts:
           - mountPath: /target
             name: plugins
-    resources:
-      requests:
-        memory: 300Mi
-        cpu: 25m
-      limits:
-        memory: 1500Mi
+    credentials:
+      existingSecret: velero-s3-creds
+    schedules:
+      daily-backup:
+        schedule: "0 6 * * *"
+        template:
+          ttl: "120h"
     metrics:
       enabled: true
       serviceMonitor:
         enabled: true
     backupsEnabled: true
-    snapshotsEnabled: true
-    deployRestic: true
+    snapshotsEnabled: false
     upgradeCRDs: false
+    cleanUpCRDs: false
     kubectl:
       image:
         repository: ghcr.io/k8s-at-home/kubectl
         tag: v1.23.1
+    deployRestic: true
     restic:
       podVolumePath: /var/lib/kubelet/pods
       privileged: false
       tolerations:
+        - key: "node-role.kubernetes.io/master"
+          operator: "Exists"
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
         - effect: NoExecute
           operator: Exists
         - effect: NoSchedule
           operator: Exists
+        - effect: NoExecute
+          key: node.kubernetes.io/not-ready
+          operator: Exists
+          tolerationSeconds: 300
+        - effect: NoExecute
+          key: node.kubernetes.io/unreachable
+          operator: Exists
+          tolerationSeconds: 300
       resources:
         requests:
           memory: 200Mi
           cpu: 15m
         limits:
           memory: 3000Mi
-    schedules:
-      daily-backup:
-        schedule: "0 6 * * *"
-        template:
-          ttl: "120h"
-      # mailu-hourly:
-      #   schedule: "0 */6 * * *"
-      #   template:
-      #     ttl: "120h"
-      #     includedNamespaces:
-      #       - mail
-    #   mcsv-minecraft-hourly:
-    #     schedule: "0 * * * *"
-    #     template:
-    #       labelSelector:
-    #         matchLabels:
-    #           app: mcsv-minecraft
-    #       ttl: "120h"
-    #       includedNamespaces:
-    #         - default
-    #   mc-minecraft-hourly:
-    #     schedule: "0 */6 * * *"
-    #     template:
-    #       labelSelector:
-    #         matchLabels:
-    #           app: mc-minecraft
-    #       ttl: "120h"
-    #       includedNamespaces:
-    #         - default
+    resources:
+      requests:
+        memory: 300Mi
+        cpu: 25m
+      limits:
+        memory: 1500Mi
