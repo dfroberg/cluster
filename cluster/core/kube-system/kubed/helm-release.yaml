@@ -41,7 +41,7 @@ spec:
     # If true, installs Kubed operator as critical addon
     criticalAddon: false
     # Log level for operator
-    logLevel: debug
+    logLevel: 1
     # If true, sends usage analytics
     enableAnalytics: true
     # Security options the operator pod should run with.
@@ -61,7 +61,7 @@ spec:
     apiserver:
       enabled: true
       # Port used by Kubed server
-      securePort: "8443"
+      securePort: "0"
       # If true, uses kube-apiserver FQDN for AKS cluster to workaround https://github.com/Azure/AKS/issues/522 (default true)
       useKubeapiserverFqdnForAks: true
       healthcheck:
