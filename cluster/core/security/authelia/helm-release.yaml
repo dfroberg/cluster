@@ -98,6 +98,7 @@ spec:
           # bypass Authelia WAN + LAN
           - domain:
               - login.${SECRET_DOMAIN}
+              - matrix.${SECRET_DOMAIN}
             policy: bypass
           # Bypass API urls for certain services
           - domain: 
