@@ -41,7 +41,7 @@ spec:
     # If true, installs Kubed operator as critical addon
     criticalAddon: false
     # Log level for operator
-    logLevel: 1
+    logLevel: 1 # must be numerical default: 3
     # If true, sends usage analytics
     enableAnalytics: true
     # Security options the operator pod should run with.
