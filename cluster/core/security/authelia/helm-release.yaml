@@ -99,6 +99,7 @@ spec:
           - domain:
               - login.${SECRET_DOMAIN}
               - matrix.${SECRET_DOMAIN}
+              - qb-vpn.${SECRET_DOMAIN}
             policy: bypass
           # Bypass API urls for certain services
           - domain: 
