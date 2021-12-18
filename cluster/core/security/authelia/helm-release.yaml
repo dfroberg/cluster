@@ -99,10 +99,6 @@ spec:
           - domain:
               - login.${SECRET_DOMAIN}
               - matrix.${SECRET_DOMAIN}
-              - qb-vpn.${SECRET_DOMAIN}
-            policy: bypass
-          # Bypass API urls for certain services
-          - domain: 
               - sonarr.${SECRET_DOMAIN}
               - radarr.${SECRET_DOMAIN}
               - readarr.${SECRET_DOMAIN}
@@ -112,6 +108,10 @@ spec:
               - sabnzbd.${SECRET_DOMAIN}
               - books.${SECRET_DOMAIN}
               - bazarr.${SECRET_DOMAIN}
+              - qb-vpn.${SECRET_DOMAIN}
+            policy: bypass
+          # Bypass API urls for certain services
+          - domain: 
               - grafana.${SECRET_DOMAIN}
               - matrix-admin.${SECRET_DOMAIN}
             policy: bypass
