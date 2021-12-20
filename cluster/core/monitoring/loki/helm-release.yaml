@@ -86,3 +86,56 @@ spec:
               category: logs
             annotations:
               summary: "{{$value}} is experiencing locked database issues"
+          - alert: ArrDatabaseIsMalformed
+            expr: |
+              sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database disk image is malformed"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              # TODO: Figure out how to use hostname in summary
+              summary: "An arr app is experiencing malformed database disk image issues"
+      #
+      # vaultwarden
+      #
+      - name: vaultwarden
+        rules:
+          - alert: VaultwardenUnableToReachPostgresql
+            expr: |
+              sum by (app) (count_over_time({app="vaultwarden"} |~ "(?i)could not connect to server"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "Vaultwarden is unable to connect to postgresql"
+  # TODO: https://github.com/grafana/helm-charts/pull/700
+  postRenderers:
+    - kustomize:
+        patchesJson6902:
+          - target:
+              version: v1beta1
+              kind: Ingress
+              name: loki
+            patch:
+              - op: add
+                path: /spec/ingressClassName
+                value: nginx
+              - op: replace
+                path: /apiVersion
+                value: networking.k8s.io/v1
+              - op: remove
+                path: /spec/rules/0/http/paths/0/backend/servicePort
+              - op: remove
+                path: /spec/rules/0/http/paths/0/backend/serviceName
+              - op: add
+                path: /spec/rules/0/http/paths/0/backend/service
+                value:
+                  name: loki
+                  port:
+                    name: http-metrics
+              - op: add
+                path: /spec/rules/0/http/paths/0/pathType
+                value: Prefix
+      
