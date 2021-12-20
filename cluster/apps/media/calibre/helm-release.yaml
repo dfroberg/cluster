@@ -1,0 +1,69 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: calibre
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: calibre
+      version: 5.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/linuxserver/calibre
+      tag: version-v5.24.0
+
+    env:
+      TZ: "${CLUSTER_TZ}"
+      PGID: 65539
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: calibre-config-v1
+      data:
+        enabled: true
+        nfs:
+            server: "${NAS_ADDR}"
+            path: ${NAS_BASE_PATH}/media/books
+        mountPath: /data
+
+    service:
+      webserver:
+        enabled: true
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          external-dns/is-public: "false"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          #nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
+          #nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+
+        hosts:
+          - host: calibre.${SECRET_DOMAIN}
+            paths:
+              - path: /
+
+        tls:
+          - secretName: "${SECRET_DOMAIN//./-}-tls"
+            hosts:
+              - calibre.${SECRET_DOMAIN}
+
+    resources:
+      requests:
+        cpu: 0.003
+        memory: 768Mi
+      limits:
+        memory: 1Gi

@@ -18,6 +18,7 @@ resources:
   - sonarr
   - mylar
   #- tautulli
+  - calibre
   - calibre-web
   - jobs
   
