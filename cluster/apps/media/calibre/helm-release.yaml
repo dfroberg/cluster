@@ -32,11 +32,10 @@ spec:
       data:
         enabled: true
         type: custom
-        accessModes:
-          - ReadWriteMany
-        nfs:
-          server: "${NAS_ADDR}"
-          path: ${NAS_BASE_PATH}/media/books
+        volumeSpec:
+          nfs:
+            server: "${NAS_ADDR}"
+            path: ${NAS_BASE_PATH}/media/books
         mountPath: /data
 
     service:
