@@ -21,17 +21,6 @@ spec:
       enabled: true
       storageClassName: ceph-block
       size: 1Gi
-    config:
-      metrics: true
-      storage:
-        type: sqlite
-        file: /data/data.db
-      endpoints:
-        - name: Default Ingress
-          url: https://default.${SECRET_DOMAIN}
-          conditions:
-            - '[STATUS] == 200'
-            - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
     image:
       repository: twinproduction/gatus
       tag: v3.4.0
@@ -51,15 +40,20 @@ spec:
     ingress:
       enabled: true
       ingressClassName: "nginx"
-      annotations:
-        nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
-        nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
       hosts:
         - "gatus.${SECRET_DOMAIN}"
       tls:
         - hosts:
             - "gatus.${SECRET_DOMAIN}"
-    serviceAccount:
-      create: true
-      autoMount: true
+    config:
+      metrics: true
+      storage:
+        type: sqlite
+        file: /data/data.db
+      endpoints:
+        - name: Default Ingress
+          url: https://default.${SECRET_DOMAIN}
+          conditions:
+            - '[STATUS] == 200'
+            - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
 
