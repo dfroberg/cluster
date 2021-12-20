@@ -1,0 +1,63 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gatus
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://avakarev.github.io/gatus-chart
+      chart: gatus
+      version: v3.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: avakarev-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    persistence:
+      enabled: true
+      storageClassName: ceph-block
+      size: 1Gi
+    config:
+      metrics: true
+      storage:
+        type: sqlite
+        file: /data/data.db
+      endpoints:
+        - name: Default Ingress
+          url: https://default.${SECRET_DOMAIN}
+          conditions:
+            - '[STATUS] == 200'
+            - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+    image:
+      repository: gatus/gatus
+    replicas: 1
+    resources:
+      requests:
+        cpu: 22m
+        memory: 132M
+      limits:
+        cpu: 100m
+        memory: 200M
+    nodeSelector: 
+      worker: yes
+    env:
+      TZ: ${CLUSTER_TZ}
+    ingress:
+      enabled: true
+      ingressClassName: "nginx"
+      annotations:
+        nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
+        nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+      hosts:
+        - "gatus.${SECRET_DOMAIN}"
+      tls:
+        - hosts:
+            - "gatus.${SECRET_DOMAIN}"
+    serviceAccount:
+      create: true
+      autoMount: true
+
