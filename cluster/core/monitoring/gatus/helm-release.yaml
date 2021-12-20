@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://avakarev.github.io/gatus-chart
       chart: gatus
-      version: v3.4.0
+      version: 2.0.1
       sourceRef:
         kind: HelmRepository
         name: avakarev-charts
@@ -33,7 +33,9 @@ spec:
             - '[STATUS] == 200'
             - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
     image:
-      repository: gatus/gatus
+      repository: twinproduction/gatus
+      tag: v3.4.0
+      pullPolicy: IfNotPresent
     replicas: 1
     resources:
       requests:
