@@ -31,6 +31,7 @@ spec:
         existingClaim: calibre-config-v1
       data:
         enabled: true
+        type: custom
         accessModes:
           - ReadWriteMany
         nfs:
