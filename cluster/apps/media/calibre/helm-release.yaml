@@ -31,9 +31,11 @@ spec:
         existingClaim: calibre-config-v1
       data:
         enabled: true
+        accessModes:
+          - ReadWriteMany
         nfs:
-            server: "${NAS_ADDR}"
-            path: ${NAS_BASE_PATH}/media/books
+          server: "${NAS_ADDR}"
+          path: ${NAS_BASE_PATH}/media/books
         mountPath: /data
 
     service:
