@@ -6,5 +6,5 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  url: https://avakarev.gitlab.io/gatus-chart
+  url: https://avakarev.github.io/gatus-chart
   timeout: 3m
