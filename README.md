@@ -23,6 +23,7 @@ _... managed with Flux and Renovate_ :robot:
 <div align="center">
 
 [![Lab-Healthchecks](https://healthchecks.k8s.aml.ink/badge/d462aef9-22af-48cb-b729-5ffc1947f2a5/LeDDBdvu-2.svg)](https://github.com/dfroberg/cluster/tree/main/cluster/core/monitoring/healthchecks)
+[![Gatus-Checks](https://gatus.k8s.aml.ink/api/v1/endpoints/_default-ingress/uptimes/7d/badge.svg)](https://gatus.k8s.aml.ink/)
 
 </div>
 ---
