@@ -25,7 +25,7 @@ spec:
       TZ: "${CLUSTER_TZ}"
       PGID: 65539
       CLI_ARGS: "--auth-mode=basic"
-      PASSWORD: ${SECRET_GUACAMOLE_PASSWORD}
+      #PASSWORD: ${SECRET_GUACAMOLE_PASSWORD}
     persistence:
       config:
         enabled: true
