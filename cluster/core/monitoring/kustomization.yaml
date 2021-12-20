@@ -17,4 +17,5 @@ resources:
   - unifi-poller
   # - uptimerobot-heartbeat
   - healthchecks
+  - gatus
   
