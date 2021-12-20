@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://avakarev.github.io/gatus-chart
-      chart: gatus
+      chart: gatus/gatus
       version: 2.0.1
       sourceRef:
         kind: HelmRepository
