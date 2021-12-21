@@ -7,7 +7,7 @@ on: # yamllint disable-line rule:truthy
     - cron: "0 */12 * * *"
 
 jobs:
-  flux-upgrade:
+  upgrade-flux:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
