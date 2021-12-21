@@ -20,6 +20,18 @@ spec:
     image:
       repository: ghcr.io/miguelndecarvalho/speedtest-exporter
       tag: v3.3.4
+    env:
+      TZ: ${CLUSTER_TZ}
+      SPEEDTEST_SERVER: speedtest.gavlenet.com
+    service:
+      main:
+        ports:
+          http:
+            enabled: false
+          metrics:
+            enabled: true
+            protocol: TCP
+            port: 9798
     nodeSelector: 
       worker: yes
     prometheus:
