@@ -124,11 +124,11 @@ spec:
             severity: warning
         - alert: RedisNotEnoughConnections
           annotations:
-            description: Redis instance should have more connections (> 5).
+            description: Redis instance should have more connections (> 1).
             summary: Redis not enough connections.
           expr: |
             redis_connected_clients
-              < 5
+              < 1
           for: 2m
           labels:
             severity: warning
