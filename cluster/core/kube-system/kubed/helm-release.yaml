@@ -20,15 +20,19 @@ spec:
       repository: appscode/kubed
       tag: v0.12.0
     updateStrategy: RollingUpdate
+    # Overrides name template
+    nameOverride: ""
+    # Overrides fullname template
+    fullnameOverride: ""
 
     config:
       # Set cluster-name to something meaningful to you, say, prod, prod-us-east, qa, etc.
       # so that you can distinguish notifications sent by kubed
       clusterName: lab-cluster
       # If set, configmaps and secrets from only this namespace will be synced
-      #configSourceNamespace: ""
+      configSourceNamespace: ""
       # kubeconfig file content for configmap and secret syncer
-      #kubeconfigContent: ""
+      kubeconfigContent: ""
     #  additionalOptions:
     #    - --authentication-skip-lookup
 
@@ -48,9 +52,31 @@ spec:
     serviceAccount:
       # Specifies whether a service account should be created
       create: true
+      # Annotations to add to the service account
+      annotations: {}
+      # The name of the service account to use.
+      # If not set and create is true, a name is generated using the fullname template
+      name: ""
 
     apiserver:
       enabled: true
+      # Port used by Kubed server
+      securePort: "8443"
+      # If true, uses kube-apiserver FQDN for AKS cluster to workaround https://github.com/Azure/AKS/issues/522 (default true)
+      useKubeapiserverFqdnForAks: true
+      healthcheck:
+        # healthcheck configures the readiness and liveliness probes for the operator pod.
+        enabled: false
+      servingCerts:
+        # If true, generates on install/upgrade the certs that allow the kube-apiserver (and potentially ServiceMonitor)
+        # to authenticate operators pods. Otherwise specify certs in `apiserver.servingCerts.{caCrt, serverCrt, serverKey}`.
+        generate: true
+        # CA certficate used by serving certificate of Kubed server.
+        caCrt: ""
+        # Serving certficate used by Kubed server.
+        serverCrt: ""
+        # Private key for the serving certificate used by Kubed server.
+        serverKey: ""
 
     tolerations:
       - effect: NoExecute
