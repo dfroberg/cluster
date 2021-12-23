@@ -22,7 +22,7 @@ spec:
   values:
     image:
       repository: turt2live/matrix-media-repo
-      tag: v1.2.9
+      tag: v1.2.10
 
     config:
       datastores:
