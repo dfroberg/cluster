@@ -24,8 +24,8 @@ spec:
     controller:
       enabled: true
       type: deployment
-      strategy: RollingUpdate
-      replicas: 3
+      strategy: Recreate
+      replicas: 1
     nameOverride: error-pages
     env:
       TEMPLATE_NAME: hacker-terminal
