@@ -89,9 +89,9 @@ spec:
     resources:
       requests:
         memory: 250Mi
-        cpu: 500m
+        cpu: 2500m
       limits:
-        memory: 7500Mi
+        memory: 8500Mi
     additionalContainers:
       fsfreeze:
         name: fsfreeze
