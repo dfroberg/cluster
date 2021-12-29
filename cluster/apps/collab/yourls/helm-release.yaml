@@ -42,6 +42,9 @@ spec:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: nginx
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        external-dns/is-public: "true"
+        haproxy-ingress-proxy.pfsense.org/enabled: "true"
       hosts:
         - name: ${SECRET_SHORT_DOMAIN}
           path: /
