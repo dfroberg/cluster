@@ -16,7 +16,7 @@ spec:
       name: postgres-backup-restore-benji
     spec:
       containers:
-      - image: postgres:12
+      - image: postgres:14
         name: postgres-backup
         imagePullPolicy: IfNotPresent
         args:
