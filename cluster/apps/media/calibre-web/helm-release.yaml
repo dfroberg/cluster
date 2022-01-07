@@ -61,8 +61,9 @@ spec:
           paths:
           - path: /
         tls:
-        - hosts:
-          - "books.${SECRET_DOMAIN}"
+        - secretName: "${SECRET_DOMAIN//./-}-tls"
+          hosts:
+            - "books.${SECRET_DOMAIN}"
     resources:
       requests:
         memory: 1256Mi

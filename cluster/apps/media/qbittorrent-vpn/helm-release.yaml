@@ -71,7 +71,7 @@ spec:
                 pathType: Prefix
         tls:
           - secretName: "${SECRET_DOMAIN//./-}-tls"
-          - hosts:
+            hosts:
               - "qb-vpn.${SECRET_DOMAIN}"
     metrics:
       enabled: true

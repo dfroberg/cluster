@@ -62,7 +62,7 @@ spec:
                 pathType: Prefix
         tls:
           - secretName: "${SECRET_DOMAIN//./-}-tls"
-          - hosts:
+            hosts:
               - "qb.${SECRET_DOMAIN}"
     metrics:
       enabled: false

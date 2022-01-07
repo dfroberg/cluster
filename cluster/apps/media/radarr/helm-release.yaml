@@ -47,7 +47,7 @@ spec:
                 pathType: Prefix
         tls:
           - secretName: "${SECRET_DOMAIN//./-}-tls"
-          - hosts:
+            hosts:
               - "radarr.${SECRET_DOMAIN}"
       api:
         enabled: true
@@ -61,7 +61,7 @@ spec:
                 pathType: Prefix
         tls:
           - secretName: "${SECRET_DOMAIN//./-}-tls"
-          - hosts:
+            hosts:
               - "radarr.${SECRET_DOMAIN}"
     podSecurityContext:
       supplementalGroups:

@@ -41,7 +41,7 @@ spec:
                 pathType: Prefix
         tls:
           - secretName: "${SECRET_DOMAIN//./-}-tls"
-          - hosts:
+            hosts:
               - "sonarr.${SECRET_DOMAIN}"
       api:
         enabled: true
@@ -61,7 +61,7 @@ spec:
                 pathType: Prefix
         tls:
           - secretName: "${SECRET_DOMAIN//./-}-tls"
-          - hosts:
+            hosts:
               - "sonarr.${SECRET_DOMAIN}"
     podSecurityContext:
       supplementalGroups:

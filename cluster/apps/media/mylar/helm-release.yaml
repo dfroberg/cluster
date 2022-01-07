@@ -46,7 +46,7 @@ spec:
                 pathType: Prefix
         tls:
           - secretName: "${SECRET_DOMAIN//./-}-tls"
-          - hosts:
+            hosts:
               - "mylar.${SECRET_DOMAIN}"
     persistence:
       config:
