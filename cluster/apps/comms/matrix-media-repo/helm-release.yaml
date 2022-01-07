@@ -85,11 +85,11 @@ spec:
       name: matrix-media-bucket
       valuesKey: BUCKET_HOST
       targetPath: config.datastores[0].opts.endpoint
-    - kind: Secret
+    - kind: ConfigMap
       name: matrix-media-bucket
       valuesKey: AWS_ACCESS_KEY_ID
       targetPath: config.datastores[0].opts.accessKeyId
-    - kind: Secret
+    - kind: ConfigMap
       name: matrix-media-bucket
       valuesKey: AWS_SECRET_ACCESS_KEY
       targetPath: config.datastores[0].opts.accessSecret
