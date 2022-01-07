@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - volume.yaml
   - helm-release.yaml
-
