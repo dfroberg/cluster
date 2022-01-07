@@ -45,7 +45,7 @@ data:
         # if defaultEnabled is false, you can enable specific ingresses by setting the annotation to true
         defaultEnabled: false
         defaultFrontend: https-443
-        defaultBackend: nginx-443
+        defaultBackend: traefik-443
         # by default anything is allowed
         # allowedHostRegex: "/.${SECRET_DOMAIN}$$/"
       pfsense-dns-services:
