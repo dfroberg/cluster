@@ -5,4 +5,5 @@ resources:
   - operator
   - snapshot-controller
   - rook-direct-mount
+  - monitoring
   - reflector
