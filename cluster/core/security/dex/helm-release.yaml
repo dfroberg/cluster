@@ -32,6 +32,9 @@ spec:
         #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         external-dns/is-public: "true"
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        haproxy-ingress-proxy.pfsense.org/enabled: "true"
+        haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
+        haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
       hosts:
         - host: "dex.${SECRET_DOMAIN}"
           paths:

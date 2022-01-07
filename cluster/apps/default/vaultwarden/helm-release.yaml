@@ -41,6 +41,9 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "shield-key"
           #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          haproxy-ingress-proxy.pfsense.org/enabled: "true"
+          haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
+          haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
         hosts:
           - host: vaultwarden.${SECRET_DOMAIN}
             paths:

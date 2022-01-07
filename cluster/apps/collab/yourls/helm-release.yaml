@@ -45,6 +45,8 @@ spec:
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
         external-dns/is-public: "true"
         haproxy-ingress-proxy.pfsense.org/enabled: "true"
+        haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
+        haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
       hosts:
         - name: ${SECRET_SHORT_DOMAIN}
           path: /

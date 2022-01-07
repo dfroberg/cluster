@@ -51,6 +51,9 @@ spec:
           #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
           nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+          haproxy-ingress-proxy.pfsense.org/enabled: "true"
+          haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
+          haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
           hajimari.io/enable: "true"
           hajimari.io/icon: "bookshelf"
         hosts:
