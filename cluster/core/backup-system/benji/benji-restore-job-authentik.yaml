@@ -38,7 +38,6 @@ spec:
       restartPolicy: Never
       schedulerName: default-scheduler
       securityContext: {}
-      topologySpreadConstraints: []
       terminationGracePeriodSeconds: 30
       volumes:
       - name: postgres-storage
