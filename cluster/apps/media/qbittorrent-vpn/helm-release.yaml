@@ -49,7 +49,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "cloud-download"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
+          external-dns/is-public: "false"
           haproxy-ingress-proxy.pfsense.org/enabled: "true"
           haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
           haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
