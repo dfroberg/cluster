@@ -37,6 +37,7 @@ spec:
         tls:
           - hosts:
               - "rook.${SECRET_DOMAIN}"
+            secretName: "${SECRET_DOMAIN//./-}-tls"
     cephClusterSpec:
       placement:
         all:

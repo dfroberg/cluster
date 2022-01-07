@@ -53,7 +53,7 @@ spec:
         tls:
           - hosts:
               - "cv.${SECRET_DOMAIN}"
-            secretName: rxresume-cert
+            secretName: "${SECRET_DOMAIN//./-}-tls"
     resources:
       requests:
         memory: 100Mi

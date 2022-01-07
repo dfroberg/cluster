@@ -57,6 +57,7 @@ spec:
         tls:
           - hosts:
               - vaultwarden.${SECRET_DOMAIN}
+            secretName: "${SECRET_DOMAIN//./-}-tls"
       admin:
         enabled: true
         ingressClassName: "nginx"

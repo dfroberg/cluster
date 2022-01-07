@@ -44,6 +44,7 @@ spec:
         tls:
           - hosts:
               - "change-detection.${SECRET_DOMAIN}"
+            secretName: "${SECRET_DOMAIN//./-}-tls"
     persistence:
       config:
         enabled: true
