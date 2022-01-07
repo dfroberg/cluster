@@ -73,7 +73,7 @@ data:
           unbound:
             enabled: true
       pfsense-dns-haproxy-ingress-proxy:
-        enabled: true
+        enabled: false
         allowedHostRegex: "/.${SECRET_DOMAIN}$$/"
         dnsBackends:
           dnsmasq:
