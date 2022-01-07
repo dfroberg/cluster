@@ -92,6 +92,7 @@ spec:
         tls:
           - hosts:
               - "tasks.${SECRET_DOMAIN}"
+            secretName: "${SECRET_DOMAIN//./-}-tls"
 
     persistence:
       files:
