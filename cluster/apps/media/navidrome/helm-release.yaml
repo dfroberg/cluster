@@ -27,7 +27,7 @@ spec:
       ND_LOGLEVEL: info
       ND_SESSIONTIMEOUT: 24h
       # ND_ENABLETRANSCODINGCONFIG: "true"
-      ND_MUSICFOLDER: /mnt/storage/music/Artists
+      ND_MUSICFOLDER: /mnt/storage/music/
 
     persistence:
       config:
