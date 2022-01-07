@@ -67,3 +67,4 @@ spec:
           - secretName: "${SECRET_DOMAIN//./-}-tls"
             hosts:
               - "navidrome.${SECRET_DOMAIN}"
+
