@@ -23,6 +23,13 @@ spec:
     updateStrategy: Recreate
     env:
       TZ: "${CLUSTER_TZ}"
+      HOST_WHITELIST_ENTRIES: >-
+        sabnzbd,
+        sabnzbd.media,
+        sabnzbd.media.svc,
+        sabnzbd.media.svc.cluster,
+        sabnzbd.media.svc.cluster.local,
+        sabnzbd.${SECRET_PUBLIC_DOMAIN}
     ingress:
       main:
         enabled: true
