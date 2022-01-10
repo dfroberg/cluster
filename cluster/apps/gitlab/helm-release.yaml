@@ -22,12 +22,10 @@ spec:
     remediation:
       retries: 3
   values:
-    image:
-      repository: gitlab/gitlab-runner
-      tag: "ubuntu-v14.6.0"
+    image: gitlab/gitlab-runner:ubuntu-v14.6.0
     
     imagePullSecrets: 
-      - name: regcred
+      - name: "regcred"
 
     nameOverride: gitlab-runner
     gitlabUrl: ${GITLABURL}
@@ -45,8 +43,8 @@ spec:
       # runner configuration: https://docs.gitlab.com/runner/configuration/advanced-configuration.html
       secret: gitlab-runner-secret
       imagePullSecrets: 
-        - name: regcred
-        - name: gitlabcred
+        - name: "regcred"
+        - name: "gitlabcred"
       config: |
         [[runners]]
           [runners.kubernetes]
@@ -65,6 +63,17 @@ spec:
     cache: 
       ## S3 the name of the secret.
       secretName: gitlab-cache-secret
+    hpa: 
+      minReplicas: 1
+      maxReplicas: 10
+      metrics:
+      - type: Pods
+        pods:
+          metricName: gitlab_runner_jobs
+          targetAverageValue: 400m
+    securityContext:
+      runAsUser: 999
+      fsGroup: 999
     resources:
       requests:
         cpu: 1000m
