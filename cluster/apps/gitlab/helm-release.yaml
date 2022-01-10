@@ -24,9 +24,9 @@ spec:
   values:
     image:
       repository: gitlab/gitlab-runner
-
-    imagePullSecrets: 
-      - name: regcred
+      tag: "ubuntu-v14.6.0"
+    # imagePullSecrets: 
+    #   - name: regcred
     
     gitlabUrl: ${GITLABURL}
     concurrent: 10
