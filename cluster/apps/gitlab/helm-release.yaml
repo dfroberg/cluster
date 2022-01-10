@@ -26,7 +26,7 @@ spec:
       repository: gitlab/gitlab-runner
       tag: v14.6.0
     imagePullPolicy: IfNotPresent
-
+    imagePullSecrets: regcred
     gitlabUrl: ${GITLABURL}
     concurrent: 10
     checkInterval: 30
