@@ -24,10 +24,11 @@ spec:
   values:
     image:
       repository: index.docker.io/gitlab/gitlab-runner
-      tag: "ubuntu-v14.6.0"
+    #  tag: "ubuntu-v14.6.0"
     # imagePullSecrets: 
     #   - name: regcred
-    
+
+    nameOverride: gitlab-runner
     gitlabUrl: ${GITLABURL}
     concurrent: 10
     checkInterval: 30
