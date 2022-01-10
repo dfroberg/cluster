@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: gitlab/gitlab-runner
-      tag: 14.6.0
+      tag: v14.6.0
       imagePullPolicy: IfNotPresent
     gitlabUrl: ${GITLABURL}
     concurrent: 10
