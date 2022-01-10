@@ -24,9 +24,10 @@ spec:
   values:
     image:
       repository: gitlab/gitlab-runner
-    #  tag: "ubuntu-v14.6.0"
-    # imagePullSecrets: 
-    #   - name: regcred
+      tag: "ubuntu-v14.6.0"
+    
+    imagePullSecrets: 
+      - name: regcred
 
     nameOverride: gitlab-runner
     gitlabUrl: ${GITLABURL}
