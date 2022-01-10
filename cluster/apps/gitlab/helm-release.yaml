@@ -19,7 +19,8 @@ spec:
     image:
       repository: gitlab/gitlab-runner
       tag: v14.6.0
-      imagePullPolicy: IfNotPresent
+    imagePullPolicy: IfNotPresent
+    
     gitlabUrl: ${GITLABURL}
     concurrent: 10
     checkInterval: 30
@@ -34,7 +35,9 @@ spec:
       # tpl: https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-tpl-function
       # runner configuration: https://docs.gitlab.com/runner/configuration/advanced-configuration.html
       secret: gitlab-runner-secret
-      imagePullSecrets: [regcred, gitlabcred]
+      imagePullSecrets: 
+        - name: regcred
+        - name: gitlabcred
       config: |
         [[runners]]
           [runners.kubernetes]
