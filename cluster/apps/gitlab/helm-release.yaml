@@ -23,9 +23,13 @@ spec:
       retries: 3
   values:
     image:
-      repository: gitlab/gitlab-runner:v14.6.0
-    imagePullPolicy: IfNotPresent
-    imagePullSecrets: regcred
+      repository: gitlab/gitlab-runner
+      tag: "v14.6.0"
+      pullPolicy: IfNotPresent
+
+    imagePullSecrets: 
+      - name: regcred
+    
     gitlabUrl: ${GITLABURL}
     concurrent: 10
     checkInterval: 30
