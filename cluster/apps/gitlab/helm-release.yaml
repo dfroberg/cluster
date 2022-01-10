@@ -1,0 +1,59 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gitlab-runner
+  namespace: gitlab
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: gitlab-runner
+      version: 0.36.0
+      sourceRef:
+        kind: HelmRepository
+        name: gitlab-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: gitlab/gitlab-runner
+      tag: 14.6.0
+      imagePullPolicy: IfNotPresent
+    gitlabUrl: ${GITLABURL}
+    concurrent: 10
+    checkInterval: 30
+    rbac:
+      create: true
+    env:
+      TZ: "${CLUSTER_TZ}"
+    runners:
+      # runner configuration, where the multi line strings is evaluated as
+      # template so you can specify helm values inside of it.
+      #
+      # tpl: https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-tpl-function
+      # runner configuration: https://docs.gitlab.com/runner/configuration/advanced-configuration.html
+      secret: gitlab-runner-secret
+      imagePullSecrets: [regcred, gitlabcred]
+      config: |
+        [[runners]]
+          [runners.kubernetes]
+            namespace = "{{.Release.Namespace}}"
+            image = "ubuntu:20.04"
+            [runners.cache]
+              Type = "s3"
+              Path = "runner"
+              Shared = true
+              [runners.cache.s3]
+                ServerAddress = "${SECRET_MINIO_HOST}"
+                BucketName = "gitlab-cache"
+                BucketLocation = "minio"
+                Insecure = false
+                AuthenticationType = "access-key"
+    cache: 
+      ## S3 the name of the secret.
+      secretName: gitlab-cache-secret
+    resources:
+      requests:
+        cpu: 1000m
+        memory: 1280M

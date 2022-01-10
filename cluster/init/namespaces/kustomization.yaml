@@ -11,6 +11,7 @@ resources:
   - collab.yaml
   - comms.yaml
   - metallb-system.yaml
+  - gitlab.yaml
   - goldilocks.yaml
   - networking.yaml
   - monitoring.yaml

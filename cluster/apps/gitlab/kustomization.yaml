@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gitlab-cache-secrets.yaml
+  - gitlab-runner-token-secret.sops.yaml
+  - gitlabcred.sops.yaml
+  - helm-release.yaml
