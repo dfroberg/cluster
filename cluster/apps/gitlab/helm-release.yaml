@@ -25,7 +25,6 @@ spec:
     image:
       repository: gitlab/gitlab-runner
       tag: "v14.6.0"
-      pullPolicy: IfNotPresent
 
     imagePullSecrets: 
       - name: regcred
