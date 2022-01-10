@@ -23,7 +23,7 @@ spec:
       retries: 3
   values:
     image:
-      repository: index.docker.io/gitlab/gitlab-runner
+      repository: gitlab/gitlab-runner
     #  tag: "ubuntu-v14.6.0"
     # imagePullSecrets: 
     #   - name: regcred
