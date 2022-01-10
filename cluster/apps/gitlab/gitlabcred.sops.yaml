@@ -1,6 +1,6 @@
 apiVersion: v1
 data:
-    .dockerconfigjson: ENC[AES256_GCM,data:rd4TvAjuypHY6FvgjqR++KMG0/yVvccs4YoJJvD7PEY8a9Di+00JUddkJhlAEXZagxUj62l9GlM7LqqLjyJZIiRi8YslyEoE42kYI0asbqcNivjruwO48jWPk+oONU3SvmFc2c/5UA851X32voGGiF93X9WrdugqbxOoCMGR4Jna9mh0lkGZZ5AwOHpVorWoK97GWOBp3pQlLayRj+HQXqcJULVGSMmMRO1IUhsfIWyBCmVpPwW4Gagg2dPscccdKuyf4zPMHklw7LCwIpq9xg==,iv:m+rE/Jg5Ul0gfrBd0OegeLl0MyZ14zGnagGlRSOUSgA=,tag:L1xccxP42EsniOnIlvUsUg==,type:str]
+    .dockerconfigjson: ENC[AES256_GCM,data:e5fj8YTU2NIZxWasKyxKRXaueQOYqII7SyYY12uc3Qy8AiwlAfcbkqbgbbGXfL6tVb0enP72OV8P4bF/2N0Rv9uJmvY0838dIzv771txxXgAfma43wTWjapr7amhWvMLcHubKCzmFSQJ0k2iC4SRtUK3kkC17ST3INA3JSlpN199VBBAAjZJEHfRnG3cAomDV7kNRzWAIEowuR4WTWwI+YlX1gcslwEhdkkHRInDuDgGUUdGugW37jGAC0eGmKhEGwfMpzQIRVMDys3c,iv:nP/+bQ6j3x/ng9SnE8AkS495eeil+RliNJQKcp92rvQ=,tag:En5UPfUz4EsBR+MeCH09kA==,type:str]
 kind: Secret
 metadata:
     name: gitlabcred
@@ -12,8 +12,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-01-10T09:53:38Z"
-    mac: ENC[AES256_GCM,data:s5xseMH8gnRfySI34XiOFk5Y3YcFdBVbT2LKXcBHqUSBey2U3LDyQRFQBwW6qr94A8CJr57AJaJzp1QflOYysxwwycb7hPsCCyAaNtOOwO49GM+fiSSAmbWRuWwPvx2M/fhu0vwUOrpvy0yJsZFwzez701MF3cENAOAmti7fCA0=,iv:MwhQywxoily1jx27Jy73RCOl3HQLW8ICgmov5XyCFQs=,tag:KRk+kZz1LedlEuzK0UsVmw==,type:str]
+    lastmodified: "2022-01-10T10:02:48Z"
+    mac: ENC[AES256_GCM,data:x0a8oFTzczJGbxO6CfXfs6EE5FsXq+fs54SPMWCFnPZDaF2plWBAdCSO8FhMEIxY78YZlI+W0IpUh/v82WfmrfqEIg0L3IcxSQfsiGclGYFm8/S+uuAp0LnOMWwZP0dwmQ9f9LRMZDEtfxANxJkbh9OXK1F5znFFSiM3gHkkZIQ=,iv:duVCfZMKRloMA82ruhnypuU/owNdI6D9z1ikCtENpVU=,tag:JCsDLSpLflgWsmyRqPRaEw==,type:str]
     pgp:
         - created_at: "2022-01-10T09:53:38Z"
           enc: |
