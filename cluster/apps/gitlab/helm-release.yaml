@@ -23,8 +23,7 @@ spec:
       retries: 3
   values:
     image:
-      repository: gitlab/gitlab-runner
-      tag: v14.6.0
+      repository: gitlab/gitlab-runner:v14.6.0
     imagePullPolicy: IfNotPresent
     imagePullSecrets: regcred
     gitlabUrl: ${GITLABURL}
