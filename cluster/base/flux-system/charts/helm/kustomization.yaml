@@ -17,6 +17,7 @@ resources:
   - emqx-charts.yaml
   - falco-security-charts.yaml
   - grafana-charts.yaml
+  - gitlab-charts.yaml
   - hajimari-charts.yaml
   - infracloudio-charts.yaml
   - ingress-nginx-charts.yaml
