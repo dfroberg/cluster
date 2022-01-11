@@ -31,7 +31,7 @@ spec:
 
     wordpressSkipInstall: false
     wordpressUsername: dfroberg
-    
+
     wordpressEmail: danny@froberg.org
     wordpressFirstName: Danny
     wordpressLastName: Froberg
@@ -66,6 +66,13 @@ spec:
         database: amn
         username: amn
       primary:
+        persistence:
+          enabled: true
+          storageClass: "ceph-block"
+          accessModes:
+            - ReadWriteOnce
+          size: 25Gi
+      secondary:
         persistence:
           enabled: true
           storageClass: "ceph-block"
