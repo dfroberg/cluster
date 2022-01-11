@@ -5,10 +5,4 @@ resources:
   - custom-secrets.sops.yaml
   - nas-nfs.yaml
   - helmrelease.yaml
-postBuild:
-  substitute: {}
-  substituteFrom:
-      - kind: ConfigMap
-        name: wordpress-custom-options
-      - kind: Secret
-        name: amn-custom-secrets
+
