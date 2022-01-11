@@ -15,6 +15,12 @@ spec:
         kind: HelmRepository
         name: bitnami-charts
         namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
   values:
     replicaCount: 3
     updateStrategy:
