@@ -29,6 +29,6 @@ spec:
               name: k8s-gateway
             patch:
               - op: add
-                path: /spec/externalIPs
+                path: /spec/loadBalancerIP
                 value:
-                  - "${CLUSTER_LB_K8SGATEWAY}"
+                  "${CLUSTER_LB_K8SGATEWAY}"

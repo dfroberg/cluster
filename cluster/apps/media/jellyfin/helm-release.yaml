@@ -31,8 +31,7 @@ spec:
     service:
       main:
         type: LoadBalancer
-        externalIPs:
-          - "${SVC_JELLYFIN_ADDR}"
+        loadBalancerIP: "${SVC_JELLYFIN_ADDR}"
         externalTrafficPolicy: Local
     ingress:
       main:
