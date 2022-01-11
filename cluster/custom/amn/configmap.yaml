@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wordpress-custom-options
+  namespace: amn
+data:
+  .htaccess: |
+    # BEGIN WordPress
+    # The directives (lines) between `BEGIN WordPress` and `END WordPress` are
+    # dynamically generated, and should only be modified via WordPress filters.
+    # Any changes to the directives between these markers will be overwritten.
+
+    # END WordPress
+
+    php_value upload_max_filesize 64M
+    php_value post_max_size 64M
+    php_value memory_limit 128M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+  uploads.ini: |
+    file_uploads = On
+    memory_limit 128M
+    upload_max_filesize 64M
+    post_max_size 64M
+    max_execution_time 300
+    max_input_time 300
+  WORDPRESS_CONFIG_EXTRA: |
+    define('WP_MEMORY_LIMIT', '64M');
+    @ini_set( 'upload_max_size', '64M' );
+    @ini_set( 'post_max_size', '64M');
+    @ini_set( 'max_execution_time', '300' );

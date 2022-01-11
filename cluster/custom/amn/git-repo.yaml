@@ -10,5 +10,10 @@ spec:
       name: gitlab-https-credentials
   ref:
     branch: main
+  ignore: |
+    .git/
+    .github/
+    .sops.yaml
+    .gitlab-ci.yml 
 
 

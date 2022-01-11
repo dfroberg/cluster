@@ -1,0 +1,71 @@
+# https://github.com/bitnami/charts/blob/master/bitnami/wordpress/values.yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: wordpress
+  namespace: amn
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: wordpress
+      # Version should be overwritten by values specified in apps/{dev,stage,prod}/wordpress-values.yaml
+      version: 10.8.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  values:
+    wordpressSkipInstall: false
+    existingSecret: "amn-custom-secrets"
+
+    wordpressExtraConfigContent: |
+      define('WP_MEMORY_LIMIT', '64M');
+      @ini_set( 'upload_max_size', '64M' );
+      @ini_set( 'post_max_size', '64M');
+      @ini_set( 'max_execution_time', '300' );
+
+    ## SMTP mail delivery configuration
+    smtpExistingSecret: "amn-custom-secrets"
+
+    service:
+      type: ClusterIP
+    persistence:
+      enabled: true
+      existingClaim: "amn-nfs"
+    metrics:
+      enabled: true
+    serviceMonitor:
+      enabled: true
+    mariadb:
+      architecture: replication
+      auth:
+        rootPassword: ${db_rootPassword}
+        database: amn
+        username: amn
+        password: ${db_password}
+      primary:
+        persistence:
+          enabled: true
+          storageClass: "ceph-block"
+          accessModes:
+            - ReadWriteOnce
+          size: 25Gi
+    memcached:
+      enabled: true
+      service:
+        port: 11211
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 11
+      targetCPU: 50
+      targetMemory: 50
+    resources:
+      limits:
+        cpu: 750m
+        memory: "750Mi"
+      requests:
+        memory: "100Mi"
+        cpu: "120m"
+    
