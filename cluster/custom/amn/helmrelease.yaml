@@ -22,14 +22,14 @@ spec:
     remediation:
       retries: 3
   values:
-    replicaCount: 3
+    replicaCount: 1
     updateStrategy:
       type: RollingUpdate
       rollingUpdate:
         maxSurge: 25%
         maxUnavailable: 25%
 
-    wordpressSkipInstall: false
+    wordpressSkipInstall: true
     wordpressUsername: dfroberg
 
     wordpressEmail: danny@froberg.org
@@ -65,6 +65,12 @@ spec:
         existingSecret: amn-custom-secrets
         database: amn
         username: amn
+
+        extraVolumeMounts:
+          - name: amn-nfs
+            mountPath: /backup
+            readOnly: false
+
       primary:
         persistence:
           enabled: true
