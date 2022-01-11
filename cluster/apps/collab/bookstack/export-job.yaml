@@ -17,7 +17,7 @@ spec:
             - name: regcred
           containers:
             - name: gitea-repositories-backup
-              image: registry.${SECRET_CLUSTER_DOMAIN}/homelab/home-cluster-jobs:1.2.0
+              image: registry.${SECRET_DOMAIN}/homelab/home-cluster-jobs:1.2.0
               imagePullPolicy: IfNotPresent
               command:
                 - "bin/sh"
@@ -38,18 +38,18 @@ spec:
 
                     WORK_DIR="/mnt/storage/backups/bookstack"
 
-                    SHELVES=$(curl --silent --location --request GET "https://bookstack.${SECRET_CLUSTER_DOMAIN}/api/shelves" --header "Authorization: Token ${SECRET_BOOKSTACK_TOKEN_ID}:${SECRET_BOOKSTACK_TOKEN_SECRET}" | jq --raw-output .data[].id)
+                    SHELVES=$(curl --silent --location --request GET "https://bookstack.${SECRET_DOMAIN}/api/shelves" --header "Authorization: Token ${SECRET_BOOKSTACK_TOKEN_ID}:${SECRET_BOOKSTACK_TOKEN_SECRET}" | jq --raw-output .data[].id)
 
                     for shelf in $SHELVES
                     do
-                        shelf_slug=$(curl --silent --location --request GET "https://bookstack.${SECRET_CLUSTER_DOMAIN}/api/shelves/$shelf" --header "Authorization: Token ${SECRET_BOOKSTACK_TOKEN_ID}:${SECRET_BOOKSTACK_TOKEN_SECRET}" | jq --raw-output .slug)
+                        shelf_slug=$(curl --silent --location --request GET "https://bookstack.${SECRET_DOMAIN}/api/shelves/$shelf" --header "Authorization: Token ${SECRET_BOOKSTACK_TOKEN_ID}:${SECRET_BOOKSTACK_TOKEN_SECRET}" | jq --raw-output .slug)
                         mkdir -p $WORK_DIR/$shelf_slug
-                        BOOKS=$(curl --silent --location --request GET "https://bookstack.${SECRET_CLUSTER_DOMAIN}/api/shelves/$shelf" --header "Authorization: Token ${SECRET_BOOKSTACK_TOKEN_ID}:${SECRET_BOOKSTACK_TOKEN_SECRET}" | jq --raw-output .books[].id)
+                        BOOKS=$(curl --silent --location --request GET "https://bookstack.${SECRET_DOMAIN}/api/shelves/$shelf" --header "Authorization: Token ${SECRET_BOOKSTACK_TOKEN_ID}:${SECRET_BOOKSTACK_TOKEN_SECRET}" | jq --raw-output .books[].id)
                         for book in $BOOKS
                         do
-                            book_slug=$(curl --silent --location --request GET "https://bookstack.${SECRET_CLUSTER_DOMAIN}/api/books/$book" --header "Authorization: Token ${SECRET_BOOKSTACK_TOKEN_ID}:${SECRET_BOOKSTACK_TOKEN_SECRET}" | jq --raw-output .slug)
+                            book_slug=$(curl --silent --location --request GET "https://bookstack.${SECRET_DOMAIN}/api/books/$book" --header "Authorization: Token ${SECRET_BOOKSTACK_TOKEN_ID}:${SECRET_BOOKSTACK_TOKEN_SECRET}" | jq --raw-output .slug)
                             echo "INFO: export book $book_slug..."
-                            curl --silent --location --request GET "https://bookstack.${SECRET_CLUSTER_DOMAIN}/api/books/$book/export/html" --header "Authorization: Token ${SECRET_BOOKSTACK_TOKEN_ID}:${SECRET_BOOKSTACK_TOKEN_SECRET}" --output $WORK_DIR/$shelf_slug/$book_slug.html
+                            curl --silent --location --request GET "https://bookstack.${SECRET_DOMAIN}/api/books/$book/export/html" --header "Authorization: Token ${SECRET_BOOKSTACK_TOKEN_ID}:${SECRET_BOOKSTACK_TOKEN_SECRET}" --output $WORK_DIR/$shelf_slug/$book_slug.html
                         done
                     done
                   EOF
