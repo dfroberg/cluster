@@ -25,6 +25,7 @@ spec:
       repository: twinproduction/gatus
       tag: v3.5.0
       pullPolicy: IfNotPresent
+    updateStrategy: Recreate
     replicas: 1
     resources:
       requests:
