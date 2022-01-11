@@ -61,15 +61,16 @@ spec:
       enabled: true
     mariadb:
       architecture: replication
+      
+      extraVolumeMounts:
+        - name: amn-nfs
+          mountPath: /backup
+          readOnly: false
       auth:
         existingSecret: amn-custom-secrets
         database: amn
         username: amn
 
-        extraVolumeMounts:
-          - name: amn-nfs
-            mountPath: /backup
-            readOnly: false
 
       primary:
         persistence:
