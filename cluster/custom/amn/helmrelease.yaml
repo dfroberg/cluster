@@ -30,7 +30,7 @@ spec:
         maxUnavailable: 25%
 
     wordpressSkipInstall: false
-    existingSecret: "amn-custom-secrets"
+    existingSecret: amn-custom-secrets
 
     wordpressExtraConfigContent: |
       define('WP_MEMORY_LIMIT', '64M');
@@ -39,7 +39,7 @@ spec:
       @ini_set( 'max_execution_time', '300' );
 
     ## SMTP mail delivery configuration
-    smtpExistingSecret: "amn-custom-secrets"
+    smtpExistingSecret: amn-custom-secrets
 
     service:
       type: ClusterIP
@@ -53,10 +53,9 @@ spec:
     mariadb:
       architecture: replication
       auth:
-        rootPassword: ${db_rootPassword}
+        existingSecret: amn-custom-secrets
         database: amn
         username: amn
-        password: ${db_password}
       primary:
         persistence:
           enabled: true
