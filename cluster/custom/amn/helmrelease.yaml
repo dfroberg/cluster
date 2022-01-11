@@ -30,6 +30,15 @@ spec:
         maxUnavailable: 25%
 
     wordpressSkipInstall: false
+    wordpressUsername: dfroberg
+    
+    wordpressEmail: danny@froberg.org
+    wordpressFirstName: Danny
+    wordpressLastName: Froberg
+    wordpressBlogName: amn
+    wordpressTablePrefix: amn_
+    wordpressScheme: http
+
     existingSecret: amn-custom-secrets
 
     wordpressExtraConfigContent: |
