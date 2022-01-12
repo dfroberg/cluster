@@ -62,15 +62,6 @@ spec:
     mariadb:
       architecture: replication
 
-      extraVolumes:
-      - name: db-amn-nfs
-        persistentVolumeClaim: 
-          claimName: amn-nfs
-
-      extraVolumeMounts:
-        - name: db-amn-nfs
-          mountPath: /backup
-          readOnly: false
 
       auth:
         existingSecret: amn-custom-secrets
@@ -78,19 +69,65 @@ spec:
         username: amn
 
       primary:
+        extraVolumes:
+        - name: db-amn-nfs
+          persistentVolumeClaim: 
+            claimName: amn-nfs
+
+        extraVolumeMounts:
+          - name: db-amn-nfs
+            mountPath: /backup
+            readOnly: false
         persistence:
           enabled: true
           storageClass: "ceph-block"
           accessModes:
             - ReadWriteOnce
           size: 25Gi
+          
+        affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - wordpress
+                          - mariadb
+                  topologyKey: kubernetes.io/hostname
       secondary:
+        extraVolumes:
+        - name: db-amn-nfs
+          persistentVolumeClaim: 
+            claimName: amn-nfs
+
+        extraVolumeMounts:
+          - name: db-amn-nfs
+            mountPath: /backup
+            readOnly: false
         persistence:
           enabled: true
           storageClass: "ceph-block"
           accessModes:
             - ReadWriteOnce
           size: 25Gi
+
+        affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - wordpress
+                          - mariadb
+                  topologyKey: kubernetes.io/hostname
     memcached:
       enabled: true
       service:
@@ -156,5 +193,4 @@ spec:
                         operator: In
                         values:
                           - wordpress
-                          - mariadb
                   topologyKey: kubernetes.io/hostname
