@@ -139,4 +139,4 @@ spec:
         - amn-mobile.local
         secretName: amn-mobile.local-tls
       secrets: 
-        - ${SECRET_DOMAIN//./-}-tls
+        - "${SECRET_DOMAIN//./-}-tls"
