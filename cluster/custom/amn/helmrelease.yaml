@@ -109,6 +109,7 @@ spec:
       ingressClassName: "nginx"
       pathType: ImplementationSpecific
       hostname: amn.${SECRET_DOMAIN}
+
       annotations:
         hajimari.io/enable: "true"
         hajimari.io/icon: "cloud"
@@ -138,5 +139,4 @@ spec:
       - hosts:
         - amn-mobile.local
         secretName: amn-mobile.local-tls
-      secrets: 
-        - "${SECRET_DOMAIN//./-}-tls"
+
