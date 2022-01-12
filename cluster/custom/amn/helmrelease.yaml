@@ -150,7 +150,7 @@ spec:
 
     # Database
     mariadb:
-      architecture: replication
+      architecture: stadalone # replication
 
       auth:
         existingSecret: amn-custom-secrets
