@@ -120,8 +120,8 @@ spec:
           proxy_set_header Accept-Encoding "";
         # sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/qbittorrent/organizr.css"></head>';
         # sub_filter_once on;
-        nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
-        nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+        #nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
+        #nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
       extraHosts:
         - name: amn.local
           path: /
