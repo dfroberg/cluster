@@ -9,7 +9,6 @@ spec:
   chart:
     spec:
       chart: wordpress
-      # Version should be overwritten by values specified in apps/{dev,stage,prod}/wordpress-values.yaml
       version: 12.3.1
       sourceRef:
         kind: HelmRepository
@@ -62,7 +61,7 @@ spec:
     smtpExistingSecret: amn-custom-secrets
 
     service:
-      type: ClusterIP
+      type: LoadBalancerIP
     persistence:
       enabled: true
       existingClaim: "amn-nfs"
@@ -72,7 +71,6 @@ spec:
       enabled: true
     mariadb:
       architecture: replication
-
 
       auth:
         existingSecret: amn-custom-secrets
