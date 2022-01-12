@@ -36,13 +36,24 @@ spec:
     wordpressFirstName: Danny
     wordpressLastName: Froberg
     wordpressBlogName: amn
-    wordpressTablePrefix: amn_
+    wordpressTablePrefix: wp_a9kgb8xa2h_
     wordpressScheme: http
 
     existingSecret: amn-custom-secrets
 
     wordpressExtraConfigContent: |
       define('WP_MEMORY_LIMIT', '64M');
+      define('AUTOSAVE_INTERVAL', 60);
+      define('EMPTY_TRASH_DAYS', 2);
+      define('WP_CRON_LOCK_TIMEOUT', 300);
+      define('AUTOPTIMIZE_CACHE_CHILD_DIR','/uploads/resources/');
+      define('AUTOPTIMIZE_CACHEFILE_PREFIX','aggregated_');
+      define('FORCE_SSL_ADMIN', true);
+      # Figure out if https
+      @$server_xforwardproto = $_SERVER['HTTP_X_FORWARDED_PROTO'];
+      if ($server_xforwardproto == 'https')
+              $_SERVER['HTTPS']='on';
+      # Set some defaults
       @ini_set( 'upload_max_size', '64M' );
       @ini_set( 'post_max_size', '64M');
       @ini_set( 'max_execution_time', '300' );
@@ -84,7 +95,7 @@ spec:
           accessModes:
             - ReadWriteOnce
           size: 25Gi
-          
+
         affinity:
           podAntiAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
