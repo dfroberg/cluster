@@ -10,7 +10,7 @@ spec:
     spec:
       chart: wordpress
       # Version should be overwritten by values specified in apps/{dev,stage,prod}/wordpress-values.yaml
-      version: 10.8.0
+      version: 12.3.1
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
@@ -145,15 +145,16 @@ spec:
         - amn-mobile.local
         secretName: amn-mobile.local-tls
 
-    affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app.kubernetes.io/name
-                      operator: In
-                      values:
-                        - wordpress
-                topologyKey: kubernetes.io/hostname
+      affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - wordpress
+                          - mariadb
+                  topologyKey: kubernetes.io/hostname
