@@ -65,7 +65,7 @@ spec:
     smtpExistingSecret: amn-custom-secrets
 
     service:
-      type: LoadBalancerIP
+      type: LoadBalancer
     persistence:
       enabled: true
       existingClaim: "amn-nfs"
