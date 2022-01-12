@@ -145,3 +145,15 @@ spec:
         - amn-mobile.local
         secretName: amn-mobile.local-tls
 
+    affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app.kubernetes.io/name
+                      operator: In
+                      values:
+                        - wordpress
+                topologyKey: kubernetes.io/hostname
