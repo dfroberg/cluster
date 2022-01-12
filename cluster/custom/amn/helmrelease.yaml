@@ -29,7 +29,7 @@ spec:
         maxSurge: 25%
         maxUnavailable: 25%
 
-    wordpressSkipInstall: true
+    wordpressSkipInstall: false
     wordpressUsername: dfroberg
 
     wordpressEmail: danny@froberg.org
