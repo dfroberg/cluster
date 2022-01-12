@@ -63,12 +63,12 @@ spec:
       architecture: replication
 
       extraVolumes:
-      - name: amn-nfs
+      - name: db-amn-nfs
         persistentVolumeClaim: 
           claimName: amn-nfs
 
       extraVolumeMounts:
-        - name: amn-nfs
+        - name: db-amn-nfs
           mountPath: /backup
           readOnly: false
 
