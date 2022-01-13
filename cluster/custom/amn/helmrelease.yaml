@@ -41,6 +41,18 @@ spec:
     existingSecret: amn-custom-secrets
     allowOverrideNone: false
     htaccessPersistenceEnabled: true
+    # Mount CopnfigMap as config
+    extraVolumeMounts:
+      name: wp-config
+      mountPath: /opt/bitnami/wordpress/wp-config.php
+      subPath: wp-config.php
+    extraVolumes:
+      name: wp-config
+      configMap:
+        name: wp-config
+        items:
+          key: wp-config.php
+          path: wp-config.php
 
     ## SMTP mail delivery configuration
     smtpHost: test
