@@ -1,2 +1,2 @@
 docker==5.0.3
-ansible==5.1.0
+ansible==5.2.0
