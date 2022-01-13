@@ -1,0 +1,41 @@
+# https://github.com/bitnami/charts/blob/master/bitnami/wordpress/values.yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: wordpress-operator
+  namespace: wpops
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: wordpress-operator
+      version: 0.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitpoke-charts
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    replicaCount: 1
+    image:
+      repository: docker.io/bitpoke/wordpress-operator
+      pullPolicy: IfNotPresent
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: ""
+    rbac:
+      # Specifies whether RBAC resources should be created
+      create: true
+    serviceAccount:
+      # Specifies whether a service account should be created
+      create: true
+    podSecurityContext:
+      runAsNonRoot: true
+      # 65532 is the UID for nonroot user from distroless image
+      runAsUser: 65532
+      runAsGroup: 65532
+      fsGroup: 65532

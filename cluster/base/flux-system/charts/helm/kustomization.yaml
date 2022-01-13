@@ -9,6 +9,7 @@ resources:
   - fairwinds-charts.yaml
   - authentik-charts.yaml
   - bitnami-charts.yaml
+  - bitpoke-charts.yaml
   - blakeshome-charts.yaml
   - coredns-charts.yaml
   - deliveryhero-charts.yaml
