@@ -6,7 +6,7 @@ metadata:
   namespace: amn
 spec:
   replicas: 1
-  image: quay.io/presslabs/wordpress-runtime:5.5.1-php-7.4-fix-bedrock-php-8.0  
+  image: bitpoke/wordpress-runtime:5.8.3-php-7.4
   secretRef: regcred
   tlsSecretRef: site-tls
   envFrom:
