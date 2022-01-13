@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
-  name: wpops-source
+  name: wpops-crds-source
   namespace: flux-system
 spec:
   interval: 30m
@@ -26,4 +26,4 @@ spec:
   wait: true
   sourceRef:
     kind: GitRepository
-    name: wpops-source
+    name: wpops-crds-source
