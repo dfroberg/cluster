@@ -36,20 +36,20 @@ spec:
     wordpressSkipInstall: true # We're using a custom wp-config
     wordpressConfigureCache: true
     wordpressAutoUpdateLevel: none
-    existingWordPressConfigurationSecret: wordpress-config
+    # existingWordPressConfigurationSecret: wordpress-config
     extraEnvVarsSecret: wordpress-extra-envvars
     existingSecret: amn-custom-secrets
     allowOverrideNone: false
     htaccessPersistenceEnabled: true
     # Mount CopnfigMap as config
     extraVolumeMounts:
-    - name: wp-config
+    - name: wordpress-config
       mountPath: /opt/bitnami/wordpress/wp-config.php
       subPath: wp-config.php
     extraVolumes:
-    - name: wp-config
-      configMap:
-        name: wp-config
+    - name: wordpress-config
+      secret:
+        name: wordpress-config
         items:
           key: wp-config.php
           path: wp-config.php
