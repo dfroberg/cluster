@@ -33,7 +33,7 @@ spec:
       value: "${CLUSTER_TZ}"
 
     # Setup Config
-    wordpressSkipInstall: false
+    wordpressSkipInstall: true # We're using a custom wp-config
     wordpressConfigureCache: true
     wordpressAutoUpdateLevel: none
     existingWordPressConfigurationSecret: wordpress-config
