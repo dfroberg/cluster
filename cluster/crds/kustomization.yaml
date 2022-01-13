@@ -8,4 +8,5 @@ resources:
   - traefik
   - kube-prometheus-stack
   - velero
+  - wpops
 
