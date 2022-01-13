@@ -1,0 +1,32 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: mysql-crds-source
+  namespace: flux-system
+spec:
+  interval: 30m
+  url: https://github.com/bitpoke/mysql-operator.git
+  ref:
+    tag: v0.12.1
+  ignore: |
+    # exclude all
+    /*
+    # path to crds
+    !/deploy/charts/mysql-operator/crds/mysql.presslabs.org_mysqlbackups.yaml
+    !/deploy/charts/mysql-operator/crds/mysql.presslabs.org_mysqlclusters.yaml
+    !/deploy/charts/mysql-operator/crds/mysql.presslabs.org_mysqldatabases.yaml
+    !/deploy/charts/mysql-operator/crds/mysql.presslabs.org_mysqlusers.yaml
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: mysql-crds
+  namespace: flux-system
+spec:
+  interval: 15m
+  prune: false
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: mysql-crds-source
