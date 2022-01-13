@@ -51,7 +51,7 @@ spec:
       secret:
         name: wordpress-config
         items:
-          key: wp-config.php
+        - key: wp-config.php
           path: wp-config.php
 
     ## SMTP mail delivery configuration
