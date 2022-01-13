@@ -1,0 +1,79 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+metadata:
+    name: wordpress-config
+    namespace: amn
+stringData:
+    wp-config.php: ENC[AES256_GCM,data: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,iv:BTOvCn2AH8H4EmV/O4dQLQyfDPnJlakySF5/oPjqVPw=,tag:YWi9dKDmQUvF9ERpzLqpsw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2022-01-13T08:45:24Z"
+    mac: ENC[AES256_GCM,data:ltst+kSchHqON+FzaNAvr9MZrwZ8jCasZqUOIg9kcbCbUNFpCB9T0fsQ4PIT4rdE04NTtt7DqURwXyA406Gjnfyx/ePcIx2SdF6ePCKyVUMiIhM0/G/uoiWsfKMjSOF6FEPDkut3kiHd/Wqg+LV6fF8r3GRM+NB4W/X5nirfwJ0=,iv:vp3fbSS6gyQfs7oQnNM2co/9OdHEpNBd+0wfip5aoKg=,tag:zo7U9N/zYQ6mcyxSBMKG/g==,type:str]
+    pgp:
+        - created_at: "2022-01-13T08:45:22Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA8ad3a5U+CI3AQ//fOU8bFsUIrAzRumlZlJ0cMeZ1irypAH2dBLhJx9CQn86
+            CwsZm6B2fF1Z0THcKO8C1nyKAOS0lQaOqdn2EuRpgcfc5Pf35X4IHyJigTeSidEg
+            n/w5ncVnPe1sJvzhOCF1WTBazoCrHMVKmcY+vqzaO4gMGnqMsFgpZEZH5RKnMZWL
+            z6tT3r5eE02hqq07iJWWcJ5yE8pUtggbINrPZAWHSOpWqkY/MSUfyZkSiUfnQJ14
+            zmV9qL3n9ZgxxHhqWvp3LH7hjzLc5t/xIS3204MWQFEAxqNz7dJ+UEQzPmZRLLr1
+            Jshvt8qxV+Jp2MgpkQZ702TXEB9glB3NXObY8pJcidm9LR+v7z4xku+VLwBCYO8A
+            yEzEFXmZX13x+rNZzJ2WgmujuFq88UKrH/1i0zjTJLw+FA6vfxcJrZplZVQOyo/b
+            WqtHfNCGjNtRtLJiPvikKO9s1Xv2ACoXvakU3Vgax2d7/lYYbdcndYOMOJKh78Kn
+            uJYt2UaX5MviTOKluhEGlbrzso505/SztuD+0QdxydF/UkDyYH9x1i/eYXfn3yKs
+            JNZQEh2IIC/7W9cPzZrgU2tqJVMQXfKh8O0HFEfgm45N15OGfd3vZy+AfwtPeXhb
+            XXa/9wdeEf8rP7thX1GiOen4A3jpZFKIB41uEzbKB83BFJ12Egpv2bVRn9VY/ZfS
+            XgGm1byT4e7NBdXunrlG1AUqx27cl6f7iS3hnt5QLuk/esE6VEPs0Jaht0i5RxlM
+            WqFjDI7gdcJIMjKRxOhuYeEATr+9O7A7egPv2JgO0RYI8L0GICsAfnb3zO1HWKc=
+            =EJ1H
+            -----END PGP MESSAGE-----
+          fp: 8EC7BCCD78652A13D89FC03208B84637AC99822F
+        - created_at: "2022-01-13T08:45:22Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA8+qV9ExWZjOAQ//TgaW/yeahpvbUxmDwWwLdgy7lQ4/4L2SRei3BmXrgt09
+            VUlDHVZCUcTljhawLNDO4qhg2aMG8oP7Gq3H1Q94YA9SUWLGscJxhOnPH1trE24F
+            79Nnncy22Hwwaw6E0hWXM8QKhFBdw61cqIv3+OCJTKlC+Vo4DQQLpHr6b/wiQBoU
+            IgJrn/z3Lku8HFCg/ttq1tHT/Ml9qSZ2fBpDPmmywiPHKqWQpu0fx5kDZDLuu3aR
+            C5MNvKPV1nced2pT44c7llffpUcRx4w50UXzeRJTtBXI4zlnKnfUEN/Ddd1RF2C8
+            Vn5aHy8AmPAsvrn9jfeXcNNLIsp9mMTo+c0XPYU7+en/OC8RA/7DvGjTgHpLW5PV
+            9WkoJT1EhOWvbk74Pn3P0HORHadrAYZFMr5lVho5hXd1XwFbE/XD24S47YEWYpkz
+            au6ocq38QXgyJ7JtSkq1XBx0M67M0GSTKr68mRIkbpnUGDHkTXygJNRjyou6ixEK
+            gQcdnnl55TCtsm66yZaipwpuJip2OExLUU0JbJkkLnKBVoOtEVYg6qG+/B+ii0j7
+            lwuMrmVgcLCE2+ArKYEtL3oX9cX/UPP8A0VkytG6/kDeClDWVDMj/IpF5OQdZrRF
+            GbjfJO31sK/of7ioI+XgNitTBra/d2uTENO50c/SniKH3a/ZcUY0HcDrZbsQFJ/S
+            XgEXaWzSBmS8dgIv0Re0d3y5JWjzpEwqkCmeRRuVkw4taJ4l3SunTbvNcqttvjlR
+            qeQjw7XHWTyCjPq+Cdj7kvVjMW/uFiXDYjG/IBKJy1IuH6c07hBn33xf3pgwTfI=
+            =L6vx
+            -----END PGP MESSAGE-----
+          fp: AB539BAC6BBBFC24F796606A0F64CF7965AA1A1D
+        - created_at: "2022-01-13T08:45:22Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA3AVZfU5pCkBARAAh0OgQphv4N2rphnXx/5LL+uYjk7aAL3/dj1SdwrCSNLG
+            n0nHR4lDyWUj75F9qKGgNlbN6SHSoG5Jmb220sMOTNRs1v0m+5q/8/LGS2PulBZ3
+            9S8dTWLFmyXoCBOmfQFhyWI1j9lFA9rAt/T7XvmItm/7lr3WJ3/6KP6oJOc4mV4o
+            ts1PkyJ6tmTuLTbA/yMYWy+wYa5zHtg4QaBF+quJqZaOWupCYk535Q307FzmjC4W
+            uE1PzRKzAn6pitTeBjTqp1tsKukCJNrlR/2vq3i7Bef/Y6L9eUericXD+jZbwdKA
+            m/Y35S0Y0qM6gUcd3A7U0h52cRPIDmr2CSrxGGiBGFi9CwaqDvvtkv3UAXMimHcS
+            R+PGAXdT7Skrrwifo5Aqm07VLG6C9lygemgcb3OnwINSOB/1wSMngdS+47odZDzC
+            Ex/nvDGREEEJ8n1YvWoHOYu8ASS+Hq2ysP5O2luLzcw9nu7b3NaLWoaLgVcXPcGw
+            P/3squsVyi/iULrHKmyeRaU0OLjy1qkK3ZqmfPBBsUkqZ+oXsV/HH6YaOQ56sFYE
+            HJhKpoWA0OCm6lGr+4U4bKilpl327JpKgjQenlhhrJNPhEdxkTTbFc/0jl+um2v5
+            JWj48lEAFXyK5Wi2K6QUwiJ3HSSJAB1EfIFtHbLZw+DqaKzaABDMFwlH41jpOuvS
+            XgFRkG6/bWJwdhiRbP9cyhC0JegsDiz5VRUnsSIhOz0D0Jtsn17Uvwzli5ZRDOrN
+            q6uZC8csjDeyJR0JhTONjl0/ygY083l0ZTpkG3zKl9btbBjKh6QKaT+dHgVk+nY=
+            =MiBF
+            -----END PGP MESSAGE-----
+          fp: AF5C7A1A19BBAAF0179CA31F1C76136F274A3EC1
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
