@@ -1,0 +1,24 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+metadata:
+    name: wordpress-extra-envvars
+    namespace: amn
+stringData:
+    BITNAMI_DEBUG:                          "false"
+    ALLOW_EMPTY_PASSWORD:                   No
+    MARIADB_HOST:                           wordpress-mariadb-0
+    MARIADB_PORT_NUMBER:                    "3306"
+    WORDPRESS_DATABASE_NAME:                amn
+    WORDPRESS_DATABASE_USER:                amn 
+    WORDPRESS_USERNAME:                     dfroberg       
+    WORDPRESS_EMAIL:                        danny@froberg.org 
+    WORDPRESS_FIRST_NAME:                   Danny   
+    WORDPRESS_LAST_NAME:                    Froberg               
+    WORDPRESS_HTACCESS_OVERRIDE_NONE:       no       
+    WORDPRESS_ENABLE_HTACCESS_PERSISTENCE:  no        
+    WORDPRESS_BLOG_NAME:                    amn     
+    WORDPRESS_TABLE_PREFIX:                 wp_a9kgb8xa2h_
+    WORDPRESS_SCHEME:                       http     
+    WORDPRESS_AUTO_UPDATE_LEVEL:            none              
+    WORDPRESS_PLUGINS:                      none  

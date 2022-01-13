@@ -36,13 +36,7 @@ spec:
     wordpressConfigureCache: true
     wordpressAutoUpdateLevel: none
     existingWordPressConfigurationSecret: wordpress-config
-
-    wordpressUsername: dfroberg
-    wordpressEmail: danny@froberg.org
-    wordpressFirstName: Danny
-    wordpressLastName: Froberg
-    wordpressBlogName: amn
-
+    extraEnvVarsSecret: wordpress-extra-envvars
     existingSecret: amn-custom-secrets
 
     ## SMTP mail delivery configuration
