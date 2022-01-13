@@ -15,7 +15,7 @@ spec:
         name: site-salt
   env:
     - name: DB_HOST
-      value: site-mysql-master
+      value: site-mysql-master.amn.svc.cluster.local
     - name: DB_USER
       valueFrom:
         secretKeyRef:
