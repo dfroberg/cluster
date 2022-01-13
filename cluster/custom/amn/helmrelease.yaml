@@ -32,14 +32,21 @@ spec:
     - name: TZ
       value: "${CLUSTER_TZ}"
 
+    # Setup Config
     wordpressSkipInstall: false
     wordpressConfigureCache: true
     wordpressAutoUpdateLevel: none
     existingWordPressConfigurationSecret: wordpress-config
     extraEnvVarsSecret: wordpress-extra-envvars
     existingSecret: amn-custom-secrets
+    allowOverrideNone: false
+    htaccessPersistenceEnabled: true
 
     ## SMTP mail delivery configuration
+    smtpHost: test
+    smtpPort: "587"
+    smtpUser: test
+    smtpProtocol: TLS
     smtpExistingSecret: amn-custom-secrets
 
     service:
