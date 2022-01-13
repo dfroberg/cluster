@@ -1,0 +1,9 @@
+---
+apiVersion: mysql.presslabs.org/v1alpha1
+kind: MysqlCluster
+metadata:
+  name: site-mysqlcluster
+  namespace: amn
+spec:
+  replicas: 1
+  secretName: site-db

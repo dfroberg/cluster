@@ -1,0 +1,67 @@
+---
+apiVersion: wordpress.presslabs.org/v1alpha1
+kind: Wordpress
+metadata:
+  name: site-wp
+  namespace: amn
+spec:
+  replicas: 1
+  image: quay.io/presslabs/wordpress-runtime:5.5.1-php-7.4-fix-bedrock-php-8.0  
+  secretRef: regcred
+  tlsSecretRef: site-tls
+  envFrom:
+    - prefix: "WORDPRESS_"
+      secretRef:
+        name: site-salt
+  env:
+    - name: DB_HOST
+      value: site-mysql-master
+    - name: DB_USER
+      valueFrom:
+        secretKeyRef:
+          name: site-db
+          key: USER
+    - name: DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: site-db
+          key: PASSWORD
+    - name: DB_NAME
+      valueFrom:
+        secretKeyRef:
+          name: site-db
+          key: DATABASE
+  domains:
+    - amn.${SECRET_DOMAIN}
+  code:
+    persistentVolumeClaim:
+      name: amn-nfs
+  bootstrap: # wordpress install config
+    env:
+      - name: WORDPRESS_BOOTSTRAP_USER
+        valueFrom:
+          secretKeyRef:
+            name: site-bootstrap
+            key: USER
+      - name: WORDPRESS_BOOTSTRAP_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: site-bootstrap
+            key: PASSWORD
+      - name: WORDPRESS_BOOTSTRAP_EMAIL
+        valueFrom:
+          secretKeyRef:
+            name: site-bootstrap
+            key: EMAIL
+      - name: WORDPRESS_BOOTSTRAP_TITLE
+        valueFrom:
+          secretKeyRef:
+            name: site-bootstrap
+            key: TITLE
+
+  ingressAnnotations: 
+    external-dns/is-public: "true"
+    haproxy-ingress-proxy.pfsense.org/enabled: "true"
+    haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
+    haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
