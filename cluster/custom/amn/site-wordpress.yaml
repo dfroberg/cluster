@@ -33,9 +33,15 @@ spec:
           key: DATABASE
   domains:
     - amn.${SECRET_DOMAIN}
-  code:
-    persistentVolumeClaim:
-      name: amn-nfs
+  volumeMounts:
+    - name: wp-content
+      mountPath: /app/web/wp-content
+      subPath: wp-content
+  volumes:
+    - name: wp-content
+      persistentVolumeClaim:
+        claimName: amn-nfs
+      
   bootstrap: # wordpress install config
     env:
       - name: WORDPRESS_BOOTSTRAP_USER
