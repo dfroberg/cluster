@@ -4,7 +4,7 @@ resources:
   - namespace.yaml
   - custom-secrets.sops.yaml
   - wordpress-config.sops.yaml
-  - wordpress-extra-envvars.yaml
+  - wordpress-extra-envvars.sops.yaml
   - nfs-nas.yaml
   - helmrelease.yaml
 
