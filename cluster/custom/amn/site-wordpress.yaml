@@ -41,7 +41,19 @@ spec:
     - name: wp-content
       persistentVolumeClaim:
         claimName: amn-nfs
-      
+  code: # where to find the code
+    # contentSubpath: wp-content/
+    # by default, code get's an empty dir. Can be one of the following:
+    git:
+      repository: https://github.com/dfroberg/stack-example-bedrock
+      reference: master
+      env:
+        - name: SSH_RSA_PRIVATE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: site-bootstrap
+              key: id_rsa
+
   bootstrap: # wordpress install config
     env:
       - name: WORDPRESS_BOOTSTRAP_USER
@@ -71,3 +83,15 @@ spec:
     haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
     haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
     external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+
+  # sidecars:
+  # MY_SERVER_ID_OFFSET: 1
+  # INIT_BUCKET_URI:
+  # BACKUP_COMPRESS_COMMAND:
+  # BACKUP_DECOMPRESS_COMMAND:
+  # RCLONE_EXTRA_ARGS:
+  # XBSTREAM_EXTRA_ARGS:
+  # XTRABACKUP_EXTRA_ARGS:
+  # XTRABACKUP_PREPARE_EXTRA_ARGS:
+  # INITFILE_EXTRA_SQL:
+    
