@@ -27,6 +27,5 @@ resources:
   - security.yaml
   - mailu.yaml
   - wpops.yaml
-  
-
+  - stack.yaml
   

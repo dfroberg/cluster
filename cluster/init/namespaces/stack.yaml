@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: stack
+  annotations:
+    k10.kasten.io/ignorebackuppolicy: "false"
+  labels:
+    app: "kubed"
+    goldilocks.fairwinds.com/enabled: "true"
+    goldilocks.fairwinds.com/vpa-update-mode: "auto"
