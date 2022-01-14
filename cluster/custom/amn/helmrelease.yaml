@@ -20,3 +20,68 @@ spec:
     remediation:
       retries: 3
   values:
+    replicaCount: 1
+    # Uncomment to use a custom image
+    image: {}
+      # repository: docker.io/bitpoke/wordpress-runtime
+      # tag: latest
+      # pullPolicy: IfNotPresent
+      # imagePullSecrets: ImagePullSecretName
+
+    site:
+      image: bitpoke/wordpress-runtime:bedrock
+      imagePullSecrets: 
+        - name: regcred
+        
+      tlsSecretRef: site-tls
+      envFrom:
+        - prefix: "WORDPRESS_"
+          secretRef:
+            name: site-salt
+      env:
+        - name: DB_HOST
+          value: site-mysqlcluster-mysql.amn.svc.cluster.local
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: site-db
+              key: USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: site-db
+              key: PASSWORD
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: site-db
+              key: DATABASE
+      domains:
+        - amn.${SECRET_DOMAIN}
+        - amn.wp.local
+      # to automatically install wordpress
+      # bootstrap:
+        # title: Demo site
+        # email: ping@<your domain name>
+        # user:
+        # password:
+
+    tls: {}
+      # issuerKind: ClusterIssuer
+      # issuerName: stack-default-certificate-issuer
+      # acmeChallengeType: http01
+    code:
+      readOnly: false
+      contentSubPath: wordpress/wp-content/
+      persistentVolumeClaim:
+        name: amn-nfs
+    media:
+      contentSubPath: wordpress/wp-content/uploads/
+      persistentVolumeClaim:
+        name: amn-nfs
+
+    mysqlConf: 
+      replicaCount: 1
+
+    memcached:
+      replicaCount: 1

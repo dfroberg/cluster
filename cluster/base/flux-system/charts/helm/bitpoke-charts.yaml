@@ -7,5 +7,5 @@ metadata:
 spec:
   interval: 1h
   # url: https://helm-charts.bitpoke.io
-  url: https://github.com/bitpoke/stack/tree/drone-migrate-to-bitpoke/deploy/charts/stack
+  url: https://github.com/bitpoke/stack/tree/drone-migrate-to-bitpoke/deploy/charts
   timeout: 3m

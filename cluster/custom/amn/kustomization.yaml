@@ -7,4 +7,5 @@ resources:
   - site-salt.sops.yaml
   - site-bootstrap.sops.yaml
   - site-mysql-cluster.yaml
-  - site-wordpress.yaml
+  #- site-wordpress.yaml
+  - helmrelease.yaml
