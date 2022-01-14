@@ -2,13 +2,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: wordpress-operator
-  namespace: wpops
+  name: stack
+  namespace: stack
 spec:
   interval: 1m
   chart:
     spec:
-      chart: wordpress-operator
+      chart: stack
       version: 0.12.1
       sourceRef:
         kind: HelmRepository
@@ -21,21 +21,46 @@ spec:
     remediation:
       retries: 3
   values:
-    replicaCount: 1
-    image:
-      repository: docker.io/bitpoke/wordpress-operator
-      pullPolicy: IfNotPresent
-      # Overrides the image tag whose default is the chart appVersion.
-      tag: ""
-    rbac:
-      # Specifies whether RBAC resources should be created
-      create: true
-    serviceAccount:
-      # Specifies whether a service account should be created
-      create: true
-    podSecurityContext:
-      runAsNonRoot: true
-      # 65532 is the UID for nonroot user from distroless image
-      runAsUser: 65532
-      runAsGroup: 65532
-      fsGroup: 65532
+    letsencrypt:
+      enabled: false
+      email: ""
+      server: "https://acme-v02.api.letsencrypt.org/directory"
+
+    wordpress-operator:
+      enabled: true
+      extraArgs:
+        - --ingress-class=nginx
+
+    mysql-operator:
+      enabled: true
+      orchestrator:
+        topologyPassword: this-must-be-set-in-stone-because-of-mysql-operator-bug-75
+        replicas: 1
+
+    nginx-ingress:
+      enabled: false
+      controller:
+        ingressClassResource:
+          name: bitpoke-stack
+          controllerValue: "bitpoke.io/stack"
+        config:
+          proxy-buffer-size: 64k
+          custom-http-errors: 502,503,504
+          hsts-preload: "true"
+        addHeaders:
+          server: "nginx"
+        publishService:
+          enabled: true
+        extraArgs:
+          ingress-class: bitpoke.io/stack
+          default-ssl-certificate: bitpoke-stack/stack-ingress-default
+      defaultBackend:
+        enabled: true
+        image:
+          registry: docker.io
+          image: bitpoke/stack-default-backend
+          tag: latest
+          pullPolicy: Always
+
+    git-webhook:
+      enabled: false
