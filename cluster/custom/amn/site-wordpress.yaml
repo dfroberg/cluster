@@ -7,7 +7,9 @@ metadata:
 spec:
   replicas: 1
   image: bitpoke/wordpress-runtime:bedrock
-
+  imagePullSecrets: 
+    - name: regcred
+    
   tlsSecretRef: site-tls
   envFrom:
     - prefix: "WORDPRESS_"
@@ -78,6 +80,7 @@ spec:
             key: TITLE
 
   ingressAnnotations: 
+    kubernetes.io/ingress.class: "nginx"
     external-dns/is-public: "true"
     haproxy-ingress-proxy.pfsense.org/enabled: "true"
     haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
