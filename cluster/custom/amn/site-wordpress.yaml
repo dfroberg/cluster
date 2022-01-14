@@ -35,6 +35,8 @@ spec:
           key: DATABASE
   domains:
     - amn.${SECRET_DOMAIN}
+    - amn.wp.local
+
   volumeMounts:
     - name: wp-content
       mountPath: /app/web/wp-content
@@ -43,19 +45,25 @@ spec:
     - name: wp-content
       persistentVolumeClaim:
         claimName: amn-nfs
-  code: # where to find the code
-    # contentSubpath: wp-content/
-    # by default, code get's an empty dir. Can be one of the following:
-    git:
-      repository: https://github.com/dfroberg/stack-example-bedrock
-      reference: master
-      env:
-        - name: SSH_RSA_PRIVATE_KEY
-          valueFrom:
-            secretKeyRef:
-              name: site-bootstrap
-              key: id_rsa
+  # code: # where to find the code
+  #   # contentSubpath: wp-content/
+  #   # by default, code get's an empty dir. Can be one of the following:
+  #   git:
+  #     repository: https://github.com/dfroberg/stack-example-bedrock
+  #     reference: master
+  #     env:
+  #       - name: SSH_RSA_PRIVATE_KEY
+  #         valueFrom:
+  #           secretKeyRef:
+  #             name: site-bootstrap
+  #             key: id_rsa
+  mysql:
+    mysqlConf: {}
+    replicaCount: 1
 
+  memcached:
+    replicaCount: 1
+    
   bootstrap: # wordpress install config
     env:
       - name: WORDPRESS_BOOTSTRAP_USER
