@@ -37,14 +37,22 @@ spec:
     - amn.${SECRET_DOMAIN}
     - amn.wp.local
 
-  volumeMounts:
-    - name: wp-content
-      mountPath: /app/web/wp-content
-      subPath: wp-content
-  volumes:
-    - name: wp-content
-      persistentVolumeClaim:
-        claimName: amn-nfs
+  # volumeMounts:
+  #   - name: wp-content
+  #     mountPath: /app/web/wp-content
+  #     subPath: wp-content
+  # volumes:
+  #   - name: wp-content
+  #     persistentVolumeClaim:
+  #       claimName: amn-nfs
+
+  code:
+    persistentVolumeClaim:
+      claimName: amn-nfs
+  media:
+    persistentVolumeClaim:
+      claimName: amn-nfs
+
   # code: # where to find the code
   #   # contentSubpath: wp-content/
   #   # by default, code get's an empty dir. Can be one of the following:
@@ -58,7 +66,7 @@ spec:
   #             name: site-bootstrap
   #             key: id_rsa
   mysql:
-    mysqlConf: {}
+    # mysqlConf: {}
     replicaCount: 1
 
   memcached:
