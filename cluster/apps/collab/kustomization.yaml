@@ -10,7 +10,7 @@ resources:
   - rxresume
   # - teedy
   - vikunja
-  - yourls
+  #- yourls
   - bookstack
   - teamspeak
   - joplin
