@@ -49,11 +49,11 @@ spec:
   code:
     contentSubPath: wordpress/wp-content/
     persistentVolumeClaim:
-      name: amn-nfs
+      claimName: amn-nfs
   media:
     contentSubPath: wordpress/wp-content/uploads/
     persistentVolumeClaim:
-      name: amn-nfs
+      claimName: amn-nfs
 
   # code: # where to find the code
   #   # contentSubpath: wp-content/
