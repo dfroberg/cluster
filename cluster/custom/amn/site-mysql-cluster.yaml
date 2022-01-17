@@ -8,11 +8,10 @@ spec:
   replicas: 1
   secretName: site-db
   podSpec:
-    mysqlOperatorSidecarResources:
-      volumeMounts:
-        - name: backups
-          mountPath: /backups
-      volumes:
-        - name: backups
-          persistentVolumeClaim:
-            claimName: amn-nfs
+    volumeMounts:
+      - name: backups
+        mountPath: /backups
+    volumes:
+      - name: backups
+        persistentVolumeClaim:
+          claimName: amn-nfs
