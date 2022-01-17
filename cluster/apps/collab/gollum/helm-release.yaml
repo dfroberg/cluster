@@ -26,7 +26,11 @@ spec:
         ports:
           http:
             port: 4567
-
+    env:
+      TZ: ${CLUSTER_TZ}
+      GITHUB_TOKEN: ${SECRET_GITHUB_TOKEN}
+      GIT_AUTHOR_EMAIL: ${SECRET_EMAIL}
+      GIT_COMMITTER_EMAIL: ${SECRET_EMAIL}
     ingress:
       main:
         enabled: true
@@ -63,7 +67,7 @@ spec:
 
     gollum:
       # -- Branch to pull
-      gitBranch: master
+      gitBranch: main
       # -- Repository URL to pull (accepts access tokens)
       # Example: https://user:access-token@git.example.com/user/repo.git
       gitUrl: https://dfroberg:${SECRET_GITHUB_TOKEN}@github.com/dfroberg/docs.git
