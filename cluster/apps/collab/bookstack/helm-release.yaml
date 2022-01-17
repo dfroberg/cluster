@@ -70,6 +70,13 @@ spec:
         ingressClassName: "nginx"
         annotations:
           # traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          kubernetes.io/tls-acme: "true"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          external-dns/is-public: "true"
+          haproxy-ingress-proxy.pfsense.org/enabled: "true"
+          haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
+          haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
         hosts:
           - host: bookstack.${SECRET_DOMAIN}
             paths:
