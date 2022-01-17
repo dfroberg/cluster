@@ -75,6 +75,7 @@ spec:
       # -- Additional arguments for starting gollum
       additionalArgs:
         - --h1-title
+        - --allow-uploads
       # -- Command run during the sync cron
       syncCommand: git pull && git push
       # -- Gollum config.rb customizations
