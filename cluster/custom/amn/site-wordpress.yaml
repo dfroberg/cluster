@@ -67,9 +67,9 @@ spec:
   #           secretKeyRef:
   #             name: site-bootstrap
   #             key: id_rsa
-  mysql:
-    # mysqlConf: {}
-    replicaCount: 1
+  # mysql:
+  #   # mysqlConf: {}
+  #   replicaCount: 1
 
   # memcached:
   #   replicaCount: 1
