@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - nfs-nas.yaml
+  - nfs-nas-site-code.yaml
   - site-db.sops.yaml
   - site-salt.sops.yaml
   - site-bootstrap.sops.yaml
