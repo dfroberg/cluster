@@ -51,9 +51,9 @@ spec:
     persistentVolumeClaim:
       volumeName: site-wp-code
   media:
-    contentSubPath: wordpress/wp-content/uploads/
+    contentSubPath: /
     persistentVolumeClaim:
-      volumeName: amn-nfs
+      volumeName: site-wp-media
 
   # code: # where to find the code
   #   # contentSubpath: wp-content/
