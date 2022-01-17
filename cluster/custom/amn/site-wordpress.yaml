@@ -71,8 +71,8 @@ spec:
     # mysqlConf: {}
     replicaCount: 1
 
-  memcached:
-    replicaCount: 1
+  # memcached:
+  #   replicaCount: 1
     
   bootstrap: # wordpress install config
     env:
