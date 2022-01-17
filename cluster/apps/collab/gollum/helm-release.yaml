@@ -29,10 +29,31 @@ spec:
             port: 4567
 
     ingress:
-      # -- Enable and configure ingress settings for the chart under this key.
-      # @default -- See values.yaml
       main:
         enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          kubernetes.io/tls-acme: "true"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          external-dns/is-public: "true"
+          haproxy-ingress-proxy.pfsense.org/enabled: "true"
+          haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
+          haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        hosts:
+          - host: ${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+          - host: www.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "${SECRET_DOMAIN}"
+              - "www.${SECRET_DOMAIN}"
+            secretName: "${SECRET_DOMAIN//./-}-tls"
 
     # -- Configure persistence settings for the chart under this key.
     # @default -- See values.yaml
