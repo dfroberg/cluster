@@ -24,7 +24,7 @@ spec:
 
     env:
       APP_URL: https://bookstack.${SECRET_DOMAIN}/
-      DB_HOST: bookstack-mariadb.collab.svc.cluster.local
+      DB_HOST: localhost
       DB_DATABASE: bookstack
       DB_USERNAME: bookstack
       DB_PASSWORD: ${SECRET_BOOKSTACK_DB_PASSWORD}
