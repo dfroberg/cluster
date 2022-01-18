@@ -24,8 +24,15 @@ spec:
 
     env:
       TZ: ${CLUSTER_TZ}
+      APP_ENV: production
       APP_URL: https://bookstack.${SECRET_DOMAIN}/
+      APP_VIEWS_BOOKS: list
+      APP_VIEWS_BOOKSHELVES: grid
+      APP_VIEWS_BOOKSHELF: grid
+      APP_DEFAULT_DARK_MODE: "true"
+      AVATAR_URL: https://seccdn.libravatar.org/avatar/${hash}?s=${size}&d=identicon
       DB_HOST: mysql
+      DB_PORT: 3306
       DB_DATABASE: bookstack
       DB_USERNAME: bookstack
       DB_PASSWORD: ${SECRET_BOOKSTACK_DB_PASSWORD}
@@ -45,6 +52,13 @@ spec:
       OIDC_ISSUER_DISCOVER: true
       OIDC_AUTH_ENDPOINT: https://id.${SECRET_DOMAIN}/application/o/authorize/
       OIDC_TOKEN_ENDPOINT: https://id.${SECRET_DOMAIN}/application/o/token/
+      STORAGE_TYPE: s3
+      STORAGE_S3_KEY: ${SECRET_MINIO_ACCESS_KEY}
+      STORAGE_S3_SECRET: ${SECRET_MINIO_SECRET_KEY}
+      STORAGE_S3_BUCKET: bookstack
+      STORAGE_S3_REGION: minio
+      STORAGE_S3_ENDPOINT: https://${SECRET_MINIO_HOST}
+
     persistence:
       config:
         enabled: true
