@@ -85,13 +85,21 @@ spec:
       # -- Gollum config.rb customizations
       # [[ref]](https://github.com/gollum/gollum#config-file)
       config: |
+        Gollum::Page.send :remove_const, :FORMAT_NAMES if defined? Gollum::Page::FORMAT_NAMES
         wiki_options = {
           :live_preview => true,
           :allow_uploads => true,
-          :allow_editing => true
+          :per_page_uploads => true,
+          :allow_editing => true,
+          :css => true,
+          :js => true,
+          :mathjax => true,
+          :h1_title => true,
+          :emoji => true,
           :universal_toc => true
         }
         Precious::App.set(:wiki_options, wiki_options)
+
         # Push and pull on commit
         Gollum::Hook.register(:post_commit, :hook_id) do |committer, sha1|
             committer.wiki.repo.git.pull('origin', committer.wiki.ref)
