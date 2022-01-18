@@ -69,7 +69,7 @@ spec:
 
     gollum:
       # -- Branch to pull
-      gitBranch: main
+      gitBranch: master
       # -- Repository URL to pull (accepts access tokens)
       # Example: https://user:access-token@git.example.com/user/repo.git
       gitUrl: https://dfroberg:${SECRET_GITHUB_TOKEN}@github.com/dfroberg/docs.git
