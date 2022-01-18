@@ -31,6 +31,7 @@ spec:
       GITHUB_TOKEN: ${SECRET_GITHUB_TOKEN}
       GIT_AUTHOR_EMAIL: ${SECRET_EMAIL}
       GIT_COMMITTER_EMAIL: ${SECRET_EMAIL}
+      OMNIGOLLUM_AUTHORIZED_USERS: ${SECRET_SMTP_USER}
     ingress:
       main:
         enabled: true
@@ -62,7 +63,7 @@ spec:
     # @default -- See values.yaml
     persistence:
       wiki:
-        enabled: false
+        enabled: true
         mountPath: /wiki
 
     gollum:
@@ -81,11 +82,31 @@ spec:
       # -- Gollum config.rb customizations
       # [[ref]](https://github.com/gollum/gollum#config-file)
       config: |
+        wiki_options = {
+          :live_preview => true,
+          :allow_uploads => true,
+          :allow_editing => true
+        }
         # Push and pull on commit
         Gollum::Hook.register(:post_commit, :hook_id) do |committer, sha1|
             committer.wiki.repo.git.pull('origin', committer.wiki.ref)
             committer.wiki.repo.git.push('origin', committer.wiki.ref)
         end
+        require 'omnigollum'
+        require 'omniauth/strategies/twitter'
+        require 'omniauth/strategies/open_id'
+        options = {
+          # OmniAuth::Builder block is passed as a proc
+          :providers => Proc.new do
+            provider :twitter, 'CONSUMER_KEY', 'CONSUMER_SECRET'
+            provider :open_id, OpenID::Store::Filesystem.new('/tmp')
+          end,
+          :dummy_auth => false
+        }
+        # :omnigollum options *must* be set before the Omnigollum extension is registered
+        Precious::App.set(:omnigollum, options)
+        options[:authorized_users] = ENV["OMNIGOLLUM_AUTHORIZED_USERS"].split(",")
+        Precious::App.register Omnigollum::Sinatra
     resources:
       requests:
         memory: 100Mi
