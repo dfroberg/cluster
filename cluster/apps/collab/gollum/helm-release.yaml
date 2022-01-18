@@ -78,6 +78,8 @@ spec:
       additionalArgs:
         - --h1-title
         - --allow-uploads page
+        - --follow-renames
+        - --emoji
       # -- Command run during the sync cron
       syncCommand: git pull && git push
       # -- Gollum config.rb customizations
@@ -87,7 +89,9 @@ spec:
           :live_preview => true,
           :allow_uploads => true,
           :allow_editing => true
+          :universal_toc => true
         }
+        Precious::App.set(:wiki_options, wiki_options)
         # Push and pull on commit
         Gollum::Hook.register(:post_commit, :hook_id) do |committer, sha1|
             committer.wiki.repo.git.pull('origin', committer.wiki.ref)
