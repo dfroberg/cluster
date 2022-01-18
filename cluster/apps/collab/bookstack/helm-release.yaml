@@ -24,7 +24,7 @@ spec:
 
     env:
       APP_URL: https://bookstack.${SECRET_DOMAIN}/
-      DB_HOST: localhost
+      DB_HOST: mysql
       DB_DATABASE: bookstack
       DB_USERNAME: bookstack
       DB_PASSWORD: ${SECRET_BOOKSTACK_DB_PASSWORD}
@@ -55,12 +55,19 @@ spec:
       image:
         repository: bitnami/mariadb
         tag: "10.6.5"
+      architecture: standalone
+
       auth:
         database: bookstack
         username: bookstack
         password: ${SECRET_BOOKSTACK_DB_PASSWORD}
         rootPassword: ${SECRET_BOOKSTACK_DB_ROOT_PASSWORD}
+        replicationUser: replication
+        replicationPassword: ${SECRET_BOOKSTACK_DB_ROOT_PASSWORD}
+
       primary:
+        hostAliases:
+          - mysql
         persistence:
           enabled: true
           existingClaim: bookstack-db
