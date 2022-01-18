@@ -75,11 +75,8 @@ spec:
       gitUrl: https://dfroberg:${SECRET_GITHUB_TOKEN}@github.com/dfroberg/docs.git
 
       # -- Additional arguments for starting gollum
-      additionalArgs:
-        - --h1-title
-        - --allow-uploads page
-        - --follow-renames
-        - --emoji
+      additionalArgs: []
+
       # -- Command run during the sync cron
       syncCommand: git pull && git push
       # -- Gollum config.rb customizations
@@ -96,7 +93,8 @@ spec:
           :mathjax => true,
           :h1_title => true,
           :emoji => true,
-          :universal_toc => true
+          :universal_toc => true,
+          :template-dir => 'templates'
         }
         Precious::App.set(:wiki_options, wiki_options)
 
