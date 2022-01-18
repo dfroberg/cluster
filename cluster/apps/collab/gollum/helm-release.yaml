@@ -65,6 +65,7 @@ spec:
       wiki:
         enabled: true
         mountPath: /wiki
+        existingClaim: gollum-config-v1
 
     gollum:
       # -- Branch to pull
