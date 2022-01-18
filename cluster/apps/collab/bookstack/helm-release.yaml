@@ -23,6 +23,7 @@ spec:
       tag: "version-v21.10.3"
 
     env:
+      TZ: ${CLUSTER_TZ}
       APP_URL: https://bookstack.${SECRET_DOMAIN}/
       DB_HOST: mysql
       DB_DATABASE: bookstack
