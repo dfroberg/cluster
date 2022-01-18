@@ -31,7 +31,7 @@ spec:
       APP_VIEWS_BOOKSHELF: grid
       APP_DEFAULT_DARK_MODE: "true"
       AVATAR_URL: https://seccdn.libravatar.org/avatar/${hash}?s=${size}&d=identicon
-      DB_HOST: mysql
+      DB_HOST: localhost
       DB_PORT: 3306
       DB_DATABASE: bookstack
       DB_USERNAME: bookstack
@@ -82,7 +82,9 @@ spec:
 
       primary:
         hostAliases:
-          - mysql
+        - ip: "127.0.0.1"
+          hostnames:
+          - "mysql"
         persistence:
           enabled: true
           existingClaim: bookstack-db
