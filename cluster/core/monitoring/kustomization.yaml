@@ -1,20 +1,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - blackbox-exporter
+  #- blackbox-exporter
   - botkube
-  - grafana
+  #- grafana
   - influxdb # Temp disable
-  - kube-prometheus-stack
-  - loki
-  - promtail
+  #- kube-prometheus-stack
+  #- loki
+  #- promtail
   - flux-system
   # - snmp-exporter-pdu-0
   # - snmp-exporter-pdu-1
   # - snmp-exporter-ups-0
   - speedtest-exporter
-  - thanos
-  - unifi-poller
+  #- thanos
+  #- unifi-poller
   # - uptimerobot-heartbeat
   - healthchecks
   - gatus
