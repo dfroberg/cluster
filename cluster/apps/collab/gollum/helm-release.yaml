@@ -75,8 +75,10 @@ spec:
       gitUrl: https://dfroberg:${SECRET_GITHUB_TOKEN}@github.com/dfroberg/docs.git
 
       # -- Additional arguments for starting gollum
-      additionalArgs: []
-
+      additionalArgs: 
+        - --css
+        - --js 
+        - --h1_title
       # -- Command run during the sync cron
       syncCommand: git pull && git push
       # -- Gollum config.rb customizations
