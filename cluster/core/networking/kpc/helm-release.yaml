@@ -16,6 +16,12 @@ spec:
         kind: HelmRepository
         name: kpc-charts
         namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
   valuesFrom:
     - kind: ConfigMap
       name: kubernetes-pfsense-controller-config
