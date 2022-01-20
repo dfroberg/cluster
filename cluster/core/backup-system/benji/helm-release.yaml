@@ -160,6 +160,14 @@ spec:
               name: benji-maint
             patch:
               - op: add
+                path: /spec/template/metadata/annotations
+                value:
+                  configmap.reloader.stakater.com/reload: "ceph-config"
+              - op: add
+                path: /spec/template/metadata/annotations
+                value:
+                  secret.reloader.stakater.com/reload: "rook-ceph-mon"
+              - op: add
                 path: /spec/template/spec/initContainers
                 value:
                   - name: generate-ceph-files
