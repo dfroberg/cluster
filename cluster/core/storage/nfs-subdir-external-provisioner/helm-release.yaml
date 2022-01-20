@@ -18,6 +18,12 @@ spec:
         name: nfs-subdir-external-provisioner-charts
         namespace: flux-system
       interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
   values:
     replicaCount: 2
     nfs:
