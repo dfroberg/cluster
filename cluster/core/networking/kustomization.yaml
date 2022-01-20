@@ -4,11 +4,11 @@ resources:
   - metallb-system
   - cert-manager
   - wildcard-certificate
+  - secret-reflector
   - traefik
   - error-pages
   - external-dns
-  - secret-reflector
   #- kpc # pfSense controller moved to its own 
   - webhooks
   - ingress-nginx
-  - k8s-gateway
+  #- k8s-gateway
