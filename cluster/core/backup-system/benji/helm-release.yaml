@@ -170,7 +170,7 @@ spec:
               - op: add
                 path: /spec/template/spec/initContainers
                 value:
-                  - name: generate-ceph-files
+                  - name: "generate-ceph-files"
                     image: rook/ceph:v1.8.2
                     imagePullPolicy: Always
                     command: ["/usr/bin/bash"]
