@@ -154,8 +154,6 @@ spec:
       nameOverride: pushgateway
   postRenderers:
     - kustomize:
-  postRenderers:
-    - kustomize:
         patchesJson6902:
           - target:
               kind: Deployment

@@ -11,3 +11,13 @@ resources:
   - benji-restore-job.yaml
   - benji-restore-job-authentik.yaml
   - service-monitor.yaml
+configMapGenerator:
+  - name: ceph-config
+    namespace: backup-system
+    files:
+      - ceph/generate-ceph.sh
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
+
