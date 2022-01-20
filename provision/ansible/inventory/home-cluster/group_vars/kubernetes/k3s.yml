@@ -5,7 +5,7 @@
 #
 
 # Use a specific version of k3s
-k3s_release_version: "v1.22.5+k3s1"
+k3s_release_version: "v1.23.1+k3s2"
 
 # Install using hard links rather than symbolic links.
 # ...if you are using the system-upgrade-controller you will need to use hard links rather than symbolic links as the controller will not be able to follow symbolic links.
@@ -18,7 +18,7 @@ k3s_become_for_all: true
 k3s_debug: false
 
 # Enabled embedded etcd
-k3s_etcd_datastore: true
+k3s_etcd_datastore: false
 
 # Enable for single or even number of masters
 k3s_use_unsupported_config: false
