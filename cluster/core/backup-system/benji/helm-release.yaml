@@ -256,7 +256,7 @@ spec:
                           secretKeyRef:
                             name: rook-ceph-mon
                             key: ceph-secret
-          - target:
+  #        - target:
   #             kind: CronJob
   #             name: benji-backup-comms
   #           patch:
