@@ -196,77 +196,32 @@ spec:
                   secret.reloader.stakater.com/reload: "rook-ceph-mon"
               - op: add
                 path: /spec/template/spec/initContainers
-                value:
-                  [
-                    {
-                      "name": "generate-ceph-files",
-                      "image": "rook/ceph:v1.8.2",
-                      "imagePullPolicy": "IfNotPresent",
-                      "command": [
-                        "/usr/bin/bash"
-                      ],
-                      "args": [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash"
-                      ],
-                      "volumeMounts": [
-                        {
-                          "name": "mon-endpoint-volume",
-                          "mountPath": "/etc/rook"
-                        },
-                        {
-                          "name": "ceph-data",
-                          "mountPath": "/etc/ceph"
-                        }
-                      ],
-                      "env": [
-                        {
-                          "name": "ROOK_CEPH_USERNAME",
-                          "valueFrom": {
-                            "secretKeyRef": {
-                              "name": "rook-ceph-mon",
-                              "key": "ceph-username"
-                            }
-                          }
-                        },
-                        {
-                          "name": "ROOK_CEPH_SECRET",
-                          "valueFrom": {
-                            "secretKeyRef": {
-                              "name": "rook-ceph-mon",
-                              "key": "ceph-secret"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                # value: 
-                # - name: generate-ceph-files
-                #   image: rook/ceph:v1.8.2
-                #   imagePullPolicy: IfNotPresent
-                #   command: [ "/usr/bin/bash" ]
-                #   args: 
-                #     [
-                #       "-c",
-                #       "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash"
-                #     ]
-                #   volumeMounts:
-                #     - name: mon-endpoint-volume
-                #       mountPath: /etc/rook
-                #     - name: ceph-data
-                #       mountPath: /etc/ceph
-                #   env:
-                #     - name: ROOK_CEPH_USERNAME
-                #       valueFrom:
-                #         secretKeyRef:
-                #           name: rook-ceph-mon
-                #           key: ceph-username
-                #     - name: ROOK_CEPH_SECRET
-                #       valueFrom:
-                #         secretKeyRef:
-                #           name: rook-ceph-mon
-                #           key: ceph-secret
+                value: 
+                - name: "generate-ceph-files"
+                  image: rook/ceph:v1.8.2
+                  imagePullPolicy: IfNotPresent
+                  command: [ "/usr/bin/bash" ]
+                  args: 
+                    [
+                      "-c",
+                      "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash"
+                    ]
+                  volumeMounts:
+                    - name: mon-endpoint-volume
+                      mountPath: /etc/rook
+                    - name: ceph-data
+                      mountPath: /etc/ceph
+                  env:
+                    - name: ROOK_CEPH_USERNAME
+                      valueFrom:
+                        secretKeyRef:
+                          name: rook-ceph-mon
+                          key: ceph-username
+                    - name: ROOK_CEPH_SECRET
+                      valueFrom:
+                        secretKeyRef:
+                          name: rook-ceph-mon
+                          key: ceph-secret
           - target:
               kind: DaemonSet
               name: benji-fsfreeze
