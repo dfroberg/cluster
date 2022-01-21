@@ -185,7 +185,7 @@ spec:
                   secret.reloader.stakater.com/reload: "rook-ceph-mon"
               - op: add
                 path: /spec/template/spec/initContainers
-                value:
+                value: |-
                   name: generate-ceph-files
                   namespace: backup-system
                   image: rook/ceph:v1.8.1
