@@ -197,7 +197,7 @@ spec:
               - op: add
                 path: /spec/template/spec/initContainers
                 value: 
-                    name: generate-ceph-files
+                  - name: generate-ceph-files
                     image: rook/ceph:v1.8.2
                     imagePullPolicy: Always
                     command: [ "/usr/bin/bash" ]
@@ -222,15 +222,15 @@ spec:
                           secretKeyRef:
                             name: rook-ceph-mon
                             key: ceph-secret
-            - target:
-                kind: DaemonSet
-                name: benji-fsfreeze
-              patch:
-                - op: replace
-                  path: /spec/template/spec/containers/0/volumeMounts
-                  value:
-                    - name: rbd-mounts
-                      mountPath: /var/lib/kubelet/plugins/kubernetes.io/rbd/mounts/
+          - target:
+              kind: DaemonSet
+              name: benji-fsfreeze
+            patch:
+              - op: replace
+                path: /spec/template/spec/containers/0/volumeMounts
+                value:
+                  - name: rbd-mounts
+                    mountPath: /var/lib/kubelet/plugins/kubernetes.io/rbd/mounts/
 
   #         - target:
   #             kind: CronJob
