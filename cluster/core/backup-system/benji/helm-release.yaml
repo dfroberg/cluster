@@ -188,17 +188,10 @@ spec:
               namespace: backup-system
             patch:
               - op: add
-                path: /spec/template/metadata/annotations
-                value:
-                  configmap.reloader.stakater.com/reload: "ceph-config"
-              - op: add
-                path: /spec/template/metadata/annotations
-                value:
-                  secret.reloader.stakater.com/reload: "rook-ceph-mon"
-              - op: add
                 path: /spec/template/spec/initContainers
                 value: 
-                  - name: "generate-ceph-files"
+                  - name: generate-ceph-files
+                    namespace: backup-system
                     image: rook/ceph:v1.8.2
                     imagePullPolicy: IfNotPresent
                     command: [ "/usr/bin/bash" ]
@@ -223,6 +216,14 @@ spec:
                           secretKeyRef:
                             name: rook-ceph-mon
                             key: ceph-secret
+              - op: add
+                path: /spec/template/metadata/annotations
+                value:
+                  configmap.reloader.stakater.com/reload: "ceph-config"
+              - op: add
+                path: /spec/template/metadata/annotations
+                value:
+                  secret.reloader.stakater.com/reload: "rook-ceph-mon"
           - target:
               kind: DaemonSet
               name: benji-fsfreeze
