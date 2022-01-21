@@ -158,7 +158,7 @@ spec:
         tag: v1.4.2
         pullPolicy: IfNotPresent
       nameOverride: pushgateway
-   postRenderers:
+  postRenderers:
     - kustomize:
         patchesJson6902:
           - target:
