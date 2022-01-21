@@ -187,24 +187,40 @@ spec:
               name: benji-maint
               namespace: backup-system
             patch:
+              - op: replace
+                path: /spec/template/spec/containers/0/volumeMounts
+                value:
+                  - name: benji-config
+                    mountPath: /benji/etc
+                  - name: backup-nas
+                    mountPath: /backup-nas
+                  - name: ceph-data
+                    mountPath: /etc/ceph
+              - op: add
+                path: /spec/template/metadata/annotations
+                value:
+                  configmap.reloader.stakater.com/reload: "ceph-config"
+              - op: add
+                path: /spec/template/metadata/annotations
+                value:
+                  secret.reloader.stakater.com/reload: "rook-ceph-mon"
               - op: add
                 path: /spec/template/spec/initContainers
-                value: 
+                value:
                   - name: generate-ceph-files
                     namespace: backup-system
-                    image: rook/ceph:v1.8.2
-                    imagePullPolicy: IfNotPresent
-                    command: [ "/usr/bin/bash" ]
-                    args: 
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash"
-                      ]
+                    image: rook/ceph:v1.8.1
+                    imagePullPolicy: Always
+                    command: ["/usr/bin/bash"]
+                    args: ["-c", "bash /script/generate-ceph.sh"]
                     volumeMounts:
                       - name: mon-endpoint-volume
                         mountPath: /etc/rook
                       - name: ceph-data
                         mountPath: /etc/ceph
+                      - name: ceph-config
+                        mountPath: /script/generate-ceph.sh
+                        subPath: generate-ceph.sh
                     env:
                       - name: ROOK_CEPH_USERNAME
                         valueFrom:
@@ -216,14 +232,6 @@ spec:
                           secretKeyRef:
                             name: rook-ceph-mon
                             key: ceph-secret
-              - op: add
-                path: /spec/template/metadata/annotations
-                value:
-                  configmap.reloader.stakater.com/reload: "ceph-config"
-              - op: add
-                path: /spec/template/metadata/annotations
-                value:
-                  secret.reloader.stakater.com/reload: "rook-ceph-mon"
           - target:
               kind: DaemonSet
               name: benji-fsfreeze
