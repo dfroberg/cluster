@@ -131,11 +131,17 @@ spec:
                 path: mon-endpoints
         - name: ceph-data
           emptyDir: {}
+        - name: ceph-config
+          configMap:
+            name: ceph-config
       volumeMounts:
         - name: backup-nas
           mountPath: /backup-nas
         - name: ceph-data
           mountPath: /etc/ceph
+        - name: ceph-config
+          mountPath: /script/generate-ceph.sh
+          subPath: generate-ceph.sh
     fsfreeze:
       enabled: true
     postgresql:
