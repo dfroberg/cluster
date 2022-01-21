@@ -158,6 +158,7 @@ spec:
           - target:
               kind: Deployment
               name: benji-maint
+              namespace: backup-system
             patch:
               - op: add
                 path: /spec/template/metadata/annotations
@@ -198,6 +199,7 @@ spec:
           - target:
               kind: CronJob
               name: benji-backup-default
+              namespace: backup-system
             patch:
               - op: add
                 path: /spec/jobTemplate/spec/template/spec/initContainers
@@ -230,6 +232,7 @@ spec:
           - target:
               kind: CronJob
               name: benji-backup-comms
+              namespace: backup-system
             patch:
               - op: add
                 path: /spec/jobTemplate/spec/template/spec/initContainers
@@ -262,6 +265,7 @@ spec:
           - target:
               kind: CronJob
               name: benji-backup-tools
+              namespace: backup-system
             patch:
               - op: add
                 path: /spec/jobTemplate/spec/template/spec/initContainers
@@ -294,6 +298,7 @@ spec:
           - target:
               kind: CronJob
               name: benji-backup-collab
+              namespace: backup-system
             patch:
               - op: add
                 path: /spec/jobTemplate/spec/template/spec/initContainers
@@ -326,6 +331,7 @@ spec:
           - target:
               kind: CronJob
               name: benji-backup-media
+              namespace: backup-system
             patch:
               - op: add
                 path: /spec/jobTemplate/spec/template/spec/initContainers
@@ -358,6 +364,7 @@ spec:
           - target:
               kind: CronJob
               name: benji-backup-security
+              namespace: backup-system
             patch:
               - op: add
                 path: /spec/jobTemplate/spec/template/spec/initContainers
@@ -390,6 +397,7 @@ spec:
           - target:
               kind: CronJob
               name: benji-backup-mail
+              namespace: backup-system
             patch:
               - op: add
                 path: /spec/jobTemplate/spec/template/spec/initContainers
@@ -422,6 +430,7 @@ spec:
           - target:
               kind: CronJob
               name: benji-cleanup
+              namespace: backup-system
             patch:
               - op: add
                 path: /spec/jobTemplate/spec/template/spec/initContainers
@@ -454,6 +463,7 @@ spec:
           - target:
               kind: CronJob
               name: benji-backup-enforce
+              namespace: backup-system
             patch:
               - op: add
                 path: /spec/jobTemplate/spec/template/spec/initContainers
@@ -486,6 +496,7 @@ spec:
           - target:
               kind: CronJob
               name: benji-backup-collab
+              namespace: backup-system
             patch:
               - op: add
                 path: /spec/jobTemplate/spec/template/spec/initContainers
@@ -518,6 +529,7 @@ spec:
           - target:
               kind: CronJob
               name: benji-backup-home
+              namespace: backup-system
             patch:
               - op: add
                 path: /spec/jobTemplate/spec/template/spec/initContainers
