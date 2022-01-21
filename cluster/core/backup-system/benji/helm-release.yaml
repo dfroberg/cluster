@@ -65,48 +65,48 @@ spec:
             - benji-backup-pvc
             - --namespace
             - default
-        - name: backup-tools
-          schedule: "00 01 * * *"
-          command:
-            - benji-backup-pvc
-            - --namespace
-            - tools
-        - name: backup-security
-          schedule: "00 02 * * *"
-          command:
-            - benji-backup-pvc
-            - --namespace
-            - security
-        - name: backup-media
-          schedule: "00 03 * * *"
-          command:
-            - benji-backup-pvc
-            - --namespace
-            - media
-        - name: backup-collab
-          schedule: "00 04 * * *"
-          command:
-            - benji-backup-pvc
-            - --namespace
-            - collab
-        - name: backup-comms
-          schedule: "00 05 * * *"
-          command:
-            - benji-backup-pvc
-            - --namespace
-            - comms
-        - name: backup-home
-          schedule: "00 06 * * *"
-          command:
-            - benji-backup-pvc
-            - --namespace
-            - home
-        - name: backup-mail
-          schedule: "00 07 * * *"
-          command:
-            - benji-backup-pvc
-            - --namespace
-            - mailu
+        # - name: backup-tools
+        #   schedule: "00 01 * * *"
+        #   command:
+        #     - benji-backup-pvc
+        #     - --namespace
+        #     - tools
+        # - name: backup-security
+        #   schedule: "00 02 * * *"
+        #   command:
+        #     - benji-backup-pvc
+        #     - --namespace
+        #     - security
+        # - name: backup-media
+        #   schedule: "00 03 * * *"
+        #   command:
+        #     - benji-backup-pvc
+        #     - --namespace
+        #     - media
+        # - name: backup-collab
+        #   schedule: "00 04 * * *"
+        #   command:
+        #     - benji-backup-pvc
+        #     - --namespace
+        #     - collab
+        # - name: backup-comms
+        #   schedule: "00 05 * * *"
+        #   command:
+        #     - benji-backup-pvc
+        #     - --namespace
+        #     - comms
+        # - name: backup-home
+        #   schedule: "00 06 * * *"
+        #   command:
+        #     - benji-backup-pvc
+        #     - --namespace
+        #     - home
+        # - name: backup-mail
+        #   schedule: "00 07 * * *"
+        #   command:
+        #     - benji-backup-pvc
+        #     - --namespace
+        #     - mailu
         - name: enforce
           schedule: "00 07 * * *"
           command:
@@ -168,7 +168,7 @@ spec:
             patch:
               - op: replace
                 path: /spec/template/spec/containers/0/volumeMounts
-                value: |-
+                value:
                   - name: benji-config
                     mountPath: /benji/etc
                   - name: backup-nas
@@ -177,15 +177,15 @@ spec:
                     mountPath: /etc/ceph
               - op: add
                 path: /spec/template/metadata/annotations
-                value: |-
+                value:
                   configmap.reloader.stakater.com/reload: "ceph-config"
               - op: add
                 path: /spec/template/metadata/annotations
-                value: |-
+                value:
                   secret.reloader.stakater.com/reload: "rook-ceph-mon"
               - op: add
                 path: /spec/template/spec/initContainers
-                value: |-
+                value: 
                   - name: generate-ceph-files
                     namespace: backup-system
                     image: rook/ceph:v1.8.1
@@ -218,44 +218,44 @@ spec:
             patch:
               - op: replace
                 path: /spec/template/spec/containers/0/volumeMounts
-                value: |-
+                value:
                   - name: rbd-mounts
                     mountPath: /var/lib/kubelet/plugins/kubernetes.io/rbd/mounts/
 
-          - target:
-              kind: CronJob
-              name: benji-backup-default
-              namespace: backup-system
-            patch:
-              - op: add
-                path: /spec/jobTemplate/spec/template/spec/initContainers
-                value: |-
-                  - name: generate-ceph-files
-                    namespace: backup-system
-                    image: rook/ceph:v1.8.2
-                    imagePullPolicy: Always
-                    command: ["/usr/bin/bash"]
-                    args:
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
-                      ]
-                    volumeMounts:
-                      - name: mon-endpoint-volume
-                        mountPath: /etc/rook
-                      - name: ceph-data
-                        mountPath: /etc/ceph
-                    env:
-                      - name: ROOK_CEPH_USERNAME
-                        valueFrom:
-                          secretKeyRef:
-                            name: rook-ceph-mon
-                            key: ceph-username
-                      - name: ROOK_CEPH_SECRET
-                        valueFrom:
-                          secretKeyRef:
-                            name: rook-ceph-mon
-                            key: ceph-secret
+          # - target:
+          #     kind: CronJob
+          #     name: benji-backup-default
+          #     namespace: backup-system
+          #   patch:
+          #     - op: add
+          #       path: /spec/jobTemplate/spec/template/spec/initContainers
+          #       value:
+          #         - name: generate-ceph-files
+          #           namespace: backup-system
+          #           image: rook/ceph:v1.8.2
+          #           imagePullPolicy: Always
+          #           command: ["/usr/bin/bash"]
+          #           args:
+          #             [
+          #               "-c",
+          #               "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
+          #             ]
+          #           volumeMounts:
+          #             - name: mon-endpoint-volume
+          #               mountPath: /etc/rook
+          #             - name: ceph-data
+          #               mountPath: /etc/ceph
+          #           env:
+          #             - name: ROOK_CEPH_USERNAME
+          #               valueFrom:
+          #                 secretKeyRef:
+          #                   name: rook-ceph-mon
+          #                   key: ceph-username
+          #             - name: ROOK_CEPH_SECRET
+          #               valueFrom:
+          #                 secretKeyRef:
+          #                   name: rook-ceph-mon
+          #                   key: ceph-secret
   #        - target:
   #             kind: CronJob
   #             name: benji-backup-comms
