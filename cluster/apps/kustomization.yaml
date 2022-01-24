@@ -3,11 +3,11 @@ kind: Kustomization
 resources:
   - default
   - databases
-#  - media
+  - media
 #  - mailu
   - comms
-#  - collab
-#  - changedetection-io
+  - collab
+  - changedetection-io
   - gitlab
   
 
