@@ -131,11 +131,17 @@ spec:
                 path: mon-endpoints
         - name: ceph-data
           emptyDir: {}
+        - name: ceph-config
+          configMap:
+            name: ceph-config
       volumeMounts:
         - name: backup-nas
           mountPath: /backup-nas
         - name: ceph-data
           mountPath: /etc/ceph
+        - name: ceph-config
+          mountPath: /script/generate-ceph.sh
+          subPath: generate-ceph.sh
     fsfreeze:
       enabled: true
     postgresql:
@@ -175,16 +181,15 @@ spec:
                     image: rook/ceph:v1.8.3
                     imagePullPolicy: Always
                     command: ["/usr/bin/bash"]
-                    args:
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
-                      ]
+                    args: ["-c", "bash /script/generate-ceph.sh"]
                     volumeMounts:
                       - name: mon-endpoint-volume
                         mountPath: /etc/rook
                       - name: ceph-data
                         mountPath: /etc/ceph
+                      - name: ceph-config
+                        mountPath: /script/generate-ceph.sh
+                        subPath: generate-ceph.sh
                     env:
                       - name: ROOK_CEPH_USERNAME
                         valueFrom:
@@ -208,16 +213,15 @@ spec:
                     image: rook/ceph:v1.8.3
                     imagePullPolicy: Always
                     command: ["/usr/bin/bash"]
-                    args:
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
-                      ]
+                    args: ["-c", "bash /script/generate-ceph.sh"]
                     volumeMounts:
                       - name: mon-endpoint-volume
                         mountPath: /etc/rook
                       - name: ceph-data
                         mountPath: /etc/ceph
+                      - name: ceph-config
+                        mountPath: /script/generate-ceph.sh
+                        subPath: generate-ceph.sh
                     env:
                       - name: ROOK_CEPH_USERNAME
                         valueFrom:
@@ -241,16 +245,15 @@ spec:
                     image: rook/ceph:v1.8.3
                     imagePullPolicy: Always
                     command: ["/usr/bin/bash"]
-                    args:
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
-                      ]
+                    args: ["-c", "bash /script/generate-ceph.sh"]
                     volumeMounts:
                       - name: mon-endpoint-volume
                         mountPath: /etc/rook
                       - name: ceph-data
                         mountPath: /etc/ceph
+                      - name: ceph-config
+                        mountPath: /script/generate-ceph.sh
+                        subPath: generate-ceph.sh
                     env:
                       - name: ROOK_CEPH_USERNAME
                         valueFrom:
@@ -274,16 +277,15 @@ spec:
                     image: rook/ceph:v1.8.3
                     imagePullPolicy: Always
                     command: ["/usr/bin/bash"]
-                    args:
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
-                      ]
+                    args: ["-c", "bash /script/generate-ceph.sh"]
                     volumeMounts:
                       - name: mon-endpoint-volume
                         mountPath: /etc/rook
                       - name: ceph-data
                         mountPath: /etc/ceph
+                      - name: ceph-config
+                        mountPath: /script/generate-ceph.sh
+                        subPath: generate-ceph.sh
                     env:
                       - name: ROOK_CEPH_USERNAME
                         valueFrom:
@@ -307,16 +309,15 @@ spec:
                     image: rook/ceph:v1.8.3
                     imagePullPolicy: Always
                     command: ["/usr/bin/bash"]
-                    args:
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
-                      ]
+                    args: ["-c", "bash /script/generate-ceph.sh"]
                     volumeMounts:
                       - name: mon-endpoint-volume
                         mountPath: /etc/rook
                       - name: ceph-data
                         mountPath: /etc/ceph
+                      - name: ceph-config
+                        mountPath: /script/generate-ceph.sh
+                        subPath: generate-ceph.sh
                     env:
                       - name: ROOK_CEPH_USERNAME
                         valueFrom:
@@ -340,16 +341,15 @@ spec:
                     image: rook/ceph:v1.8.3
                     imagePullPolicy: Always
                     command: ["/usr/bin/bash"]
-                    args:
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
-                      ]
+                    args: ["-c", "bash /script/generate-ceph.sh"]
                     volumeMounts:
                       - name: mon-endpoint-volume
                         mountPath: /etc/rook
                       - name: ceph-data
                         mountPath: /etc/ceph
+                      - name: ceph-config
+                        mountPath: /script/generate-ceph.sh
+                        subPath: generate-ceph.sh
                     env:
                       - name: ROOK_CEPH_USERNAME
                         valueFrom:
@@ -373,16 +373,15 @@ spec:
                     image: rook/ceph:v1.8.3
                     imagePullPolicy: Always
                     command: ["/usr/bin/bash"]
-                    args:
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
-                      ]
+                    args: ["-c", "bash /script/generate-ceph.sh"]
                     volumeMounts:
                       - name: mon-endpoint-volume
                         mountPath: /etc/rook
                       - name: ceph-data
                         mountPath: /etc/ceph
+                      - name: ceph-config
+                        mountPath: /script/generate-ceph.sh
+                        subPath: generate-ceph.sh
                     env:
                       - name: ROOK_CEPH_USERNAME
                         valueFrom:
@@ -406,16 +405,15 @@ spec:
                     image: rook/ceph:v1.8.3
                     imagePullPolicy: Always
                     command: ["/usr/bin/bash"]
-                    args:
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
-                      ]
+                    args: ["-c", "bash /script/generate-ceph.sh"]
                     volumeMounts:
                       - name: mon-endpoint-volume
                         mountPath: /etc/rook
                       - name: ceph-data
                         mountPath: /etc/ceph
+                      - name: ceph-config
+                        mountPath: /script/generate-ceph.sh
+                        subPath: generate-ceph.sh
                     env:
                       - name: ROOK_CEPH_USERNAME
                         valueFrom:
@@ -439,16 +437,15 @@ spec:
                     image: rook/ceph:v1.8.3
                     imagePullPolicy: Always
                     command: ["/usr/bin/bash"]
-                    args:
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
-                      ]
+                    args: ["-c", "bash /script/generate-ceph.sh"]
                     volumeMounts:
                       - name: mon-endpoint-volume
                         mountPath: /etc/rook
                       - name: ceph-data
                         mountPath: /etc/ceph
+                      - name: ceph-config
+                        mountPath: /script/generate-ceph.sh
+                        subPath: generate-ceph.sh
                     env:
                       - name: ROOK_CEPH_USERNAME
                         valueFrom:
@@ -472,16 +469,15 @@ spec:
                     image: rook/ceph:v1.8.3
                     imagePullPolicy: Always
                     command: ["/usr/bin/bash"]
-                    args:
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
-                      ]
+                    args: ["-c", "bash /script/generate-ceph.sh"]
                     volumeMounts:
                       - name: mon-endpoint-volume
                         mountPath: /etc/rook
                       - name: ceph-data
                         mountPath: /etc/ceph
+                      - name: ceph-config
+                        mountPath: /script/generate-ceph.sh
+                        subPath: generate-ceph.sh
                     env:
                       - name: ROOK_CEPH_USERNAME
                         valueFrom:
@@ -505,16 +501,15 @@ spec:
                     image: rook/ceph:v1.8.3
                     imagePullPolicy: Always
                     command: ["/usr/bin/bash"]
-                    args:
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
-                      ]
+                    args: ["-c", "bash /script/generate-ceph.sh"]
                     volumeMounts:
                       - name: mon-endpoint-volume
                         mountPath: /etc/rook
                       - name: ceph-data
                         mountPath: /etc/ceph
+                      - name: ceph-config
+                        mountPath: /script/generate-ceph.sh
+                        subPath: generate-ceph.sh
                     env:
                       - name: ROOK_CEPH_USERNAME
                         valueFrom:
@@ -538,16 +533,15 @@ spec:
                     image: rook/ceph:v1.8.3
                     imagePullPolicy: Always
                     command: ["/usr/bin/bash"]
-                    args:
-                      [
-                        "-c",
-                        "curl -s https://raw.githubusercontent.com/dfroberg/cluster/master/cluster/core/backup-system/benji/generate-ceph.sh | bash",
-                      ]
+                    args: ["-c", "bash /script/generate-ceph.sh"]
                     volumeMounts:
                       - name: mon-endpoint-volume
                         mountPath: /etc/rook
                       - name: ceph-data
                         mountPath: /etc/ceph
+                      - name: ceph-config
+                        mountPath: /script/generate-ceph.sh
+                        subPath: generate-ceph.sh
                     env:
                       - name: ROOK_CEPH_USERNAME
                         valueFrom:
