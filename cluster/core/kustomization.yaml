@@ -8,6 +8,6 @@ resources:
   #- vpn-gateway  # Moved to own step in base
   - security
   - resource-control
-  - system-upgrade
+  #- system-upgrade
   - monitoring
 
