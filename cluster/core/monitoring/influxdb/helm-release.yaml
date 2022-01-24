@@ -46,7 +46,7 @@ spec:
         bucket: primary
     influxdb:
       replicaCount: 1
-      updateStrategy: RollingUpdate
+      # updateStrategy: RollingUpdate
       podManagementPolicy: OrderedReady
       nodeSelector: 
         worker: yes
@@ -169,7 +169,7 @@ spec:
       ## @param relay.replicaCount The number of InfluxDB Relay&trade; replicas to deploy
       ##
       replicaCount: 1
-      updateStrategy: RollingUpdate
+      # updateStrategy: RollingUpdate
       nodeSelector: 
         worker: yes
       securityContext:
