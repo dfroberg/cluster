@@ -1,14 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - default
+#  - default
   - databases
-  - media
+#  - media
 #  - mailu
-  - comms
-  - collab
-  - changedetection-io
-  - gitlab
+#  - comms
+#  - collab
+#  - changedetection-io
+#  - gitlab
   
 
   
