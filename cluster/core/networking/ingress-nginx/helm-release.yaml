@@ -32,7 +32,7 @@ spec:
     cleanupOnFail: true
   values:
     controller:
-      replicaCount: 2
+      replicaCount: 1
       service:
         type: LoadBalancer
         loadBalancerIP: "${CLUSTER_LB_NGINX}"
@@ -48,7 +48,7 @@ spec:
         proxy-body-size: "50m"
 
       extraArgs:
-        default-ssl-certificate: "${SECRET_DOMAIN//./-}-tls"
+        default-ssl-certificate: "networking/${SECRET_DOMAIN//./-}-tls"
 
       resources:
         requests:
