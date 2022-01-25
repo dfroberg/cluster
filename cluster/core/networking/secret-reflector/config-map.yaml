@@ -1,0 +1,12 @@
+---
+# In order to effectively use this file you must familiarize youself with the
+# the stucture of the config.xml structure of the HAProxy in pfSense.  Most of
+# the values are just directly passed through.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: networking
+  name: none
+data:
+  data: |
+    # Default configmap that's empty
