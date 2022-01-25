@@ -8,5 +8,6 @@ resources:
   - cluster-sops-keys/cluster-secrets-repo.yaml
   - cluster-sops-keys/regcred.sops.yaml
   - botkube
+
 patchesStrategicMerge: []
   #- ./init-patches.yaml
