@@ -48,7 +48,7 @@ spec:
         proxy-body-size: "50m"
 
       extraArgs:
-        default-ssl-certificate: "networking/${SECRET_DOMAIN//./-}-tls"
+        default-ssl-certificate: "${SECRET_DOMAIN//./-}-tls"
 
       resources:
         requests:
