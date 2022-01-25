@@ -5,7 +5,10 @@ metadata:
   name: jellyfin-config-v1
   namespace: media
   labels:
+    benji-backup.me/instance: "benji-k8s"
     kasten.io/backup-volume: "enabled"
+  annotations:
+    benji-backup.me/fsfreeze: "yes"
 spec:
   accessModes:
     - ReadWriteOnce

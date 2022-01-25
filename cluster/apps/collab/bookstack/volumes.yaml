@@ -6,6 +6,8 @@ metadata:
   namespace: collab
   labels:
     benji-backup.me/instance: "benji-k8s"
+  annotations:
+    benji-backup.me/fsfreeze: "yes"
 spec:
   accessModes:
     - ReadWriteOnce
@@ -21,6 +23,8 @@ metadata:
   namespace: collab
   labels:
     benji-backup.me/instance: "benji-k8s"
+  annotations:
+    benji-backup.me/fsfreeze: "yes"
 spec:
   accessModes:
     - ReadWriteOnce

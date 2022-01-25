@@ -5,7 +5,10 @@ metadata:
   name: mailu-data
   namespace: mailu
   labels:
+    benji-backup.me/instance: "benji-k8s"
     kasten.io/backup-volume: "enabled"
+  annotations:
+    benji-backup.me/fsfreeze: "yes"
 spec:
   accessModes:
     - ReadWriteOnce

@@ -4,6 +4,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: benji-postgresql-pvc
   namespace: backup-system
+  labels:
+    benji-backup.me/instance: "benji-k8s"
+  annotations:
+    benji-backup.me/fsfreeze: "yes"
 spec:
   accessModes:
     - ReadWriteOnce

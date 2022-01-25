@@ -4,6 +4,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: matrix-slack-postgresql-pvc
   namespace: comms
+  labels:
+    benji-backup.me/instance: "benji-k8s"
+  annotations:
+    benji-backup.me/fsfreeze: "yes"
 spec:
   accessModes:
     - ReadWriteOnce

@@ -5,7 +5,10 @@ metadata:
   name: hajimari-config-v1
   namespace: default
   labels:
+    benji-backup.me/instance: "benji-k8s"
     kasten.io/backup-volume: "enabled"
+  annotations:
+    benji-backup.me/fsfreeze: "yes"
 spec:
   accessModes:
     - ReadWriteOnce
