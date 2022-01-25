@@ -36,21 +36,21 @@ tasks:
     desc: Check space on all the hosts
     dir: provision/ansible
     cmds:
-      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'df -h /'"
-      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'df -h /var/lib/rancher'"
-      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'df -h /var/lib/kubelet'"
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'df -h /'"
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'df -h /var/lib/rancher'"
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'df -h /var/lib/kubelet'"
     silent: true
   free-space:
     desc: Free space on all the hosts
     dir: provision/ansible
     cmds:
-      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'rm -rf /var/ramdisk-backup/*'"
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'rm -rf /var/ramdisk-backup/*'"
     silent: true
   fstrim:
     desc: Fstrim all the hosts
     dir: provision/ansible
     cmds:
-      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'fstrim /'"
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'fstrim /'"
     silent: true
   ping:
     desc: Ping all the hosts
@@ -63,7 +63,7 @@ tasks:
     desc: Uptime of all the hosts
     dir: provision/ansible
     cmds:
-      - ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line -a 'uptime'
+      - ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line -a 'uptime'
     silent: true
 
   uptime:storage:
