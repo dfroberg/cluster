@@ -15,11 +15,18 @@ spec:
         name: bitpoke-charts
         namespace: flux-system
   install:
+    timeout: 10m
     remediation:
       retries: 3
   upgrade:
+    timeout: 10m
     remediation:
-      retries: 3
+      retries: 3remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
   values:
     replicaCount: 1
     image:

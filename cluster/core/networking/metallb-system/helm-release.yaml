@@ -20,8 +20,14 @@ spec:
     remediation:
       retries: 3
   upgrade:
+    timeout: 10m
     remediation:
-      retries: 3
+      retries: 3remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
   values:
     configInline:
       address-pools:

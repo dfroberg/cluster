@@ -17,11 +17,18 @@ spec:
         name: kpc-charts
         namespace: flux-system
   install:
+    timeout: 10m
     remediation:
       retries: 3
   upgrade:
+    timeout: 10m
     remediation:
-      retries: 3
+      retries: 3remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
   valuesFrom:
     - kind: ConfigMap
       name: kubernetes-pfsense-controller-config
