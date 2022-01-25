@@ -23,7 +23,12 @@ spec:
   upgrade:
     timeout: 10m
     remediation:
-      retries: 3
+      retries: 3remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
   values:
     image:
       repository: matrixdotorg/synapse
