@@ -8,6 +8,9 @@ configMapGenerator:
   - name: secret-reflector
     files:
       - secret-reflector.sh
+  - name: configmap-reflector
+    files:
+      - configmap-reflector.sh
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
