@@ -18,28 +18,28 @@
 #   tags:
 #     - vmware
 
-- name: Get VM UUID
-  vmware_guest_info:
-    hostname: "{{ esxi_hostname }}"
-    username: "{{ esxi_username }}"
-    password: "{{ esxi_password }}"
-    datacenter: "ha-datacenter"
-    folder: "/ha-datacenter/vm"
-    name: "{{ inventory_hostname }}"
-  delegate_to: localhost
-  register: vm_facts
-  tags:
-    - vmware
-- name: Upgrade VMware Tools using uuid
-  failed_when: False
-  changed_when: False
-  community.vmware.vmware_guest_tools_upgrade:
-    hostname: "{{ esxi_hostname }}"
-    username: "{{ esxi_username }}"
-    password: "{{ esxi_password }}"
-    datacenter: "ha-datacenter"
-    uuid: "{{ vm_facts.instance.hw_product_uuid }}"
-  delegate_to: localhost
+#- name: Get VM UUID
+#  vmware_guest_info:
+#    hostname: "{{ esxi_hostname }}"
+#    username: "{{ esxi_username }}"
+#    password: "{{ esxi_password }}"
+#    datacenter: "ha-datacenter"
+#    folder: "/ha-datacenter/vm"
+#    name: "{{ inventory_hostname }}"
+#  delegate_to: localhost
+#  register: vm_facts
+#  tags:
+#    - vmware
+#- name: Upgrade VMware Tools using uuid
+#  failed_when: False
+#  changed_when: False
+#  community.vmware.vmware_guest_tools_upgrade:
+#    hostname: "{{ esxi_hostname }}"
+#    username: "{{ esxi_username }}"
+#    password: "{{ esxi_password }}"
+#    datacenter: "ha-datacenter"
+#    uuid: "{{ vm_facts.instance.hw_product_uuid }}"
+#  delegate_to: localhost
 
 # - name: Upgrade VMware Tools using MoID
 #   community.vmware.vmware_guest_tools_upgrade:
