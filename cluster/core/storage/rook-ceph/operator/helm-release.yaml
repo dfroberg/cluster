@@ -44,7 +44,7 @@ spec:
                     values:
                       - "yes"
     crds:
-      enabled: false
+      enabled: true
     monitoring:
       enabled: false
     csi:
