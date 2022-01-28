@@ -6,3 +6,7 @@ metadata:
 data:
   config: |
     [global]
+    public network =  192.168.30.0/24
+    cluster network = 192.168.25.0/24
+    public addr = ""
+    cluster addr = ""
