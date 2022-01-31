@@ -7,7 +7,7 @@ k3s_control_node: true
 
 # k3s settings for all control-plane nodes
 k3s_server:
-  datastore-endpoint: postgres://cluster:{{ SECRET_POSTGRES_PASSWORD }}@{{ SECRET_POSTGRES_HOST }}:{{ SECRET_POSTGRES_HOSTPORT }}/cluster?sslmode=disable
+  #datastore-endpoint: postgres://cluster:{{ SECRET_POSTGRES_PASSWORD }}@{{ SECRET_POSTGRES_HOST }}:{{ SECRET_POSTGRES_HOSTPORT }}/cluster?sslmode=disable
   node-ip: "{{ ansible_host }}"
   tls-san:
     # kube-vip
@@ -17,7 +17,6 @@ k3s_server:
   docker: false
   flannel-backend: "none" # This needs to be in quotes
   #flannel-iface: "eth0"
-
   disable:
     - flannel
     - traefik
@@ -54,8 +53,7 @@ k3s_server:
     - "feature-gates=MixedProtocolLBService=true"
     - "feature-gates=ReadWriteOncePod=true"
     - "bind-address=0.0.0.0"
-  
-  # Required for HAProxy health-checks
+  # anonymous-auth=true Required for HAProxy health-checks
   kube-apiserver-arg:
     - "feature-gates=EphemeralContainers=true"
     - "feature-gates=MixedProtocolLBService=true"
@@ -65,7 +63,6 @@ k3s_server:
     - "oidc-client-id=dex-k8s-authenticator"
     - "oidc-username-claim=preferred_username"
     - "oidc-groups-claim=groups"
-    
   node-label:
      - "master=yes"
   node-taint:
