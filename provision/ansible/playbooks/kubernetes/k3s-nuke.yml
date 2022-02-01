@@ -89,4 +89,4 @@
 
     - name: reboot nodes
       # command: /usr/sbin/reboot
-      command: /usr/sbin/reboot
+      command: /bin/systemctl reboot
