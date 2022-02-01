@@ -31,11 +31,20 @@ spec:
     cleanupOnFail: true
   values:
     configInline:
+    peers:
+      - peer-address: 192.168.30.1
+        peer-asn: 64512
+        my-asn: 64500
       address-pools:
-        - name: default
-          protocol: layer2
-          addresses:
-            - ${METALLB_ARP_RANGE}
+      - name: default
+        protocol: bgp
+        addresses:
+          - ${METALLB_ARP_RANGE}
+      # address-pools:
+      #   - name: default
+      #     protocol: layer2
+      #     addresses:
+      #       - ${METALLB_ARP_RANGE}
     rbac:
       create: true
     psp:
