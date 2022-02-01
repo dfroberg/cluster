@@ -36,10 +36,10 @@ spec:
         peer-asn: 64512
         my-asn: 64500
       address-pools:
-      - name: default
-        protocol: bgp
-        addresses:
-          - ${METALLB_ARP_RANGE}
+        - name: default
+          protocol: bgp
+          addresses:
+            - ${METALLB_ARP_RANGE}
       # address-pools:
       #   - name: default
       #     protocol: layer2
