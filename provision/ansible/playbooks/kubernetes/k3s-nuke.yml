@@ -82,3 +82,11 @@
         path: "{{ item.path }}"
         state: absent
       loop: "{{ longhorn_files_to_delete.files }}"
+
+    #
+    # Turn off master and workker devices in 2 minutes
+    #
+
+    - name: reboot nodes
+      # command: /usr/sbin/reboot
+      command: /usr/sbin/reboot
