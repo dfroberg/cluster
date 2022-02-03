@@ -33,7 +33,7 @@ spec:
   values:
     persistence:
       enabled: true
-      storageClassName: ceph-block
+      storageClassName: direct-csi-min-io
       size: 1Gi
     image:
       repository: twinproduction/gatus
