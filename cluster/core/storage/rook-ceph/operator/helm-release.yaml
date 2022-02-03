@@ -16,10 +16,12 @@ spec:
         name: rook-ceph-charts
         namespace: flux-system
   install:
+    crds: CreateReplace
     timeout: 10m
     remediation:
       retries: 3
   upgrade:
+    crds: CreateReplace
     timeout: 10m
     remediation:
       retries: 3
@@ -44,7 +46,7 @@ spec:
                     values:
                       - "yes"
     crds:
-      enabled: false
+      enabled: true
     monitoring:
       enabled: false
     csi:
