@@ -1,0 +1,2002 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  creationTimestamp: null
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: direct-csi-min-io
+  namespace: direct-csi-min-io
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: null
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: direct-csi-min-io
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - persistentvolumes
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - persistentvolumeclaims
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+- apiGroups:
+  - storage.k8s.io
+  resources:
+  - storageclasses
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - list
+  - watch
+  - update
+  - patch
+- apiGroups:
+  - snapshot.storage.k8s.io
+  resources:
+  - volumesnapshots
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - snapshot.storage.k8s.io
+  resources:
+  - volumesnapshotcontents
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - storage.k8s.io
+  resources:
+  - csinodes
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - storage.k8s.io
+  resources:
+  - volumeattachments
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - endpoints
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - delete
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - delete
+- apiGroups:
+  - apiextensions.k8s.io
+  - direct.csi.min.io
+  resources:
+  - customresourcedefinitions
+  - customresourcedefinition
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - delete
+  - patch
+- apiGroups:
+  - direct.csi.min.io
+  resources:
+  - directcsidrives
+  - directcsivolumes
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - pod
+  verbs:
+  - get
+  - list
+  - watch
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: null
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: direct-csi-min-io
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: direct-csi-min-io
+subjects:
+- kind: ServiceAccount
+  name: direct-csi-min-io
+  namespace: direct-csi-min-io
+
+---
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: null
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: direct-csi-min-io
+spec:
+  allowedHostPaths:
+  - pathPrefix: /proc
+    readOnly: true
+  - pathPrefix: /sys
+    readOnly: true
+  - pathPrefix: /var/lib/direct-csi
+  - pathPrefix: /csi
+  - pathPrefix: /var/lib/kubelet
+  fsGroup:
+    rule: RunAsAny
+  hostIPC: true
+  hostNetwork: true
+  hostPID: true
+  privileged: true
+  runAsUser:
+    rule: RunAsAny
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: null
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: psp-direct-csi-min-io
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: direct-csi-min-io
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:serviceaccounts:direct-csi-min-io
+
+---
+apiVersion: v1
+data:
+  cert.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUYwekNDQTd1Z0F3SUJBZ0lDQitNd0RRWUpLb1pJaHZjTkFRRUxCUUF3Y1RFTE1Ba0dBMVVFQmhNQ1ZWTXgKQ1RBSEJnTlZCQWdUQURFU01CQUdBMVVFQnhNSlVHRnNieUJCYkhSdk1SMHdHd1lEVlFRSkV4UlZibWwyWlhKegphWFI1SUVGMlpTQlRkR1VnUWpFT01Bd0dBMVVFRVJNRk9UUXpNREV4RkRBU0JnTlZCQW9UQzAxcGJrbFBMQ0JKClRrTXVNQjRYRFRJeU1ESXdNekUwTVRVek4xb1hEVE15TURJd016RTBNVFV6TjFvd2NURUxNQWtHQTFVRUJoTUMKVlZNeENUQUhCZ05WQkFnVEFERVNNQkFHQTFVRUJ4TUpVR0ZzYnlCQmJIUnZNUjB3R3dZRFZRUUpFeFJWYm1sMgpaWEp6YVhSNUlFRjJaU0JUZEdVZ1FqRU9NQXdHQTFVRUVSTUZPVFF6TURFeEZEQVNCZ05WQkFvVEMwMXBia2xQCkxDQkpUa011TUlJQ0lqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FnOEFNSUlDQ2dLQ0FnRUE0ZEMvSXJkYUhKUGoKYnZVRUw5RHBJZjUrSDUyYlM5M0xTWCtMaXI2Y1ZWMUVDbkZzNm1LZU9sQldYSkpYYzM4OGM4RnZXMjBUR0Z6bAo3dmdsc1ZEN3ZaM21sMUhyUTR5eDNJeDB4WFhRaVpLdkMyVWFCM2EwNytuNkZ2ZEEwNG02WXU1VXBiNk1FeXJVCmY2MmQzdFlXZEZiL1o0Rnh4TTlZdGVOY2RsdEc3Rks5eTMyall2WE9rNTZweFNMMUdaU1FFV3BkaGo4a2RXL1gKNVp4QVdJa2kzNmJ0c2grc0Qrd1VVenVML3NlQVk2MmM2OHRkTEZsc0dwZGkzRUxHTzl6b3RkV3N0T1lMQ2FZTApJSitiTlpWT2ROUXl3MWk1MmVzQ21RUVBxckdidnZKemtlUlZxK2xheU1MNTNUZ1pGTUFQcXdXTmhiMWFia0U1CjlBalE3enlxMGdzaG55c2RTa0Z6a3g3bDRyQU1JcEE3M3RLc09EaG5GY2VCWWVxVm5WY2JzQ09Ja0gvZ2craysKckhuTFdIVmVyb1ZmOUI2VXcrVVVFRlRIWWMxekdWc2w0SEJIQlNWWFZVbjVFYUZ2eC9WdWs4b0cxODg0VmtLMgp4VEpOKzhJZjhnMWdhQmtRZTEvSEhaNkF5a2g3Q2xsZWFvcjk3WHNER3A4SFE1Q1hLQ1Z3RHhZSExLVHBjQ1l3CnJhUHdsRnZydENjNjRkTlNuMUc0TWllV1JmRHgvZGdpNVJmZ0dvWVhITnRiTzZKZXh2WEM5U293MGJOOFQwK2QKbHV6YmtxODJ0RDRJNGFvWnh4MWJaVk9wWk9VZXBSUUtPaUpjb21BSmhrVWFERFBFb1hsRlZYQ1NLRThEM3BoYQovcGthdGxjZGNIdGplSHRmL2F6QzN1SjJycnlnUE1VQ0F3RUFBYU4xTUhNd0RnWURWUjBQQVFIL0JBUURBZ2VBCk1CMEdBMVVkSlFRV01CUUdDQ3NHQVFVRkJ3TUNCZ2dyQmdFRkJRY0RBVEFPQmdOVkhRNEVCd1FGQVFJREJBWXcKTWdZRFZSMFJCQ3N3S1lJblpHbHlaV04wTFdOemFTMXRhVzR0YVc4dVpHbHlaV04wTFdOemFTMXRhVzR0YVc4dQpjM1pqTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElDQVFBTVlEMmZteFRGd0N6YzRvVWhQbkJJT1VzeXZ2eUlVZmxoCm53dEYxNXBGTURnTTdxbWhzcjF3SDd3MFlNaWpOemh2MkxGeitlWDNmbis4cG1TSjl5aEkvQS8zRGlIbGxkV3EKdGhqdzlvNG9HOGZSZk0rTmRPQ0VzeWUrTUMwZWo1V0JZeU5NS2dacXA0TkNQdUhLYnRGaHMvVk9ieGE0djRGMwo3VjR0WnNMSXZNdFJpQktuOExiSlU0YzJqNGJpd0w1SFFFcEc4REcrMjlLeDRuNm1DQ0FUYnA4bzEzQ2Q4Zjd5Ck54cE5MSkdHMDJZRHlBQVJ6d3Y5dnNyaU5EdERoQXF1TUM2RjFjTlBraTNTbE1oN2ZSYzNSZS80SjRWTk4xdHAKcml1ZVBoY1lSK3ZFdjZYY25PWWlkc2preWVrQzJOMW80UmNadTVyMGRmSlEvYytWZS9kNndyM3d1dXBzOW1oYwp3MitDcWU5akJIaDNSTTdCdWFKblNGam9XUnh5THR3R1FQbzNwT1RCT21NcVhGUkh1ZzJhNUZHWFEzWGw4Qm5EClg3RUxBUDBzQWlic0o5MXN2TnM2RlVsN0ltNDh1WEJkYUU1UjlHZ3lqQ1RYenVXcGEvSVlhR1grUGFSYnZZM0sKRXpGRzZGVVJGVUt3QVg1WEIvQzZkYmF1NVBVM2ozNWV5MFFSTWVhQjgyWXhVRHRJc0lkUkgxTDZWamRaZkplZApJeW5Iem1rd0JyRTJhY2RFQkJQU3JqWVQvWkZPWCtTM0VIaXYvR0VUTS83Mm1PSWNPdFYvamsyNS9odE4yYW93ClltaFQwY3NLZi9jZlZMVnlNcHdkTFdWU1N2SlVVNmgzRmpwWkZxcFJuY1Y3aW01ZWkzbWg0b1ljOUZtV1FyUzUKTHVaNGR1UjVEQT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+  key.pem: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlKS2dJQkFBS0NBZ0VBNGRDL0lyZGFISlBqYnZVRUw5RHBJZjUrSDUyYlM5M0xTWCtMaXI2Y1ZWMUVDbkZzCjZtS2VPbEJXWEpKWGMzODhjOEZ2VzIwVEdGemw3dmdsc1ZEN3ZaM21sMUhyUTR5eDNJeDB4WFhRaVpLdkMyVWEKQjNhMDcrbjZGdmRBMDRtNll1NVVwYjZNRXlyVWY2MmQzdFlXZEZiL1o0Rnh4TTlZdGVOY2RsdEc3Rks5eTMyagpZdlhPazU2cHhTTDFHWlNRRVdwZGhqOGtkVy9YNVp4QVdJa2kzNmJ0c2grc0Qrd1VVenVML3NlQVk2MmM2OHRkCkxGbHNHcGRpM0VMR085em90ZFdzdE9ZTENhWUxJSitiTlpWT2ROUXl3MWk1MmVzQ21RUVBxckdidnZKemtlUlYKcStsYXlNTDUzVGdaRk1BUHF3V05oYjFhYmtFNTlBalE3enlxMGdzaG55c2RTa0Z6a3g3bDRyQU1JcEE3M3RLcwpPRGhuRmNlQlllcVZuVmNic0NPSWtIL2dnK2srckhuTFdIVmVyb1ZmOUI2VXcrVVVFRlRIWWMxekdWc2w0SEJICkJTVlhWVW41RWFGdngvVnVrOG9HMTg4NFZrSzJ4VEpOKzhJZjhnMWdhQmtRZTEvSEhaNkF5a2g3Q2xsZWFvcjkKN1hzREdwOEhRNUNYS0NWd0R4WUhMS1RwY0NZd3JhUHdsRnZydENjNjRkTlNuMUc0TWllV1JmRHgvZGdpNVJmZwpHb1lYSE50Yk82SmV4dlhDOVNvdzBiTjhUMCtkbHV6YmtxODJ0RDRJNGFvWnh4MWJaVk9wWk9VZXBSUUtPaUpjCm9tQUpoa1VhRERQRW9YbEZWWENTS0U4RDNwaGEvcGthdGxjZGNIdGplSHRmL2F6QzN1SjJycnlnUE1VQ0F3RUEKQVFLQ0FnRUF1bU1nd0xqeWFoQXZjNUJOaW1JM2E5V3hxTXJnT2ZpeUtOSmNEWU5UYXFwMjFOL1dkSWc5N2dnTgpvSTh5RzZUejh0L0EySWZwY1B5TTFYaUJOQ0NTQ1dyaHdCamZ4WHZGK3pMNzExaHRib0JpZDFkVjZyOHlqYXhrCnZyd0xDQS93aG1RTi9saVBLZXI2UndDNUJBdFZzV1YxbnF1YmlrVlRCWjdLM081dVZmWGRycTdmUTNsOHJ5QVIKSlNTN2hnZTMrb2YrOWlYOEkrclRHelNqYi9DUmxtVWtZUmYvWDQwUElieE95MWRFUkFJek9mVTd6TFZxbzNBOQpLMno2VHNNQ1djUXFyNDRKb2tjcGZCNEJjSEx5dFQvSlByQm5odFdSNlZjT3oyZVdGRC91NEliRnFBWU81eEw0ClJuNWRSV0ZhRFdHaDlMZmNncERZRXZPTDhVdnorYW5ud3k4a214RFR5YTNsc0Zham1OMDRiNm5HOE9xR3k3UXMKcWtoSXRnOGxqeUxOV2txYkRjOEhPS3d2ek0raWx4c1JMREhkWVJ1YkQzUmxWRzNEVUt4VVNaZ3lSV0N2L1YvSApVRTVQZldpRjJwOTdIV3c0WVdVOXliZUI5blRMMVNISXhEZFlheHJtMXVaUm90eEFmaTFDODBqbk53VFFzaU5DCmhIZS9QWEZVYjBlclRVeUZzbGpsQzZsYlhvNlZTSDkrTVZYaVlQSjgvTW9YT1QvMUYvcmFmWEFMaWhuVUdFUWsKQjkxUkFtLy9PeTRFZWZHT2pCLzBYMzJ2UzR4ZDZ5NmpaUGh1VzFvRml3WHdlc2JHTzNVQjdTYUNlYy95Uml1RQprc2JNd2ZpMFZ1eE5oM0t0dVZrRVdhSnN6RUk3TFQ4aGJwbFlKUVAvMzBXWTJYYkFnNmtDZ2dFQkFQc3BUSElyClZKeExzbDlPbE0yNU8xYk05NzZkWlA1TVNPSlMwQUlKRGU3NTJxSUt6TEYvYUg4RFFVcXhjNERCczNKbjNZRU0KRUt3QlAyMk5kQ05pMVlIeEJkTGU2eVRHTEFxc2JSS2VlQWg3TGJ0T1UyQXdEYUlHMGczeHJZZXdjWHdzaHpnUgpmdlF4eHY1QWZzS281WW56MEhJYlNlcUFhNkhLeGFYZ3RWdWUvTUlUTjRUQXJmV3NKaUg2aUdjWEFoamJTenl6CkxOanZvT2hNaFRCZVp0enV2Z25HSXZwQzRZSnRWbXF6ZTMzRjQzMHpIcVhqMHQzRlNXd2NDRmowODVTSXVTa3cKVTdURFEweldnb2hSdHZneFdjYWtTdlpiZzNESVFSbzFWN0x2V3VST3NJc2NRUWdCdVZPaHcwY2R5b2l5OTUrUApKNDlrQmxGK3J4L0p0eDhDZ2dFQkFPWXFjZFJpbkc1Qk5ER0JYMmxtTkdoWVYrWno0VE1vb3hwSFlwSEU2Y2VBCjNIK3VYempFNHAxMkYvcmNqbkJHdmRpNnh3d3cvaVNzOVVVMXgxK0pqQ3dZcjd4eGFzcDhxMG0rMk45c0xoRzMKWXBaRk5kbFRSdG1kSENEN3F3VURnY0NNRGU2Smx1UnhPSXBzSE1hT0czZ3NFR2FvS2h3QjBDQmJtc2lySDJPMQpjeWVLVjZnN25rSHZxVDB4WnZRQ0ZhY1k4bTFNeTNlWFYrSlo1Tll6MHJtQlFNd2dMMDY3UXovaUt4QVZFNjFkCkFES0xPdGFCeW1DUE9kOUtXU3IzYURmdFl1QUUvRXlWUlFDV3M4eFhRQ2V3MlIvOCt1czFPa0htM2FVT290eW4KSWlmcDFkMkh5cWsrUEVhazRmNENJV3JrVG4zZlAvaDltZWtUOFpHSEE1c0NnZ0VCQU5ZR21GMUY3V0VPNUY1eApFVDdKMVBZZnpoSkIvN2p2K3IvYVArVXNJQktBR2I0eUk4SXh4ek5NNjh1aHNjS0x6Y1gxR24ySWNZQ1J3Nkl3CmcwSlFTNDdpZThyNUtUbjZJYmVxdlh1N1RLQTFqMy9vdkFYZ2pRMkFjR2x2aENkM3hRMUN5S3VQeFRhRVlJVnoKSWxIeEtVRklZbDJLUVkreWhZV216SXlSRXhxVFBlS0lDNngxb1FnVC9aN0E1cEdxdXAvQjU3Zy9HejExM2hGMgplNXovSlBxcCs0bEtyYTNEWm5ZRmhEbUMzdjRMcnRLV3lFd20reDcrcXBXVXdjeEVXSGsvbFVHeksvR0MzNHZQCjFBWWtWQjNsdUJJZEdNQWN0Y0phODVkSTA0WG9qL1N6MVorRm9Ta1lodnZzZ2dMTk1UVVNCUStVSnVyN0dxTkIKcUN3WGNaTUNnZ0VCQUx0aDlOZ3ZEQ0hxN2I0Y0VIeHptOWtUaTBSd05QaDhiZ1VYOXRTc0ZwTzRna3RrdjlzcwoxejNRaGdkVEJwZTcwQldoUWluWHZTQkl1MG9FVlhPZlBNSXR1dXpVL1ZjcWxoenN4ZzFuT2o1c0tWUWp0b3BlCjlRQjNtdzN6TmpGWHdJdnN1ZTdvanpNZVJpVFRqYjNNdGVwcEhWVW1OVm9sMDdaMFBaaC9VSWZSa3BXdldGdjcKWllWU3cxcXhYSnJ0RTRtOWtxaVBhOXJLR04rTHhmVHByZlllbDQxWDZvdlRneFdBWVFTdjFCeEE2Y2M4ZU1ObwpXVVd4ZFRFbmkxNmltM05relNtS2hZa253VXlRWklMSXljOUdlQTVGM0ZZZk9IV3NxZWdWK1Z0Z3Fqc0tjWFh3CmRuckEwenZFUXNTVUlYYXZ0b05kZk93bC9XYTNPT1Q4b1Y4Q2dnRUFCUTliOURmemx6elNnbE0wSllSY1NTSzQKK2Y1V3RoYmZIaU1Qd05UY0hOcnM2MlBVSXhJeVg3R1NEdmdreEtlWVRSbytVWERmMEJRdXJnMThlb21NYWFqTApXV2pxZStWd09POGhiUjhvSmF2SzdnWUdYUFZZZlJNV1o3bDBXa0Q3M3RCOHBHZFpPdXdndUlnSUorQU9sM3lhClJYTHZLc2l5Z1M3b09tNlJIVldiUkQ5aERxZ2hWZHVHa29uNGJYNnRhZDRVdEJZSFJkVllOUTFrdGVpL05TQnAKZUdWZjk1UStkbzk4T0w5NW83TzJCSkxJUmlOTm55RWhQWW12UmpJUzQwMUtuMzZEL0hoWEVLcTFoUXFtQTh2Wgp1cEdTRnlzcFFNR1g4K3BsQnB0L3djc1o5NGVnYWdXVHFTOWFnaGxuWEllZ2h2aWhqallwVzVDRUVMSDdwdz09Ci0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
+kind: Secret
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: null
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: conversionkeypair
+  namespace: direct-csi-min-io
+
+---
+apiVersion: v1
+data:
+  ca.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZ2ekNDQTZlZ0F3SUJBZ0lDQitNd0RRWUpLb1pJaHZjTkFRRUxCUUF3Y1RFTE1Ba0dBMVVFQmhNQ1ZWTXgKQ1RBSEJnTlZCQWdUQURFU01CQUdBMVVFQnhNSlVHRnNieUJCYkhSdk1SMHdHd1lEVlFRSkV4UlZibWwyWlhKegphWFI1SUVGMlpTQlRkR1VnUWpFT01Bd0dBMVVFRVJNRk9UUXpNREV4RkRBU0JnTlZCQW9UQzAxcGJrbFBMQ0JKClRrTXVNQjRYRFRJeU1ESXdNekUwTVRVek5sb1hEVE15TURJd016RTBNVFV6Tmxvd2NURUxNQWtHQTFVRUJoTUMKVlZNeENUQUhCZ05WQkFnVEFERVNNQkFHQTFVRUJ4TUpVR0ZzYnlCQmJIUnZNUjB3R3dZRFZRUUpFeFJWYm1sMgpaWEp6YVhSNUlFRjJaU0JUZEdVZ1FqRU9NQXdHQTFVRUVSTUZPVFF6TURFeEZEQVNCZ05WQkFvVEMwMXBia2xQCkxDQkpUa011TUlJQ0lqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FnOEFNSUlDQ2dLQ0FnRUF0R0krdUNnSk5CV0wKaDlhRFdCVm9ZNThHbmVVcUhlUjYzY3dveldEa01QaGtMV2wwcWxCRXh3OEM1NlYrUXZsbUhUWG9abUFYVW9QUQpIQWlhUkh5cVUwQU04OHJ1OFJLTkZEZUhlWVlDZWt0QVBkQzZGN29qM09TSktUcVJwMnVUbjhyZWxkYmtnaDU0CndNWjhhTXNwQWFPVFNzSjBPWHZrRkpIWGZsci9FdmhSa2RsdUxTWEw4S0pnRnZQYzIvQWtaSkdXbEF4am1kN0MKVjlaaW1ncjBacWNjUjdrUmFiYkREV0hoT1VVejhuWkZyL3ZXSE1mZFRjckd6ZFRGRDRSaXFFYTFRY1FVdVR6YgpDdjlzU2NKanhjVTVRVDllemJaZjdDTzZycnY5V2JnOGFNNDlmYUp5SXMvK1QxQUZzV25OMklkRkg2M3lSbnFNCmt0ZEJwd0JpWTJHdSttSm5NOFB6ZzMxU3VUTlBvdmxMbDhNRkNha1BidVlsckJiV0RyUkI5YVhtUFIzb21aeisKTC9rNEJ3WXhUSUQxTThtd1dhNGNsdmkwQ3ZhQ2g5NVlCTnk4allSdzVQKzkwbTBrU1plK2hsZ0N1K29wYXRrMApYVlJGNDFrcWNOWHhoTHRYZ1VURG54VDVUbXZOMzB0Yi82OVJXZEl0TGhSSzY5bTFicW5HbkdnQ0grVnMxUGtWCnpseC8zdXl6QnRFZkFpSmx3QkVaTy9iM1M1K0RtU21kR3ZtekZmaUhDeUJ3d0xXOEl0QWtzaFhHZll3K0w4MHMKSXhuVld2bHU3bVNBamdiUDU3K1NUMVg0emtKaEM0UU5XY3lFM3E1UEtJbEluSFRsWnR6TEszOEUwMjl0OEE3SwplNVJaeUY5anlQRStmRytpemM1QnUwYjFhbFBJVkpNQ0F3RUFBYU5oTUY4d0RnWURWUjBQQVFIL0JBUURBZ0tFCk1CMEdBMVVkSlFRV01CUUdDQ3NHQVFVRkJ3TUNCZ2dyQmdFRkJRY0RBVEFQQmdOVkhSTUJBZjhFQlRBREFRSC8KTUIwR0ExVWREZ1FXQkJSMXhzMlAyOFNGVFl0L2hUaGcrOFk5Vkp4MWhEQU5CZ2txaGtpRzl3MEJBUXNGQUFPQwpBZ0VBcFdCdmtyMjFyYVpOajF3dHNTMzVyZDBHM09KSi95T3VCaUduVTBkb0pmTkJtT3dxWHArSURZYWxrcWRCCmZvUjNlVHNTWDE0OFFyUHcrSThodFZ4aXJhMVJLS0xVS2FrVWQrR3p4QTNVVlh4WW02dTBrZVY4MWpsTXhvUWgKM28rVGNwYk1DNFBSck43bEFVYWlpY0dGVSs0MitVcVpwbVVyUkNEd1JTeHJyU01xV0xCcU5LbU9mNk9pK0pBcApPNytiSjBMbGlUSUxTMHlvZWUrQ3RUdmZDWTBCMnFOcWx1aHZvZi9DWCtGUU1BMUtyU2hCMk4zKzhJQk5tOERXCmQ3TXBGNCtCdU05VXV5Vm5pOWJJRFBNNjQvVzBiUGMxZ2tBSW10MUxLRFZjTzFUWlBYS0FNVWQ0Wm9zZzhsdEMKamhlWE1CMTZVdWpKRHpOODh6dFhKSVRraFgzYWVuRC8yL1FYRDdkWkpIOEZyM0cxaGhKbXJGYjRWcXlFbm9KagpzQ01DVXFKU3oyNmYrejRIUVQ5a0RMMkswc2RsdXZWYjVOOWpHWVBGSnd0QTB4Z0lHdVZPcFJuYnJRbGI4WVdUCkgrVlV2Nk91NURNT2c5NVl0ZThHa1A3eXluc09ndnhiQ25ZNEpUT1lhSjRLRTRVVDlnazVmYVN6TGJ2UnRVYTEKanhLK0E4bnFRTE1ZVkF1bkJ5MUxRZWE3akNSSU9qdHlVVEJlckdkVS9VWDBQWmVCcXNQd3YxckdDWC9uRHprZgp4VlhxUGs4NUw3YlNiaHU1VFI3T3IvQm50V0t2MXpDbkpudG1ENmI4dGYzYWpKOWNEbll1RFN4ekwwZG9NTC9vCk5VaGJTTjh1c3JOMjcyV3NDSjJEZ2xoa3EyNlhESm9HOCtTZnljT1ZFREVlV2pJPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+kind: Secret
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: null
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: conversioncacert
+  namespace: direct-csi-min-io
+
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  labels:
+    direct.csi.min.io/version: v1beta3
+  name: directcsidrives.direct.csi.min.io
+spec:
+  conversion:
+    strategy: Webhook
+    webhook:
+      clientConfig:
+        caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZ2ekNDQTZlZ0F3SUJBZ0lDQitNd0RRWUpLb1pJaHZjTkFRRUxCUUF3Y1RFTE1Ba0dBMVVFQmhNQ1ZWTXgKQ1RBSEJnTlZCQWdUQURFU01CQUdBMVVFQnhNSlVHRnNieUJCYkhSdk1SMHdHd1lEVlFRSkV4UlZibWwyWlhKegphWFI1SUVGMlpTQlRkR1VnUWpFT01Bd0dBMVVFRVJNRk9UUXpNREV4RkRBU0JnTlZCQW9UQzAxcGJrbFBMQ0JKClRrTXVNQjRYRFRJeU1ESXdNekUwTVRVek5sb1hEVE15TURJd016RTBNVFV6Tmxvd2NURUxNQWtHQTFVRUJoTUMKVlZNeENUQUhCZ05WQkFnVEFERVNNQkFHQTFVRUJ4TUpVR0ZzYnlCQmJIUnZNUjB3R3dZRFZRUUpFeFJWYm1sMgpaWEp6YVhSNUlFRjJaU0JUZEdVZ1FqRU9NQXdHQTFVRUVSTUZPVFF6TURFeEZEQVNCZ05WQkFvVEMwMXBia2xQCkxDQkpUa011TUlJQ0lqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FnOEFNSUlDQ2dLQ0FnRUF0R0krdUNnSk5CV0wKaDlhRFdCVm9ZNThHbmVVcUhlUjYzY3dveldEa01QaGtMV2wwcWxCRXh3OEM1NlYrUXZsbUhUWG9abUFYVW9QUQpIQWlhUkh5cVUwQU04OHJ1OFJLTkZEZUhlWVlDZWt0QVBkQzZGN29qM09TSktUcVJwMnVUbjhyZWxkYmtnaDU0CndNWjhhTXNwQWFPVFNzSjBPWHZrRkpIWGZsci9FdmhSa2RsdUxTWEw4S0pnRnZQYzIvQWtaSkdXbEF4am1kN0MKVjlaaW1ncjBacWNjUjdrUmFiYkREV0hoT1VVejhuWkZyL3ZXSE1mZFRjckd6ZFRGRDRSaXFFYTFRY1FVdVR6YgpDdjlzU2NKanhjVTVRVDllemJaZjdDTzZycnY5V2JnOGFNNDlmYUp5SXMvK1QxQUZzV25OMklkRkg2M3lSbnFNCmt0ZEJwd0JpWTJHdSttSm5NOFB6ZzMxU3VUTlBvdmxMbDhNRkNha1BidVlsckJiV0RyUkI5YVhtUFIzb21aeisKTC9rNEJ3WXhUSUQxTThtd1dhNGNsdmkwQ3ZhQ2g5NVlCTnk4allSdzVQKzkwbTBrU1plK2hsZ0N1K29wYXRrMApYVlJGNDFrcWNOWHhoTHRYZ1VURG54VDVUbXZOMzB0Yi82OVJXZEl0TGhSSzY5bTFicW5HbkdnQ0grVnMxUGtWCnpseC8zdXl6QnRFZkFpSmx3QkVaTy9iM1M1K0RtU21kR3ZtekZmaUhDeUJ3d0xXOEl0QWtzaFhHZll3K0w4MHMKSXhuVld2bHU3bVNBamdiUDU3K1NUMVg0emtKaEM0UU5XY3lFM3E1UEtJbEluSFRsWnR6TEszOEUwMjl0OEE3SwplNVJaeUY5anlQRStmRytpemM1QnUwYjFhbFBJVkpNQ0F3RUFBYU5oTUY4d0RnWURWUjBQQVFIL0JBUURBZ0tFCk1CMEdBMVVkSlFRV01CUUdDQ3NHQVFVRkJ3TUNCZ2dyQmdFRkJRY0RBVEFQQmdOVkhSTUJBZjhFQlRBREFRSC8KTUIwR0ExVWREZ1FXQkJSMXhzMlAyOFNGVFl0L2hUaGcrOFk5Vkp4MWhEQU5CZ2txaGtpRzl3MEJBUXNGQUFPQwpBZ0VBcFdCdmtyMjFyYVpOajF3dHNTMzVyZDBHM09KSi95T3VCaUduVTBkb0pmTkJtT3dxWHArSURZYWxrcWRCCmZvUjNlVHNTWDE0OFFyUHcrSThodFZ4aXJhMVJLS0xVS2FrVWQrR3p4QTNVVlh4WW02dTBrZVY4MWpsTXhvUWgKM28rVGNwYk1DNFBSck43bEFVYWlpY0dGVSs0MitVcVpwbVVyUkNEd1JTeHJyU01xV0xCcU5LbU9mNk9pK0pBcApPNytiSjBMbGlUSUxTMHlvZWUrQ3RUdmZDWTBCMnFOcWx1aHZvZi9DWCtGUU1BMUtyU2hCMk4zKzhJQk5tOERXCmQ3TXBGNCtCdU05VXV5Vm5pOWJJRFBNNjQvVzBiUGMxZ2tBSW10MUxLRFZjTzFUWlBYS0FNVWQ0Wm9zZzhsdEMKamhlWE1CMTZVdWpKRHpOODh6dFhKSVRraFgzYWVuRC8yL1FYRDdkWkpIOEZyM0cxaGhKbXJGYjRWcXlFbm9KagpzQ01DVXFKU3oyNmYrejRIUVQ5a0RMMkswc2RsdXZWYjVOOWpHWVBGSnd0QTB4Z0lHdVZPcFJuYnJRbGI4WVdUCkgrVlV2Nk91NURNT2c5NVl0ZThHa1A3eXluc09ndnhiQ25ZNEpUT1lhSjRLRTRVVDlnazVmYVN6TGJ2UnRVYTEKanhLK0E4bnFRTE1ZVkF1bkJ5MUxRZWE3akNSSU9qdHlVVEJlckdkVS9VWDBQWmVCcXNQd3YxckdDWC9uRHprZgp4VlhxUGs4NUw3YlNiaHU1VFI3T3IvQm50V0t2MXpDbkpudG1ENmI4dGYzYWpKOWNEbll1RFN4ekwwZG9NTC9vCk5VaGJTTjh1c3JOMjcyV3NDSjJEZ2xoa3EyNlhESm9HOCtTZnljT1ZFREVlV2pJPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+        service:
+          name: direct-csi-min-io
+          namespace: direct-csi-min-io
+          path: /convertdrive
+          port: 30443
+      conversionReviewVersions:
+      - v1
+  group: direct.csi.min.io
+  names:
+    kind: DirectCSIDrive
+    listKind: DirectCSIDriveList
+    plural: directcsidrives
+    singular: directcsidrive
+  scope: Cluster
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: DirectCSIDrive denotes drive CRD object.
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: DirectCSIDriveSpec denotes drive specification.
+            properties:
+              directCSIOwned:
+                description: required
+                type: boolean
+              driveTaint:
+                additionalProperties:
+                  type: string
+                type: object
+              requestedFormat:
+                description: RequestedFormat denotes drive format request information.
+                properties:
+                  filesystem:
+                    type: string
+                  force:
+                    type: boolean
+                  mountOptions:
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: atomic
+                  mountpoint:
+                    type: string
+                  purge:
+                    type: boolean
+                type: object
+            required:
+            - directCSIOwned
+            type: object
+          status:
+            description: DirectCSIDriveStatus denotes drive information.
+            properties:
+              allocatedCapacity:
+                format: int64
+                type: integer
+              conditions:
+                items:
+                  description: "Condition contains details for one aspect of the current
+                    state of this API Resource. --- This struct is intended for direct
+                    use as an array at the field path .status.conditions.  For example,
+                    type FooStatus struct{     // Represents the observations of a
+                    foo's current state.     // Known .status.conditions.type are:
+                    \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
+                    \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
+                    \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
+                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
+                    \n     // other fields }"
+                  properties:
+                    lastTransitionTime:
+                      description: lastTransitionTime is the last time the condition
+                        transitioned from one status to another. This should be when
+                        the underlying condition changed.  If that is not known, then
+                        using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: message is a human readable message indicating
+                        details about the transition. This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: observedGeneration represents the .metadata.generation
+                        that the condition was set based upon. For instance, if .metadata.generation
+                        is currently 12, but the .status.conditions[x].observedGeneration
+                        is 9, the condition is out of date with respect to the current
+                        state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: reason contains a programmatic identifier indicating
+                        the reason for the condition's last transition. Producers
+                        of specific condition types may define expected values and
+                        meanings for this field, and whether the values are considered
+                        a guaranteed API. The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                        --- Many .condition.type values are consistent across resources
+                        like Available, but because arbitrary conditions can be useful
+                        (see .node.status.conditions), the ability to deconflict is
+                        important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              driveStatus:
+                description: DriveStatus denotes drive status.
+                type: string
+              filesystem:
+                type: string
+              freeCapacity:
+                format: int64
+                type: integer
+              logicalBlockSize:
+                format: int64
+                type: integer
+              modelNumber:
+                type: string
+              mountOptions:
+                items:
+                  type: string
+                type: array
+                x-kubernetes-list-type: atomic
+              mountpoint:
+                type: string
+              nodeName:
+                type: string
+              partitionNum:
+                type: integer
+              path:
+                type: string
+              physicalBlockSize:
+                format: int64
+                type: integer
+              rootPartition:
+                type: string
+              serialNumber:
+                type: string
+              topology:
+                additionalProperties:
+                  type: string
+                type: object
+              totalCapacity:
+                format: int64
+                type: integer
+            required:
+            - path
+            type: object
+        required:
+        - metadata
+        - spec
+        type: object
+    served: true
+    storage: false
+  - name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: DirectCSIDrive denotes drive CRD object.
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: DirectCSIDriveSpec denotes drive specification.
+            properties:
+              directCSIOwned:
+                description: required
+                type: boolean
+              driveTaint:
+                additionalProperties:
+                  type: string
+                type: object
+              requestedFormat:
+                description: RequestedFormat denotes drive format request information.
+                properties:
+                  filesystem:
+                    type: string
+                  force:
+                    type: boolean
+                  mountOptions:
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: atomic
+                  mountpoint:
+                    type: string
+                  purge:
+                    type: boolean
+                type: object
+            required:
+            - directCSIOwned
+            type: object
+          status:
+            description: DirectCSIDriveStatus denotes drive information.
+            properties:
+              accessTier:
+                description: AccessTier denotes access tier.
+                type: string
+              allocatedCapacity:
+                format: int64
+                type: integer
+              conditions:
+                items:
+                  description: "Condition contains details for one aspect of the current
+                    state of this API Resource. --- This struct is intended for direct
+                    use as an array at the field path .status.conditions.  For example,
+                    type FooStatus struct{     // Represents the observations of a
+                    foo's current state.     // Known .status.conditions.type are:
+                    \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
+                    \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
+                    \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
+                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
+                    \n     // other fields }"
+                  properties:
+                    lastTransitionTime:
+                      description: lastTransitionTime is the last time the condition
+                        transitioned from one status to another. This should be when
+                        the underlying condition changed.  If that is not known, then
+                        using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: message is a human readable message indicating
+                        details about the transition. This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: observedGeneration represents the .metadata.generation
+                        that the condition was set based upon. For instance, if .metadata.generation
+                        is currently 12, but the .status.conditions[x].observedGeneration
+                        is 9, the condition is out of date with respect to the current
+                        state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: reason contains a programmatic identifier indicating
+                        the reason for the condition's last transition. Producers
+                        of specific condition types may define expected values and
+                        meanings for this field, and whether the values are considered
+                        a guaranteed API. The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                        --- Many .condition.type values are consistent across resources
+                        like Available, but because arbitrary conditions can be useful
+                        (see .node.status.conditions), the ability to deconflict is
+                        important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              driveStatus:
+                description: DriveStatus denotes drive status.
+                type: string
+              filesystem:
+                type: string
+              freeCapacity:
+                format: int64
+                type: integer
+              logicalBlockSize:
+                format: int64
+                type: integer
+              modelNumber:
+                type: string
+              mountOptions:
+                items:
+                  type: string
+                type: array
+                x-kubernetes-list-type: atomic
+              mountpoint:
+                type: string
+              nodeName:
+                type: string
+              partitionNum:
+                type: integer
+              path:
+                type: string
+              physicalBlockSize:
+                format: int64
+                type: integer
+              rootPartition:
+                type: string
+              serialNumber:
+                type: string
+              topology:
+                additionalProperties:
+                  type: string
+                type: object
+              totalCapacity:
+                format: int64
+                type: integer
+            required:
+            - path
+            type: object
+        required:
+        - metadata
+        - spec
+        type: object
+    served: true
+    storage: false
+  - name: v1beta2
+    schema:
+      openAPIV3Schema:
+        description: DirectCSIDrive denotes drive CRD object.
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: DirectCSIDriveSpec denotes drive specification.
+            properties:
+              directCSIOwned:
+                description: required
+                type: boolean
+              driveTaint:
+                additionalProperties:
+                  type: string
+                type: object
+              requestedFormat:
+                description: RequestedFormat denotes drive format request information.
+                properties:
+                  filesystem:
+                    type: string
+                  force:
+                    type: boolean
+                  mountOptions:
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: atomic
+                  mountpoint:
+                    type: string
+                  purge:
+                    type: boolean
+                type: object
+            required:
+            - directCSIOwned
+            type: object
+          status:
+            description: DirectCSIDriveStatus denotes drive information.
+            properties:
+              accessTier:
+                description: AccessTier denotes access tier.
+                type: string
+              allocatedCapacity:
+                format: int64
+                type: integer
+              conditions:
+                items:
+                  description: "Condition contains details for one aspect of the current
+                    state of this API Resource. --- This struct is intended for direct
+                    use as an array at the field path .status.conditions.  For example,
+                    type FooStatus struct{     // Represents the observations of a
+                    foo's current state.     // Known .status.conditions.type are:
+                    \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
+                    \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
+                    \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
+                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
+                    \n     // other fields }"
+                  properties:
+                    lastTransitionTime:
+                      description: lastTransitionTime is the last time the condition
+                        transitioned from one status to another. This should be when
+                        the underlying condition changed.  If that is not known, then
+                        using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: message is a human readable message indicating
+                        details about the transition. This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: observedGeneration represents the .metadata.generation
+                        that the condition was set based upon. For instance, if .metadata.generation
+                        is currently 12, but the .status.conditions[x].observedGeneration
+                        is 9, the condition is out of date with respect to the current
+                        state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: reason contains a programmatic identifier indicating
+                        the reason for the condition's last transition. Producers
+                        of specific condition types may define expected values and
+                        meanings for this field, and whether the values are considered
+                        a guaranteed API. The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                        --- Many .condition.type values are consistent across resources
+                        like Available, but because arbitrary conditions can be useful
+                        (see .node.status.conditions), the ability to deconflict is
+                        important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              driveStatus:
+                description: DriveStatus denotes drive status.
+                type: string
+              filesystem:
+                type: string
+              filesystemUUID:
+                type: string
+              freeCapacity:
+                format: int64
+                type: integer
+              logicalBlockSize:
+                format: int64
+                type: integer
+              majorNumber:
+                format: int32
+                type: integer
+              minorNumber:
+                format: int32
+                type: integer
+              modelNumber:
+                type: string
+              mountOptions:
+                items:
+                  type: string
+                type: array
+                x-kubernetes-list-type: atomic
+              mountpoint:
+                type: string
+              nodeName:
+                type: string
+              partitionNum:
+                type: integer
+              partitionUUID:
+                type: string
+              path:
+                type: string
+              physicalBlockSize:
+                format: int64
+                type: integer
+              rootPartition:
+                type: string
+              serialNumber:
+                type: string
+              topology:
+                additionalProperties:
+                  type: string
+                type: object
+              totalCapacity:
+                format: int64
+                type: integer
+            required:
+            - path
+            type: object
+        required:
+        - metadata
+        - spec
+        type: object
+    served: true
+    storage: false
+  - name: v1beta3
+    schema:
+      openAPIV3Schema:
+        description: DirectCSIDrive denotes drive CRD object.
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: DirectCSIDriveSpec denotes drive specification.
+            properties:
+              directCSIOwned:
+                description: required
+                type: boolean
+              driveTaint:
+                additionalProperties:
+                  type: string
+                type: object
+              requestedFormat:
+                description: RequestedFormat denotes drive format request information.
+                properties:
+                  filesystem:
+                    type: string
+                  force:
+                    type: boolean
+                  mountOptions:
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: atomic
+                  mountpoint:
+                    type: string
+                  purge:
+                    type: boolean
+                type: object
+            required:
+            - directCSIOwned
+            type: object
+          status:
+            description: DirectCSIDriveStatus denotes drive information.
+            properties:
+              accessTier:
+                description: AccessTier denotes access tier.
+                type: string
+              allocatedCapacity:
+                format: int64
+                type: integer
+              conditions:
+                items:
+                  description: "Condition contains details for one aspect of the current
+                    state of this API Resource. --- This struct is intended for direct
+                    use as an array at the field path .status.conditions.  For example,
+                    type FooStatus struct{     // Represents the observations of a
+                    foo's current state.     // Known .status.conditions.type are:
+                    \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
+                    \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
+                    \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
+                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
+                    \n     // other fields }"
+                  properties:
+                    lastTransitionTime:
+                      description: lastTransitionTime is the last time the condition
+                        transitioned from one status to another. This should be when
+                        the underlying condition changed.  If that is not known, then
+                        using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: message is a human readable message indicating
+                        details about the transition. This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: observedGeneration represents the .metadata.generation
+                        that the condition was set based upon. For instance, if .metadata.generation
+                        is currently 12, but the .status.conditions[x].observedGeneration
+                        is 9, the condition is out of date with respect to the current
+                        state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: reason contains a programmatic identifier indicating
+                        the reason for the condition's last transition. Producers
+                        of specific condition types may define expected values and
+                        meanings for this field, and whether the values are considered
+                        a guaranteed API. The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                        --- Many .condition.type values are consistent across resources
+                        like Available, but because arbitrary conditions can be useful
+                        (see .node.status.conditions), the ability to deconflict is
+                        important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              dmName:
+                type: string
+              dmUUID:
+                type: string
+              driveStatus:
+                description: DriveStatus denotes drive status.
+                type: string
+              filesystem:
+                type: string
+              filesystemUUID:
+                type: string
+              freeCapacity:
+                format: int64
+                type: integer
+              logicalBlockSize:
+                format: int64
+                type: integer
+              majorNumber:
+                format: int32
+                type: integer
+              master:
+                type: string
+              mdUUID:
+                type: string
+              minorNumber:
+                format: int32
+                type: integer
+              modelNumber:
+                type: string
+              mountOptions:
+                items:
+                  type: string
+                type: array
+                x-kubernetes-list-type: atomic
+              mountpoint:
+                type: string
+              nodeName:
+                type: string
+              partTableType:
+                type: string
+              partTableUUID:
+                type: string
+              partitionNum:
+                type: integer
+              partitionUUID:
+                type: string
+              partitioned:
+                type: boolean
+              path:
+                type: string
+              physicalBlockSize:
+                format: int64
+                type: integer
+              readOnly:
+                type: boolean
+              rootPartition:
+                type: string
+              serialNumber:
+                type: string
+              swapOn:
+                type: boolean
+              topology:
+                additionalProperties:
+                  type: string
+                type: object
+              totalCapacity:
+                format: int64
+                type: integer
+              ueventFSUUID:
+                type: string
+              ueventSerial:
+                type: string
+              vendor:
+                type: string
+              virtual:
+                type: boolean
+              wwid:
+                type: string
+            required:
+            - path
+            type: object
+        required:
+        - metadata
+        - spec
+        type: object
+    served: true
+    storage: true
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  labels:
+    direct.csi.min.io/version: v1beta3
+  name: directcsivolumes.direct.csi.min.io
+spec:
+  conversion:
+    strategy: Webhook
+    webhook:
+      clientConfig:
+        caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZ2ekNDQTZlZ0F3SUJBZ0lDQitNd0RRWUpLb1pJaHZjTkFRRUxCUUF3Y1RFTE1Ba0dBMVVFQmhNQ1ZWTXgKQ1RBSEJnTlZCQWdUQURFU01CQUdBMVVFQnhNSlVHRnNieUJCYkhSdk1SMHdHd1lEVlFRSkV4UlZibWwyWlhKegphWFI1SUVGMlpTQlRkR1VnUWpFT01Bd0dBMVVFRVJNRk9UUXpNREV4RkRBU0JnTlZCQW9UQzAxcGJrbFBMQ0JKClRrTXVNQjRYRFRJeU1ESXdNekUwTVRVek5sb1hEVE15TURJd016RTBNVFV6Tmxvd2NURUxNQWtHQTFVRUJoTUMKVlZNeENUQUhCZ05WQkFnVEFERVNNQkFHQTFVRUJ4TUpVR0ZzYnlCQmJIUnZNUjB3R3dZRFZRUUpFeFJWYm1sMgpaWEp6YVhSNUlFRjJaU0JUZEdVZ1FqRU9NQXdHQTFVRUVSTUZPVFF6TURFeEZEQVNCZ05WQkFvVEMwMXBia2xQCkxDQkpUa011TUlJQ0lqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FnOEFNSUlDQ2dLQ0FnRUF0R0krdUNnSk5CV0wKaDlhRFdCVm9ZNThHbmVVcUhlUjYzY3dveldEa01QaGtMV2wwcWxCRXh3OEM1NlYrUXZsbUhUWG9abUFYVW9QUQpIQWlhUkh5cVUwQU04OHJ1OFJLTkZEZUhlWVlDZWt0QVBkQzZGN29qM09TSktUcVJwMnVUbjhyZWxkYmtnaDU0CndNWjhhTXNwQWFPVFNzSjBPWHZrRkpIWGZsci9FdmhSa2RsdUxTWEw4S0pnRnZQYzIvQWtaSkdXbEF4am1kN0MKVjlaaW1ncjBacWNjUjdrUmFiYkREV0hoT1VVejhuWkZyL3ZXSE1mZFRjckd6ZFRGRDRSaXFFYTFRY1FVdVR6YgpDdjlzU2NKanhjVTVRVDllemJaZjdDTzZycnY5V2JnOGFNNDlmYUp5SXMvK1QxQUZzV25OMklkRkg2M3lSbnFNCmt0ZEJwd0JpWTJHdSttSm5NOFB6ZzMxU3VUTlBvdmxMbDhNRkNha1BidVlsckJiV0RyUkI5YVhtUFIzb21aeisKTC9rNEJ3WXhUSUQxTThtd1dhNGNsdmkwQ3ZhQ2g5NVlCTnk4allSdzVQKzkwbTBrU1plK2hsZ0N1K29wYXRrMApYVlJGNDFrcWNOWHhoTHRYZ1VURG54VDVUbXZOMzB0Yi82OVJXZEl0TGhSSzY5bTFicW5HbkdnQ0grVnMxUGtWCnpseC8zdXl6QnRFZkFpSmx3QkVaTy9iM1M1K0RtU21kR3ZtekZmaUhDeUJ3d0xXOEl0QWtzaFhHZll3K0w4MHMKSXhuVld2bHU3bVNBamdiUDU3K1NUMVg0emtKaEM0UU5XY3lFM3E1UEtJbEluSFRsWnR6TEszOEUwMjl0OEE3SwplNVJaeUY5anlQRStmRytpemM1QnUwYjFhbFBJVkpNQ0F3RUFBYU5oTUY4d0RnWURWUjBQQVFIL0JBUURBZ0tFCk1CMEdBMVVkSlFRV01CUUdDQ3NHQVFVRkJ3TUNCZ2dyQmdFRkJRY0RBVEFQQmdOVkhSTUJBZjhFQlRBREFRSC8KTUIwR0ExVWREZ1FXQkJSMXhzMlAyOFNGVFl0L2hUaGcrOFk5Vkp4MWhEQU5CZ2txaGtpRzl3MEJBUXNGQUFPQwpBZ0VBcFdCdmtyMjFyYVpOajF3dHNTMzVyZDBHM09KSi95T3VCaUduVTBkb0pmTkJtT3dxWHArSURZYWxrcWRCCmZvUjNlVHNTWDE0OFFyUHcrSThodFZ4aXJhMVJLS0xVS2FrVWQrR3p4QTNVVlh4WW02dTBrZVY4MWpsTXhvUWgKM28rVGNwYk1DNFBSck43bEFVYWlpY0dGVSs0MitVcVpwbVVyUkNEd1JTeHJyU01xV0xCcU5LbU9mNk9pK0pBcApPNytiSjBMbGlUSUxTMHlvZWUrQ3RUdmZDWTBCMnFOcWx1aHZvZi9DWCtGUU1BMUtyU2hCMk4zKzhJQk5tOERXCmQ3TXBGNCtCdU05VXV5Vm5pOWJJRFBNNjQvVzBiUGMxZ2tBSW10MUxLRFZjTzFUWlBYS0FNVWQ0Wm9zZzhsdEMKamhlWE1CMTZVdWpKRHpOODh6dFhKSVRraFgzYWVuRC8yL1FYRDdkWkpIOEZyM0cxaGhKbXJGYjRWcXlFbm9KagpzQ01DVXFKU3oyNmYrejRIUVQ5a0RMMkswc2RsdXZWYjVOOWpHWVBGSnd0QTB4Z0lHdVZPcFJuYnJRbGI4WVdUCkgrVlV2Nk91NURNT2c5NVl0ZThHa1A3eXluc09ndnhiQ25ZNEpUT1lhSjRLRTRVVDlnazVmYVN6TGJ2UnRVYTEKanhLK0E4bnFRTE1ZVkF1bkJ5MUxRZWE3akNSSU9qdHlVVEJlckdkVS9VWDBQWmVCcXNQd3YxckdDWC9uRHprZgp4VlhxUGs4NUw3YlNiaHU1VFI3T3IvQm50V0t2MXpDbkpudG1ENmI4dGYzYWpKOWNEbll1RFN4ekwwZG9NTC9vCk5VaGJTTjh1c3JOMjcyV3NDSjJEZ2xoa3EyNlhESm9HOCtTZnljT1ZFREVlV2pJPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+        service:
+          name: direct-csi-min-io
+          namespace: direct-csi-min-io
+          path: /convertvolume
+          port: 30443
+      conversionReviewVersions:
+      - v1
+  group: direct.csi.min.io
+  names:
+    kind: DirectCSIVolume
+    listKind: DirectCSIVolumeList
+    plural: directcsivolumes
+    singular: directcsivolume
+  scope: Cluster
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: DirectCSIVolume denotes volume CRD object.
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          status:
+            description: DirectCSIVolumeStatus denotes volume information.
+            properties:
+              availableCapacity:
+                format: int64
+                type: integer
+              conditions:
+                items:
+                  description: "Condition contains details for one aspect of the current
+                    state of this API Resource. --- This struct is intended for direct
+                    use as an array at the field path .status.conditions.  For example,
+                    type FooStatus struct{     // Represents the observations of a
+                    foo's current state.     // Known .status.conditions.type are:
+                    \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
+                    \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
+                    \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
+                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
+                    \n     // other fields }"
+                  properties:
+                    lastTransitionTime:
+                      description: lastTransitionTime is the last time the condition
+                        transitioned from one status to another. This should be when
+                        the underlying condition changed.  If that is not known, then
+                        using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: message is a human readable message indicating
+                        details about the transition. This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: observedGeneration represents the .metadata.generation
+                        that the condition was set based upon. For instance, if .metadata.generation
+                        is currently 12, but the .status.conditions[x].observedGeneration
+                        is 9, the condition is out of date with respect to the current
+                        state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: reason contains a programmatic identifier indicating
+                        the reason for the condition's last transition. Producers
+                        of specific condition types may define expected values and
+                        meanings for this field, and whether the values are considered
+                        a guaranteed API. The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                        --- Many .condition.type values are consistent across resources
+                        like Available, but because arbitrary conditions can be useful
+                        (see .node.status.conditions), the ability to deconflict is
+                        important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              containerPath:
+                type: string
+              drive:
+                type: string
+              hostPath:
+                type: string
+              nodeName:
+                type: string
+              stagingPath:
+                type: string
+              totalCapacity:
+                format: int64
+                type: integer
+              usedCapacity:
+                format: int64
+                type: integer
+            type: object
+        required:
+        - metadata
+        type: object
+    served: true
+    storage: false
+  - name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: DirectCSIVolume denotes volume CRD object.
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          status:
+            description: DirectCSIVolumeStatus denotes volume information.
+            properties:
+              availableCapacity:
+                format: int64
+                type: integer
+              conditions:
+                items:
+                  description: "Condition contains details for one aspect of the current
+                    state of this API Resource. --- This struct is intended for direct
+                    use as an array at the field path .status.conditions.  For example,
+                    type FooStatus struct{     // Represents the observations of a
+                    foo's current state.     // Known .status.conditions.type are:
+                    \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
+                    \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
+                    \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
+                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
+                    \n     // other fields }"
+                  properties:
+                    lastTransitionTime:
+                      description: lastTransitionTime is the last time the condition
+                        transitioned from one status to another. This should be when
+                        the underlying condition changed.  If that is not known, then
+                        using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: message is a human readable message indicating
+                        details about the transition. This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: observedGeneration represents the .metadata.generation
+                        that the condition was set based upon. For instance, if .metadata.generation
+                        is currently 12, but the .status.conditions[x].observedGeneration
+                        is 9, the condition is out of date with respect to the current
+                        state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: reason contains a programmatic identifier indicating
+                        the reason for the condition's last transition. Producers
+                        of specific condition types may define expected values and
+                        meanings for this field, and whether the values are considered
+                        a guaranteed API. The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                        --- Many .condition.type values are consistent across resources
+                        like Available, but because arbitrary conditions can be useful
+                        (see .node.status.conditions), the ability to deconflict is
+                        important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              containerPath:
+                type: string
+              drive:
+                type: string
+              hostPath:
+                type: string
+              nodeName:
+                type: string
+              stagingPath:
+                type: string
+              totalCapacity:
+                format: int64
+                type: integer
+              usedCapacity:
+                format: int64
+                type: integer
+            type: object
+        required:
+        - metadata
+        type: object
+    served: true
+    storage: false
+  - name: v1beta2
+    schema:
+      openAPIV3Schema:
+        description: DirectCSIVolume denotes volume CRD object.
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          status:
+            description: DirectCSIVolumeStatus denotes volume information.
+            properties:
+              availableCapacity:
+                format: int64
+                type: integer
+              conditions:
+                items:
+                  description: "Condition contains details for one aspect of the current
+                    state of this API Resource. --- This struct is intended for direct
+                    use as an array at the field path .status.conditions.  For example,
+                    type FooStatus struct{     // Represents the observations of a
+                    foo's current state.     // Known .status.conditions.type are:
+                    \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
+                    \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
+                    \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
+                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
+                    \n     // other fields }"
+                  properties:
+                    lastTransitionTime:
+                      description: lastTransitionTime is the last time the condition
+                        transitioned from one status to another. This should be when
+                        the underlying condition changed.  If that is not known, then
+                        using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: message is a human readable message indicating
+                        details about the transition. This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: observedGeneration represents the .metadata.generation
+                        that the condition was set based upon. For instance, if .metadata.generation
+                        is currently 12, but the .status.conditions[x].observedGeneration
+                        is 9, the condition is out of date with respect to the current
+                        state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: reason contains a programmatic identifier indicating
+                        the reason for the condition's last transition. Producers
+                        of specific condition types may define expected values and
+                        meanings for this field, and whether the values are considered
+                        a guaranteed API. The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                        --- Many .condition.type values are consistent across resources
+                        like Available, but because arbitrary conditions can be useful
+                        (see .node.status.conditions), the ability to deconflict is
+                        important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              containerPath:
+                type: string
+              drive:
+                type: string
+              hostPath:
+                type: string
+              nodeName:
+                type: string
+              stagingPath:
+                type: string
+              totalCapacity:
+                format: int64
+                type: integer
+              usedCapacity:
+                format: int64
+                type: integer
+            type: object
+        required:
+        - metadata
+        type: object
+    served: true
+    storage: false
+  - name: v1beta3
+    schema:
+      openAPIV3Schema:
+        description: DirectCSIVolume denotes volume CRD object.
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          status:
+            description: DirectCSIVolumeStatus denotes volume information.
+            properties:
+              availableCapacity:
+                format: int64
+                type: integer
+              conditions:
+                items:
+                  description: "Condition contains details for one aspect of the current
+                    state of this API Resource. --- This struct is intended for direct
+                    use as an array at the field path .status.conditions.  For example,
+                    type FooStatus struct{     // Represents the observations of a
+                    foo's current state.     // Known .status.conditions.type are:
+                    \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
+                    \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
+                    \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
+                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
+                    \n     // other fields }"
+                  properties:
+                    lastTransitionTime:
+                      description: lastTransitionTime is the last time the condition
+                        transitioned from one status to another. This should be when
+                        the underlying condition changed.  If that is not known, then
+                        using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: message is a human readable message indicating
+                        details about the transition. This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: observedGeneration represents the .metadata.generation
+                        that the condition was set based upon. For instance, if .metadata.generation
+                        is currently 12, but the .status.conditions[x].observedGeneration
+                        is 9, the condition is out of date with respect to the current
+                        state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: reason contains a programmatic identifier indicating
+                        the reason for the condition's last transition. Producers
+                        of specific condition types may define expected values and
+                        meanings for this field, and whether the values are considered
+                        a guaranteed API. The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                        --- Many .condition.type values are consistent across resources
+                        like Available, but because arbitrary conditions can be useful
+                        (see .node.status.conditions), the ability to deconflict is
+                        important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              containerPath:
+                type: string
+              drive:
+                type: string
+              hostPath:
+                type: string
+              nodeName:
+                type: string
+              stagingPath:
+                type: string
+              totalCapacity:
+                format: int64
+                type: integer
+              usedCapacity:
+                format: int64
+                type: integer
+            type: object
+        required:
+        - metadata
+        type: object
+    served: true
+    storage: true
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+
+---
+apiVersion: storage.k8s.io/v1
+kind: CSIDriver
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: null
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: direct-csi-min-io
+spec:
+  attachRequired: false
+  podInfoOnMount: true
+  volumeLifecycleModes:
+  - Persistent
+  - Ephemeral
+
+---
+allowVolumeExpansion: false
+allowedTopologies:
+- matchLabelExpressions:
+  - key: direct.csi.min.io/identity
+    values:
+    - direct-csi-min-io
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: null
+  finalizers:
+  - foregroundDeletion
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: direct-csi-min-io
+parameters:
+  fstype: xfs
+provisioner: direct-csi-min-io
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+
+---
+allowVolumeExpansion: false
+allowedTopologies:
+- matchLabelExpressions:
+  - key: direct.csi.min.io/identity
+    values:
+    - direct-csi-min-io
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: null
+  finalizers:
+  - foregroundDeletion
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: directpv-min-io
+parameters:
+  fstype: xfs
+provisioner: direct-csi-min-io
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: null
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: direct-csi-min-io
+  namespace: direct-csi-min-io
+spec:
+  ports:
+  - name: unused
+    port: 12345
+    targetPort: 0
+  - name: convwebhook
+    port: 30443
+    targetPort: convwebhook
+  selector:
+    selector.direct.csi.min.io.webhook: enabled
+status:
+  loadBalancer: {}
+
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: null
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: direct-csi-min-io
+  namespace: direct-csi-min-io
+spec:
+  selector:
+    matchLabels:
+      selector.direct.csi.min.io: direct-csi-min-io-u7t6v
+  template:
+    metadata:
+      annotations:
+        created-by: kubectl-direct-csi
+      creationTimestamp: null
+      labels:
+        selector.direct.csi.min.io: direct-csi-min-io-u7t6v
+        selector.direct.csi.min.io.webhook: enabled
+      name: direct-csi-min-io
+      namespace: direct-csi-min-io
+    spec:
+      containers:
+      - args:
+        - --v=3
+        - --csi-address=unix:///csi/csi.sock
+        - --kubelet-registration-path=/var/lib/kubelet/plugins/direct-csi-min-io/csi.sock
+        env:
+        - name: KUBE_NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        image: quay.io/minio/csi-node-driver-registrar@sha256:843fb23b1a3fa1de986378b0b8c08c35f8e62499d386de8ec57801fd029afe6d
+        name: node-driver-registrar
+        resources: {}
+        terminationMessagePath: /var/log/driver-registrar-termination-log
+        terminationMessagePolicy: FallbackToLogsOnError
+        volumeMounts:
+        - mountPath: /csi
+          mountPropagation: None
+          name: socket-dir
+        - mountPath: /registration
+          mountPropagation: None
+          name: registration-dir
+      - args:
+        - --identity=direct-csi-min-io
+        - -v=3
+        - --endpoint=$(CSI_ENDPOINT)
+        - --node-id=$(KUBE_NODE_NAME)
+        - --conversion-healthz-url=https://direct-csi-min-io.direct-csi-min-io.svc:30443/healthz
+        - --metrics-port=10443
+        - --driver
+        - --dynamic-drive-discovery
+        env:
+        - name: KUBE_NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: CSI_ENDPOINT
+          value: unix:///csi/csi.sock
+        image: quay.io/minio/directpv:v2.0.2
+        livenessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /healthz
+            port: healthz
+          initialDelaySeconds: 300
+          periodSeconds: 5
+          timeoutSeconds: 5
+        name: direct-csi
+        ports:
+        - containerPort: 9898
+          name: healthz
+          protocol: TCP
+        - containerPort: 30443
+          name: convwebhook
+          protocol: TCP
+        - containerPort: 10443
+          name: metrics
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: convwebhook
+            scheme: HTTPS
+        resources: {}
+        securityContext:
+          privileged: true
+        terminationMessagePath: /var/log/driver-termination-log
+        terminationMessagePolicy: FallbackToLogsOnError
+        volumeMounts:
+        - mountPath: /csi
+          mountPropagation: None
+          name: socket-dir
+        - mountPath: /var/lib/kubelet/pods
+          mountPropagation: Bidirectional
+          name: mountpoint-dir
+        - mountPath: /var/lib/kubelet/plugins
+          mountPropagation: Bidirectional
+          name: plugins-dir
+        - mountPath: /var/lib/direct-csi/
+          mountPropagation: Bidirectional
+          name: direct-csi-common-root
+        - mountPath: /etc/conversion/CAs
+          mountPropagation: None
+          name: conversioncacert
+        - mountPath: /etc/conversion/certs
+          mountPropagation: None
+          name: conversionkeypair
+        - mountPath: /sys
+          mountPropagation: Bidirectional
+          name: sysfs
+          readOnly: true
+        - mountPath: /dev
+          mountPropagation: Bidirectional
+          name: devfs
+          readOnly: true
+        - mountPath: /run/udev/data
+          mountPropagation: Bidirectional
+          name: run-udev-data-dir
+          readOnly: true
+      - args:
+        - --csi-address=/csi/csi.sock
+        - --health-port=9898
+        image: quay.io/minio/livenessprobe@sha256:928a80be4d363e0e438ff28dcdb00d8d674d3059c6149a8cda64ce6016a9a3f8
+        name: liveness-probe
+        resources: {}
+        terminationMessagePath: /var/log/driver-liveness-termination-log
+        terminationMessagePolicy: FallbackToLogsOnError
+        volumeMounts:
+        - mountPath: /csi
+          mountPropagation: None
+          name: socket-dir
+      dnsPolicy: ClusterFirstWithHostNet
+      hostIPC: true
+      hostNetwork: true
+      hostPID: true
+      serviceAccountName: direct-csi-min-io
+      volumes:
+      - hostPath:
+          path: /var/lib/kubelet/plugins/direct-csi-min-io
+          type: DirectoryOrCreate
+        name: socket-dir
+      - hostPath:
+          path: /var/lib/kubelet/pods
+          type: DirectoryOrCreate
+        name: mountpoint-dir
+      - hostPath:
+          path: /var/lib/kubelet/plugins_registry
+          type: DirectoryOrCreate
+        name: registration-dir
+      - hostPath:
+          path: /var/lib/kubelet/plugins
+          type: DirectoryOrCreate
+        name: plugins-dir
+      - hostPath:
+          path: /var/lib/direct-csi/
+          type: DirectoryOrCreate
+        name: direct-csi-common-root
+      - name: conversioncacert
+        secret:
+          secretName: conversioncacert
+      - name: conversionkeypair
+        secret:
+          secretName: conversionkeypair
+      - hostPath:
+          path: /sys
+          type: DirectoryOrCreate
+        name: sysfs
+      - hostPath:
+          path: /dev
+          type: DirectoryOrCreate
+        name: devfs
+      - hostPath:
+          path: /run/udev/data
+          type: DirectoryOrCreate
+        name: run-udev-data-dir
+  updateStrategy: {}
+status:
+  currentNumberScheduled: 0
+  desiredNumberScheduled: 0
+  numberMisscheduled: 0
+  numberReady: 0
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: null
+  finalizers:
+  - direct-csi-min-io/delete-protection
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: direct-csi-min-io
+  namespace: direct-csi-min-io
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      selector.direct.csi.min.io: direct-csi-min-io-4yvqp
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        created-by: kubectl-direct-csi
+      creationTimestamp: null
+      labels:
+        selector.direct.csi.min.io: direct-csi-min-io-4yvqp
+        selector.direct.csi.min.io.webhook: enabled
+      name: direct-csi-min-io
+      namespace: direct-csi-min-io
+    spec:
+      containers:
+      - args:
+        - --v=3
+        - --timeout=300s
+        - --csi-address=$(CSI_ENDPOINT)
+        - --leader-election
+        - --feature-gates=Topology=true
+        - --strict-topology
+        env:
+        - name: CSI_ENDPOINT
+          value: unix:///csi/csi.sock
+        image: quay.io/minio/csi-provisioner@sha256:d4f94539565cf62aea57062b6a42c5156337003133fd3f51b93df9a789e69840
+        name: csi-provisioner
+        resources: {}
+        securityContext:
+          privileged: true
+        terminationMessagePath: /var/log/controller-provisioner-termination-log
+        terminationMessagePolicy: FallbackToLogsOnError
+        volumeMounts:
+        - mountPath: /csi
+          mountPropagation: None
+          name: socket-dir
+      - args:
+        - -v=3
+        - --identity=direct-csi-min-io
+        - --endpoint=$(CSI_ENDPOINT)
+        - --conversion-healthz-url=https://direct-csi-min-io.direct-csi-min-io.svc:30443/healthz
+        - --controller
+        env:
+        - name: KUBE_NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: CSI_ENDPOINT
+          value: unix:///csi/csi.sock
+        image: quay.io/minio/directpv:v2.0.2
+        name: direct-csi
+        ports:
+        - containerPort: 20443
+          name: validatinghook
+          protocol: TCP
+        - containerPort: 9898
+          name: healthz
+          protocol: TCP
+        - containerPort: 30443
+          name: convwebhook
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: convwebhook
+            scheme: HTTPS
+        resources: {}
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /csi
+          mountPropagation: None
+          name: socket-dir
+        - mountPath: /etc/conversion/CAs
+          mountPropagation: None
+          name: conversioncacert
+        - mountPath: /etc/conversion/certs
+          mountPropagation: None
+          name: conversionkeypair
+      serviceAccountName: direct-csi-min-io
+      volumes:
+      - hostPath:
+          path: /var/lib/kubelet/plugins/direct-csi-min-io-controller
+          type: DirectoryOrCreate
+        name: socket-dir
+      - name: conversioncacert
+        secret:
+          secretName: conversioncacert
+      - name: conversionkeypair
+        secret:
+          secretName: conversionkeypair
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: null
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: directcsi-validation-controller
+  namespace: direct-csi-min-io
+spec:
+  ports:
+  - port: 20443
+    targetPort: validatinghook
+  selector:
+    selector.direct.csi.min.io: direct-csi-min-io-4yvqp
+status:
+  loadBalancer: {}
+
+---

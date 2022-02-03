@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  finalizers:
+  - foregroundDeletion
+  labels:
+    application-name: direct.csi.min.io
+    application-type: CSIDriver
+    direct.csi.min.io/created-by: kubectl-direct-csi
+    direct.csi.min.io/version: v1beta3
+  name: direct-csi-min-io
+spec: {}
+status: {}

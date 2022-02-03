@@ -6,6 +6,7 @@ resources:
   - default.yaml
   - databases.yaml
   - calico-system.yaml
+  - direct-csi-min-io.yaml
   - downloads.yaml
   - cert-manager.yaml
   - collab.yaml
