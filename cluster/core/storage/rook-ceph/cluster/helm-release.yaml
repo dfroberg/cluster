@@ -55,7 +55,7 @@ spec:
       mon:
         count: 3
       mgr:
-        count: 3
+        count: 2
       placement:
         all:
           tolerations:
