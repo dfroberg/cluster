@@ -50,8 +50,8 @@ spec:
     monitoring:
       enabled: false
     csi:
-      #enableCephfsDriver: false
-      #enableCephfsSnapshotter: false
+      enableCephfsDriver: false
+      enableCephfsSnapshotter: false
       kubeletDirPath: /var/lib/kubelet
       enableCSIHostNetwork: true
       pluginTolerations:
