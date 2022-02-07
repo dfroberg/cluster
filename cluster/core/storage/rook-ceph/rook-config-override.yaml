@@ -12,34 +12,4 @@ data:
     cluster_addr = ""
     auth_allow_insecure_global_id_reclaim = false
     fsid = deebfdb8-1af4-4576-a1ba-441fae514267
-    [client.admin]
-    key = AQAH6bFhlmTMBBAA4oEy8kQg/P+NI7VfBo6keQ==
-    auid = 0
-    caps mds = "allow *"
-    caps mgr = "allow *"
-    caps mon = "allow *"
-    caps osd = "allow *"
-    [mon.]
-    key = AQAH6bFhlmTMBBAA4oEy8kQg/P+NI7VfBo6keQ==
-    caps mds = "allow *"
-    caps mgr = "allow *"
-    caps mon = "allow *"
-    caps osd = "allow *"
-    [mgr.]
-    key = AQAH6bFhlmTMBBAA4oEy8kQg/P+NI7VfBo6keQ==
-    caps mds = "allow *"
-    caps mgr = "allow *"
-    caps mon = "allow *"
-    caps osd = "allow *"
-    [osd.]
-    key = AQAH6bFhlmTMBBAA4oEy8kQg/P+NI7VfBo6keQ==
-    caps mds = "allow *"
-    caps mgr = "allow *"
-    caps mon = "allow *"
-    caps osd = "allow *"
-    [mds.]
-    key = AQAH6bFhlmTMBBAA4oEy8kQg/P+NI7VfBo6keQ==
-    caps mds = "allow *"
-    caps mgr = "allow *"
-    caps mon = "allow *"
-    caps osd = "allow *"
+    
