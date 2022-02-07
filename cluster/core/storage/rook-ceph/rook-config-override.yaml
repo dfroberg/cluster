@@ -10,6 +10,7 @@ data:
     cluster_network = 192.168.25.0/24
     public_addr = ""
     cluster_addr = ""
+    auth_allow_insecure_global_id_reclaim = false
     fsid = deebfdb8-1af4-4576-a1ba-441fae514267
     [client.admin]
     key = AQAH6bFhlmTMBBAA4oEy8kQg/P+NI7VfBo6keQ==
