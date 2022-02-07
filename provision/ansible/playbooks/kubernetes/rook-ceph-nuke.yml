@@ -10,10 +10,11 @@
         seconds: 5
   tasks:
     # Ensure any remnants of rook is nuked on ALL nodes
-    #- name: Remove /var/lib/rook
-    #  ansible.builtin.file:
-    #    state: absent
-    #    path: "/var/lib/rook"
+    - name: Remove /var/lib/rook
+      ansible.builtin.file:
+        state: absent
+        path: "/var/lib/rook"
+
     - name: Locating all files in rook backup dir
       find:
         path: "/var/ramdisk-backup"
@@ -21,19 +22,6 @@
       ignore_errors: true
 
     - name: Removing all files previously found in rook backup dir
-      file:
-        path: "{{ item.path }}"
-        state: absent
-      with_items: "{{ cleanup.files }}"
-      ignore_errors: true
-
-    - name: Locating all files in rook dir
-      find:
-        path: "/var/lib/rook"
-      register: cleanup
-      ignore_errors: true
-
-    - name: Removing all files previously found in rook dir
       file:
         path: "{{ item.path }}"
         state: absent
