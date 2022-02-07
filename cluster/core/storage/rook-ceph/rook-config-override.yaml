@@ -21,9 +21,25 @@ data:
     caps osd = "allow *"
     [mon.]
     key = AQAH6bFhlmTMBBAA4oEy8kQg/P+NI7VfBo6keQ==
+    caps mds = "allow *"
+    caps mgr = "allow *"
+    caps mon = "allow *"
+    caps osd = "allow *"
     [mgr.]
     key = AQAH6bFhlmTMBBAA4oEy8kQg/P+NI7VfBo6keQ==
+    caps mds = "allow *"
+    caps mgr = "allow *"
+    caps mon = "allow *"
+    caps osd = "allow *"
     [osd.]
     key = AQAH6bFhlmTMBBAA4oEy8kQg/P+NI7VfBo6keQ==
+    caps mds = "allow *"
+    caps mgr = "allow *"
+    caps mon = "allow *"
+    caps osd = "allow *"
     [mds.]
     key = AQAH6bFhlmTMBBAA4oEy8kQg/P+NI7VfBo6keQ==
+    caps mds = "allow *"
+    caps mgr = "allow *"
+    caps mon = "allow *"
+    caps osd = "allow *"
