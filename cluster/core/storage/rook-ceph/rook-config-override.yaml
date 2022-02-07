@@ -6,10 +6,10 @@ metadata:
 data:
   config: |
     [global]
-    public network =  192.168.30.0/24
-    cluster network = 192.168.25.0/24
-    public addr = ""
-    cluster addr = ""
+    public_network =  192.168.30.0/24
+    cluster_network = 192.168.25.0/24
+    public_addr = ""
+    cluster_addr = ""
     fsid = deebfdb8-1af4-4576-a1ba-441fae514267
     [client.admin]
     key = AQAH6bFhlmTMBBAA4oEy8kQg/P+NI7VfBo6keQ==
