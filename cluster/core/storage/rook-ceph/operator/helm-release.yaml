@@ -28,7 +28,6 @@ spec:
       remediateLastFailure: true
     cleanupOnFail: true
   rollback:
-    crds: CreateReplace
     timeout: 10m
     recreate: true
     cleanupOnFail: true
