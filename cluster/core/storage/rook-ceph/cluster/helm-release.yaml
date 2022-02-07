@@ -17,7 +17,7 @@ spec:
         namespace: flux-system
   install:
     crds: CreateReplace
-    timeout: 10m
+    timeout: 30m
     remediation:
       retries: 3
   upgrade:
