@@ -6,10 +6,10 @@ metadata:
 data:
   config: |
     [global]
-    public network =  192.168.30.0/24
-    cluster network = 192.168.25.0/24
-    public addr = ""
-    cluster addr = ""
+    # public network =  192.168.30.0/24
+    # cluster network = 192.168.25.0/24
+    # public addr = ""
+    # cluster addr = ""
     auth_allow_insecure_global_id_reclaim = false
     fsid = deebfdb8-1af4-4576-a1ba-441fae514267
     
