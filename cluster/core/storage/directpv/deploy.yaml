@@ -1614,7 +1614,7 @@ parameters:
   fstype: xfs
 provisioner: direct-csi-min-io
 reclaimPolicy: Delete
-volumeBindingMode: WaitForFirstConsumer
+volumeBindingMode: Immediate # WaitForFirstConsumer
 
 ---
 allowVolumeExpansion: false
