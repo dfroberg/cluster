@@ -7,7 +7,7 @@ resources:
   #- velero       # Moved to own step in base
   #- vpn-gateway  # Moved to own step in base
   - security
-  #- resource-control
+  - resource-control
   #- system-upgrade
-  #- monitoring
+  - monitoring
 
