@@ -45,6 +45,10 @@ spec:
           protocol: layer2
           addresses:
             - ${METALLB_ARP_RANGE}
+        - name: storage
+          protocol: layer2
+          addresses:
+            - ${METALLB_STORAGE_ARP_RANGE}
     rbac:
       create: true
     psp:
