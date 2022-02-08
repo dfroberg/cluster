@@ -9,6 +9,6 @@ resources:
   - error-pages
   - external-dns
   #- kpc # pfSense controller moved to its own 
-  #- webhooks
+  - webhooks
   - ingress-nginx
   #- k8s-gateway
