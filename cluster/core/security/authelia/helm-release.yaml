@@ -171,7 +171,7 @@ spec:
       storage:
         postgres:
           enabled: true
-          host: postgresql.databases.svc.cluster.local
+          host: ${SECRET_POSTGRES_HOST} # postgresql.databases.svc.cluster.local
 
       notifier:
         smtp:
