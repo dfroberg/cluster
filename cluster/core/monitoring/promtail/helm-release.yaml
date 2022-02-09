@@ -66,7 +66,7 @@ spec:
         containerPort: 1514
         service:
           type: LoadBalancer
-          loadBalancerIP: "192.168.69.102" #"${SVC_SYSLOG_ADDR}"
+          loadBalancerIP: "${SVC_SYSLOG_ADDR}"
     extraVolumes:
       - name: journal
         hostPath:
