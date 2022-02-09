@@ -45,6 +45,9 @@ spec:
         - name: Kodi
           url: "http://192.168.3.203:8080/"
           icon: "antenna"
+        - name: Search k8s-at-home
+          url: "https://whazor.github.io/k8s-at-home-search/"
+          icon: "search"
       groups:
         - name: Communicate
           links:
