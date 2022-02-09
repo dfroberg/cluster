@@ -12,7 +12,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: direct-csi-min-io
+  storageClassName: ceph-block
   resources:
     requests:
       storage: 256Mi
