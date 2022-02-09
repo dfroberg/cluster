@@ -34,6 +34,7 @@ spec:
     domain: "${SECRET_DOMAIN}"
     service:
       type: LoadBalancer
+      # loadBalancerIP: "${CLUSTER_LB_K8SGATEWAY}"
       externalTrafficPolicy: Local
   postRenderers:
     - kustomize:
