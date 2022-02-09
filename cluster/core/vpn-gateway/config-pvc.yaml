@@ -3,9 +3,12 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: pod-gateway-config
-  namespace: vpn
+  namespace: vpn-gateway
   labels:
-    k10.kasten.io/backup: "true"
+    benji-backup.me/instance: "benji-k8s"
+    kasten.io/backup-volume: "enabled"
+  annotations:
+    benji-backup.me/fsfreeze: "yes"
 spec:
   accessModes:
     - ReadWriteOnce
