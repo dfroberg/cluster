@@ -22,6 +22,7 @@ resources:
   #- tautulli
   - calibre
   - calibre-web
+  - photoprism
   - jobs
 
   

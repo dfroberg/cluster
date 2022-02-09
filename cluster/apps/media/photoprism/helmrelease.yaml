@@ -1,0 +1,65 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: photoprism
+  namespace: media
+spec:
+  releaseName: photoprism
+  interval: 10m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: photoprism
+      version: 6.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  values:
+    image:
+      repository: photoprism/photoprism
+      tag: "20220121"
+    env:
+      PHOTOPRISM_SITE_URL: https://photos.${SECRET_DOMAIN}/
+      PHOTOPRISM_SITE_TITLE: Home Photos
+      PHOTOPRISM_SITE_AUTHOR: Danny
+      PHOTOPRISM_PUBLIC: true
+      PHOTOPRISM_READONLY: true
+      PHOTOPRISM_THUMB_SIZE: 1280
+      PHOTOPRISM_THUMB_UNCACHED: true
+      PHOTOPRISM_THUMB_SIZE_UNCACHED: 1280
+      PHOTOPRISM_JPEG_SIZE: 1280
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          nginx.ingress.kubernetes.io/auth-url: https://id.${SECRET_DOMAIN}/oauth2/auth
+          nginx.ingress.kubernetes.io/auth-signin: https://id.${SECRET_DOMAIN}/oauth2/start
+          hajimari.io/enable: "true"
+          hajimari.io/icon: image-multiple
+        hosts:
+          - host: photos.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - photos.${SECRET_DOMAIN}
+            secretName: photoprism-tls
+    persistence:
+      config:
+        enabled: true
+        existingClaim: photoprism-config
+      originals:
+        enabled: true
+        existingClaim: nfs-photo-media
+        readOnly: false
+    resources:
+      requests:
+        cpu: 1
+        memory: 2Gi
+      limits:
+        memory: 6Gi
