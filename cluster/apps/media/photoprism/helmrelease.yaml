@@ -21,6 +21,8 @@ spec:
       repository: photoprism/photoprism
       tag: "20220121"
     env:
+      TZ: ${CLUSTER_TZ}
+      PHOTOPRISM_ADMIN_PASSWORD: ${SECRET_PHOTOPRISM_ADMIN_PASSWORD}
       PHOTOPRISM_SITE_URL: https://photos.${SECRET_DOMAIN}/
       PHOTOPRISM_SITE_TITLE: Home Photos
       PHOTOPRISM_SITE_AUTHOR: Danny
