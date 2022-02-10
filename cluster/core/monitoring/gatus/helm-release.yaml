@@ -79,4 +79,21 @@ spec:
             - "[STATUS] == 200"
             - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
             - "[CERTIFICATE_EXPIRATION] > 72h"
-
+        - name: Login Service
+          url: https://login.${SECRET_DOMAIN}
+          conditions:
+            - "[STATUS] == 200"
+            - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+            - "[CERTIFICATE_EXPIRATION] > 72h"
+        - name: Authentik Service
+          url: https://id.${SECRET_DOMAIN}
+          conditions:
+            - "[STATUS] == 200"
+            - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+            - "[CERTIFICATE_EXPIRATION] > 72h"
+        - name: Matrix Service
+          url: https://matrix.${SECRET_DOMAIN}
+          conditions:
+            - "[STATUS] == 200"
+            - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+            - "[CERTIFICATE_EXPIRATION] > 72h"
