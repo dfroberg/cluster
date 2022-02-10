@@ -1,0 +1,65 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: crowdsec
+  namespace: security
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: crowdsec
+      version: 0.2.3
+      sourceRef:
+        kind: HelmRepository
+        name: crowdsec-charts
+        namespace: flux-system
+      interval: 10m
+  test:
+    enable: false # Enable helm test
+  install:
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
+  values:
+    container_runtime: containerd
+    lapi:
+      dashboard:
+        # TODO: No arm64 images, raise a GH issue
+        enabled: true
+      metrics:
+        # TODO: ingest these metrics without using serviceMonitor
+        enabled: true
+        serviceMonitor:
+          enabled: false
+      persistentVolume:
+        data:
+          enabled: false
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: "ceph-block"
+          size: 1Gi
+        config:
+          enabled: true
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: "ceph-block"
+          size: 100Mi
+    agent:
+      acquisition:
+        - namespace: nginx-ingress
+          podName: ingress-nginx-controller-*
+          program: nginx
+      metrics:
+        # TODO: ingest these metrics without using serviceMonitor
+        enabled: true
+        serviceMonitor:
+          enabled: false

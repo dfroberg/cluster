@@ -36,7 +36,7 @@ spec:
 
                     set -x
 
-                    WORK_DIR="/mnt/storage/backups/bookstack"
+                    WORK_DIR="/mnt/data/nfs/backups/bookstack"
 
                     SHELVES=$(curl --silent --location --request GET "https://bookstack.${SECRET_DOMAIN}/api/shelves" --header "Authorization: Token ${SECRET_BOOKSTACK_TOKEN_ID}:${SECRET_BOOKSTACK_TOKEN_SECRET}" | jq --raw-output .data[].id)
 
