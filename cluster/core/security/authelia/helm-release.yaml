@@ -112,10 +112,13 @@ spec:
               - 10.10.0.0/16
 
         rules:
-          # bypass Authelia WAN + LAN
+          # bypass Authelia 
           - domain:
               - login.${SECRET_DOMAIN}
               - matrix.${SECRET_DOMAIN}
+            policy: bypass
+          # bypass Authelia LAN
+          - domain:
               - sonarr.${SECRET_DOMAIN}
               - radarr.${SECRET_DOMAIN}
               - readarr.${SECRET_DOMAIN}
@@ -127,6 +130,8 @@ spec:
               - bazarr.${SECRET_DOMAIN}
               - qb-vpn.${SECRET_DOMAIN}
             policy: bypass
+            networks:
+              - private
           # Bypass API urls for certain services
           - domain: 
               - grafana.${SECRET_DOMAIN}
