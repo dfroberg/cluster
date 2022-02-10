@@ -181,12 +181,20 @@ spec:
         - 192.168.30.50
         - 192.168.30.51
         - 192.168.30.52
+      service:  # NOTE: This port changes in v1.23 to 10259 
+        enabled: true
+        port: 10251
+        targetPort: 10251
     kubeProxy:
       enabled: true
       endpoints:
         - 192.168.30.50
         - 192.168.30.51
         - 192.168.30.52
+      service:
+        enable: true
+        port: 10249
+        targetPort: 10249
     kubeEtcd:
       enabled: true
       endpoints:
