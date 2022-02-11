@@ -6,3 +6,5 @@ resources:
   - dex
   - dex-k8s-authenticator
   - authelia
+  - crowdsec
+  

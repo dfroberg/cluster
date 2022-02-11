@@ -5,7 +5,7 @@ metadata:
   name: crowdsec
   namespace: security
   hosts:
-    - 'metabase.${CLUSTER_DOMAIN}'
+    - 'metabase.${SECRET_DOMAIN}'
   gateways:
     - istio-ingress/istio-ingressgateway
   http:
@@ -13,5 +13,6 @@ metadata:
         - destination:
             port:
               number: 3000
-            host: crowdsec-service.network-system.svc.cluster.local
+            host: crowdsec-service.networking.svc.cluster.local
           weight: 100
+
