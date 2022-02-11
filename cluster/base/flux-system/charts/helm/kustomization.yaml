@@ -5,6 +5,7 @@ resources:
   - appscode-charts.yaml
   - authelia-charts.yaml
   - avakarev-charts.yaml
+  - crowdsec-charts.yaml
   - metallb-charts.yaml
   - fairwinds-charts.yaml
   - authentik-charts.yaml
