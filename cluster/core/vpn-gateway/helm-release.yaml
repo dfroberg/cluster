@@ -58,7 +58,7 @@ spec:
                 - sysctl net.ipv4.conf.all.src_valid_mark=1
         env:
           TZ: "${CLUSTER_TZ}"
-          IPTABLES_BACKEND: legacy
+          IPTABLES_BACKEND: nft
           KILLSWITCH: "true"
         configFileSecret: vpn-gateway-vpnconfig
         # configFile: |-
