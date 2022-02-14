@@ -130,6 +130,7 @@ spec:
               - bazarr.${SECRET_DOMAIN}
               - qb-vpn.${SECRET_DOMAIN}
               - jellyfin.${SECRET_DOMAIN}
+              - tvheadend.${SECRET_DOMAIN}
             policy: bypass
             networks:
               - private

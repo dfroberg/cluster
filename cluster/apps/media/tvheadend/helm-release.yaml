@@ -1,0 +1,117 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: tvheadend
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: tvheadend
+      version: 9.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+  install:
+    timeout: 10m
+    remediation:
+      retries: 3
+  upgrade:
+    timeout: 10m
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
+  values:
+    image:
+      repository: ghcr.io/linuxserver/tvheadend
+      tag: version-eb59284b
+    updateStrategy: Recreate
+    env:
+      TZ: "${CLUSTER_TZ}"
+      PUID: "1001"
+      PGID: "1001"
+    podSecurityContext:
+      supplementalGroups:
+        - 44
+        - 109
+        - 100
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: "${SVC_TVHEADEND_ADDR}"
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            port: 9981
+          htsp:
+            enabled: false
+            protocol: TCP
+            port: 9982
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
+          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+        hosts:
+          - host: "tvheadend.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: "${SECRET_DOMAIN//./-}-tls"
+            hosts:
+              - "tvheadend.${SECRET_DOMAIN}"
+    persistence:
+      config:
+        enabled: true
+        existingClaim: tvheadend-config-v1
+      recordings:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS_ADDR}"
+            path: ${NAS_BASE_PATH}/
+        mountPath: /recordings
+        readOnly: false
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
+      pre.hook.backup.velero.io/container: fsfreeze
+      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
+      post.hook.backup.velero.io/container: fsfreeze
+      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
+    nodeSelector: 
+      worker: yes
+    resources:
+      requests:
+        #gpu.intel.com/i915: 1
+        cpu: 2500m
+        memory: 2500Mi
+      limits:
+        #gpu.intel.com/i915: 1
+        memory: 4000Mi
+    additionalContainers:
+      fsfreeze:
+        name: fsfreeze
+        image: ubuntu:focal-20210827
+        imagePullPolicy: IfNotPresent
+        command:
+          - "/bin/bash"
+          - "-c"
+          - "sleep infinity"
+        volumeMounts:
+          - name: config
+            mountPath: /config
+        securityContext:
+          privileged: true

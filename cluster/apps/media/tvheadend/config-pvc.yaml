@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tvheadend-config-v1
+  namespace: media
+  labels:
+    benji-backup.me/instance: "benji-k8s"
+    kasten.io/backup-volume: "enabled"
+  annotations:
+    benji-backup.me/fsfreeze: "yes"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: ceph-block
