@@ -129,6 +129,7 @@ spec:
               - books.${SECRET_DOMAIN}
               - bazarr.${SECRET_DOMAIN}
               - qb-vpn.${SECRET_DOMAIN}
+              - jellyfin.${SECRET_DOMAIN}
             policy: bypass
             networks:
               - private
