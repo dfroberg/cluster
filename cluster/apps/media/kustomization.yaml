@@ -23,7 +23,7 @@ resources:
   - calibre
   - calibre-web
   - photoprism
-  - unpacker
+  - unpackerr
   - jobs
 
   
