@@ -23,18 +23,14 @@ spec:
       tag: 0.9.9
     env:
       TZ: ${CLUSTER_TZ}
-      UN_SONARR_0_URL: http://sonarr:8989
-      UN_SONARR_0_PATHS_0: /complete/sonarr
-      UN_SONARR_1_URL: http://sonarr-uhd:8989
-      UN_SONARR_1_PATHS_0: /complete/sonarr-uhd
-      UN_RADARR_0_URL: http://radarr:7878
-      UN_RADARR_0_PATHS_0: /complete/radarr
-      UN_RADARR_1_URL: http://radarr-uhd:7878
-      UN_RADARR_1_PATHS_0: /complete/radarr-uhd
-      UN_LIDARR_0_URL: http://lidarr:8686
-      UN_LIDARR_0_PATHS_0: /complete/lidarr
-      UN_READARR_0_URL: http://readarr:8787
-      UN_READARR_0_PATHS_0: /complete/readarr
+      UN_SONARR_0_URL: https://sonarr.${SECRET_DOMAIN}
+      UN_SONARR_0_PATHS_0: /media/torrents/tv/
+      UN_RADARR_0_URL: https://radarr.${SECRET_DOMAIN}
+      UN_RADARR_0_PATHS_0: /media/torrents/movies/
+      UN_LIDARR_0_URL: https://lidarr.${SECRET_DOMAIN}
+      UN_LIDARR_0_PATHS_0: /media/torrents/music/
+      UN_READARR_0_URL: https://readarr.${SECRET_DOMAIN}
+      UN_READARR_0_PATHS_0: /media/torrents/books/
     envFrom:
       - secretRef:
           name: unpackerr
@@ -46,9 +42,9 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "expanse.${SECRET_PRIVATE_DOMAIN}"
-            path: /tycho/Media/Downloads/qbittorrent/complete
-        mountPath: /complete
+            server: "${NAS_ADDR}"
+            path: ${NAS_BASE_PATH}
+        mountPath: /media/
     resources:
       requests:
         memory: 250Mi
