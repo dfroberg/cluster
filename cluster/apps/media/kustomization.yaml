@@ -7,7 +7,7 @@ resources:
   #- jacket
   - bazarr
   #- doplarr
-  #- jellyfin
+  - jellyfin
   - lidarr
   #- overseerr
   #- plex
