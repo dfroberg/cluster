@@ -91,11 +91,11 @@ spec:
       worker: yes
     resources:
       requests:
-        gpu.intel.com/i915: 1
+        #gpu.intel.com/i915: 1
         cpu: 500m
         memory: 500Mi
       limits:
-        gpu.intel.com/i915: 1
+        #gpu.intel.com/i915: 1
         memory: 4000Mi
     additionalContainers:
       fsfreeze:
