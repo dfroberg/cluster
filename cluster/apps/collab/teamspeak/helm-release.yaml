@@ -53,10 +53,10 @@ spec:
       tcp:
         enabled: true
         ports:
-          serverquery:
+        - serverquery:
             enabled: true
             port: 10011
-          filetransfer:
+        - filetransfer:
             enabled: true
             port: 30033
     probes:
