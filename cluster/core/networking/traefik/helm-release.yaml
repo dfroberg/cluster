@@ -117,11 +117,16 @@ spec:
                     values:
                       - traefik
               topologyKey: kubernetes.io/hostname
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: worker
+                  operator: In
+                  values:
+                    - "yes"
     tolerations:
-      - effect: NoExecute
-        operator: Exists
-      - effect: NoSchedule
-        operator: Exists
+      - operator: Exists
       - effect: NoExecute
         key: node.kubernetes.io/not-ready
         operator: Exists
