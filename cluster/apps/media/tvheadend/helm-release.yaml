@@ -102,6 +102,17 @@ spec:
         #gpu.intel.com/i915: 1
         memory: 4000Mi
     additionalContainers:
+      nginx:
+        name: m3u-server
+        image: nginx
+        imagePullPolicy: IfNotPresent
+        command:
+          - "/bin/bash"
+          - "-c"
+          - "sleep infinity"
+        volumeMounts:
+          - name: recordings
+            mountPath: /data
       fsfreeze:
         name: fsfreeze
         image: ubuntu:focal-20210827
