@@ -22,13 +22,13 @@ spec:
       retries: 1
   upgrade:
     crds: CreateReplace
-    timeout: 10m
+    timeout: 30m
     remediation:
       retries: 1
       remediateLastFailure: true
     cleanupOnFail: true
   rollback:
-    timeout: 10m
+    timeout: 30m
     recreate: true
     cleanupOnFail: true
   dependsOn:
@@ -59,31 +59,31 @@ spec:
       placement:
         all:
           tolerations:
-            - key: StorageOnly
-              operator: Exists
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions:
-                    - key: storage
-                      operator: In
-                      values:
-                        - "yes"
+            #- key: StorageOnly
+            - operator: Exists
+#          nodeAffinity:
+#            requiredDuringSchedulingIgnoredDuringExecution:
+#              nodeSelectorTerms:
+#                - matchExpressions:
+#                    - key: storage
+#                      operator: In
+#                      values:
+#                        - "yes"
         csi:
           tolerations:
             - operator: "Exists"
       storage:
-        useAllNodes: false
-        useAllDevices: false
+        useAllNodes: true
+        useAllDevices: true
         config:
           osdsPerDevice: "1"
-        nodes:
-          - name: "storage01"
-            deviceFilter: "sd[b-z]"
-          - name: "storage02"
-            deviceFilter: "sd[b-z]"
-          - name: "storage03"
-            deviceFilter: "sd[b-z]"
+#        nodes:
+#          - name: "storage01"
+#            deviceFilter: "sd[b-z]"
+#          - name: "storage02"
+#            deviceFilter: "sd[b-z]"
+#          - name: "storage03"
+#            deviceFilter: "sd[b-z]"
     cephBlockPools:
       - name: rbd
         spec:
