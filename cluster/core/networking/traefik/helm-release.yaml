@@ -115,7 +115,7 @@ spec:
                   - key: app.kubernetes.io/name
                     operator: In
                     values:
-                      - traefik
+                    - traefik
               topologyKey: kubernetes.io/hostname
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
