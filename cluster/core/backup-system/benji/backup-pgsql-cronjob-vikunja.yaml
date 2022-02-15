@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: postgres-backup-authentik
+  name: postgres-backup-vikunja
   namespace: backup-system
 spec:
   # Backup the database every day at 2AM
@@ -20,7 +20,7 @@ spec:
               args:
                 [
                   "-c",
-                  'mkdir -p /var/backups/authentik && apk --no-cache add wget && pg_dump -U postgres -h ${SECRET_POSTGRES_HOST} authentik > /var/backups/authentik/backup-$(date +"%m-%d-%Y-%H-%M").sql && wget https://healthchecks.k8s.aml.ink/ping/181a9bed-6919-4ef6-9f54-282ecc018e57 -T 10 -t 5 -O /dev/null',
+                  'mkdir -p /var/backups/vikunja && apk --no-cache add wget && pg_dump -U postgres -h ${SECRET_POSTGRES_HOST} vikunja > /var/backups/vikunja/backup-$(date +"%m-%d-%Y-%H-%M").sql && wget https://healthchecks.k8s.aml.ink/ping/181a9bed-6919-4ef6-9f54-282ecc018e57 -T 10 -t 5 -O /dev/null',
                 ]
               env:
                 - name: PGPASSWORD

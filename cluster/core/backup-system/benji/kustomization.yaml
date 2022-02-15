@@ -8,6 +8,12 @@ resources:
   - keyring-secret.sops.yaml
   - backup-pgsql-cronjob.yaml
   - backup-pgsql-cronjob-authentik.yaml
+  - backup-pgsql-cronjob-authelia.yaml
+  - backup-pgsql-cronjob-joplin.yaml
+  - backup-pgsql-cronjob-recipes.yaml
+  - backup-pgsql-cronjob-vaultwarden.yaml
+  - backup-pgsql-cronjob-vikunja.yaml
+  - backup-pgsql-cronjob-healthchecks.yaml
   - benji-restore-job.yaml
   - benji-restore-job-authentik.yaml
   - service-monitor.yaml
