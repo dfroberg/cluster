@@ -1,0 +1,59 @@
+#cloud-config
+hostname: ${hostname}
+fqdn: ${hostname}.${domain}
+manage_etc_hosts: true
+user: ${vm_ssh_user}
+password: ${vm_ssh_password}
+ssh_authorized_keys:
+  - ${vm_ssh_key}
+sudo: All=(ALL) NOPASSWD:ALL
+chpasswd:
+  expire: False
+users:
+  - default
+package_upgrade: true
+packages:
+  - apt-transport-https
+  - arptables
+  - ca-certificates
+  - curl
+  - ebtables
+  - gdisk
+  - hdparm
+  - htop
+  - iputils-ping
+  - ipvsadm
+  - lvm2
+  - net-tools
+  - nfs-common
+  - nano
+  - ntpdate
+  - nvme-cli
+  - open-iscsi
+  - open-vm-tools
+  - psmisc
+  - smartmontools
+  - socat
+  - software-properties-common
+  - unattended-upgrades
+  - unzip
+  - lzop 
+  - lsscsi 
+  - sg3-utils 
+  - multipath-tools 
+  - scsitools
+  - cloud-utils
+  - wireguard
+  - tmux
+  - xe-guest-utilities
+growpart:
+  mode: auto
+  devices: ['/']
+  ignore_growroot_disabled: false
+power_state:
+  delay: "+30"
+  mode: reboot
+  message: Bye Bye
+  timeout: 30
+  condition: True
+final_message: "The system is finally up, after $UPTIME seconds"

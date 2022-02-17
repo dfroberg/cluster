@@ -3,7 +3,7 @@ variable "common" {
   type = map(string)
   default = {
     os_type         = "ubuntu"
-    clone           = "ubuntu-21-10-cloudimg"
+    clone           = "Ubuntu 20.04 Cloud-Init 71"
     search_domain   = ""  # Ensure this one is blank or coredns will not work properly
     nameserver      = "192.168.30.1"
     ceph_nameserver = "192.168.25.1"
@@ -23,15 +23,15 @@ variable "masters" {
       ceph_cidr   = "192.168.25.50/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 8
+      vcpus       = 4
       cores       = 8
       macaddr     = "68:b5:99:b3:da:01"
       ceph_macaddr = "68:b5:99:b3:db:01"
-      memory      = 8*1024
-      disk        = "30"
+      memory      = 6*1024*1024*1024
+      disk        = 30*1024*1024*1024
       disk_slot   = 0
-      target_node = "esxi01"
-      storage_pool     = "vmdata"
+      target_node = "xcp-ng-01"
+      storage_pool     = "ld2"
       resource_pool_name = "High"
     },
     master02 = {
@@ -40,15 +40,15 @@ variable "masters" {
       ceph_cidr   = "192.168.25.51/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 8
+      vcpus       = 4
       cores       = 8
       macaddr     = "68:b5:99:b3:da:02"
       ceph_macaddr = "68:b5:99:b3:db:02"
-      memory      = 8*1024
-      disk        = "30"
+      memory      = 6*1024*1024*1024
+      disk        = 30*1024*1024*1024
       disk_slot   = 0
-      target_node = "esxi01"
-      storage_pool     = "vmdata"
+      target_node = "xcp-ng-01"
+      storage_pool     = "ld2"
       resource_pool_name = "High"
     },
     master03 = {
@@ -57,15 +57,15 @@ variable "masters" {
       ceph_cidr   = "192.168.25.52/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 8
+      vcpus       = 4
       cores       = 8
       macaddr     = "68:b5:99:b3:da:03"
       ceph_macaddr = "68:b5:99:b3:db:03"
-      memory      = 8*1024
-      disk        = "30"
+      memory      = 6*1024*1024*1024
+      disk        = 30*1024*1024*1024
       disk_slot   = 0
-      target_node = "esxi01"
-      storage_pool     = "vmdata"
+      target_node = "xcp-ng-01"
+      storage_pool     = "ld2"
       resource_pool_name = "High"
     }
   }
@@ -79,18 +79,18 @@ variable "storage" {
       ceph_cidr   = "192.168.25.53/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 8
+      vcpus       = 4
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1a"
       ceph_macaddr = "68:b5:99:b3:db:1a"
-      memory      = 5*1024
-      disk        = "30"
+      memory      = 6*1024*1024*1024
+      disk        = 30*1024*1024*1024
       disk_slot   = 0
-      storage_disk= "100"
+      storage_disk= 50*1024*1024*1024
       storage_disk_slot   = 1
-      target_node = "esxi01"
-      storage_pool     = "vmdata"
-      storage_pool_disk_storage = "nas-zfs"
+      target_node = "xcp-ng-01"
+      storage_pool     = "ld2"
+      storage_pool_disk_storage = "ld2"
       resource_pool_name = "Normal"
     },
     storage02 = {
@@ -99,18 +99,18 @@ variable "storage" {
       ceph_cidr   = "192.168.25.54/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 8
+      vcpus       = 4
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1b"
       ceph_macaddr = "68:b5:99:b3:db:1b"
-      memory      = 5*1024
-      disk        = "30"
+      memory      = 6*1024*1024*1024
+      disk        = 30*1024*1024*1024
       disk_slot   = 0
-      storage_disk= "100"
+      storage_disk= 50*1024*1024*1024
       storage_disk_slot   = 1
-      target_node = "esxi01"
-      storage_pool     = "vmdata"
-      storage_pool_disk_storage = "nas-zfs"
+      target_node = "xcp-ng-01"
+      storage_pool     = "ld2"
+      storage_pool_disk_storage = "ld2"
       resource_pool_name = "Normal"
     },
     storage03 = {
@@ -119,18 +119,18 @@ variable "storage" {
       ceph_cidr   = "192.168.25.55/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 8
+      vcpus       = 4
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1c"
       ceph_macaddr = "68:b5:99:b3:db:1c"
-      memory      = 5*1024
-      disk        = "30"
+      memory      = 6*1024*1024*1024
+      disk        = 30*1024*1024*1024
       disk_slot   = 0
-      storage_disk= "100"
+      storage_disk= 50*1024*1024*1024
       storage_disk_slot   = 1
-      target_node = "esxi01"
-      storage_pool     = "vmdata"
-      storage_pool_disk_storage = "nas-zfs"
+      target_node = "xcp-ng-01"
+      storage_pool     = "ld2"
+      storage_pool_disk_storage = "ld2"
       resource_pool_name = "Normal"
     },
   }
@@ -144,15 +144,15 @@ variable "workers" {
       ceph_cidr   = "192.168.25.56/24"
       sockets     = 4
       cpulimit    = 4
-      vcpus       = 32
+      vcpus       = 20
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0a"
       ceph_macaddr = "68:b5:99:b3:db:0a"
-      memory      = 16*1024
-      disk        = "60"
+      memory      = 16*1024*1024*1024
+      disk        = 60*1024*1024*1024
       disk_slot   = 0
-      target_node = "esxi01"
-      storage_pool     = "vmdata"
+      target_node = "xcp-ng-01"
+      storage_pool     = "ld2"
       resource_pool_name = "Normal"
     },
     worker02 = {
@@ -161,15 +161,15 @@ variable "workers" {
       ceph_cidr   = "192.168.25.57/24"
       sockets     = 4
       cpulimit    = 4
-      vcpus       = 32
+      vcpus       = 20
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0b"
       ceph_macaddr = "68:b5:99:b3:db:0b"
-      memory      = 16*1024
-      disk        = "60"
+      memory      = 16*1024*1024*1024
+      disk        = 60*1024*1024*1024
       disk_slot   = 0
-      target_node = "esxi01"
-      storage_pool     = "vmdata"
+      target_node = "xcp-ng-01"
+      storage_pool     = "ld2"
       resource_pool_name = "Normal"
     },
     worker03 = {
@@ -178,15 +178,15 @@ variable "workers" {
       ceph_cidr   = "192.168.25.58/24"
       sockets     = 4
       cpulimit    = 4
-      vcpus       = 32
+      vcpus       = 20
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0c"
       ceph_macaddr = "68:b5:99:b3:db:0c"
-      memory      = 16*1024
-      disk        = "60"
+      memory      = 16*1024*1024*1024
+      disk        = 60*1024*1024*1024
       disk_slot   = 0
-      target_node = "esxi01"
-      storage_pool= "vmdata"
+      target_node = "xcp-ng-01"
+      storage_pool= "ld2"
       resource_pool_name = "Normal"
     },
   }
