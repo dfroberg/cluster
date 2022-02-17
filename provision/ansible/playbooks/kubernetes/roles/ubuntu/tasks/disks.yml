@@ -1,6 +1,6 @@
 ---
 - name: Extend an existing partition to fill all available space
-  command: growpart -u auto /dev/sda 1 
+  command: growpart -u auto /dev/xvda 1 
   register: command_result
   failed_when: "'FAILED' in command_result.stderr"
   changed_when: 
@@ -12,7 +12,7 @@
 - name: 'Extend the FS'
   community.general.filesystem:
     fstype: 'ext4'
-    dev: '/dev/sda1'
+    dev: '/dev/xvda2'
     resizefs: yes
   tags:
     - partitions

@@ -61,14 +61,14 @@ spec:
           tolerations:
             #- key: StorageOnly
             - operator: Exists
-#          nodeAffinity:
-#            requiredDuringSchedulingIgnoredDuringExecution:
-#              nodeSelectorTerms:
-#                - matchExpressions:
-#                    - key: storage
-#                      operator: In
-#                      values:
-#                        - "yes"
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: storage
+                      operator: In
+                      values:
+                        - "yes"
         csi:
           tolerations:
             - operator: "Exists"
@@ -77,13 +77,13 @@ spec:
         useAllDevices: true
         config:
           osdsPerDevice: "1"
-#        nodes:
-#          - name: "storage01"
-#            deviceFilter: "sd[b-z]"
-#          - name: "storage02"
-#            deviceFilter: "sd[b-z]"
-#          - name: "storage03"
-#            deviceFilter: "sd[b-z]"
+        nodes:
+          - name: "storage01"
+            deviceFilter: "xvd[b-z]"
+          - name: "storage02"
+            deviceFilter: "xvd[b-z]"
+          - name: "storage03"
+            deviceFilter: "xvd[b-z]"
     cephBlockPools:
       - name: rbd
         spec:
