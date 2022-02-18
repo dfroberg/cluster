@@ -18,10 +18,10 @@ spec:
     kind: GitRepository
     name: flux-system
   healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: metallb-controller
-      namespace: metallb-system
+    # - apiVersion: apps/v1
+    #   kind: Deployment
+    #   name: metallb-controller
+    #   namespace: metallb-system
     - apiVersion: apps/v1
       kind: Deployment
       name: cert-manager
