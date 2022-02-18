@@ -20,6 +20,18 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
+      name: calico-kube-controllers
+      namespace: calico-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: calico-typha 
+      namespace: calico-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: tigera-operator
+      namespace: tigera-operator
+    - apiVersion: apps/v1
+      kind: Deployment
       name: cert-manager
       namespace: cert-manager
     - apiVersion: apps/v1
