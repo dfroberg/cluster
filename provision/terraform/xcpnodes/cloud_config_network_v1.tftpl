@@ -20,7 +20,6 @@ network:
            address: ${storage_node_ip}
            gateway: ${storage_node_gateway}
     - type: nameserver
-      interface: eth0
       address:
-        - ${storage_node_dns}
-      search: []
+        - ${node_dns}
+      search: ['']

@@ -14,3 +14,25 @@
        retries: 30
   roles:
     - ubuntu
+  handlers:
+    - name: restart sshd
+      service:
+        name: sshd
+        state: restarted
+      when: reboot_required.stat.exists == false
+
+    - name: restart fail2ban
+      service:
+        name: fail2ban
+        state: restarted
+      when: reboot_required.stat.exists == false
+
+    - name: restart systemd-resolved
+      service:
+        name: systemd-resolved
+        state: restarted
+      when: reboot_required.stat.exists == false
+
+    - name: netplan apply
+      command: netplan apply
+      when: cfg_static_network == true 

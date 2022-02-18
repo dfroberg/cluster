@@ -1,4 +1,21 @@
 ---
+- name: Ensure DNS exists
+  lineinfile:
+    dest: /etc/systemd/resolved.conf
+    regexp: '^#DNS='
+    line: 'DNS=192.168.30.1'
+    state: present
+  notify:
+    - restart systemd-resolved
+- name: Ensure Fallback DNS exists
+  lineinfile:
+    dest: /etc/systemd/resolved.conf
+    regexp: '^#FallbackDNS='
+    line: 'FallbackDNS=1.1.1.1'
+    state: present
+  notify:
+    - restart systemd-resolved
+
 - name: Set hostname to inventory hostname
   ansible.builtin.hostname:
     name: "{{ inventory_hostname }}"
@@ -72,3 +89,34 @@
 #    reload: yes
 #  tags:
 #    - network
+
+# - name: replace netplan
+#   roles:
+#     - role: mrlesmithjr.netplan
+#       become: yes
+#       # This role will do nothing unless netplan_enabled is true.
+#       netplan_enabled: true
+      
+#       # This should point to an existing netplan configuration file 
+#       # on your system which this role will overwrite, 
+#       # or to a nonexistent file which netplan is aware of.
+#       #
+#       # The default is /etc/netplan/config.yaml.
+#       netplan_config_file: /etc/netplan/00-k3s-netplan.yaml
+      
+#       # Ubuntu 18.04, for example, defaults to using networkd.
+#       netplan_renderer: networkd
+#       # Simple network configuration to add a single network interface.
+#       # Configuration defined bellow will be written to the file defined
+#       # above in `netplan_config_file`.
+#       netplan_configuration:
+#         network:
+#           version: 2
+#           ethernets:
+#             enp28s0f7:
+#               addresses:
+#                 - 10.11.12.99/24
+#   tags:
+#     - network
+#     - netplan
+

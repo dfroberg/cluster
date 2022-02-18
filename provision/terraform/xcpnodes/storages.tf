@@ -1,6 +1,6 @@
 resource "xenorchestra_cloud_config" "storage_user_config" {
   for_each = var.storage
-  name = "cloud config user config"
+  name = "${each.key} cloud config user config"
   # Template the cloudinit if needed
   template = templatefile("cloud_config.tftpl", {
     hostname = each.key
@@ -13,9 +13,9 @@ resource "xenorchestra_cloud_config" "storage_user_config" {
 }
 resource "xenorchestra_cloud_config" "storage_network_config" {
   for_each = var.storage
-  name = "cloud config network config"
+  name = "${each.key} cloud config network config"
   # Template the cloudinit if needed
-  template = templatefile("cloud_config_network.tftpl", {
+  template = templatefile("cloud_config_network_v1.tftpl", {
     hostname = each.key
     domain = "cs.aml.ink"
     node_hostname = each.key
@@ -77,7 +77,7 @@ resource "xenorchestra_vm" "kube-storage" {
 
   // Override the default create timeout from 5 mins to 20.
   timeouts {
-    create = "20m"
+    create = "30m"
   }
 
 }

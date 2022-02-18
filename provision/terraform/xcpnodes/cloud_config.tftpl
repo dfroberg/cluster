@@ -11,12 +11,19 @@ chpasswd:
   expire: False
 users:
   - default
+# More
+locale: en_US.UTF-8
+timezone: Europe/Stockholm
+local-hostname: ${hostname}
+instance-id: ${hostname}
+# Packages
 package_upgrade: true
 packages:
   - apt-transport-https
   - arptables
   - ca-certificates
   - curl
+  - cloud-init
   - ebtables
   - gdisk
   - hdparm
@@ -50,6 +57,13 @@ growpart:
   mode: auto
   devices: ['/']
   ignore_growroot_disabled: false
+manage_resolv_conf: true
+resolv_conf:
+    nameservers: ['192.168.30.1']
+    searchdomains: ['']
+# Remove installer netplan so we don't get an extra IP for the node.
+runcmd:
+  - rm -f /etc/netplan/00-installer-config.yaml
 power_state:
   delay: "+30"
   mode: reboot
