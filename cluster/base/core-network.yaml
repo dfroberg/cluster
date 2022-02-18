@@ -5,7 +5,7 @@ metadata:
   name: core-network
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 15m0s
   dependsOn:
     - name: init
   path: ./cluster/core/networking
@@ -18,10 +18,6 @@ spec:
     kind: GitRepository
     name: flux-system
   healthChecks:
-    # - apiVersion: apps/v1
-    #   kind: Deployment
-    #   name: metallb-controller
-    #   namespace: metallb-system
     - apiVersion: apps/v1
       kind: Deployment
       name: cert-manager
@@ -29,6 +25,10 @@ spec:
     - apiVersion: apps/v1
       kind: Deployment
       name: traefik
+      namespace: networking
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: ingress-nginx
       namespace: networking
   postBuild:
     substitute: {}
