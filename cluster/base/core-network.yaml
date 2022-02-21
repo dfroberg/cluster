@@ -39,7 +39,7 @@ spec:
       name: letsencrypt-production
     - apiVersion: cert-manager.io/v1
       kind: Certificate
-      name: ${SECRET_DOMAIN//./-}-tls
+      name: k8s-aml-ink-tls
       namespace: networking
   postBuild:
     substitute: {}
