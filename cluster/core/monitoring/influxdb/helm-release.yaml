@@ -92,7 +92,8 @@ spec:
 #        nodePorts:
 #          http: ""
 #          rpc: ""
-        loadBalancerIP: ${SVC_INFLUXDB_IP}
+        externalIPs: 
+          - ${SVC_INFLUXDB_IP}
         ## @param influxdb.service.loadBalancerSourceRanges Address that are allowed when service is LoadBalancer
         ## https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
         ##

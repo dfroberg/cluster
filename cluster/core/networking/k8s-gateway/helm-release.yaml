@@ -34,16 +34,17 @@ spec:
     domain: "${SECRET_DOMAIN}"
     service:
       type: LoadBalancer
-      # loadBalancerIP: "${CLUSTER_LB_K8SGATEWAY}"
+      externalIPs:
+        - "${CLUSTER_LB_K8SGATEWAY}"
       externalTrafficPolicy: Local
-  postRenderers:
-    - kustomize:
-        patchesJson6902:
-          - target:
-              kind: Service
-              name: k8s-gateway
-            patch:
-              - op: add
-                path: /spec/loadBalancerIP
-                value:
-                  "${CLUSTER_LB_K8SGATEWAY}"
+  # postRenderers:
+  #   - kustomize:
+  #       patchesJson6902:
+  #         - target:
+  #             kind: Service
+  #             name: k8s-gateway
+  #           patch:
+  #             - op: add
+  #               path: /spec/loadBalancerIP
+  #               value:
+  #                 "${CLUSTER_LB_K8SGATEWAY}"

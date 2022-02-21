@@ -46,7 +46,8 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: "${SVC_TVHEADEND_ADDR}"
+        externalIPs: 
+          - "${SVC_TVHEADEND_ADDR}"
         externalTrafficPolicy: Local
         ports:
           http:
