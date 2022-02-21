@@ -2,13 +2,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: core-network
+  name: core-network-ingress
   namespace: flux-system
 spec:
-  interval: 30m0s
+  interval: 15m0s
   dependsOn:
-    - name: init
-  path: ./cluster/core/networking
+    - name: core-network
+  path: ./cluster/core/networking-ingress
   prune: false
   decryption:
     provider: sops
@@ -20,23 +20,15 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: calico-kube-controllers
-      namespace: calico-system
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: calico-typha 
-      namespace: calico-system
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: tigera-operator
-      namespace: tigera-operator
-    - apiVersion: apps/v1
-      kind: Deployment
       name: cert-manager
       namespace: cert-manager
-    - apiVersion: cert-manager.io/v1
-      kind: Certificate
-      name: ${SECRET_DOMAIN//./-}-tls
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: traefik
+      namespace: networking
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: ingress-nginx
       namespace: networking
   postBuild:
     substitute: {}
