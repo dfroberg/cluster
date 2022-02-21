@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  timeout: 5m0s
+  timeout: 1m0s
   dependsOn:
     - name: init
   path: ./cluster/core/networking
@@ -23,13 +23,13 @@ spec:
       kind: Deployment
       name: cert-manager
       namespace: cert-manager
-    - apiVersion: cert-manager.io/v1
-      kind: ClusterIssuer
-      name: letsencrypt-production
-    - apiVersion: cert-manager.io/v1
-      kind: Certificate
-      name: k8s-aml-ink-tls
-      namespace: networking
+    # - apiVersion: cert-manager.io/v1
+    #   kind: ClusterIssuer
+    #   name: letsencrypt-production
+    # - apiVersion: cert-manager.io/v1
+    #   kind: Certificate
+    #   name: k8s-aml-ink-tls
+    #   namespace: networking
   postBuild:
     substitute: {}
     substituteFrom:
