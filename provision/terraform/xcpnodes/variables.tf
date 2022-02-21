@@ -13,7 +13,29 @@ variable "common" {
 
   }
 }
-
+variable "dbs" {
+  type = map(map(string))
+  default = {
+    postgres = {
+      id          = 4009
+      primary_ip  = "192.168.30.18"
+      cidr        = "192.168.30.18/24"
+      ceph_cidr   = "192.168.25.18/24"
+      sockets     = 1
+      cpulimit    = 4
+      vcpus       = 4
+      cores       = 8
+      macaddr     = "68:b5:99:b3:da:fa"
+      ceph_macaddr = "68:b5:99:b3:db:fa"
+      memory      = 4*1024*1024*1024
+      disk        = 10*1024*1024*1024
+      disk_slot   = 0
+      target_node = "xcp-ng-01"
+      storage_pool     = "ld2"
+      resource_pool_name = "High"
+    },
+  }
+}
 variable "masters" {
   type = map(map(string))
   default = {
