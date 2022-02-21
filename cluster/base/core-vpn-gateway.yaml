@@ -8,7 +8,7 @@ spec:
     retryInterval: 1m0s
     timeout: 15m0s
     dependsOn:
-        - name: core-network
+        - name: core-storage
     path: ./cluster/core/vpn-gateway
     prune: true
     decryption:
