@@ -35,6 +35,9 @@ spec:
       name: cert-manager
       namespace: cert-manager
     - apiVersion: cert-manager.io/v1
+      kind: ClusterIssuer
+      name: letsencrypt-production
+    - apiVersion: cert-manager.io/v1
       kind: Certificate
       name: ${SECRET_DOMAIN//./-}-tls
       namespace: networking
