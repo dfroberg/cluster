@@ -5,7 +5,7 @@ resources:
   # - gitea
   - gollum
   # - openkm
-  # - joplin
+  - joplin
   # - littlelink
   # - nextcloud
   - rxresume
