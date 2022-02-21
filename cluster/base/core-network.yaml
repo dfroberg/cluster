@@ -37,7 +37,7 @@ spec:
     - apiVersion: cert-manager.io/v1
       kind: Certificate
       name: ${SECRET_DOMAIN//./-}-tls
-      namespace: networking
+      namespace: cert-manager
   postBuild:
     substitute: {}
     substituteFrom:
