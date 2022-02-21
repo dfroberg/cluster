@@ -5,7 +5,7 @@ metadata:
   name: core-network
   namespace: flux-system
 spec:
-  interval: 30m0s
+  interval: 1m0s
   dependsOn:
     - name: init
   path: ./cluster/core/networking
