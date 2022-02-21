@@ -6,6 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
+  timeout: 5m0s
   dependsOn:
     - name: init
   path: ./cluster/core/networking
@@ -18,18 +19,6 @@ spec:
     kind: GitRepository
     name: flux-system
   healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: calico-kube-controllers
-      namespace: calico-system
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: calico-typha 
-      namespace: calico-system
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: tigera-operator
-      namespace: tigera-operator
     - apiVersion: apps/v1
       kind: Deployment
       name: cert-manager
