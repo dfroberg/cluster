@@ -40,6 +40,7 @@ spec:
         add:
           - NET_ADMIN
           - SYS_ADMIN
+          - sysctl net.ipv4.conf.all.src_valid_mark=1
     updateStrategy: Recreate
     clusterName: ${CLUSTER_DOMAIN}
     addons:
@@ -85,8 +86,8 @@ spec:
               - bash
               - -c
               - if [ $(curl -s https://am.i.mullvad.net/country) = '${VPN_COUNTRY}' ]; then exit 0; else exit $?; fi
-          initialDelaySeconds: 30
-          periodSeconds: 60
+          initialDelaySeconds: 45
+          periodSeconds: 120
           failureThreshold: 1
         networkPolicy:
           enabled: true
