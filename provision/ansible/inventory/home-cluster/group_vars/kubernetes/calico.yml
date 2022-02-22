@@ -1,6 +1,8 @@
 ---
 # Encapsulation type
 calico_encapsulation: "None"
+# Interface selection
+calico_interface: eth.*
 # BGP Peer IP
 # (usually your router IP address)
 calico_bgp_peer_ip: 192.168.30.1
