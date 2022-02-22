@@ -3,18 +3,18 @@ kind: Kustomization
 resources:
   #- blackbox-exporter
   #- botkube # Moved to init
-#  - grafana
-#  - influxdb # Temp disable
-#  - kube-prometheus-stack
-#  - loki
-#  - promtail
-#  - flux-system
+  - grafana
+  - influxdb # Temp disable
+  - kube-prometheus-stack
+  - loki
+  - promtail
+  - flux-system
   # - snmp-exporter-pdu-0
   # - snmp-exporter-pdu-1
   # - snmp-exporter-ups-0
-#  - speedtest-exporter
-#  - thanos
-#  - unifi-poller
+  - speedtest-exporter
+  - thanos
+  - unifi-poller
   # - uptimerobot-heartbeat
   - healthchecks
   - gatus
