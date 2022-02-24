@@ -63,7 +63,7 @@ spec:
           containers:
             - name: secret-reflector
               # image: ghcr.io/k8s-at-home/kubectl:v1.22.1
-              image: alpine/k8s:1.21.2
+              image: alpine/k8s:1.21.5
               env:
                 - name: SECRETS
                   value: "${SECRET_DOMAIN//./-}-tls"
@@ -77,7 +77,7 @@ spec:
                   readOnly: true
             - name: configmap-reflector
               # image: ghcr.io/k8s-at-home/kubectl:v1.22.1
-              image: alpine/k8s:1.21.2
+              image: alpine/k8s:1.21.5
               env:
                 - name: CONFIGMAPS
                   value: "none"
