@@ -4,5 +4,6 @@ kind: Namespace
 metadata:
   name: default
   labels:
+    cert-manager-tls: wildcard
     goldilocks.fairwinds.com/enabled: "true"
     goldilocks.fairwinds.com/vpa-update-mode: "auto"

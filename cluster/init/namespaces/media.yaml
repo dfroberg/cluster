@@ -4,7 +4,7 @@ kind: Namespace
 metadata:
   name: media
   labels:
-    app: "kubed"
+    cert-manager-tls: wildcard
     vpn-routed-gateway: "true"
     goldilocks.fairwinds.com/enabled: "true"
     goldilocks.fairwinds.com/vpa-update-mode: "auto"

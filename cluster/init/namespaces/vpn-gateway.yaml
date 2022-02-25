@@ -4,6 +4,7 @@ kind: Namespace
 metadata:
   name: vpn-gateway
   labels:
+    cert-manager-tls: wildcard
     goldilocks.fairwinds.com/enabled: "true"
     goldilocks.fairwinds.com/vpa-update-mode: "auto"
 

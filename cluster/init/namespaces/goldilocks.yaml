@@ -3,5 +3,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: goldilocks
+  labels:
+    cert-manager-tls: wildcard
   annotations:
     k10.kasten.io/ignorebackuppolicy: "true"

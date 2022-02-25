@@ -4,6 +4,6 @@ kind: Namespace
 metadata:
   name: gaming
   labels:
-    app: "kubed"
+    cert-manager-tls: wildcard
     goldilocks.fairwinds.com/enabled: "true"
     goldilocks.fairwinds.com/vpa-update-mode: "auto"

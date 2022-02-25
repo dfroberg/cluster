@@ -8,4 +8,4 @@ metadata:
   labels:
     goldilocks.fairwinds.com/enabled: "true"
     goldilocks.fairwinds.com/vpa-update-mode: "auto"
-    app: "kubed"
+    
