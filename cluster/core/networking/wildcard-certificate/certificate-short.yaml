@@ -1,0 +1,18 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "${SECRET_SHORT_DOMAIN//./-}"
+  namespace: networking
+spec:
+  secretName: "${SECRET_SHORT_DOMAIN//./-}-tls"
+  secretTemplate:
+    annotations:
+      kubed.appscode.com/sync: "cert-manager-tls=wildcard"
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "${SECRET_SHORT_DOMAIN}"
+  dnsNames:
+    - "${SECRET_SHORT_DOMAIN}"
+    - "*.${SECRET_SHORT_DOMAIN}"
