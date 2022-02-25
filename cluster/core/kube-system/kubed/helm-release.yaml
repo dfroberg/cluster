@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: appscode/kubed
-      tag: v0.13.1
+      tag: v0.13.2
     updateStrategy: RollingUpdate
     # Overrides name template
     nameOverride: ""
