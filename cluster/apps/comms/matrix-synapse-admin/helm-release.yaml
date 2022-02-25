@@ -58,7 +58,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: matrix-admin-cert
+          - secretName: "${SECRET_DOMAIN//./-}-tls"
             hosts:
               - "matrix-admin.${SECRET_DOMAIN}"
 

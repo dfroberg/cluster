@@ -66,7 +66,7 @@ spec:
               - path: /public
                 pathType: Prefix
         tls:
-          - secretName: mau-fb-cert
+          - secretName: "${SECRET_DOMAIN//./-}-tls"
             hosts:
               - "mau-fb.${SECRET_DOMAIN}"
 

@@ -66,6 +66,8 @@ spec:
       tls:
         - hosts:
             - "gatus.${SECRET_DOMAIN}"
+          secretName: "${SECRET_DOMAIN//./-}-tls"
+
     config:
       # Config Options available: https://github.com/TwiN/gatus#configuration
       metrics: true

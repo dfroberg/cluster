@@ -57,7 +57,7 @@ spec:
         tls:
           - hosts:
               - photos.${SECRET_DOMAIN}
-            secretName: photoprism-tls
+            secretName: "${SECRET_DOMAIN//./-}-tls"
     persistence:
       config:
         enabled: true

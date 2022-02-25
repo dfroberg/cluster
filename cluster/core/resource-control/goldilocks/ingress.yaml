@@ -26,5 +26,5 @@ spec:
                   name: http
   tls:
     - secretName: "${SECRET_DOMAIN//./-}-tls"
-    - hosts:
+      hosts:
         - "goldilocks.${SECRET_DOMAIN}"

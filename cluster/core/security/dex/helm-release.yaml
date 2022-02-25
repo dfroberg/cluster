@@ -57,7 +57,7 @@ spec:
       tls:
         - hosts:
             - "dex.${SECRET_DOMAIN}"
-          secretName: dex-cert
+          secretName: "${SECRET_DOMAIN//./-}-tls"
 
     config:
       issuer: https://dex.${SECRET_DOMAIN}/
