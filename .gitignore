@@ -16,4 +16,4 @@ kubeconfig
 vm-*-*data.yaml
 terraform-plugin-proxmox.log
 frr.conf
-cert-manager-backup.yaml
+cert-manager-backup*.yaml
