@@ -15,3 +15,5 @@ kubeconfig
 .terraform.lock.hcl
 vm-*-*data.yaml
 terraform-plugin-proxmox.log
+frr.conf
+cert-manager-backup.yaml
