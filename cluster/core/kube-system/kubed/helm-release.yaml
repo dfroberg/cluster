@@ -25,20 +25,20 @@ spec:
     image:
       repository: appscode/kubed
       tag: v0.13.2
-    updateStrategy: RollingUpdate
+    updateStrategy: Recreate
     # Overrides name template
-    nameOverride: ""
+    #nameOverride: ""
     # Overrides fullname template
-    fullnameOverride: ""
+    #fullnameOverride: ""
 
     config:
       # Set cluster-name to something meaningful to you, say, prod, prod-us-east, qa, etc.
       # so that you can distinguish notifications sent by kubed
       clusterName: lab-cluster
       # If set, configmaps and secrets from only this namespace will be synced
-      configSourceNamespace: ""
+      #configSourceNamespace: ""
       # kubeconfig file content for configmap and secret syncer
-      kubeconfigContent: ""
+      #kubeconfigContent: ""
     #  additionalOptions:
     #    - --authentication-skip-lookup
 
@@ -62,7 +62,7 @@ spec:
       annotations: {}
       # The name of the service account to use.
       # If not set and create is true, a name is generated using the fullname template
-      name: ""
+      #name: ""
 
     apiserver:
       enabled: true
@@ -78,11 +78,11 @@ spec:
         # to authenticate operators pods. Otherwise specify certs in `apiserver.servingCerts.{caCrt, serverCrt, serverKey}`.
         generate: true
         # CA certficate used by serving certificate of Kubed server.
-        caCrt: ""
+        #caCrt: ""
         # Serving certficate used by Kubed server.
-        serverCrt: ""
+        #serverCrt: ""
         # Private key for the serving certificate used by Kubed server.
-        serverKey: ""
+        #serverKey: ""
 
     tolerations:
       - effect: NoExecute

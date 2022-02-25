@@ -9,4 +9,5 @@ resources:
   - node-feature-discovery
   - reloader
   #- node-problem-detector
-  #- kubed
+  - kubed
+  
