@@ -1,0 +1,33 @@
+#!/bin/bash
+export PATH=$PATH:/usr/bin
+# Kine cluster DB
+sudo -u postgres psql -c "CREATE DATABASE cluster;"
+sudo -u postgres psql -c "CREATE USER cluster WITH PASSWORD '${postgres_password}';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE cluster to cluster;"
+# Service Databases
+sudo -u postgres psql -c "CREATE DATABASE benji;"
+sudo -u postgres psql -c "CREATE USER benji WITH PASSWORD '${benji_password}';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE benji to benji;"
+sudo -u postgres psql -c "CREATE DATABASE authentik;"
+sudo -u postgres psql -c "CREATE USER authentik WITH PASSWORD '${postgres_password}';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE authentik to authentik;"
+sudo -u postgres psql -c "CREATE DATABASE vikunja;"
+sudo -u postgres psql -c "CREATE USER vikunja WITH PASSWORD '${postgres_password}';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE vikunja to vikunja;"
+sudo -u postgres psql -c "CREATE DATABASE healthchecks;"
+sudo -u postgres psql -c "CREATE USER healthchecks WITH PASSWORD '${postgres_password}';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE healthchecks to healthchecks;"
+sudo -u postgres psql -c "CREATE DATABASE recipes;"
+sudo -u postgres psql -c "CREATE USER recipes WITH PASSWORD '${postgres_password}';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE recipes to recipes;"
+sudo -u postgres psql -c "CREATE DATABASE joplin;"
+sudo -u postgres psql -c "CREATE USER joplin WITH PASSWORD '${postgres_password}';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE joplin to joplin;"
+sudo -u postgres psql -c "CREATE DATABASE authelia;"
+sudo -u postgres psql -c "CREATE USER authelia WITH PASSWORD '${postgres_password}';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE authelia to authelia;"
+sudo -u postgres psql -c "CREATE DATABASE vaultwarden;"
+sudo -u postgres psql -c "CREATE USER vaultwarden WITH PASSWORD '${postgres_password}';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE vaultwarden to vaultwarden;"
+# Set Main PW
+sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '${postgres_password}';"

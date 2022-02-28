@@ -2,7 +2,7 @@ resource "xenorchestra_cloud_config" "db_user_config" {
   for_each = var.dbs
   name = "${each.key} cloud config user config"
   # Template the cloudinit if needed
-  template = templatefile("cloud_config.tftpl", {
+  template = templatefile("cloud_config_postgres.tftpl", {
     hostname = each.key
     domain = "cs.aml.ink"
     vm_ssh_user = data.sops_file.global_secrets.data["k8s.ssh_username"]
@@ -86,48 +86,38 @@ resource "xenorchestra_vm" "kube-db" {
 
   # https://www.terraform.io/docs/configuration/functions/templatefile.html
   provisioner "file" {
-    content     = templatefile("files/setup_postgres.sh.tpl", {})
-    destination = "/tmp/setup_postgres.sh"
+    content     = templatefile("files/install_postgres.sh.tpl", {
+      version = 14
+      })
+    destination = "/home/dfroberg/install_postgres.sh"
+  }
+  provisioner "file" {
+    content     = templatefile("files/setup_postgres_network.sh.tpl", {
+      version = 14
+      })
+    destination = "/home/dfroberg/setup_postgres_network.sh"
+  }
+  provisioner "file" {
+    content     = templatefile("files/setup_postgres_tables.sh.tpl", {
+      version = 14
+      postgres_password = data.sops_file.global_secrets.data["postgres.postgrespw"]
+      benji_password = data.sops_file.global_secrets.data["postgres.benjipw"]
+      })
+    destination = "/home/dfroberg/setup_postgres_tables.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
-      "wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -",
-      "echo \"deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main\" |sudo tee  /etc/apt/sources.list.d/pgdg.list",
-      "sudo apt-get update",
-      "sudo apt-get -y install postgresql-12 postgresql-client-12",
-      "sudo -u postgres psql -c \"alter user postgres with password '${data.sops_file.global_secrets.data["postgres.postgrespw"]}';\"",
-      "sudo -u postgres psql -c \"CREATE DATABASE cluster;\"",
-      "sudo -u postgres psql -c \"CREATE USER cluster WITH ENCRYPTED PASSWORD '${data.sops_file.global_secrets.data["postgres.postgrespw"]}';\"",
-      "sudo -u postgres psql -c \"GRANT ALL PRIVILEGES ON DATABASE cluster to cluster;\"",
-      "sudo -u postgres psql -c \"CREATE DATABASE benji;\"",
-      "sudo -u postgres psql -c \"CREATE USER benji WITH ENCRYPTED PASSWORD '${data.sops_file.global_secrets.data["postgres.benjipw"]}';\"",
-      "sudo -u postgres psql -c \"GRANT ALL PRIVILEGES ON DATABASE benji to benji;\"",
-      "sudo -u postgres psql -c \"CREATE DATABASE authentik;\"",
-      "sudo -u postgres psql -c \"CREATE USER authentik WITH ENCRYPTED PASSWORD '${data.sops_file.global_secrets.data["postgres.postgrespw"]}';\"",
-      "sudo -u postgres psql -c \"GRANT ALL PRIVILEGES ON DATABASE authentik to authentik;\"",
-      "sudo -u postgres psql -c \"CREATE DATABASE vikunja;\"",
-      "sudo -u postgres psql -c \"CREATE USER vikunja WITH ENCRYPTED PASSWORD '${data.sops_file.global_secrets.data["postgres.postgrespw"]}';\"",
-      "sudo -u postgres psql -c \"GRANT ALL PRIVILEGES ON DATABASE vikunja to vikunja;\"",
-      "sudo -u postgres psql -c \"CREATE DATABASE healthchecks;\"",
-      "sudo -u postgres psql -c \"CREATE USER healthchecks WITH ENCRYPTED PASSWORD '${data.sops_file.global_secrets.data["postgres.postgrespw"]}';\"",
-      "sudo -u postgres psql -c \"GRANT ALL PRIVILEGES ON DATABASE healthchecks to healthchecks;\"",
-      "sudo -u postgres psql -c \"CREATE DATABASE recipes;\"",
-      "sudo -u postgres psql -c \"CREATE USER recipes WITH ENCRYPTED PASSWORD '${data.sops_file.global_secrets.data["postgres.postgrespw"]}';\"",
-      "sudo -u postgres psql -c \"GRANT ALL PRIVILEGES ON DATABASE recipes to recipes;\"",
-      "sudo -u postgres psql -c \"CREATE DATABASE joplin;\"",
-      "sudo -u postgres psql -c \"CREATE USER joplin WITH ENCRYPTED PASSWORD '${data.sops_file.global_secrets.data["postgres.postgrespw"]}';\"",
-      "sudo -u postgres psql -c \"GRANT ALL PRIVILEGES ON DATABASE joplin to joplin;\"",
-      "sudo -u postgres psql -c \"CREATE DATABASE authelia;\"",
-      "sudo -u postgres psql -c \"CREATE USER authelia WITH ENCRYPTED PASSWORD '${data.sops_file.global_secrets.data["postgres.postgrespw"]}';\"",
-      "sudo -u postgres psql -c \"GRANT ALL PRIVILEGES ON DATABASE authelia to authelia;\"",
-      "sudo -u postgres psql -c \"CREATE DATABASE vaultwarden;\"",
-      "sudo -u postgres psql -c \"CREATE USER vaultwarden WITH ENCRYPTED PASSWORD '${data.sops_file.global_secrets.data["postgres.postgrespw"]}';\"",
-      "sudo -u postgres psql -c \"GRANT ALL PRIVILEGES ON DATABASE vaultwarden to vaultwarden;\"",
-      "sudo chmod +x /tmp/setup_postgres.sh",
-      "sudo bash /tmp/setup_postgres.sh",
-      "echo done"
+      "sleep 60",
+      "sudo chmod +x /home/dfroberg/install_postgres.sh",
+      "sudo bash /home/dfroberg/install_postgres.sh",
+      "sudo chmod +x /home/dfroberg/setup_postgres_network.sh",
+      "sudo bash /home/dfroberg/setup_postgres_network.sh",
+      "sudo chmod +x /home/dfroberg/setup_postgres_tables.sh",
+      "sudo bash /home/dfroberg/setup_postgres_tables.sh",
+      "sudo apt upgrade -y",
+      "sudo service postgres restart",
     ]
   }
 
