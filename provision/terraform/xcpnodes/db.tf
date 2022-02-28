@@ -109,7 +109,7 @@ resource "xenorchestra_vm" "kube-db" {
   provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
-      "sleep 60",
+      "sleep 90",
       "sudo chmod +x /home/dfroberg/install_postgres.sh",
       "sudo bash /home/dfroberg/install_postgres.sh",
       "sudo chmod +x /home/dfroberg/setup_postgres_network.sh",
