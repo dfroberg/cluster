@@ -118,6 +118,7 @@ resource "xenorchestra_vm" "kube-db" {
       "sudo bash /home/dfroberg/setup_postgres_tables.sh",
       "sudo apt upgrade -y",
       "sudo service postgres restart",
+      "shutdown -r NOW"
     ]
   }
 

@@ -64,10 +64,4 @@ resolv_conf:
 # Remove installer netplan so we don't get an extra IP for the node.
 runcmd:
   - rm -f /etc/netplan/00-installer-config.yaml
-power_state:
-  delay: "+30"
-  mode: reboot
-  message: Bye Bye
-  timeout: 30
-  condition: True
 final_message: "The system is finally up, after $UPTIME seconds"
