@@ -23,7 +23,7 @@ variable "dbs" {
       ceph_cidr   = "192.168.25.18/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 4
+      vcpus       = 8
       cores       = 8
       macaddr     = "68:b5:99:b3:da:fa"
       ceph_macaddr = "68:b5:99:b3:db:fa"
