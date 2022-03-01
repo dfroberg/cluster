@@ -30,6 +30,10 @@ spec:
     postgresqlUsername: ${SECRET_POSTGRES_USERNAME}
     postgresqlPassword: ${SECRET_POSTGRES_PASSWORD}
     postgresqlDatabase: postgres
+    auth:
+      username: ${SECRET_POSTGRES_USERNAME}
+      password: ${SECRET_POSTGRES_PASSWORD}
+      database: postgres
     metrics:
       enabled: true
       serviceMonitor:
