@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: thanos
-      version: 9.0.8
+      version: 9.0.9
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
@@ -49,6 +49,7 @@ spec:
         hostname: "thanos.${SECRET_DOMAIN}"
         ingressClassName: "nginx"
         annotations:
+          app: thanos
           #traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         tls: true
     existingObjstoreSecret: thanos-objstore
