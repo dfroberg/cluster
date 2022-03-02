@@ -105,6 +105,28 @@ resource "xenorchestra_vm" "kube-db" {
       })
     destination = "/home/dfroberg/setup_postgres_tables.sh"
   }
+  provisioner "file" {
+    content     = templatefile("files/fstab.tpl", {
+      version = 14
+      nas_path = data.sops_file.global_secrets.data["nas.nas_path"]
+      nas_ip   = data.sops_file.global_secrets.data["nas.nas_ip"]
+      username = data.sops_file.global_secrets.data["nas.username"]
+      password = data.sops_file.global_secrets.data["nas.password"]
+      })
+    destination = "/home/dfroberg/fstab.txt"
+  }
+  provisioner "file" {
+    content     = templatefile("files/postgres_dumpall.sh.tpl", {})
+    destination = "/home/dfroberg/postgres_dumpall.sh"
+  }
+  provisioner "file" {
+    content     = templatefile("files/postgres_restore.sh.tpl", {})
+    destination = "/home/dfroberg/postgres_restore.sh"
+  }
+  provisioner "file" {
+    content     = templatefile("files/add_crontab.sh.tpl", {})
+    destination = "/home/dfroberg/add_crontab.sh"
+  }
 
   provisioner "remote-exec" {
     inline = [
@@ -116,9 +138,15 @@ resource "xenorchestra_vm" "kube-db" {
       "sudo bash /home/dfroberg/setup_postgres_network.sh",
       "sudo chmod +x /home/dfroberg/setup_postgres_tables.sh",
       "sudo bash /home/dfroberg/setup_postgres_tables.sh",
+      "sudo chmod +x /home/dfroberg/add_crontab.sh",
+      "sudo bash /home/dfroberg/add_crontab.sh",
+      "sudo chmod +x /home/dfroberg/postgres_dumpall.sh",
+      "sudo chmod +x /home/dfroberg/postgres_restore.sh",
       "sudo apt upgrade -y",
       "sudo service postgres restart",
-      "shutdown -r NOW"
+      "sudo mkdir -p /mnt/backups",
+      "sudo cat /home/dfroberg/fstab.txt >> /etc/fstab"
+      "sudo shutdown -r NOW"
     ]
   }
 
