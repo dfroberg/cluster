@@ -9,5 +9,5 @@ resources:
   #- security     # Moved to own step in base
   - resource-control
   #- system-upgrade
-  - monitoring
+  #- monitoring   # Moved to own step in base
 
