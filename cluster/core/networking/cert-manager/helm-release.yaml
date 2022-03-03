@@ -22,7 +22,7 @@ spec:
   upgrade:
     timeout: 10m
     remediation:
-      retries: 3
+      retries: 30
       remediateLastFailure: true
     cleanupOnFail: true
   rollback:
@@ -48,5 +48,5 @@ spec:
         cpu: 25m
         memory: 263M
       limits:
-        cpu: 25m
-        memory: 263M
+        cpu: 125m
+        memory: 512M
