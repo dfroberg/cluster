@@ -173,7 +173,7 @@ spec:
       ## @param relay.existingConfiguration Name of existing ConfigMap object with the InfluxDB Relay&trade; configuration (`relay.configuration` will be ignored)
       ## NOTE: This will override relay.configuration
       ##
-      existingConfiguration: ""
+      #existingConfiguration: ""
       ## @param relay.replicaCount The number of InfluxDB Relay&trade; replicas to deploy
       ##
       replicaCount: 1
@@ -286,17 +286,17 @@ spec:
     ##
     ingress:
       enabled: true
-      ingressClassName: "nginx"
+      ingressClassName: "traefik"
       tls: true
       ## @param ingress.certManager Add annotations for cert-manager
       ##
-      certManager: false
+      certManager: true
       ## @param ingress.pathType Ingress path type
       ##
       pathType: ImplementationSpecific
       ## @param ingress.apiVersion Force Ingress API version (automatically detected if not set)
       ##
-      apiVersion: ""
+      #apiVersion: ""
       ## @param ingress.hostname Default host for the ingress resource
       ##
       hostname: influxdb.${SECRET_DOMAIN}
@@ -311,6 +311,8 @@ spec:
       ## If certManager is set to true, annotation kubernetes.io/tls-acme: "true" will automatically be set
       ##
       annotations: 
+        kubernetes.io/tls-acme: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-production
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       ## @param ingress.extraHosts The list of additional hostnames to be covered with this ingress record.
       ## Most likely the hostname above will be enough, but in the event more hosts are needed, this is an array

@@ -4,5 +4,5 @@ resources:
   - traefik
   - error-pages
   - ingress-nginx
-  - k8s-gateway
+  #- k8s-gateway
   - webhooks
