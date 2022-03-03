@@ -39,7 +39,7 @@ spec:
       KUBERNETES_POD_NAMESPACE: security
     ingress:
       enabled: true
-      className: nginx
+      ingressClassName: nginx
       annotations:
         kubernetes.io/tls-acme: "true"
         cert-manager.io/cluster-issuer: letsencrypt-production
