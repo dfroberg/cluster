@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   generation: 1
-  name: postgres-backup-restore-recipes
+  name: postgres-restore-recipes
   namespace: backup-system
 spec:
   suspend: true
@@ -13,7 +13,7 @@ spec:
   ttlSecondsAfterFinished: 100
   template:
     metadata:
-      name: postgres-backup-restore-recipes
+      name: postgres-restore-recipes
     spec:
       containers:
       - image: postgres:14

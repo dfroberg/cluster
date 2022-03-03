@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   generation: 1
-  name: postgres-backup-restore-healthchecks
+  name: postgres-restore-healthchecks
   namespace: backup-system
 spec:
   suspend: true
@@ -13,7 +13,7 @@ spec:
   ttlSecondsAfterFinished: 100
   template:
     metadata:
-      name: postgres-backup-restore-healthchecks
+      name: postgres-restore-healthchecks
     spec:
       containers:
       - image: postgres:14

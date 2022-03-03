@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   generation: 1
-  name: postgres-backup-restore-vaultwarden
+  name: postgres-restore-vaultwarden
   namespace: backup-system
 spec:
   suspend: true
@@ -13,7 +13,7 @@ spec:
   ttlSecondsAfterFinished: 100
   template:
     metadata:
-      name: postgres-backup-restore-vaultwarden
+      name: postgres-restore-vaultwarden
     spec:
       containers:
       - image: postgres:14
