@@ -16,6 +16,7 @@ resources:
   - backup-pgsql-cronjob-healthchecks.yaml
   - benji-restore-job.yaml
   - benji-restore-job-authentik.yaml
+  - benji-restore-job-healtchecks.yaml
   - service-monitor.yaml
 configMapGenerator:
   - name: ceph-config

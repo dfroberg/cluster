@@ -1,0 +1,46 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generation: 1
+  name: postgres-backup-restore-healthchecks
+  namespace: backup-system
+spec:
+  suspend: true
+  completions: 1
+  parallelism: 1
+  backoffLimit: 1
+  activeDeadlineSeconds: 100
+  ttlSecondsAfterFinished: 100
+  template:
+    metadata:
+      name: postgres-backup-restore-healthchecks
+    spec:
+      containers:
+      - image: postgres:14
+        name: postgres-backup
+        imagePullPolicy: IfNotPresent
+        args:
+          - -c
+          - psql -U healthchecks -h ${SECRET_POSTGRES_HOST} healthchecks -f $(find /var/backups/healthchecks/ -size +100k -maxdepth 1 -name "*.sql" -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 | cut -d " " -f 4-)
+        command:
+          - /bin/sh
+        env:
+        - name: PGPASSWORD
+          value: ${SECRET_POSTGRES_PASSWORD}
+        
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/backups
+          name: postgres-storage
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: postgres-storage
+        persistentVolumeClaim:
+          claimName: backup-system-nfs-tank-share-pvc
+
