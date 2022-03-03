@@ -16,7 +16,7 @@ resources:
   - backup-pgsql-cronjob-healthchecks.yaml
   - benji-restore-job-benji.yaml
   - benji-restore-job-authentik.yaml
-  - benji-restore-job-healtchecks.yaml
+  - benji-restore-job-healthchecks.yaml
   - benji-restore-job-recipes.yaml
   - benji-restore-job-authelia.yaml
   - benji-restore-job-vaultwarden.yaml
