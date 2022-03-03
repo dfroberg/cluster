@@ -20,6 +20,7 @@ variable "dbs" {
       id          = 4009
       primary_ip  = "192.168.30.18"
       cidr        = "192.168.30.18/24"
+      cidr6       = "fe80::6ab5:99ff:feb3:dafa"
       ceph_cidr   = "192.168.25.18/24"
       sockets     = 1
       cpulimit    = 4
@@ -42,6 +43,7 @@ variable "masters" {
     master01 = {
       id          = 4010
       cidr        = "192.168.30.50/24"
+      cidr6       = "fe80::6ab5:99ff:feb3:da01"
       ceph_cidr   = "192.168.25.50/24"
       sockets     = 1
       cpulimit    = 4
@@ -59,6 +61,7 @@ variable "masters" {
     master02 = {
       id          = 4011
       cidr        = "192.168.30.51/24"
+      cidr6       = "fe80::6ab5:99ff:feb3:da02"
       ceph_cidr   = "192.168.25.51/24"
       sockets     = 1
       cpulimit    = 4
@@ -76,6 +79,7 @@ variable "masters" {
     master03 = {
       id          = 4012
       cidr        = "192.168.30.52/24"
+      cidr6       = "fe80::6ab5:99ff:feb3:db03"
       ceph_cidr   = "192.168.25.52/24"
       sockets     = 1
       cpulimit    = 4
@@ -98,6 +102,7 @@ variable "storage" {
     storage01 = {
       id          = 4030
       cidr        = "192.168.30.53/24"
+      cidr6       = "fe80::6ab5:99ff:feb3:db1a"
       ceph_cidr   = "192.168.25.53/24"
       sockets     = 1
       cpulimit    = 4
@@ -118,6 +123,7 @@ variable "storage" {
     storage02 = {
       id          = 4031
       cidr        = "192.168.30.54/24"
+      cidr6       = "fe80::6ab5:99ff:feb3:db1b"
       ceph_cidr   = "192.168.25.54/24"
       sockets     = 1
       cpulimit    = 4
@@ -138,6 +144,7 @@ variable "storage" {
     storage03 = {
       id          = 4032
       cidr        = "192.168.30.55/24"
+      cidr6       = "fe80::6ab5:99ff:feb3:da1c"
       ceph_cidr   = "192.168.25.55/24"
       sockets     = 1
       cpulimit    = 4
@@ -163,6 +170,7 @@ variable "workers" {
     worker01 = {
       id          = 4020
       cidr        = "192.168.30.56/24"
+      cidr6       = "fe80::6ab5:99ff:feb3:db0a"
       ceph_cidr   = "192.168.25.56/24"
       sockets     = 4
       cpulimit    = 4
@@ -180,6 +188,7 @@ variable "workers" {
     worker02 = {
       id          = 4021
       cidr        = "192.168.30.57/24"
+      cidr6       = "fe80::6ab5:99ff:feb3:da0b"
       ceph_cidr   = "192.168.25.57/24"
       sockets     = 4
       cpulimit    = 4
@@ -197,6 +206,7 @@ variable "workers" {
     worker03 = {
       id          = 4022
       cidr        = "192.168.30.58/24"
+      cidr6       = "fe80::6ab5:99ff:feb3:da0c"
       ceph_cidr   = "192.168.25.58/24"
       sockets     = 4
       cpulimit    = 4
