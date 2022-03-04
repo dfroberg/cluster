@@ -20,7 +20,7 @@ spec:
               args:
                 [
                   "-c",
-                  'mkdir -p /var/backups/authelia && apk --no-cache add wget && pg_dump -U postgres -h ${SECRET_POSTGRES_HOST} authelia > /var/backups/authelia/backup-$(date +"%m-%d-%Y-%H-%M").sql && wget https://healthchecks.k8s.aml.ink/ping/181a9bed-6919-4ef6-9f54-282ecc018e57 -T 10 -t 5 -O /dev/null',
+                  'mkdir -p /var/backups/authelia && apk --no-cache add wget && pg_dump -U postgres -h ${SECRET_POSTGRES_HOST} authelia > /var/backups/authelia/backup-$(date +"%m-%d-%Y-%H-%M").sql && wget https://healthchecks.k8s.aml.ink/ping/6d96c1bb-db17-4852-9664-274e91479ad2 -T 10 -t 5 -O /dev/null',
                 ]
               env:
                 - name: PGPASSWORD
