@@ -51,7 +51,7 @@ variable "masters" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:01"
       ceph_macaddr = "68:b5:99:b3:db:01"
-      memory      = 6*1024*1024*1024
+      memory      = 8*1024*1024*1024
       disk        = 30*1024*1024*1024
       disk_slot   = 0
       target_node = "xcp-ng-01"
@@ -69,7 +69,7 @@ variable "masters" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:02"
       ceph_macaddr = "68:b5:99:b3:db:02"
-      memory      = 6*1024*1024*1024
+      memory      = 8*1024*1024*1024
       disk        = 30*1024*1024*1024
       disk_slot   = 0
       target_node = "xcp-ng-01"
@@ -87,7 +87,7 @@ variable "masters" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:03"
       ceph_macaddr = "68:b5:99:b3:db:03"
-      memory      = 6*1024*1024*1024
+      memory      = 8*1024*1024*1024
       disk        = 30*1024*1024*1024
       disk_slot   = 0
       target_node = "xcp-ng-01"
@@ -178,7 +178,7 @@ variable "workers" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0a"
       ceph_macaddr = "68:b5:99:b3:db:0a"
-      memory      = 16*1024*1024*1024
+      memory      = 14*1024*1024*1024
       disk        = 60*1024*1024*1024
       disk_slot   = 0
       target_node = "xcp-ng-01"
@@ -196,7 +196,7 @@ variable "workers" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0b"
       ceph_macaddr = "68:b5:99:b3:db:0b"
-      memory      = 16*1024*1024*1024
+      memory      = 14*1024*1024*1024
       disk        = 60*1024*1024*1024
       disk_slot   = 0
       target_node = "xcp-ng-01"
@@ -214,7 +214,7 @@ variable "workers" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0c"
       ceph_macaddr = "68:b5:99:b3:db:0c"
-      memory      = 16*1024*1024*1024
+      memory      = 14*1024*1024*1024
       disk        = 60*1024*1024*1024
       disk_slot   = 0
       target_node = "xcp-ng-01"
