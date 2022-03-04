@@ -38,13 +38,13 @@ spec:
         ingress:
           enabled: true
           ingressClassName: "nginx"
-          annotations:
-            external-dns/is-public: "false"
-            external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-            haproxy-ingress-proxy.pfsense.org/enabled: "true"
-            haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
-            haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
-            nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+          # annotations:
+          #   external-dns/is-public: "false"
+          #   external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          #   haproxy-ingress-proxy.pfsense.org/enabled: "true"
+          #   haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
+          #   haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
+          #   nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
           host: crowdsec.${SECRET_DOMAIN}
           tls:
           - secretName: "${SECRET_DOMAIN//./-}-tls"
