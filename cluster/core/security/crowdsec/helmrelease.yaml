@@ -44,7 +44,13 @@ spec:
             haproxy-ingress-proxy.pfsense.org/enabled: "true"
             haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
             haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
-          host: crowdsec.${>SECRET_DOMAIN}
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+          host: crowdsec.${SECRET_DOMAIN}
+          tls:
+          - secretName: "${SECRET_DOMAIN//./-}-tls"
+            hosts:
+              - "crowdsec.${SECRET_DOMAIN}"
+
       metrics:
         # TODO: ingest these metrics without using serviceMonitor
         enabled: true
