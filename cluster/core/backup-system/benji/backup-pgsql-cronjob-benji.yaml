@@ -20,7 +20,7 @@ spec:
               args:
                 [
                   "-c",
-                  'apk --no-cache add wget && pg_dump -U benji -h ${SECRET_POSTGRES_HOST} benji > /var/backups/benji/backup-$(date +"%m-%d-%Y-%H-%M").sql && wget https://healthchecks.k8s.aml.ink/ping/73ec5213-d30b-4cc3-9ec2-1c2436ce0401 -T 10 -t 5 -O /dev/null'
+                  'apk --no-cache add wget && pg_dump -U benji -h ${SECRET_POSTGRES_HOST} benji > /var/backups/benji/backup-$(date +"%m-%d-%Y-%H-%M").sql && wget https://healthchecks.k8s.aml.ink/ping/73ec5213-d30b-4cc3-9ec2-1c2436ce0401 -q -T 10 -t 5 -O /dev/null'
                 ]
               env:
                 - name: PGPASSWORD
