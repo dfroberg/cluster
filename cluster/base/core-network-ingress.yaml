@@ -28,7 +28,11 @@ spec:
       namespace: networking
     - apiVersion: apps/v1
       kind: Deployment
-      name: ingress-nginx
+      name: ingress-nginx-controller
+      namespace: networking
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: ingress-nginx-defaultbackend
       namespace: networking
   postBuild:
     substitute: {}
