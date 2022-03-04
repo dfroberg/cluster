@@ -97,7 +97,7 @@ spec:
       postgresqlUsername: joplin
       postgresqlPassword: ${SECRET_JOPLIN_POSTGRES_PASSWORD}
       postgresqlDatabase: joplin
-      enabled: true
-      # persistence:
-      #   enabled: true
+      enabled: false
+      persistence:
+        enabled: false
       #   existingClaim: joplin-postgresql-pvc
