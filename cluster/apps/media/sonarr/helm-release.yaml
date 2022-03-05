@@ -33,7 +33,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/sonarr
-      tag: v3.0.6.1342
+      tag: v3.0.7.1477
     updateStrategy: Recreate
     env:
       TZ: "${CLUSTER_TZ}"
