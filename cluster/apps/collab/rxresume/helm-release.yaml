@@ -31,7 +31,7 @@ spec:
   values:
     image:
       repository: amruthpillai/reactive-resume
-      tag: v1
+      tag: v3
 
     nameOverride: rxresume
     # env:
