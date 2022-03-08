@@ -14,7 +14,7 @@ data:
       password: ${PFSENSE_PASSWORD}
     plugins:
       metallb:
-        enabled: true
+        enabled: false
         nodeLabelSelector:
         nodeFieldSelector:
         configMap: "metallb-system/config"
