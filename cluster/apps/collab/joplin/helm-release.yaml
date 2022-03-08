@@ -31,6 +31,8 @@ spec:
     recreate: true
     cleanupOnFail: true
   values:
+    imagePullSecrets: 
+      - name: "regcred"
     nameOverride: joplin
     image:
       repository: joplin/server

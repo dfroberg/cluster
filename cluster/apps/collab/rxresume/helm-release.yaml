@@ -29,6 +29,8 @@ spec:
     recreate: true
     cleanupOnFail: true
   values:
+    imagePullSecrets: 
+      - name: "regcred"
     image:
       repository: amruthpillai/reactive-resume
       tag: v3

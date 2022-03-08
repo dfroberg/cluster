@@ -31,6 +31,8 @@ spec:
     recreate: true
     cleanupOnFail: true
   values:
+    imagePullSecrets: 
+      - name: "regcred"
     image:
       repository: ghcr.io/linuxserver/bookstack
       pullPolicy: IfNotPresent

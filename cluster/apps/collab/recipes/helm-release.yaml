@@ -31,6 +31,8 @@ spec:
     recreate: true
     cleanupOnFail: true
   values:
+    imagePullSecrets: 
+      - name: "regcred"
     image:
       repository: vabene1111/recipes
       tag: 1.1.2

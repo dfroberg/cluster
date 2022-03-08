@@ -30,6 +30,8 @@ spec:
     recreate: true
     cleanupOnFail: true
   values:
+    imagePullSecrets: 
+      - name: "regcred"
     nameOverride: gollum
     image:
       repository: gollumorg/gollum
