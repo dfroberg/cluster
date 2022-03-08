@@ -27,6 +27,7 @@ spec:
       - name: "regcred"
     image:
       repository: ghcr.io/k8s-at-home/kured
+      tag: v1.8.1
     updateStrategy: RollingUpdate
     configuration:
       timeZone: ${CLUSTER_TZ}
