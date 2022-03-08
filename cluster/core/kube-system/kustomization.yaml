@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - metrics-server
   - kube-cleanup-operator
-  #- kured
+  - kured
   - descheduler
   - node-feature-discovery
   - reloader
