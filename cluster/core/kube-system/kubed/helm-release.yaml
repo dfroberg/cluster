@@ -85,11 +85,11 @@ spec:
         #serverKey: ""
 
     tolerations:
-      # - effect: NoExecute
-      #   operator: Exists
-      # - effect: NoSchedule
-      #   operator: Exists
-      # - effect: NoExecute
+      - effect: NoExecute
+        operator: Exists
+      - effect: NoSchedule
+        operator: Exists
+      - effect: NoExecute
         key: node.kubernetes.io/not-ready
         operator: Exists
         tolerationSeconds: 300
