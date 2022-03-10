@@ -20,6 +20,8 @@ resources:
   - benji-restore-job-recipes.yaml
   - benji-restore-job-authelia.yaml
   - benji-restore-job-vaultwarden.yaml
+  - benji-restore-job-joplin.yaml
+  - benji-restore-job-vikunja.yaml
   - service-monitor.yaml
 configMapGenerator:
   - name: ceph-config

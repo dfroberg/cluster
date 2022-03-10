@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   generation: 1
-  name: postgres-restore-authentik
+  name: postgres-restore-joplin
   namespace: backup-system
 spec:
   suspend: true
@@ -13,7 +13,7 @@ spec:
   ttlSecondsAfterFinished: 100
   template:
     metadata:
-      name: postgres-restore-authentik
+      name: postgres-restore-joplin
     spec:
       containers:
       - image: postgres:14
@@ -37,11 +37,11 @@ spec:
         - name: PGPASSWORD
           value: ${SECRET_POSTGRES_PASSWORD}
         - name: BENJIRESTOREDB
-          value: authentik
+          value: joplin
         - name: BENJIRESTOREUSER
-          value: authentik
+          value: joplin
         - name: BENJIRESTOREMINSIZE
-          value: 500k
+          value: 10k
         
         resources: {}
         terminationMessagePath: /dev/termination-log
