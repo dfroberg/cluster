@@ -20,15 +20,18 @@ spec:
         name: postgres-backup
         imagePullPolicy: IfNotPresent
         args:
-          - -c
-          - psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "UPDATE pg_database SET datallowconn = 'false' WHERE datname = '$(BENJIRESTOREDB)';" && \
-          - psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "ALTER DATABASE $(BENJIRESTOREDB) CONNECTION LIMIT 0;" && \
-          - psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "REVOKE CONNECT ON DATABASE $(BENJIRESTOREDB) FROM PUBLIC, $(BENJIRESTOREUSER);" && \
-          - psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '$(BENJIRESTOREDB)';" && \
-          - psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "DROP DATABASE $(BENJIRESTOREDB);" && \
-          - psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "CREATE DATABASE $(BENJIRESTOREDB);" && \ 
-          - psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "GRANT CONNECT ON DATABASE $(BENJIRESTOREDB) TO PUBLIC, $(BENJIRESTOREUSER);"  && \
-          - psql -U $(BENJIRESTOREUSER) -h ${SECRET_POSTGRES_HOST} $(BENJIRESTOREDB) -f $(find /var/backups/$(BENJIRESTOREDB)/ -size +100k -maxdepth 1 -name "*.sql" -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 | cut -d " " -f 4-)
+          - -c 
+          - cat <<EOT> restore.sh && bash ./restore.sh
+#!/bin/bash
+psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "UPDATE pg_database SET datallowconn = 'false' WHERE datname = '$(BENJIRESTOREDB)';" &&
+psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "ALTER DATABASE $(BENJIRESTOREDB) CONNECTION LIMIT 0;" && 
+psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "REVOKE CONNECT ON DATABASE $(BENJIRESTOREDB) FROM PUBLIC, $(BENJIRESTOREUSER);" &&
+psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '$(BENJIRESTOREDB)';" &&
+psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "DROP DATABASE $(BENJIRESTOREDB);" &&
+psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "CREATE DATABASE $(BENJIRESTOREDB);" && 
+psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "GRANT CONNECT ON DATABASE $(BENJIRESTOREDB) TO PUBLIC, $(BENJIRESTOREUSER);"  && 
+psql -U $(BENJIRESTOREUSER) -h ${SECRET_POSTGRES_HOST} $(BENJIRESTOREDB) -f $(find /var/backups/$(BENJIRESTOREDB)/ -size +100k -maxdepth 1 -name "*.sql" -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 | cut -d " " -f 4-)
+EOT
         command:
           - /bin/bash
         env:
