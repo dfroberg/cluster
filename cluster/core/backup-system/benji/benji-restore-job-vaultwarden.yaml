@@ -21,11 +21,11 @@ spec:
         imagePullPolicy: IfNotPresent
         args:
           - -c
-          - psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "DROP DATABASE $(BENJIRESTOREDB);" && 
-          - psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "CREATE DATABASE $(BENJIRESTOREDB);" && 
+          - psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "DROP DATABASE $(BENJIRESTOREDB);" && \
+          - psql -U postgres -h ${SECRET_POSTGRES_HOST} postgres -c "CREATE DATABASE $(BENJIRESTOREDB);" && \ 
           - psql -U $(BENJIRESTOREUSER) -h ${SECRET_POSTGRES_HOST} $(BENJIRESTOREDB) -f $(find /var/backups/$(BENJIRESTOREDB)/ -size +100k -maxdepth 1 -name "*.sql" -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 | cut -d " " -f 4-)
         command:
-          - /bin/sh
+          - /bin/bash
         env:
         - name: PGPASSWORD
           value: ${SECRET_POSTGRES_PASSWORD}
