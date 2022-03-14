@@ -28,6 +28,10 @@ configMapGenerator:
     namespace: backup-system
     files:
       - ceph/generate-ceph.sh
+  - name: backup-pvc
+    namespace: backup-system
+    files:
+      - scripts/backup-pvc.sh
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
