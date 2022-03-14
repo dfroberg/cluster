@@ -61,27 +61,12 @@ spec:
       crontab:
         - name: backup-default
           schedule: "15 00 * * *"
-          command:
-            [
-              "benji-backup-pvc"
-            ]
-          args:
-            [ 
-              "-n default &&",
-              "wget https://healthchecks.k8s.aml.ink/ping/2639da0-f365-4249-81ba-e3a647c37935 -q -T 10 -t 5 -O /dev/null"
-            ]
+          command: ["/usr/bin/bash"]
+          args: ["-c", "bash /script/backup-pvc.sh","default","2639da0-f365-4249-81ba-e3a647c37935"]
         - name: backup-tools
           schedule: "00 01 * * *"
-          command:
-            [
-              "benji-backup-pvc"
-            ]
-          args:
-            [ 
-            
-              "-n tools &&",
-              "wget https://healthchecks.k8s.aml.ink/ping/4643f336-e119-40e9-b2be-c7938d750e33 -q -T 10 -t 5 -O /dev/null"
-            ]
+          command: ["/usr/bin/bash"]
+          args: ["-c", "bash /script/backup-pvc.sh","tools","4643f336-e119-40e9-b2be-c7938d750e33"]
         - name: backup-security
           schedule: "00 02 * * *"
           command:
