@@ -5,9 +5,11 @@ if [[ "$NAMESPACE" != "" ]]
 then
     if [[ "$HEALTHCHECKID" != "" ]]
     then
-        benji-backup-pvc -n $1 && wget https://healthchecks.k8s.aml.ink/ping/$2 -q -T 10 -t 5 -O /dev/null
+        echo "Backing up $NAMESPACE and pinging $HEALTHCHECKID"
+        benji-backup-pvc --namespace $NAMESPACE && curl -s https://healthchecks.k8s.aml.ink/ping/$HEALTHCHECKID --connect-timeout 5 --max-time 10 -o /dev/null
     else
-        benji-backup-pvc -n $1
+        echo "Backing up $NAMESPACE without ping"
+        benji-backup-pvc --namespace $NAMESPACE
     fi
 else
     echo "ERROR no namespace"
