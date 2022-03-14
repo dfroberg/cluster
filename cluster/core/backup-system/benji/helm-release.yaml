@@ -65,7 +65,7 @@ spec:
             [
               "benji-backup-pvc", 
               "--namespace default",
-              '&& wget https://healthchecks.k8s.aml.ink/ping/2639da0-f365-4249-81ba-e3a647c37935 -q -T 10 -t 5 -O /dev/null',
+              "&& wget https://healthchecks.k8s.aml.ink/ping/2639da0-f365-4249-81ba-e3a647c37935 -q -T 10 -t 5 -O /dev/null"
             ]
         - name: backup-tools
           schedule: "00 01 * * *"
@@ -73,7 +73,7 @@ spec:
             [
               "benji-backup-pvc", 
               "--namespace tools",
-              '&& wget https://healthchecks.k8s.aml.ink/ping/4643f336-e119-40e9-b2be-c7938d750e33 -q -T 10 -t 5 -O /dev/null',
+              "&& wget https://healthchecks.k8s.aml.ink/ping/4643f336-e119-40e9-b2be-c7938d750e33 -q -T 10 -t 5 -O /dev/null"
             ]
         - name: backup-security
           schedule: "00 02 * * *"
