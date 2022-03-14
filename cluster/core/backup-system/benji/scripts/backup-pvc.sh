@@ -1,6 +1,6 @@
 #!/bin/bash -e
-NAMESPACE=$1
-HEALTHCHECKID=$2
+NAMESPACE="$1"
+HEALTHCHECKID="$2"
 if [[ "$NAMESPACE" != "" ]]
 then
     if [[ "$HEALTHCHECKID" != "" ]]
