@@ -150,6 +150,10 @@ spec:
               - op: add
                 path: /spec/template/metadata/annotations
                 value:
+                  configmap.reloader.stakater.com/reload: "backup-pvc"
+              - op: add
+                path: /spec/template/metadata/annotations
+                value:
                   configmap.reloader.stakater.com/reload: "ceph-config"
               - op: add
                 path: /spec/template/metadata/annotations
