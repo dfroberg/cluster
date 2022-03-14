@@ -13,6 +13,6 @@ metadata:
         - destination:
             port:
               number: 3000
-            host: crowdsec-service.networking.svc.cluster.local
+            host: crowdsec-service.security.svc.cluster.local
           weight: 100
 
