@@ -64,7 +64,7 @@ spec:
           storageClassName: "ceph-block"
           size: 2Gi
         config:
-          enabled: true
+          enabled: false
           accessModes:
             - ReadWriteOnce
           storageClassName: "ceph-block"
