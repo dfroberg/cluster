@@ -62,12 +62,12 @@ spec:
         - name: backup-default
           schedule: "15 00 * * *"
           command: 
-          - /usr/bin/bash
-          - -c
-          - bash
-          - /script/backup-pvc.sh
-          - default
-          - 2639da0-f365-4249-81ba-e3a647c37935
+            - /usr/bin/bash
+            - -c
+            - bash
+            - /script/backup-pvc.sh
+            - default
+            - 2639da0-f365-4249-81ba-e3a647c37935
         - name: backup-tools
           schedule: "00 01 * * *"
           command: ["/usr/bin/bash"]
