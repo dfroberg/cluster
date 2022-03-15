@@ -32,6 +32,7 @@ apt_install_packages:
   - cloud-utils
   - wireguard
   - tmux
+  - python3
   - xe-guest-utilities
   
 
