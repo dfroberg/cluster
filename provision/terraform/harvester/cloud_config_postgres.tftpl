@@ -1,0 +1,67 @@
+#cloud-config
+hostname: ${hostname}
+fqdn: ${hostname}.${domain}
+manage_etc_hosts: true
+user: ${vm_ssh_user}
+password: ${vm_ssh_password}
+ssh_authorized_keys:
+  - ${vm_ssh_key}
+sudo: All=(ALL) NOPASSWD:ALL
+chpasswd:
+  expire: False
+users:
+  - default
+# More
+locale: en_US.UTF-8
+timezone: Europe/Stockholm
+local-hostname: ${hostname}
+instance-id: ${hostname}
+# Packages
+package_upgrade: false
+packages:
+  - apt-transport-https
+  - arptables
+  - ca-certificates
+  - curl
+  - cloud-init
+  - ebtables
+  - gdisk
+  - hdparm
+  - htop
+  - iputils-ping
+  - ipvsadm
+  - lvm2
+  - net-tools
+  - nfs-common
+  - nano
+  - ntpdate
+  - nvme-cli
+  - open-iscsi
+  - open-vm-tools
+  - psmisc
+  - smartmontools
+  - socat
+  - software-properties-common
+  - unattended-upgrades
+  - unzip
+  - lzop 
+  - lsscsi 
+  - sg3-utils 
+  - multipath-tools 
+  - scsitools
+  - cloud-utils
+  - wireguard
+  - tmux
+  - xe-guest-utilities
+growpart:
+  mode: auto
+  devices: ['/']
+  ignore_growroot_disabled: false
+manage_resolv_conf: true
+resolv_conf:
+    nameservers: ['192.168.30.1']
+    searchdomains: ['']
+# Remove installer netplan so we don't get an extra IP for the node.
+runcmd:
+  - rm -f /etc/netplan/00-installer-config.yaml
+final_message: "The system is finally up, after $UPTIME seconds"
