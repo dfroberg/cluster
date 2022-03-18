@@ -32,7 +32,7 @@ variable "dbs" {
       memory      = "4Gi"
       disk        = "10Gi"
       disk_slot   = 0
-      target_node = "xcp-ng-01"
+      target_node = "harvester01"
       storage_pool     = "ld2"
       resource_pool_name = "High"
     },
@@ -50,14 +50,14 @@ variable "masters" {
       ceph_cidr   = "192.168.25.50/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 6
+      vcpus       = 4
       cores       = 8
       macaddr     = "68:b5:99:b3:da:01"
       ceph_macaddr = "68:b5:99:b3:db:01"
-      memory      = "8Gi"
+      memory      = "6Gi"
       disk        = "30Gi"
       disk_slot   = 0
-      target_node = "xcp-ng-01"
+      target_node = "harvester01"
       storage_pool     = "ld2"
       resource_pool_name = "High"
     },
@@ -70,14 +70,14 @@ variable "masters" {
       ceph_cidr   = "192.168.25.51/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 6
+      vcpus       = 4
       cores       = 8
       macaddr     = "68:b5:99:b3:da:02"
       ceph_macaddr = "68:b5:99:b3:db:02"
-      memory      = "8Gi"
+      memory      = "6Gi"
       disk        = "30Gi"
       disk_slot   = 0
-      target_node = "xcp-ng-01"
+      target_node = "harvester01"
       storage_pool     = "ld2"
       resource_pool_name = "High"
     },
@@ -90,14 +90,14 @@ variable "masters" {
       ceph_cidr   = "192.168.25.52/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 6
+      vcpus       = 4
       cores       = 8
       macaddr     = "68:b5:99:b3:da:03"
       ceph_macaddr = "68:b5:99:b3:db:03"
-      memory      = "8Gi"
+      memory      = "6Gi"
       disk        = "30Gi"
       disk_slot   = 0
-      target_node = "xcp-ng-01"
+      target_node = "harvester01"
       storage_pool     = "ld2"
       resource_pool_name = "High"
     }
@@ -119,12 +119,12 @@ variable "storage" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1a"
       ceph_macaddr = "68:b5:99:b3:db:1a"
-      memory      = "6Gi"
+      memory      = "4Gi"
       disk        = "30Gi"
       disk_slot   = 0
       storage_disk = "50Gi"
       storage_disk_slot   = 1
-      target_node = "xcp-ng-01"
+      target_node = "harvester01"
       storage_pool     = "ld2"
       storage_pool_disk_storage = "ld2"
       resource_pool_name = "Normal"
@@ -142,12 +142,12 @@ variable "storage" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1b"
       ceph_macaddr = "68:b5:99:b3:db:1b"
-      memory      = "6Gi"
+      memory      = "4Gi"
       disk        = "30Gi"
       disk_slot   = 0
       storage_disk = "50Gi"
       storage_disk_slot   = 1
-      target_node = "xcp-ng-01"
+      target_node = "harvester01"
       storage_pool     = "ld2"
       storage_pool_disk_storage = "ld2"
       resource_pool_name = "Normal"
@@ -165,12 +165,12 @@ variable "storage" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1c"
       ceph_macaddr = "68:b5:99:b3:db:1c"
-      memory      = "6Gi"
+      memory      = "4Gi"
       disk        = "30Gi"
       disk_slot   = 0
       storage_disk = "50Gi"
       storage_disk_slot   = 1
-      target_node = "xcp-ng-01"
+      target_node = "harvester01"
       storage_pool     = "ld2"
       storage_pool_disk_storage = "ld2"
       resource_pool_name = "Normal"
@@ -189,14 +189,14 @@ variable "workers" {
       ceph_cidr   = "192.168.25.56/24"
       sockets     = 4
       cpulimit    = 4
-      vcpus       = 12
+      vcpus       = 8
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0a"
       ceph_macaddr = "68:b5:99:b3:db:0a"
       memory      = "12Gi"
       disk        = "60Gi"
       disk_slot   = 0
-      target_node = "xcp-ng-01"
+      target_node = "harvester01"
       storage_pool     = "ld2"
       resource_pool_name = "Normal"
     },
@@ -209,14 +209,14 @@ variable "workers" {
       ceph_cidr   = "192.168.25.57/24"
       sockets     = 4
       cpulimit    = 4
-      vcpus       = 12
+      vcpus       = 8
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0b"
       ceph_macaddr = "68:b5:99:b3:db:0b"
       memory      = "12Gi"
       disk        = "60Gi"
       disk_slot   = 0
-      target_node = "xcp-ng-01"
+      target_node = "harvester01"
       storage_pool     = "ld2"
       resource_pool_name = "Normal"
     },
@@ -229,14 +229,14 @@ variable "workers" {
       ceph_cidr   = "192.168.25.58/24"
       sockets     = 4
       cpulimit    = 4
-      vcpus       = 12
+      vcpus       = 8
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0c"
       ceph_macaddr = "68:b5:99:b3:db:0c"
       memory      = "12Gi"
       disk        = "60Gi"
       disk_slot   = 0
-      target_node = "xcp-ng-01"
+      target_node = "harvester01"
       storage_pool= "ld2"
       resource_pool_name = "Normal"
     },

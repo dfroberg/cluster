@@ -56,7 +56,7 @@ resource "harvester_virtualmachine" "kube-master" {
       vm_ssh_root_password = data.sops_file.global_secrets.data["k8s.ssh_root_password"]
     })
 
-    network_data = templatefile("cloud_config_network_v1.tftpl", 
+    network_data = templatefile("cloud_config_network_v2.tftpl", 
     {
       hostname = each.key
       domain = "cs.aml.ink"
