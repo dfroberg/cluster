@@ -35,4 +35,4 @@
 
     - name: netplan apply
       command: netplan apply
-      when: cfg_static_network == true 
+      when: cfg_static_network == true

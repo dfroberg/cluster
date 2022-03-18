@@ -13,7 +13,7 @@
   vars:
     certs_path: /home/dfroberg/lets-encrypt
     crt_common_name: cs.aml.ink
-    crt_subject_alt_name: 
+    crt_subject_alt_name:
       - esxi01.cs.aml.ink
       - esxi02.cs.aml.ink
       - esxi03.cs.aml.ink

@@ -24,17 +24,17 @@ apt_install_packages:
   - software-properties-common
   - unattended-upgrades
   - unzip
-  - lzop 
-  - lsscsi 
-  - sg3-utils 
-  - multipath-tools 
+  - lzop
+  - lsscsi
+  - sg3-utils
+  - multipath-tools
   - scsitools
   - cloud-utils
   - wireguard
   - tmux
   - python3
   - xe-guest-utilities
-  
+
 
 apt_remove_packages:
   - apparmor

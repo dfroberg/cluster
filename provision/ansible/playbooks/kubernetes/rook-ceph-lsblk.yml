@@ -14,7 +14,7 @@
         - name: lsblk
           no_log: True
           ansible.builtin.shell: >
-            /bin/lsblk {{ item | join(' ') }} 
+            /bin/lsblk {{ item | join(' ') }}
           register: command_output
           loop:
             - "{{ rook_devices }}"

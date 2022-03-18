@@ -44,10 +44,10 @@
         --etcd-s3-access-key="{{ etcd_s3_access_key }}" \
         --etcd-s3-secret-key="{{ etcd_s3_secret_key }}"
       when:
-        - ansible_hostname == "master01"  
+        - ansible_hostname == "master01"
       tags:
         - etcdrestore
-        
+
     # Allow master01 to settle
     - name: Pausing for 60 seconds...
       pause:
@@ -62,6 +62,6 @@
       with_items:
         - k3s
       when:
-        - ansible_hostname != "master01"  
+        - ansible_hostname != "master01"
       tags:
         - etcdrestore

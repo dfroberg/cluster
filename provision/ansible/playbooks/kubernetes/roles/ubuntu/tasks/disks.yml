@@ -1,9 +1,9 @@
 ---
 - name: Extend an existing partition to fill all available space
-  command: growpart -u auto /dev/xvda 1 
+  command: growpart -u auto /dev/xvda 1
   register: command_result
   failed_when: "'FAILED' in command_result.stderr"
-  changed_when: 
+  changed_when:
     - "'CHANGED' in command_result.stderr"
     - "'SUCCESS' in command_result.stderr"
   tags:

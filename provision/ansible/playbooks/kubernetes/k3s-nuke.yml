@@ -60,7 +60,7 @@
         path: "{{ item.path }}"
         state: absent
       loop: "{{ rancher_files_to_delete.files }}"
-    
+
     - name: Gather list of /var/lib/kubelet files to delete
       find:
         paths: /var/lib/kubelet
@@ -88,5 +88,4 @@
     #
 
     - name: reboot nodes
-      # command: /usr/sbin/reboot
-      command: /bin/systemctl reboot
+      command: reboot

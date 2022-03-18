@@ -48,7 +48,7 @@
   delegate_to: localhost
 - name: validate acme challenge
   acme_certificate:
-    acme_version: 2 
+    acme_version: 2
     account_key_src: "{{ certs_path }}/account-key.pem"
     src: "{{ certs_path }}/{{ crt_common_name }}.csr"
     cert: "{{ certs_path }}/{{ crt_common_name }}.crt"
