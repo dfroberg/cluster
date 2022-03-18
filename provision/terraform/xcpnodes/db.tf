@@ -145,7 +145,7 @@ resource "xenorchestra_vm" "kube-db" {
       "sudo apt upgrade -y",
       "sudo service postgres restart",
       "sudo mkdir -p /mnt/backups",
-      "sudo cat /home/dfroberg/fstab.txt >> /etc/fstab"
+      "sudo cat /home/dfroberg/fstab.txt | sudo tee -a /etc/fstab"
       "sudo shutdown -r NOW"
     ]
   }

@@ -21,6 +21,7 @@ variable "dbs" {
       primary_ip  = "192.168.30.18"
       cidr        = "192.168.30.18/24"
       cidr6       = "fe80::6ab5:99ff:feb3:dafa"
+      ceph_primary_ip  = "192.168.25.18"
       ceph_cidr   = "192.168.25.18/24"
       sockets     = 1
       cpulimit    = 4
@@ -42,12 +43,14 @@ variable "masters" {
   default = {
     master01 = {
       id          = 4010
+      primary_ip  = "192.168.30.50"
       cidr        = "192.168.30.50/24"
       cidr6       = "fe80::6ab5:99ff:feb3:da01"
+      ceph_primary_ip  = "192.168.25.50"
       ceph_cidr   = "192.168.25.50/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 4
+      vcpus       = 6
       cores       = 8
       macaddr     = "68:b5:99:b3:da:01"
       ceph_macaddr = "68:b5:99:b3:db:01"
@@ -60,12 +63,14 @@ variable "masters" {
     },
     master02 = {
       id          = 4011
+      primary_ip  = "192.168.30.51"
       cidr        = "192.168.30.51/24"
       cidr6       = "fe80::6ab5:99ff:feb3:da02"
+      ceph_primary_ip  = "192.168.25.51"
       ceph_cidr   = "192.168.25.51/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 4
+      vcpus       = 6
       cores       = 8
       macaddr     = "68:b5:99:b3:da:02"
       ceph_macaddr = "68:b5:99:b3:db:02"
@@ -78,12 +83,14 @@ variable "masters" {
     },
     master03 = {
       id          = 4012
+      primary_ip  = "192.168.30.52"
       cidr        = "192.168.30.52/24"
       cidr6       = "fe80::6ab5:99ff:feb3:db03"
+      ceph_primary_ip  = "192.168.25.52"
       ceph_cidr   = "192.168.25.52/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 4
+      vcpus       = 6
       cores       = 8
       macaddr     = "68:b5:99:b3:da:03"
       ceph_macaddr = "68:b5:99:b3:db:03"
@@ -101,8 +108,10 @@ variable "storage" {
   default = {
     storage01 = {
       id          = 4030
+      primary_ip  = "192.168.30.53"
       cidr        = "192.168.30.53/24"
       cidr6       = "fe80::6ab5:99ff:feb3:db1a"
+      ceph_primary_ip  = "192.168.25.53"
       ceph_cidr   = "192.168.25.53/24"
       sockets     = 1
       cpulimit    = 4
@@ -122,8 +131,10 @@ variable "storage" {
     },
     storage02 = {
       id          = 4031
+      primary_ip  = "192.168.30.54"
       cidr        = "192.168.30.54/24"
       cidr6       = "fe80::6ab5:99ff:feb3:db1b"
+      ceph_primary_ip  = "192.168.25.54"
       ceph_cidr   = "192.168.25.54/24"
       sockets     = 1
       cpulimit    = 4
@@ -143,8 +154,10 @@ variable "storage" {
     },
     storage03 = {
       id          = 4032
+      primary_ip  = "192.168.30.55"
       cidr        = "192.168.30.55/24"
       cidr6       = "fe80::6ab5:99ff:feb3:da1c"
+      ceph_primary_ip  = "192.168.25.55"
       ceph_cidr   = "192.168.25.55/24"
       sockets     = 1
       cpulimit    = 4
@@ -169,12 +182,14 @@ variable "workers" {
   default = {
     worker01 = {
       id          = 4020
+      primary_ip  = "192.168.30.56"
       cidr        = "192.168.30.56/24"
       cidr6       = "fe80::6ab5:99ff:feb3:db0a"
+      ceph_primary_ip  = "192.168.25.56"
       ceph_cidr   = "192.168.25.56/24"
       sockets     = 4
       cpulimit    = 4
-      vcpus       = 20
+      vcpus       = 12
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0a"
       ceph_macaddr = "68:b5:99:b3:db:0a"
@@ -187,12 +202,14 @@ variable "workers" {
     },
     worker02 = {
       id          = 4021
+      primary_ip  = "192.168.30.57"
       cidr        = "192.168.30.57/24"
       cidr6       = "fe80::6ab5:99ff:feb3:da0b"
+      ceph_primary_ip  = "192.168.25.57"
       ceph_cidr   = "192.168.25.57/24"
       sockets     = 4
       cpulimit    = 4
-      vcpus       = 20
+      vcpus       = 12
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0b"
       ceph_macaddr = "68:b5:99:b3:db:0b"
@@ -205,12 +222,14 @@ variable "workers" {
     },
     worker03 = {
       id          = 4022
+      primary_ip  = "192.168.30.58"
       cidr        = "192.168.30.58/24"
       cidr6       = "fe80::6ab5:99ff:feb3:da0c"
+      ceph_primary_ip  = "192.168.25.58"
       ceph_cidr   = "192.168.25.58/24"
       sockets     = 4
       cpulimit    = 4
-      vcpus       = 20
+      vcpus       = 12
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0c"
       ceph_macaddr = "68:b5:99:b3:db:0c"

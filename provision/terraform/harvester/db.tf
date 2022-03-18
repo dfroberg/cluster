@@ -16,19 +16,19 @@ resource "harvester_virtualmachine" "kube-db" {
   hostname     = each.key
   machine_type = "q35"
 
-  ssh_keys = [
+  /* ssh_keys = [
     "labcluster/labsshkey"
-  ]
+  ] */
 
   network_interface {
-    name         = "nic-1"
+    name         = "enp1s0"
     model        = "virtio"
     type         = "bridge"
     network_name = harvester_network.vlan30.id
   }
 
   network_interface {
-    name         = "nic-2"
+    name         = "enp2s0"
     model        = "virtio"
     type         = "bridge"
     network_name = harvester_network.vlan25.id
@@ -37,7 +37,7 @@ resource "harvester_virtualmachine" "kube-db" {
 
  
   disk {
-    name       = "rootdisk"
+    name       = "${each.key}-rootdisk"
     type       = "disk"
     size       = each.value.disk
     bus        = "virtio"
@@ -48,105 +48,34 @@ resource "harvester_virtualmachine" "kube-db" {
   }
 
   cloudinit {
-    user_data    = <<-EOF
-      #cloud-config
-      user: ${data.sops_file.global_secrets.data["k8s.ssh_username"]}
-      password: ${data.sops_file.global_secrets.data["k8s.ssh_password"]}
-      chpasswd:
-        expire: false
-      sudo: All=(ALL) NOPASSWD:ALL
-      ssh_pwauth: true
-      # More
-      locale: en_US.UTF-8
-      timezone: Europe/Stockholm
-      local-hostname: ${each.key}
-      instance-id: ${each.key}
-      package_update: true
-      packages:
-        - qemu-guest-agent
-        - apt-transport-https
-        - arptables
-        - ca-certificates
-        - curl
-        - cloud-init
-        - ebtables
-        - gdisk
-        - hdparm
-        - htop
-        - iputils-ping
-        - ipvsadm
-        - lvm2
-        - net-tools
-        - nfs-common
-        - nano
-        - ntpdate
-        - nvme-cli
-        - open-iscsi
-        - open-vm-tools
-        - psmisc
-        - smartmontools
-        - socat
-        - software-properties-common
-        - unattended-upgrades
-        - unzip
-        - lzop 
-        - lsscsi 
-        - sg3-utils 
-        - multipath-tools 
-        - scsitools
-        - cloud-utils
-        - wireguard
-        - tmux
-      growpart:
-        mode: auto
-        devices: ['/']
-        ignore_growroot_disabled: false
-      manage_resolv_conf: true
-      resolv_conf:
-          nameservers: ['192.168.30.1']
-          searchdomains: ['']
-      runcmd:
-        - - systemctl
-          - enable
-          - '--now'
-          - qemu-guest-agent
-      ssh_authorized_keys:
-        - >-
-          ${data.sops_file.global_secrets.data["k8s.ssh_key"]}
-      EOF
-    network_data =  <<-EOF
-      network:
-        version: 2
-        ethernets:
-          eth0:
-            match:
-              macaddress: '${each.value.macaddr}'
-            wakeonlan: true
-            dhcp4: false
-            addresses:
-              - ${each.value.cidr}
-            gateway4: ${var.common.gw}
-            nameservers:
-              search: ['${var.common.search_domain}']
-              addresses: [${var.common.nameserver}]
-          eth1:
-            match:
-              macaddress: '${each.value.ceph_macaddr}'
-            wakeonlan: true
-            dhcp4: false
-            addresses:
-              - ${each.value.ceph_cidr}
-            gateway4: ${var.common.ceph_gw}
-            nameservers:
-              search: ['${var.common.search_domain}']
-              addresses: [${var.common.ceph_nameserver}]
-            mtu: 9000
-      # More
-      locale: en_US.UTF-8
-      timezone: Europe/Stockholm
-      local-hostname: ${each.key}
-      instance-id: ${each.key}
-      EOF
+    user_data = templatefile("cloud_config_postgres.tftpl", 
+    {
+      hostname = each.key
+      domain = "cs.aml.ink"
+      vm_ssh_user = data.sops_file.global_secrets.data["k8s.ssh_username"]
+      vm_ssh_key = data.sops_file.global_secrets.data["k8s.ssh_key"]
+      vm_ssh_password = data.sops_file.global_secrets.data["k8s.ssh_password"]
+      vm_ssh_root_password = data.sops_file.global_secrets.data["k8s.ssh_root_password"]
+    })
+
+    network_data = templatefile("cloud_config_network_v2.tftpl", 
+    {
+      hostname = each.key
+      domain = "cs.aml.ink"
+      node_hostname = each.key
+      node_ip       = each.value.primary_ip
+      node_cidr     = each.value.cidr
+      node_gateway  = var.common.gw
+      node_dns      = var.common.nameserver
+      node_mac_address     = each.value.macaddr
+      node_dns_search_domain = var.common.search_domain
+      storage_node_cidr     = each.value.ceph_cidr
+      storage_node_ip       = each.value.ceph_primary_ip
+      storage_node_gateway  = var.common.ceph_gw,
+      storage_node_dns      = var.common.ceph_nameserver
+      storage_node_mac_address     = each.value.ceph_macaddr
+      storage_node_dns_search_domain = var.common.search_domain
+    })
   }
 
   # Additional service setup
@@ -184,7 +113,7 @@ resource "harvester_virtualmachine" "kube-db" {
       version = 14
       nas_path = data.sops_file.global_secrets.data["nas.nas_path"]
       nas_ip   = data.sops_file.global_secrets.data["nas.nas_ip"]
-      username = data.sops_file.global_secrets.data["nas.username"]
+      username = data.sops_file.global_secrets.data["nas.user"]
       password = data.sops_file.global_secrets.data["nas.password"]
       })
     destination = "/home/dfroberg/fstab.txt"
@@ -206,21 +135,27 @@ resource "harvester_virtualmachine" "kube-db" {
     inline = [
       "export PATH=$PATH:/usr/bin",
       "sleep 90",
+      "echo '**************************************************** BEGIN ************************************************'",
+      "sudo mkdir -p /mnt/backups",
+      "sudo cat /home/dfroberg/fstab.txt | sudo tee -a /etc/fstab",
+      "echo '************************************************** POSTGRES ***********************************************'",
       "sudo chmod +x /home/dfroberg/install_postgres.sh",
       "sudo bash /home/dfroberg/install_postgres.sh",
       "sudo chmod +x /home/dfroberg/setup_postgres_network.sh",
       "sudo bash /home/dfroberg/setup_postgres_network.sh",
       "sudo chmod +x /home/dfroberg/setup_postgres_tables.sh",
       "sudo bash /home/dfroberg/setup_postgres_tables.sh",
+      "echo '*************************************************** CRONTAB ***********************************************'",
       "sudo chmod +x /home/dfroberg/add_crontab.sh",
       "sudo bash /home/dfroberg/add_crontab.sh",
       "sudo chmod +x /home/dfroberg/postgres_dumpall.sh",
+      "echo '*************************************************** RESTORE ************************************************'",
       "sudo chmod +x /home/dfroberg/postgres_restore.sh",
-      "sudo apt upgrade -y",
-      "sudo service postgres restart",
-      "sudo mkdir -p /mnt/backups",
-      "sudo cat /home/dfroberg/fstab.txt >> /etc/fstab",
-      "sudo shutdown -r NOW"
+      "sudo service postgresql restart",
+      "echo '*********************************************** UPGRADE & REBOOT *******************************************'",
+      "sudo apt upgrade -y && sudo shutdown",
+      "echo '***************************************************** DONE *************************************************'",
+      "exit 0"
     ]
   }
 }

@@ -17,7 +17,7 @@ data "sops_file" "global_secrets" {
 
 provider "sops" {}
 
-# Configure the XenServer Provider
+# Configure the Harvester Provider
 provider "harvester" {
   # i.e. /home/youruser/.kube/local.yaml
   kubeconfig = data.sops_file.global_secrets.data["harvester.kubeconfig"]
@@ -37,9 +37,9 @@ resource "harvester_network" "vlan30" {
 
   vlan_id = "30"
 
-  route_mode    = "manual"
+  /* route_mode    = "manual"
   route_cidr    = "192.168.30.1/24"
-  route_gateway = "192.168.30.1"
+  route_gateway = "192.168.30.1" */
 }
 
 resource "harvester_network" "vlan25" {
@@ -49,9 +49,9 @@ resource "harvester_network" "vlan25" {
 
   vlan_id = "25"
 
-  route_mode    = "manual"
+  /* route_mode    = "manual"
   route_cidr    = "192.168.25.1/24"
-  route_gateway = "192.168.25.1"
+  route_gateway = "192.168.25.1" */
 }
 
 resource "harvester_image" "ubuntu20" {
