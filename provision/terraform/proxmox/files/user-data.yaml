@@ -1,0 +1,12 @@
+#cloud-config
+hostname: ${hostname}
+manage_etc_hosts: true
+user: ${username}
+password: $5$9/yHPaCc$r3W9vyq9yUnXuzBUwMGpW9jJmQBfN2v8cjxl0iITFA0
+ssh_authorized_keys:
+  - ${ssh_public_key}
+chpasswd:
+  expire: False
+users:
+  - default
+package_upgrade: true

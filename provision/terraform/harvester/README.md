@@ -8,3 +8,6 @@
 3 x masters: 4 Cores, 6 GB RAM, 30 GB HDD
 3 x storage: 4 Cores, 6 GB RAM, 30 GB HDD, 50 GB HDD
 3 x workers: 20 Cores, 16 GB RAM, 60 GB HDD
+
+### Quirks
+network: segment in cloud-config is already sent with the header network: so don't set it in your data.

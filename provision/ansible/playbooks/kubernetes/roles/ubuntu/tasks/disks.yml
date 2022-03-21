@@ -1,6 +1,6 @@
 ---
 - name: Extend an existing partition to fill all available space
-  command: growpart -u auto /dev/vda 1
+  command: growpart -u auto /dev/sda 1
   register: command_result
   failed_when: "'FAILED' in command_result.stderr"
   changed_when:
