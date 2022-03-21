@@ -1,6 +1,6 @@
 ---
 - name: Extend an existing partition to fill all available space
-  command: growpart -u auto /dev/xvda 1
+  command: growpart -u auto /dev/vda 1
   register: command_result
   failed_when: "'FAILED' in command_result.stderr"
   changed_when:
@@ -9,13 +9,13 @@
   tags:
     - partitions
 
-- name: 'Extend the FS'
-  community.general.filesystem:
-    fstype: 'ext4'
-    dev: '/dev/xvda2'
-    resizefs: yes
-  tags:
-    - partitions
+# - name: 'Extend the FS'
+#   community.general.filesystem:
+#     fstype: 'ext4'
+#     dev: '/dev/vda2'
+#     resizefs: yes
+#   tags:
+#     - partitions
 
 # DEVICESCAN : smartd scans for disks and monitors all it finds
 # -a : monitor all attributes
