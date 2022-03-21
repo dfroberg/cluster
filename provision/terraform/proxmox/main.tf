@@ -4,7 +4,7 @@ terraform {
   required_providers {
     proxmox = {
       source = "Telmate/proxmox"
-      version = "2.9.3"
+      version = "2.9.6"
     }
     minio = {
       source = "refaktory/minio"
