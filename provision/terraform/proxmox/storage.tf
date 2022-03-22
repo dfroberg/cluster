@@ -90,6 +90,7 @@ resource "proxmox_vm_qemu" "kube-storage" {
       "echo '**************************************************** BEGIN ************************************************'",
       "sudo mkdir -p /mnt/backups",
       "sudo cat /home/dfroberg/fstab.txt | sudo tee -a /etc/fstab",
+      "sudo -i sed -Ei 's/^.* (ecdsa-sha2-(nistp384|nistp521)|ssh-(ed25519|dss|rsa))/\1/' /root/.ssh/authorized_keys",
       "echo '*********************************************** UPGRADE & REBOOT *******************************************'",
       "sudo apt upgrade -y && sudo shutdown -r",
       "echo '***************************************************** DONE *************************************************'",
