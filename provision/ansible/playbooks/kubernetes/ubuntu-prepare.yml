@@ -6,6 +6,7 @@
     - postgres
   become: true
   gather_facts: false
+  serial: "{{ SERIAL_COUNT | default('100%') }}"
   any_errors_fatal: false
   pre_tasks:
     - setup:
