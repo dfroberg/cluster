@@ -66,6 +66,16 @@ resource "proxmox_vm_qemu" "kube-master" {
     timeout     = "20m"
     host        = each.value.primary_ip
   }
+  provisioner "file" {
+    content     = templatefile("files/fstab.tpl", {
+      version = 14
+      nas_path = data.sops_file.global_secrets.data["nas.nas_path"]
+      nas_ip   = data.sops_file.global_secrets.data["nas.nas_ip"]
+      username = data.sops_file.global_secrets.data["nas.user"]
+      password = data.sops_file.global_secrets.data["nas.password"]
+      })
+    destination = "/home/dfroberg/fstab.txt"
+  }
   provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
