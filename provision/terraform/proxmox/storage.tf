@@ -34,6 +34,7 @@ resource "proxmox_vm_qemu" "kube-storage" {
     type    = "scsi"
     storage = each.value.storage_pool
     size    = each.value.disk
+    iothread= each.value.disk_iothread
     format  = "raw"
     ssd     = 1
     discard = "on"
@@ -43,6 +44,7 @@ resource "proxmox_vm_qemu" "kube-storage" {
     type    = "scsi"
     storage = each.value.storage_pool_disk_storage
     size    = each.value.storage_disk
+    iothread= each.value.storage_iothread
     format  = "raw"
     ssd     = 1
     discard = "on"

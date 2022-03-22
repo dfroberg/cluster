@@ -35,6 +35,7 @@ resource "proxmox_vm_qemu" "kube-master" {
     type    = "scsi"
     storage = each.value.storage_pool
     size    = each.value.disk
+    iothread= each.value.disk_iothread
     format  = "raw"
     ssd     = 1
     discard = "on"

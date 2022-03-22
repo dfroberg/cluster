@@ -33,6 +33,7 @@ variable "dbs" {
       memory      = 4096
       disk        = "9420M"
       disk_slot   = 0
+      disk_iothread = 1
       target_node = "pve"
       storage_pool     = "vm-data"
       resource_pool_name = "High"
@@ -58,6 +59,7 @@ variable "masters" {
       memory      = 10240
       disk        = "29900M"
       disk_slot   = 0
+      disk_iothread = 0
       target_node = "pve"
       storage_pool     = "vm-data"
       resource_pool_name = "High"
@@ -78,6 +80,7 @@ variable "masters" {
       memory      = 10240
       disk        = "29900M"
       disk_slot   = 0
+      disk_iothread = 0
       target_node = "pve"
       storage_pool     = "vm-data"
       resource_pool_name = "High"
@@ -98,6 +101,7 @@ variable "masters" {
       memory      = 10240
       disk        = "29900M"
       disk_slot   = 0
+      disk_iothread = 0
       target_node = "pve"
       storage_pool     = "vm-data"
       resource_pool_name = "High"
@@ -122,9 +126,11 @@ variable "storage" {
       ceph_macaddr = "68:b5:99:b3:db:1a"
       memory      = 6144
       disk        = "29900M"
+      disk_iothread = 0
       disk_slot   = 0
       storage_disk = "50G"
       storage_disk_slot   = 1
+      storage_iothread = 1
       target_node = "pve"
       storage_pool     = "vm-data"
       storage_pool_disk_storage = "vm-data"
@@ -145,9 +151,11 @@ variable "storage" {
       ceph_macaddr = "68:b5:99:b3:db:1b"
       memory      = 6144
       disk        = "29900M"
+      disk_iothread = 0
       disk_slot   = 0
       storage_disk = "50G"
       storage_disk_slot   = 1
+      storage_iothread = 1
       target_node = "pve"
       storage_pool     = "vm-data"
       storage_pool_disk_storage = "vm-data"
@@ -168,9 +176,11 @@ variable "storage" {
       ceph_macaddr = "68:b5:99:b3:db:1c"
       memory      = 6144
       disk        = "29900M"
+      disk_iothread = 0
       disk_slot   = 0
       storage_disk = "50G"
       storage_disk_slot   = 1
+      storage_iothread = 1
       target_node = "pve"
       storage_pool     = "vm-data"
       storage_pool_disk_storage = "vm-data"
@@ -197,6 +207,7 @@ variable "workers" {
       memory      = 12288
       disk        = "60620M"
       disk_slot   = 0
+      disk_iothread = 0
       target_node = "pve"
       storage_pool     = "vm-data"
       resource_pool_name = "Normal"
@@ -217,6 +228,7 @@ variable "workers" {
       memory      = 12288
       disk        = "60620M"
       disk_slot   = 0
+      disk_iothread = 0
       target_node = "pve"
       storage_pool     = "vm-data"
       resource_pool_name = "Normal"
@@ -237,6 +249,7 @@ variable "workers" {
       memory      = 12288
       disk        = "60620M"
       disk_slot   = 0
+      disk_iothread = 0
       target_node = "pve"
       storage_pool= "vm-data"
       resource_pool_name = "Normal"
