@@ -33,7 +33,7 @@ apt_install_packages:
   - wireguard
   - tmux
   - python3
-  - xe-guest-utilities
+  #- xe-guest-utilities
 
 
 apt_remove_packages:
