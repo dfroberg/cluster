@@ -117,7 +117,7 @@ resource "proxmox_vm_qemu" "postgres" {
       "echo '**************************************************** BEGIN ************************************************'",
       "sudo mkdir -p /mnt/backups",
       "sudo cat /home/dfroberg/fstab.txt | sudo tee -a /etc/fstab",
-      "sudo -i sed -Ei 's/^.* (ecdsa-sha2-(nistp384|nistp521)|ssh-(ed25519|dss|rsa))/\1/' /root/.ssh/authorized_keys",
+      #"sudo -i sed -Ei 's/^.* (ecdsa-sha2-(nistp384|nistp521)|ssh-(ed25519|dss|rsa))/\1/' /root/.ssh/authorized_keys",
       "echo '************************************************** POSTGRES ***********************************************'",
       "sudo chmod +x /home/dfroberg/install_postgres.sh",
       "sudo bash /home/dfroberg/install_postgres.sh",
