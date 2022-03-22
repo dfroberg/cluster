@@ -90,6 +90,20 @@ spec:
       post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
     nodeSelector: 
       worker: yes
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: feature.node.kubernetes.io/custom-vgpu
+                  operator: In
+                  values:
+                    - "true"
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - worker04
     resources:
       requests:
         #gpu.intel.com/i915: 1
