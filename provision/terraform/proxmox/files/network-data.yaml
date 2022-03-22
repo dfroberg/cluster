@@ -16,7 +16,6 @@ config:
     subnets:
         - type: static
           address: ${storage_node_ip}
-          gateway: ${storage_node_gateway}
   - type: nameserver
     address:
       - ${node_dns}

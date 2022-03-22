@@ -120,7 +120,7 @@ variable "storage" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1a"
       ceph_macaddr = "68:b5:99:b3:db:1a"
-      memory      = 4096
+      memory      = 6144
       disk        = "29900M"
       disk_slot   = 0
       storage_disk = "50G"
@@ -143,7 +143,7 @@ variable "storage" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1b"
       ceph_macaddr = "68:b5:99:b3:db:1b"
-      memory      = 4096
+      memory      = 6144
       disk        = "29900M"
       disk_slot   = 0
       storage_disk = "50G"
@@ -166,7 +166,7 @@ variable "storage" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1c"
       ceph_macaddr = "68:b5:99:b3:db:1c"
-      memory      = 4096
+      memory      = 6144
       disk        = "29900M"
       disk_slot   = 0
       storage_disk = "50G"
