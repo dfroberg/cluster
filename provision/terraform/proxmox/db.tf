@@ -132,7 +132,7 @@ resource "proxmox_vm_qemu" "postgres" {
       "sudo chmod +x /home/dfroberg/postgres_restore.sh",
       "sudo service postgresql restart",
       "echo '*********************************************** UPGRADE & REBOOT *******************************************'",
-      "sudo apt upgrade -y && sudo shutdown",
+      "sudo apt upgrade -y && sudo shutdown -r",
       "echo '***************************************************** DONE *************************************************'",
       "exit 0"
     ]

@@ -57,4 +57,26 @@ resource "proxmox_vm_qemu" "kube-master" {
   #sshkeys      = data.sops_file.secrets.data["k8s.ssh_key"]
   numa         = "1"
   hotplug      = "disk,network,usb,memory,cpu"
+
+  # Additional service setup
+  connection {
+    user        = "${data.sops_file.global_secrets.data["k8s.ssh_username"]}"
+    type        = "ssh"
+    private_key = file("/home/${data.sops_file.global_secrets.data["k8s.ssh_username"]}/.ssh/id_rsa")
+    timeout     = "20m"
+    host        = each.value.primary_ip
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "export PATH=$PATH:/usr/bin",
+      "sleep 30",
+      "echo '**************************************************** BEGIN ************************************************'",
+      "sudo mkdir -p /mnt/backups",
+      "sudo cat /home/dfroberg/fstab.txt | sudo tee -a /etc/fstab",
+      "echo '*********************************************** UPGRADE & REBOOT *******************************************'",
+      "sudo apt upgrade -y && sudo shutdown -r",
+      "echo '***************************************************** DONE *************************************************'",
+      "exit 0"
+    ]
+  }
 }
