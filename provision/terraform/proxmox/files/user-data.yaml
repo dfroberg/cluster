@@ -1,5 +1,5 @@
 #cloud-config
-hostname: ${hostname}
+hostname: ${node_hostname}
 manage_etc_hosts: true
 user: ${username}
 password: $5$9/yHPaCc$r3W9vyq9yUnXuzBUwMGpW9jJmQBfN2v8cjxl0iITFA0
@@ -10,3 +10,42 @@ chpasswd:
 users:
   - default
 package_upgrade: true
+locale: en_US.UTF-8
+timezone: Europe/Stockholm
+local-hostname: ${node_hostname}
+instance-id: ${node_hostname}
+packages:
+  - apt-transport-https
+  - arptables
+  - ca-certificates
+  - curl
+  - cloud-init
+  - ebtables
+  - gdisk
+  - hdparm
+  - htop
+  - iputils-ping
+  - ipvsadm
+  - lvm2
+  - net-tools
+  - nfs-common
+  - nano
+  - ntpdate
+  - nvme-cli
+  - open-iscsi
+  - open-vm-tools
+  - psmisc
+  - smartmontools
+  - socat
+  - software-properties-common
+  - unattended-upgrades
+  - unzip
+  - lzop
+  - lsscsi
+  - sg3-utils
+  - multipath-tools
+  - scsitools
+  - cloud-utils
+  - wireguard
+  - tmux
+  - qemu-guest-agent

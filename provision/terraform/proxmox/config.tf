@@ -7,8 +7,8 @@ data "template_file" "user_data" {
   vars = {
     username    = var.common.username
     ssh_public_key   = data.sops_file.secrets.data["k8s.ssh_key"]
-    hostname = "${each.key}"
-    fqdn     = "${each.key}.${var.common.search_domain}"
+    node_hostname = "${each.key}"
+    node_fqdn     = "${each.key}.${var.common.node_fqdn}"
   }
 }
 data template_file "meta_data" {
@@ -22,11 +22,20 @@ data template_file "network_data" {
   for_each = merge(var.masters,var.workers,var.storage,var.dbs)
   template = file("${path.module}/files/network-data.yaml")
   vars = {
-    hostname    = "${each.key}"
-    cidr  = each.value.cidr
-    nameserver = var.common.nameserver
-    gateway     = each.value.gw
-    search_domain = var.common.search_domain
+    hostname = each.key
+    domain = "cs.aml.ink"
+    node_search_domain = var.common.search_domain
+    node_hostname = each.key
+    node_ip       = each.value.cidr
+    node_gateway  = var.common.gw
+    node_dns      = var.common.nameserver
+    node_mac_address     = each.value.macaddr
+    node_dns_search_domain = var.common.search_domain
+    storage_node_ip       = each.value.ceph_cidr
+    storage_node_gateway  = var.common.ceph_gw,
+    storage_node_dns      = var.common.ceph_nameserver
+    storage_node_mac_address     = each.value.ceph_macaddr
+    storage_node_dns_search_domain = var.common.search_domain
   }
 }
 resource "local_file" "cloud_init_user_data_file" {
