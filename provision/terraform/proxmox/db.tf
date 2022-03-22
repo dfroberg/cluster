@@ -33,7 +33,7 @@ resource "proxmox_vm_qemu" "postgres" {
     type    = "scsi"
     storage = each.value.storage_pool
     size    = each.value.disk
-    iothread= 1
+    iothread= each.value.disk_iothread
     format  = "raw"
     ssd     = 1
     discard = "on"
