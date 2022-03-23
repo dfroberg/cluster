@@ -37,7 +37,7 @@ spec:
       size: 1Gi
     image:
       repository: twinproduction/gatus
-      tag: v3.6.0
+      tag: v3.7.0
       pullPolicy: IfNotPresent
     updateStrategy: Recreate
     replicas: 1
