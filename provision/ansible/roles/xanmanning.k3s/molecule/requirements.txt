@@ -3,4 +3,4 @@
 molecule[docker]==3.6.1
 docker==5.0.3
 yamllint==1.26.3
-ansible-lint==6.0.1
+ansible-lint==6.0.2
