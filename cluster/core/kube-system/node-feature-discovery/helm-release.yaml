@@ -74,6 +74,11 @@ spec:
               matchOn:
                 - pciId:
                     vendor: ["25cd"]
+            - name: nvidia-vgpu
+              matchOn:
+                - pciId:
+                    vendor: ["1414"]
+                    device: ["008e"]
             - name: zwave
               matchOn:
                 - usbId:
