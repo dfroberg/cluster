@@ -18,7 +18,7 @@ jobs:
       - run: helm repo update
       - run: helm dep update
         working-directory: charts/kah-common
-      - uses: peter-evans/create-pull-request@v3
+      - uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: renovate-kah-library-chart
