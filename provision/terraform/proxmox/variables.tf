@@ -18,6 +18,7 @@ variable "dbs" {
   type = map(map(string))
   default = {
     postgres = {
+      tags        ="k3s,db"
       id          = 4009
       primary_ip  = "192.168.30.18"
       cidr        = "192.168.30.18/24"
@@ -44,6 +45,7 @@ variable "masters" {
   type = map(map(string))
   default = {
     master01 = {
+      tags        ="k3s,master"
       id          = 4010
       primary_ip  = "192.168.30.50"
       cidr        = "192.168.30.50/24"
@@ -52,11 +54,11 @@ variable "masters" {
       ceph_cidr   = "192.168.25.50/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 4
+      vcpus       = 8
       cores       = 8
       macaddr     = "68:b5:99:b3:da:01"
       ceph_macaddr = "68:b5:99:b3:db:01"
-      memory      = 10240
+      memory      = 6*1024
       disk        = "29900M"
       disk_slot   = 0
       disk_iothread = 0
@@ -65,6 +67,7 @@ variable "masters" {
       resource_pool_name = "High"
     },
     master02 = {
+      tags        ="k3s,master"
       id          = 4011
       primary_ip  = "192.168.30.51"
       cidr        = "192.168.30.51/24"
@@ -73,11 +76,11 @@ variable "masters" {
       ceph_cidr   = "192.168.25.51/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 4
+      vcpus       = 8
       cores       = 8
       macaddr     = "68:b5:99:b3:da:02"
       ceph_macaddr = "68:b5:99:b3:db:02"
-      memory      = 10240
+      memory      = 6*1024
       disk        = "29900M"
       disk_slot   = 0
       disk_iothread = 0
@@ -86,6 +89,7 @@ variable "masters" {
       resource_pool_name = "High"
     },
     master03 = {
+      tags        ="k3s,master"
       id          = 4012
       primary_ip  = "192.168.30.52"
       cidr        = "192.168.30.52/24"
@@ -94,11 +98,11 @@ variable "masters" {
       ceph_cidr   = "192.168.25.52/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 4
+      vcpus       = 8
       cores       = 8
       macaddr     = "68:b5:99:b3:da:03"
       ceph_macaddr = "68:b5:99:b3:db:03"
-      memory      = 10240
+      memory      = 6*1024
       disk        = "29900M"
       disk_slot   = 0
       disk_iothread = 0
@@ -112,6 +116,7 @@ variable "storage" {
   type = map(map(string))
   default = {
     storage01 = {
+      tags        ="k3s,storage"
       id          = 4030
       primary_ip  = "192.168.30.53"
       cidr        = "192.168.30.53/24"
@@ -120,11 +125,11 @@ variable "storage" {
       ceph_cidr   = "192.168.25.53/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 4
+      vcpus       = 8
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1a"
       ceph_macaddr = "68:b5:99:b3:db:1a"
-      memory      = 6144
+      memory      = 6*1024
       disk        = "29900M"
       disk_iothread = 0
       disk_slot   = 0
@@ -137,6 +142,7 @@ variable "storage" {
       resource_pool_name = "Normal"
     },
     storage02 = {
+      tags        ="k3s,storage"
       id          = 4031
       primary_ip  = "192.168.30.54"
       cidr        = "192.168.30.54/24"
@@ -145,11 +151,11 @@ variable "storage" {
       ceph_cidr   = "192.168.25.54/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 4
+      vcpus       = 8
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1b"
       ceph_macaddr = "68:b5:99:b3:db:1b"
-      memory      = 6144
+      memory      = 6*1024
       disk        = "29900M"
       disk_iothread = 0
       disk_slot   = 0
@@ -162,6 +168,7 @@ variable "storage" {
       resource_pool_name = "Normal"
     },
     storage03 = {
+      tags        ="k3s,storage"
       id          = 4032
       primary_ip  = "192.168.30.55"
       cidr        = "192.168.30.55/24"
@@ -170,11 +177,11 @@ variable "storage" {
       ceph_cidr   = "192.168.25.55/24"
       sockets     = 1
       cpulimit    = 4
-      vcpus       = 4
+      vcpus       = 8
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1c"
       ceph_macaddr = "68:b5:99:b3:db:1c"
-      memory      = 6144
+      memory      = 6*1024
       disk        = "29900M"
       disk_iothread = 0
       disk_slot   = 0
@@ -192,6 +199,7 @@ variable "workers" {
   type = map(map(string))
   default = {
     worker01 = {
+      tags        ="k3s,worker"
       id          = 4020
       primary_ip  = "192.168.30.56"
       cidr        = "192.168.30.56/24"
@@ -204,7 +212,7 @@ variable "workers" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0a"
       ceph_macaddr = "68:b5:99:b3:db:0a"
-      memory      = 12288
+      memory      = 16*1024
       disk        = "60620M"
       disk_slot   = 0
       disk_iothread = 0
@@ -213,6 +221,7 @@ variable "workers" {
       resource_pool_name = "Normal"
     },
     worker02 = {
+      tags        ="k3s,worker"
       id          = 4021
       primary_ip  = "192.168.30.57"
       cidr        = "192.168.30.57/24"
@@ -225,7 +234,7 @@ variable "workers" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0b"
       ceph_macaddr = "68:b5:99:b3:db:0b"
-      memory      = 12288
+      memory      = 16*1024
       disk        = "60620M"
       disk_slot   = 0
       disk_iothread = 0
@@ -234,6 +243,7 @@ variable "workers" {
       resource_pool_name = "Normal"
     },
     worker03 = {
+      tags        ="k3s,worker"
       id          = 4022
       primary_ip  = "192.168.30.58"
       cidr        = "192.168.30.58/24"
@@ -246,7 +256,7 @@ variable "workers" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:0c"
       ceph_macaddr = "68:b5:99:b3:db:0c"
-      memory      = 12288
+      memory      = 16*1024
       disk        = "60620M"
       disk_slot   = 0
       disk_iothread = 0
