@@ -73,8 +73,7 @@ spec:
             - name: vgpu
               matchOn:
                 - pciId:
-                    class: ["0302"]
-                    vendor: ["1414"]
+                    vendor: ["25cd"]
             - name: zwave
               matchOn:
                 - usbId:
