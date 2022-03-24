@@ -3,25 +3,56 @@
     - master
     - worker
     - storage
+    - postgres
   become: true
   gather_facts: true
   serial: "{{ SERIAL_COUNT | default('100%') }}"
   any_errors_fatal: true
   pre_tasks:
-    - name: Pausing for 5 seconds...
-      pause:
-        seconds: 5
+    - setup:
+      register: setup_status
+      until: setup_status is success
+      delay: 10
+      retries: 30
+    - block:
+        - stat: path=/var/run/reboot-required
+          register: reboot_required
+          check_mode: no
+      when: allow_reboot is not defined or (allow_reboot is defined and allow_reboot == true)
+  post_tasks:
+    - block:
+        - stat: path=/var/run/reboot-required
+          register: reboot_required
+          check_mode: no
+
+        - name: "Restart Server"
+          reboot:
+            msg: "Reboot Ansible-Playbook after update"
+            reboot_timeout: 3600
+          register: result
+          when: reboot_required.stat.exists
+
+        - name: "Info if Reboot was sucessful"
+          debug:
+            msg: "{{ inventory_hostname }} has rebooted: {{ result.rebooted }}, it has taken: {{ result.elapsed }} seconds"
+          when: reboot_required.stat.exists
+      when: allow_reboot is not defined or (allow_reboot is defined and allow_reboot == true)
+
   tasks:
     - name: Gather ramdisk backups to delete
       find:
         paths: /var/ramdisk-backup/
         patterns: "*"
       register: files_to_delete
+      when:
+        - ansible_hostname != "postgres"
     - name: Delete ramdisk backup files
       ansible.builtin.file:
         path: "{{ item.path }}"
         state: absent
       loop: "{{ files_to_delete.files }}"
+      when:
+        - ansible_hostname != "postgres"
 
     - name: Ensure /var/ramdisk-backup is not there
       ansible.builtin.file:
@@ -29,64 +60,86 @@
         path: "{{ item }}"
       loop:
         - "/var/ramdisk-backup"
+      when:
+        - ansible_hostname != "postgres"
 
     - name: Kill k3s
       ansible.builtin.command: /usr/local/bin/k3s-killall.sh
+      when:
+        - ansible_hostname != "postgres"
     - name: Uninstall k3s
       ansible.builtin.command:
         cmd: /usr/local/bin/k3s-uninstall.sh
         removes: /usr/local/bin/k3s-uninstall.sh
+      when:
+        - ansible_hostname != "postgres"
     - name: Uninstall k3s agent
       ansible.builtin.command:
         cmd: /usr/local/bin/k3s-agent-uninstall.sh
         removes: /usr/local/bin/k3s-agent-uninstall.sh
+      when:
+        - ansible_hostname != "postgres"
     - name: Gather list of CNI files to delete
       find:
         paths: /etc/cni/net.d
         patterns: "*"
       register: files_to_delete
+      when:
+        - ansible_hostname != "postgres"
     - name: Delete CNI files
       ansible.builtin.file:
         path: "{{ item.path }}"
         state: absent
       loop: "{{ files_to_delete.files }}"
+      when:
+        - ansible_hostname != "postgres"
 
     - name: Gather list of /var/lib/rancher files to delete
       find:
         paths: /var/lib/rancher
         patterns: "*"
       register: rancher_files_to_delete
+      when:
+        - ansible_hostname != "postgres"
     - name: Delete /var/lib/rancher files
       ansible.builtin.file:
         path: "{{ item.path }}"
         state: absent
       loop: "{{ rancher_files_to_delete.files }}"
+      when:
+        - ansible_hostname != "postgres"
 
     - name: Gather list of /var/lib/kubelet files to delete
       find:
         paths: /var/lib/kubelet
         patterns: "*"
       register: kubelet_files_to_delete
+      when:
+        - ansible_hostname != "postgres"
     - name: Delete /var/lib/kubelet files
       ansible.builtin.file:
         path: "{{ item.path }}"
         state: absent
       loop: "{{ kubelet_files_to_delete.files }}"
+      when:
+        - ansible_hostname != "postgres"
 
     - name: Gather list of /var/lib/longhorn files to delete
       find:
         paths: /var/lib/longhorn
         patterns: "*"
       register: longhorn_files_to_delete
+      when:
+        - ansible_hostname != "postgres"
     - name: Delete /var/lib/longhorn files
       ansible.builtin.file:
         path: "{{ item.path }}"
         state: absent
       loop: "{{ longhorn_files_to_delete.files }}"
-
-    #
-    # Turn off master and workker devices in 2 minutes
-    #
-
-    - name: reboot nodes
-      command: reboot
+      when:
+        - ansible_hostname != "postgres"
+    - name: Truncate kine table in cluster database
+      ansible.builtin.command:
+        cmd: sudo -i -u postgres psql cluster -c "truncate kine;"
+      when:
+        - ansible_hostname == "postgres"

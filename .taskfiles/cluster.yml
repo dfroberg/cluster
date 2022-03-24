@@ -88,6 +88,8 @@ tasks:
     desc: Complete installation of Entire Cluster
     cmds:
       - task ansible:playbook:ubuntu-prepare
+      - sleep 60
       - task ansible:playbook:cluster-install
+      - sleep 60
       - task cluster:kubeconfig
     dir: ~/cluster/
