@@ -6,6 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
+  suspend: true
   dependsOn:
     - name: core
   path: ./cluster/apps/default
