@@ -16,9 +16,9 @@ spec:
     provider: sops
     secretRef:
       name: sops-gpg
-    sourceRef:
-      kind: GitRepository
-      name: flux-system
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
   postBuild:
     substitute: {}
     substituteFrom:
