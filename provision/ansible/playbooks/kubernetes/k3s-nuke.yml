@@ -5,6 +5,7 @@
     - storage
   become: true
   gather_facts: true
+  serial: "{{ SERIAL_COUNT | default('100%') }}"
   any_errors_fatal: true
   pre_tasks:
     - name: Pausing for 5 seconds...
