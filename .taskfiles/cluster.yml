@@ -26,7 +26,7 @@ tasks:
     cmds:
       - kubectl get serviceaccount k10-k10 -o jsonpath="{.secrets[0].name}" --namespace kasten-io
       - kubectl get secret k10-k10-token-bdpdn --namespace kasten-io -ojsonpath="{.data.token}{'\n'}" | base64 --decode
-      
+
   grafana-password:
     desc: Retrieve the Grafana passphrase
     cmds:
@@ -57,7 +57,7 @@ tasks:
     cmds:
 #      - flux resume hr -n home frigate
 #      - kubectl scale -n home deploy/frigate --replicas 1
-      - flux resume helmreleases --all -n media 
+      - flux resume helmreleases --all -n media
       - kubectl scale -n media deploy/qbittorrent --replicas 1
       - kubectl scale -n media deploy/prowlarr --replicas 1
       - kubectl scale -n media deploy/qbittorrent-vpn --replicas 1
@@ -84,3 +84,10 @@ tasks:
     desc: Keep an eye on the Rook Ceph operator
     cmds:
       - kubectl -n rook-ceph logs -f -l app=rook-ceph-operator
+  install:
+    desc: Complete installation of Entire Cluster
+    cmds:
+      - task ansible:playbook:ubuntu-prepare
+      - task ansible:playbook:cluster-install
+      - task cluster:kubeconfig
+    dir: ~/cluster/
