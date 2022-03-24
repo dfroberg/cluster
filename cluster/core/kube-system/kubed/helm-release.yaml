@@ -51,7 +51,7 @@ spec:
     # If true, sends usage analytics
     enableAnalytics: true
     # Security options the operator pod should run with.
-    podSecurityContext:  
+    podSecurityContext:
       # ensure that s/a token is readable xref: https://issues.k8s.io/70679
       fsGroup: 65535
 

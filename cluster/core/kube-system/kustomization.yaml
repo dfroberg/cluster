@@ -10,4 +10,3 @@ resources:
   - reloader
   #- node-problem-detector
   - kubed
-  
