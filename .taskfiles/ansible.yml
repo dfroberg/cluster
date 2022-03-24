@@ -153,7 +153,7 @@ tasks:
     desc: Install Kubernetes on the nodes
     dir: provision/ansible
     cmds:
-      - "ansible-playbook -vvv -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/k3s-install.yml"
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/k3s-install.yml"
     silent: true
 
   playbook:cluster-nuke:
