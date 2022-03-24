@@ -4,6 +4,7 @@ kind: HelmRelease
 metadata:
   name: rook-ceph-cluster
   namespace: rook-ceph
+status: {}
 spec:
   interval: 1m
   chart:
@@ -79,11 +80,11 @@ spec:
           osdsPerDevice: "1"
         nodes:
           - name: "storage01"
-            deviceFilter: "xvd[b-z]"
+            deviceFilter: "sd[b-z]"
           - name: "storage02"
-            deviceFilter: "xvd[b-z]"
+            deviceFilter: "sd[b-z]"
           - name: "storage03"
-            deviceFilter: "xvd[b-z]"
+            deviceFilter: "sd[b-z]"
     cephBlockPools:
       - name: rbd
         spec:
