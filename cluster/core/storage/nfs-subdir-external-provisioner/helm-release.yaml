@@ -39,13 +39,13 @@ spec:
       server: "192.168.3.113"
       path: "/mnt/data/nfs/PersistentVolumeClaims"
       mountOptions:
-        - hard         ##  Specify as hard mount mode 
-        - nfsvers=4    ##  Set NFS version, must match server 
+        - hard         ##  Specify as hard mount mode
+        - nfsvers=4    ##  Set NFS version, must match server
         - noatime
     storageClass:
       defaultClass: false
       pathPattern: "${.PVC.namespace}-${.PVC.name}"
-      reclaimPolicy: Retain 
+      reclaimPolicy: Retain
     affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
