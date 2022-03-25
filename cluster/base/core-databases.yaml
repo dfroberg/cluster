@@ -18,6 +18,15 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: StatefulSet
+      name: redis-master
+      namespace: databases
+    - apiVersion: apps/v1
+      kind: StatefulSet
+      name: postgresql
+      namespace: databases
   postBuild:
     substitute: {}
     substituteFrom:

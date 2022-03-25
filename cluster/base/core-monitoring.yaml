@@ -6,9 +6,9 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  suspend: true
+  suspend: false
   dependsOn:
-    - name: core-storage
+    - name: core-security
   path: ./cluster/core/monitoring
   prune: true
   decryption:
