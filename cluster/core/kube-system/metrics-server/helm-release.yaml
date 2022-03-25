@@ -17,11 +17,21 @@ spec:
         namespace: flux-system
       interval: 5m
   install:
+    crds: CreateReplace
+    timeout: 30m
     remediation:
-      retries: 3
+      retries: 0
   upgrade:
+    crds: CreateReplace
+    timeout: 10m
     remediation:
-      retries: 3
+      retries: 1
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
   values:
     args:
       - --kubelet-insecure-tls
