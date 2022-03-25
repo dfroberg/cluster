@@ -20,7 +20,7 @@ spec:
     crds: CreateReplace
     timeout: 30m
     remediation:
-      retries: 0
+      retries: 1
   upgrade:
     crds: CreateReplace
     timeout: 10m
@@ -28,6 +28,7 @@ spec:
       retries: 1
       remediateLastFailure: true
     cleanupOnFail: true
+    recreate: true
   rollback:
     timeout: 10m
     recreate: true
