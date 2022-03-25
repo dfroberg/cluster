@@ -28,7 +28,6 @@ spec:
       retries: 1
       remediateLastFailure: true
     cleanupOnFail: true
-    recreate: true
   rollback:
     timeout: 10m
     recreate: true
