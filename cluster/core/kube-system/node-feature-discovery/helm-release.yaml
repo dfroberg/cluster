@@ -85,22 +85,12 @@ spec:
             - name: nvidia-vgpu
               matchOn:
                 - pciId:
-                    vendor: ["1414"]
-            - name: zwave
-              matchOn:
-                - usbId:
-                    class: ["02"]
-                    vendor: ["0658"]
-                    device: ["0200"]
+                    vendor: ["0301"]
             - name: intel-gpu
               matchOn:
                 - pciId:
                     class: ["0300"]
                     vendor: ["8086"]
-            - name: coral-tpu
-              matchOn:
-                - usbId:
-                    vendor: ["1a6e", "18d1"]
       tolerations:
         - effect: "NoExecute"
           operator: "Exists"
