@@ -70,6 +70,10 @@ spec:
               - vendor
               - device
           custom:
+            - name: vgpu2
+              matchOn:
+                - pciId:
+                  - vendor: ["40ae"]
             - name: vgpu0
               matchOn:
                 - pciId:
