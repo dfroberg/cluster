@@ -73,15 +73,15 @@ spec:
             - name: vgpu2
               matchOn:
                 - pciId:
-                  - vendor: ["40ae"]
+                    vendor: ["40ae"]
             - name: vgpu0
               matchOn:
                 - pciId:
-                  - vendor: ["008e"]
+                    vendor: ["008e"]
             - name: vgpu1
               matchOn:
                 - pciId:
-                  - vendor: ["9522"]
+                    vendor: ["9522"]
             - name: vgpu
               matchOn:
                 - pciId:
