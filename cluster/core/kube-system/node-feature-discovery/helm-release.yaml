@@ -57,6 +57,17 @@ spec:
             - pci
             - usb
         sources:
+          pci:
+            deviceClassWhitelist:
+              - "0200"
+              - "03"
+              - "12"
+            deviceLabelFields:
+              - "class"
+              - "vendor"
+              - "device"
+              - "subsystem_vendor"
+              - "subsystem_device"
           usb:
             deviceClassWhitelist:
               - "02"
