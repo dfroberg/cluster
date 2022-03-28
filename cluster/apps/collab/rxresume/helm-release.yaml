@@ -29,11 +29,11 @@ spec:
     recreate: true
     cleanupOnFail: true
   values:
-    imagePullSecrets: 
+    imagePullSecrets:
       - name: "regcred"
     image:
       repository: amruthpillai/reactive-resume
-      tag: v2
+      tag: v1
 
     nameOverride: rxresume
     # env:
