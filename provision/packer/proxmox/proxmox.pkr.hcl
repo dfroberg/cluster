@@ -10,7 +10,7 @@ packer {
 source "proxmox-iso" "proxmox-ubuntu-20" {
   proxmox_url = "https://192.168.3.100:8006/api2/json"
   vm_name     = "packer-ubuntu-20"
-  iso_url      = "http://192.168.3.100/ubuntu-20.04.3-live-server-amd64.iso"
+  iso_url      = "http://192.168.3.179/ubuntu-20.04.3-live-server-amd64.iso"
   iso_checksum = "f8e3086f3cea0fb3fefb29937ab5ed9d19e767079633960ccb50e76153effc98"
   username         = "${var.pm_user}"
   password         = "${var.pm_pass}"
@@ -31,7 +31,7 @@ source "proxmox-iso" "proxmox-ubuntu-20" {
     "<bs><bs><bs><bs><bs>",
     "ip=${cidrhost("192.168.0.0/24", 9)}::${cidrhost("192.168.0.0/24", 1)}:${cidrnetmask("192.168.0.0/24")}::::${cidrhost("192.168.0.0/24", 1)} ",
     # " autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/ ", #Dont specify the file
-    " autoinstall ds=nocloud-net;s=http://192.168.0.144:80/preseed/ubuntu-20/ ", #Dont specify the file
+    " autoinstall ds=nocloud-net;s=http://192.168.3.179:80/preseed/ubuntu-20/ ", #Dont specify the file
     "boot",
     "--- <enter>"
   ]
