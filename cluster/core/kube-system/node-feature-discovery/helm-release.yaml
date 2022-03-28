@@ -101,7 +101,9 @@ spec:
             - name: nvidia-vgpu
               matchOn:
                 - pciId:
-                    vendor: ["0301"]
+                    class: ["0302"]
+                    vendor: ["1414"]
+                    device: ["008e"]
             - name: intel-gpu
               matchOn:
                 - pciId:
