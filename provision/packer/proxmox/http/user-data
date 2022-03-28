@@ -1,0 +1,58 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US.UTF-8
+  keyboard:
+    layout: en
+    variant: us
+  identity:
+    hostname: packer-ubuntu-20
+    password: "$6$exDY1mhS4KUYCE/2$zmn9ToZwTKLhCw.b4/b.ZRTIZM30JZ4QrOQ2aOXJ8yk96xpcCof0kxKwuX1kqLG/ygbJ1f8wxED22bTL4F46P0" #ubuntu
+    username: ubuntu
+    realname: ubuntu
+  refresh-installer: 
+    update: false
+  ssh:
+    install-server: yes
+    allow-pw: yes
+  packages:
+    - qemu-guest-agent
+  storage:
+    layout:
+      name: direct
+    swap:
+      size: 0
+  # user-data:
+  #   users:
+  #     - name: dfroberg
+  #       passwd: $5$9/yHPaCc$r3W9vyq9yUnXuzBUwMGpW9jJmQBfN2v8cjxl0iITFA0
+  #       groups: [adm, cdrom, dip, plugdev, lxd, sudo]
+  #       lock-passwd: false
+  #       sudo: ALL=(ALL) NOPASSWD:ALL
+  #       shell: /bin/bash
+  #       ssh_authorized_keys:
+  #         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCRSrGw/2bWOBdJo17vSOZ15D+NRKxgDxRd4K+5hqChs5E0NUx1cZf2tpkY/Db/skb3QaIBteYWXZsu6qtxw0tml/5VtXXVtXOF7bF/ZC/xhvKKGMjvDHQvvIX1Gn/DAHV3Hl3RPxjeo3Y/2ObTxMxDnZJiSO/CJJxC0rOkFKBHF7oZzbUWAsxKLxVTAxxp5jEyCrpPACW3K95n4k9d5jbITz3uFWIhXVv9If65uH6a72jyOK93H2Egbu8NlgaF1hZTKeVc9cH1YoanG+qUDd8NKZXd/qQ99gSDoVjR9RGrGVza+2h3wUqsWxfpbwodk0nB0eyr616xI2Vj0QdjNyzN
+
+  # reporting:
+  #   central:
+  #     type: rsyslog #May not exist yet?
+  #     destination: @192.168.0.xxx
+
+  # reporting:
+  #   hook:
+  #     type: webhook
+  #     endpoint: http://example.com/endpoint/path
+  #     consumer_key: "ck_foo"
+  #     consumer_secret: "cs_foo"
+  #     token_key: "tk_foo"
+  #     token_secret: "tk_secret"
+  #     level: INFO
+
+  # apt:
+  #   preserve_sources_list: false
+  #   primary:
+  #       - arches: [amd64]
+  #         uri: "http://repo.<domain>.<tld>/apt"
+  #       - arches: [default]
+  #         uri: "http://repo.<domain>.<tld>/apt"
+  #   geoip: false

@@ -73,7 +73,8 @@ spec:
             - name: vgpu2
               matchOn:
                 - pciId:
-                    vendor: ["5603"]
+                    vendor: ["10DE"]
+                    device: ["1E07"]
             - name: vgpu0
               matchOn:
                 - pciId:
