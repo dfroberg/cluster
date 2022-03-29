@@ -33,7 +33,7 @@ spec:
   values:
     image:
       repository: ghcr.io/miguelndecarvalho/speedtest-exporter
-      tag: v3.4.2
+      tag: v3.4.3
     env:
       TZ: ${CLUSTER_TZ}
       SPEEDTEST_SERVER: speedtest.gavlenet.com
