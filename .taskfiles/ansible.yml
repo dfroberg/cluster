@@ -5,7 +5,12 @@ env:
   ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/ansible.cfg"
 
 vars:
+  PROJECT_DIR:
+    sh: "git rev-parse --show-toplevel"
+  CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
+  ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/ansible"
   ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
+  ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
   ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
 
 tasks:

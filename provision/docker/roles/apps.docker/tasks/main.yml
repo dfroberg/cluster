@@ -1,0 +1,48 @@
+---
+- name: Create default directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: users
+    mode: 0775
+  loop:
+    - "{{ docker_base_dir }}"
+  tags:
+    - always
+
+- import_tasks: docker.yml
+  tags:
+    - docker
+
+# - import_tasks: rclone.yml
+#   tags:
+#     - rclone
+
+- import_tasks: cadvisor.yml
+  tags:
+    - cadvisor
+
+- import_tasks: node-exporter.yml
+  tags:
+    - node-exporter
+
+- import_tasks: vault.yml
+  tags:
+    - vault
+
+- import_tasks: traefik.yml
+  tags:
+    - traefik
+
+- import_tasks: postgresql.yml
+  tags:
+    - postgresql
+
+- import_tasks: nexus.yml
+  tags:
+    - nexus
+
+- import_tasks: vector.yml
+  tags:
+    - vector

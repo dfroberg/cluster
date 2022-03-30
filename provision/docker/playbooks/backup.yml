@@ -1,0 +1,18 @@
+---
+- hosts:
+    - dockerhost
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  pre_tasks:
+    - setup:
+      register: setup_status
+      until: setup_status is success
+      delay: 10
+      retries: 30
+  roles:
+    - role: geerlingguy.pip
+    - role: geerlingguy.docker
+    - role: backup.storage
+      tags:
+        - backup.storage

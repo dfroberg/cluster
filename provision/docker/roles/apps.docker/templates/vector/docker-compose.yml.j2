@@ -1,0 +1,24 @@
+---
+version: "3.8"
+
+services:
+  vector:
+    image: docker.io/timberio/vector:0.20.0-debian
+    container_name: vector
+    restart: unless-stopped
+    network_mode: host
+    user: "1000:1000"
+    command:
+      - --config=/etc/vector/vector.yaml
+    volumes:
+      - "{{ vector_data_dir }}/config/vector.yaml:/etc/vector/vector.yaml:ro"
+      - vector-data:/vector-data-dir
+      - /var/log:/var/log:ro
+
+volumes:
+  vector-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "{{ vector_data_dir }}/data"

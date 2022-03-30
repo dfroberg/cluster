@@ -59,3 +59,21 @@ k3s_server_manifests_urls:
 
 # k3s_server_pod_manifests_templates:
 #   - "kube-vip/kube-vip-pod.yaml.j2"
+
+# -- /etc/rancher/k3s/registries.yaml
+k3s_registries:
+  mirrors:
+    "docker.io":
+      endpoint:
+        - "https://mirror.{{ SECRET_PRIVATE_DOMAIN }}"
+    "gchr.io":
+      endpoint:
+        - "https://mirror.{{ SECRET_PRIVATE_DOMAIN }}"
+    "*":
+      endpoint:
+        - "https://mirror.{{ SECRET_PRIVATE_DOMAIN }}"
+  config:
+    "https://registry.{{ SECRET_PRIVATE_DOMAIN }}":
+      auth:
+        username: "{{ SECRET_NEXUS_USERNAME }}"
+        password: "{{ SECRET_NEXUS_PASSWORD }}"

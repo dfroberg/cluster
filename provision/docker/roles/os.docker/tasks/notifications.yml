@@ -1,0 +1,17 @@
+---
+- name: Check if msmtp log exists
+  ansible.builtin.stat:
+    path: "/var/log/msmtp"
+  register: msmtp_status
+
+- name: Create msmtp log file
+  ansible.builtin.file:
+    dest: /var/log/msmtp
+    state: touch
+    owner: msmtp
+    group: msmtp
+    mode: 0660
+  when:
+    - not msmtp_status.stat.exists
+
+

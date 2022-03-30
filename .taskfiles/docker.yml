@@ -1,0 +1,104 @@
+---
+version: "3"
+
+env:
+  ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
+
+vars:
+  PROJECT_DIR:
+    sh: "git rev-parse --show-toplevel"
+  CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
+  ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
+  ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
+  ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
+  ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+
+tasks:
+  list:
+    desc: List all the hosts
+    dir: provision/docker
+    cmds:
+      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --list-hosts"
+    silent: true
+
+  check-date:
+    desc: Check date on all the hosts
+    dir: provision/docker
+    cmds:
+      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --one-line --become -m command -a 'date'"
+    silent: true
+
+  check-space:
+    desc: Check space on all the hosts
+    dir: provision/docker
+    cmds:
+      - "ansible dockerhost -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --one-line --become -m command -a 'df -h /'"
+    silent: true
+  free-space:
+    desc: Free space on all the hosts
+    dir: provision/docker
+    cmds:
+      - "ansible dockerhost -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --one-line --become -m command -a 'rm -rf /var/ramdisk-backup/*'"
+    silent: true
+  fstrim:
+    desc: Fstrim all the hosts
+    dir: provision/docker
+    cmds:
+      - "ansible dockerhost -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --one-line --become -m command -a 'fstrim /'"
+    silent: true
+  ping:
+    desc: Ping all the hosts
+    dir: provision/docker
+    cmds:
+      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --one-line  --become -m 'ping'"
+    silent: true
+
+  uptime:
+    desc: Uptime of all the hosts
+    dir: provision/docker
+    cmds:
+      - ansible dockerhost -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --one-line -a 'uptime'
+    silent: true
+
+  clean-logs:
+    desc: Clean up stale logs
+    dir: provision/docker
+    cmds:
+      - "ansible dockerhost -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --one-line -a 'rm /var/log/*.*.gz' --become"
+    silent: true
+
+  reboot:
+    desc: Reboot all the docker nodes
+    dir: provision/docker
+    cmds:
+      - "ansible dockerhost -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml -a '/bin/systemctl reboot' --become"
+    silent: true
+
+  reboot:status:
+    desc: Check if node reboot is scheduled by kured
+    dir: provision/docker
+    cmds:
+      - "ansible dockerhost -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml -a 'test -f /var/run/reboot-required' --become"
+    silent: true
+
+  poweroff:
+    desc: Shutdown all the docker nodes
+    dir: provision/docker
+    cmds:
+      - "ansible dockerhost -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml -a '/bin/systemctl poweroff' --become"
+    silent: true
+
+  playbook:os-prepare:
+    desc: Prepare all the docker nodes for running k3s
+    dir: provision/docker
+    cmds:
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/os.yml"
+    silent: true
+
+  playbook:apps-prepare:
+    desc: Prepare all the docker nodes for running k3s
+    dir: provision/docker
+    cmds:
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/apps.yml"
+    silent: true
+

@@ -11,9 +11,9 @@ resources:
   - rxresume
   # - teedy
   - vikunja
-  #- yourls
+  # - yourls
   - bookstack
-  - teamspeak
+  # - teamspeak
   - recipes
   
 

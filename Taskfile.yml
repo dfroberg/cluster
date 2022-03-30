@@ -13,6 +13,7 @@ env:
 includes:
   ansible: .taskfiles/ansible.yml
   cluster: .taskfiles/cluster.yml
+  docker: .taskfiles/docker.yml
   etcd: .taskfiles/etcd.yml
   flux: .taskfiles/flux.yml
   format: .taskfiles/format.yml
