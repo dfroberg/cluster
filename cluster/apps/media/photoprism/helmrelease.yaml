@@ -43,8 +43,6 @@ spec:
           haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
           haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
           cert-manager.io/cluster-issuer: letsencrypt-production
-          # nginx.ingress.kubernetes.io/auth-url: https://id.${SECRET_DOMAIN}/oauth2/auth
-          # nginx.ingress.kubernetes.io/auth-signin: https://id.${SECRET_DOMAIN}/oauth2/start
           nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
           nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
           hajimari.io/enable: "true"
