@@ -45,7 +45,7 @@ spec:
       bittorrent:
         enabled: true
         type: LoadBalancer
-        externalIPs: 
+        externalIPs:
           -  "${SVC_QBITTORRENT_ADDR}"
         ports:
           bittorrent:
@@ -113,7 +113,7 @@ spec:
       pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
       post.hook.backup.velero.io/container: fsfreeze
       post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
-    nodeSelector: 
+    nodeSelector:
       worker: yes
     resources:
       requests:

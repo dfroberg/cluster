@@ -46,7 +46,7 @@ spec:
     service:
       main:
         type: LoadBalancer
-        externalIPs: 
+        externalIPs:
           - "${SVC_TVHEADEND_ADDR}"
         externalTrafficPolicy: Local
         ports:
@@ -92,7 +92,7 @@ spec:
       pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
       post.hook.backup.velero.io/container: fsfreeze
       post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
-    nodeSelector: 
+    nodeSelector:
       worker: yes
     resources:
       requests:

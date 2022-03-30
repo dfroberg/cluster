@@ -35,7 +35,7 @@ spec:
       replicaCount: 3
       service:
         type: LoadBalancer
-        externalIPs: 
+        externalIPs:
           - "${CLUSTER_LB_NGINX}"
         externalTrafficPolicy: Local
       publishService:

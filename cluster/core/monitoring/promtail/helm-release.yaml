@@ -34,7 +34,7 @@ spec:
     image:
       registry: ghcr.io
       repository: k8s-at-home/promtail
-    nodeSelector: 
+    nodeSelector:
       worker: yes
     config:
       lokiAddress: http://loki:3100/loki/api/v1/push
@@ -66,8 +66,9 @@ spec:
         containerPort: 1514
         service:
           type: LoadBalancer
-          externalIPs: 
+          externalIPs:
           - "${SVC_SYSLOG_ADDR}"
+        externalTrafficPolicy: Local
     extraVolumes:
       - name: journal
         hostPath:
