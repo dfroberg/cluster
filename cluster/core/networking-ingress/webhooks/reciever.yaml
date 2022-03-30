@@ -48,6 +48,24 @@ spec:
       name: apps
       apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
     - kind: Kustomization
+      name: apps-collab
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: apps-media
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: apps-default
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: apps-comms
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: apps-gitlab
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: apps-tools
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
       name: core
       apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
     - kind: Kustomization
@@ -60,11 +78,32 @@ spec:
       name: core-network-kpc
       apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
     - kind: Kustomization
-      name: core-velero
+      name: core-network-ingress
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: core-rbac
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: core-kube-system
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: core-resource-control
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: core-security
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: core-vpn-gateway
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: core-flux-notifications
       apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
     - kind: Kustomization
       name: crds
       apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
     - kind: Kustomization
       name: init
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: custom
       apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
