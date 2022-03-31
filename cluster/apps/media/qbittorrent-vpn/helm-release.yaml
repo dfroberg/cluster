@@ -22,9 +22,6 @@ spec:
       retries: 3
   upgrade:
     timeout: 10m
-    remediation:
-      retries: 3
-      remediateLastFailure: true
     cleanupOnFail: true
   rollback:
     timeout: 10m
