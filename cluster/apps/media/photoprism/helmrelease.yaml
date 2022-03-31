@@ -7,6 +7,11 @@ metadata:
 spec:
   releaseName: photoprism
   interval: 10m
+  install:
+    timeout: 10m
+  upgrade:
+    timeout: 10m
+    cleanupOnFail: true
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
