@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: crowdsec-agent-config-pvc
+  namespace: security
+  labels:
+    benji-backup.me/instance: "benji-k8s"
+    kasten.io/backup-volume: "enabled"
+  annotations:
+    meta.helm.sh/release-name: crowdsec
+    app.kubernetes.io/managed-by: Helm
+    benji-backup.me/fsfreeze: "yes"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: ceph-block

@@ -65,10 +65,10 @@ spec:
           size: 2Gi
         config:
           enabled: false
-          accessModes:
-            - ReadWriteOnce
-          storageClassName: "ceph-block"
-          size: 100Mi
+          # accessModes:
+          #   - ReadWriteOnce
+          # storageClassName: "ceph-block"
+          # size: 100Mi
     agent:
       acquisition:
         - namespace: nginx-ingress
