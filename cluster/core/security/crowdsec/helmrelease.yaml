@@ -59,14 +59,14 @@ spec:
       persistentVolume:
         data:
           enabled: true
-          existingClaim: crowdsec-data-pvc
+          existingClaim: crowdsec-db-pvc
           # accessModes:
           #   - ReadWriteOnce
           # storageClassName: "ceph-block"
           # size: 2Gi
         config:
           enabled: true
-          existingClaim: crowdsec-agent-config-pvc
+          existingClaim: crowdsec-config-pvc
           # accessModes:
           #   - ReadWriteOnce
           # storageClassName: "ceph-block"
@@ -81,3 +81,11 @@ spec:
         enabled: true
         serviceMonitor:
           enabled: false
+      persistentVolume:
+        config:
+          enabled: true
+          existingClaim: crowdsec-agent-config-pvc
+          # accessModes:
+          #   - ReadWriteOnce
+          # storageClassName: "ceph-block"
+          # size: 100Mi

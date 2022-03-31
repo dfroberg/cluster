@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: crowdsec-agent-config-pvc
+  name: crowdsec-config-pvc
   namespace: security
   labels:
     benji-backup.me/instance: "benji-k8s"
