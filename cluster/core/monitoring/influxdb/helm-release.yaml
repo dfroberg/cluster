@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: influxdb
-      version: 4.0.5
+      version: 4.0.6
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
@@ -612,7 +612,7 @@ spec:
           image:
             registry: docker.io
             repository: bitnami/google-cloud-sdk
-            tag: 0.378.0-debian-10-r1
+            tag: 0.379.0-debian-10-r1
             ## Specify a imagePullPolicy. Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
             ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
             ##
