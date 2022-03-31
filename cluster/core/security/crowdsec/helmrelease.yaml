@@ -46,10 +46,10 @@ spec:
           #   haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
           #   nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
           host: crowdsec.${SECRET_DOMAIN}
-          # tls:
-          # - secretName: "${SECRET_DOMAIN//./-}-tls"
-          #   hosts:
-          #     - "crowdsec.${SECRET_DOMAIN}"
+          tls:
+          - secretName: "${SECRET_DOMAIN//./-}-tls"
+            hosts:
+              - "crowdsec.${SECRET_DOMAIN}"
 
       metrics:
         # TODO: ingest these metrics without using serviceMonitor
@@ -59,12 +59,14 @@ spec:
       persistentVolume:
         data:
           enabled: true
-          accessModes:
-            - ReadWriteOnce
-          storageClassName: "ceph-block"
-          size: 2Gi
+          existingClaim: crowdsec-data-pvc
+          # accessModes:
+          #   - ReadWriteOnce
+          # storageClassName: "ceph-block"
+          # size: 2Gi
         config:
-          enabled: false
+          enabled: true
+          existingClaim: crowdsec-agent-config-pvc
           # accessModes:
           #   - ReadWriteOnce
           # storageClassName: "ceph-block"
