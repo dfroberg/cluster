@@ -112,7 +112,7 @@ spec:
               - 10.10.0.0/16
 
         rules:
-          # bypass Authelia 
+          # bypass Authelia
           - domain:
               - login.${SECRET_DOMAIN}
               - matrix.${SECRET_DOMAIN}
@@ -135,7 +135,7 @@ spec:
             networks:
               - private
           # Bypass API urls for certain services
-          - domain: 
+          - domain:
               - grafana.${SECRET_DOMAIN}
               - matrix-admin.${SECRET_DOMAIN}
             policy: bypass
@@ -144,7 +144,7 @@ spec:
               - "^/(.*)/api([/?].*)?$"
               - "^/static([/?].*)?$"
               - "^/manifest[.]json$"
-              
+
           # Deny admin services to users
           - domain:
               - alert-manager.${SECRET_DOMAIN}
@@ -183,7 +183,7 @@ spec:
       notifier:
         smtp:
           enabled: true
-          enabledSecret: true      
+          enabledSecret: true
           host: smtp.gmail.com
           port: 587
           timeout: 5s

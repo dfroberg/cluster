@@ -53,7 +53,7 @@ spec:
         bucket: primary
     influxdb:
       replicaCount: 1
-      updateStrategy: Recreate
+      #updateStrategy: Recreate
       podManagementPolicy: OrderedReady
       nodeSelector:
         worker: yes
