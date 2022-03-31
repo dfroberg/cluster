@@ -59,18 +59,18 @@ spec:
       persistentVolume:
         data:
           enabled: true
-          existingClaim: crowdsec-db-pvc
-          # accessModes:
-          #   - ReadWriteOnce
-          # storageClassName: "ceph-block"
-          # size: 2Gi
+          # existingClaim: crowdsec-db-pvc
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: "ceph-block"
+          size: 2Gi
         config:
           enabled: true
-          existingClaim: crowdsec-config-pvc
-          # accessModes:
-          #   - ReadWriteOnce
-          # storageClassName: "ceph-block"
-          # size: 100Mi
+          # existingClaim: crowdsec-config-pvc
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: "ceph-block"
+          size: 100Mi
     agent:
       acquisition:
         - namespace: nginx-ingress
@@ -84,8 +84,8 @@ spec:
       persistentVolume:
         config:
           enabled: true
-          existingClaim: crowdsec-agent-config-pvc
-          # accessModes:
-          #   - ReadWriteOnce
-          # storageClassName: "ceph-block"
-          # size: 100Mi
+          # existingClaim: crowdsec-agent-config-pvc
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: "ceph-block"
+          size: 100Mi
