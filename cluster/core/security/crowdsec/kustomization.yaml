@@ -1,8 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - agent-config-pvc.yaml
-  - config-pvc.yaml
-  - data-pvc.yaml
+  # - agent-config-pvc.yaml
+  # - config-pvc.yaml
+  # - data-pvc.yaml
   - helmrelease.yaml
   # - virtualservice.yaml
