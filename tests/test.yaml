@@ -1,0 +1,327 @@
+---
+# Source: crowdsec/templates/secrets.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: agent-credentials
+  namespace: default
+  labels:
+    k8s-app: RELEASE-NAME
+    type: lapi
+    version: v1
+type: Opaque
+data:
+  username: YlFYblB4Q1Y3a3Z6ZG04dnE1TGNmTml4dzZheFFxR3ZRZUNDSkxvakpPT1ViaTdW
+  password: RGo4UUZPRE5pQzl1YVlwNVVPTDVyUVNWWXg5RzlMZkJ3MGJWV0NvdkZFeE80VUtk
+---
+# Source: crowdsec/templates/acquis-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: acquis-configmap
+  namespace: default
+  annotations:
+    meta.helm.sh/release-name: RELEASE-NAME
+    meta.helm.sh/release-namespace: default
+data:
+  acquis.yaml: |-
+    filenames:
+      - /var/log/containers/ingress-nginx-controller-*_ingress-nginx_*.log
+    labels:
+      type: docker
+      program: nginx
+---
+# Source: crowdsec/templates/agent-persistentVolume.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: RELEASE-NAME-agent-config-pvc
+  namespace: default
+  annotations:
+    meta.helm.sh/release-name: RELEASE-NAME
+    meta.helm.sh/release-namespace: default
+  labels:
+    k8s-app: RELEASE-NAME
+    type: agent
+    version: v1
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: "100Mi"
+---
+# Source: crowdsec/templates/lapi-persistentVolume.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: RELEASE-NAME-db-pvc
+  namespace: default
+  annotations:
+    meta.helm.sh/release-name: RELEASE-NAME
+    meta.helm.sh/release-namespace: default
+  labels:
+    k8s-app: RELEASE-NAME
+    type: lapi
+    version: v1
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: "1Gi"
+---
+# Source: crowdsec/templates/lapi-persistentVolume.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: RELEASE-NAME-config-pvc
+  namespace: default
+  annotations:
+    meta.helm.sh/release-name: RELEASE-NAME
+    meta.helm.sh/release-namespace: default
+  labels:
+    k8s-app: RELEASE-NAME
+    type: lapi
+    version: v1
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: "100Mi"
+---
+# Source: crowdsec/templates/lapi-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: RELEASE-NAME-service
+  namespace: default
+  annotations:
+    meta.helm.sh/release-name: RELEASE-NAME
+    meta.helm.sh/release-namespace: default
+  labels:
+    app: RELEASE-NAME-service
+spec:
+  type: ClusterIP
+  ports:
+    
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: lapi
+    
+  selector:
+    k8s-app: RELEASE-NAME
+    type: lapi
+    version: v1
+---
+# Source: crowdsec/templates/agent-daemonSet.yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: RELEASE-NAME-agent
+  namespace: default
+  annotations:
+    meta.helm.sh/release-name: RELEASE-NAME
+    meta.helm.sh/release-namespace: default
+  labels:
+    k8s-app: RELEASE-NAME
+    type: agent
+    version: v1
+spec:
+  selector:
+    matchLabels:
+      k8s-app: RELEASE-NAME
+      type: agent
+  template:
+    metadata:
+      labels:
+        k8s-app: RELEASE-NAME
+        type: agent
+        version: v1
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      initContainers:
+      - name: wait-for-lapi
+        image: "busybox:1.28"
+        imagePullPolicy: IfNotPresent
+        command: ['sh', '-c', "until nc RELEASE-NAME-service.default 8080; do echo waiting for lapi to start; sleep 5; done"]
+      containers:
+      - name: crowdsec-agent
+        image: "crowdsecurity/crowdsec:v1.3.2"
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: AGENT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: agent-credentials
+                key: username
+          - name: AGENT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: agent-credentials
+                key: password
+          - name: LOCAL_API_URL
+            value: http://RELEASE-NAME-service.default:8080
+          - name: DISABLE_LOCAL_API
+            value: "true"
+        resources:
+          limits:
+            memory: 100Mi
+          requests:
+            cpu: 150m
+            memory: 100Mi
+        
+        command: ['sh', '-c', 'mv -n /staging/etc/crowdsec/* /etc/crowdsec_data/ && rm -rf /staging/etc/crowdsec && ln -s /etc/crowdsec_data /etc/crowdsec && ./docker_start.sh']
+        volumeMounts:
+          - name: crowdsec-agent-config
+            mountPath: /etc/crowdsec_data
+          - name: acquis-config-volume
+            mountPath: /etc/crowdsec_data/acquis.yaml
+            subPath: acquis.yaml
+          - name: varlog
+            mountPath: /var/log
+          - name: varlibdockercontainers
+            mountPath: /var/lib/docker/containers
+            readOnly: true
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: acquis-config-volume
+        configMap:
+          name: acquis-configmap
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: crowdsec-agent-config
+        persistentVolumeClaim:
+          claimName: "RELEASE-NAME-agent-config-pvc"
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+---
+# Source: crowdsec/templates/lapi-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: RELEASE-NAME-lapi
+  namespace: default
+  annotations:
+    meta.helm.sh/release-name: RELEASE-NAME
+    meta.helm.sh/release-namespace: default
+  labels:
+    k8s-app: RELEASE-NAME
+    type: lapi
+    version: v1
+spec:
+  selector:
+    matchLabels:
+      k8s-app: RELEASE-NAME
+      type: lapi
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        k8s-app: RELEASE-NAME
+        type: lapi
+        version: v1
+    spec:
+      
+      containers:
+      - name: crowdsec-lapi
+        image: "crowdsecurity/crowdsec:v1.3.2"
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: AGENT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: agent-credentials
+                key: username
+          - name: AGENT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: agent-credentials
+                key: password
+          - name: DISABLE_AGENT
+            value: "true"
+        resources:
+          limits:
+            memory: 100Mi
+          requests:
+            cpu: 150m
+            memory: 100Mi
+        ports:
+          - name: lapi
+            containerPort: 8080
+            protocol: TCP
+            
+        command: ['sh', '-c', 'mv -n /staging/etc/crowdsec/* /etc/crowdsec_data/ && rm -rf /staging/etc/crowdsec && ln -s /etc/crowdsec_data /etc/crowdsec && ./docker_start.sh']
+        volumeMounts:
+          - name: crowdsec-db
+            mountPath: /var/lib/crowdsec/data
+          - name: crowdsec-config
+            mountPath: /etc/crowdsec_data
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: crowdsec-db
+        persistentVolumeClaim:
+          claimName: "RELEASE-NAME-db-pvc"
+      - name: crowdsec-config
+        persistentVolumeClaim:
+          claimName: "RELEASE-NAME-config-pvc"
+---
+# Source: crowdsec/templates/tests/test_agent_up.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "RELEASE-NAME-test-agent"
+  namespace: "default"
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  containers:
+  - name: RELEASE-NAME-test-agent
+    image: curlimages/curl
+    env:
+      - name: AGENT_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: agent-credentials
+            key: username
+      - name: AGENT_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: agent-credentials
+            key: password
+    command:
+      - /bin/sh
+      - -ec
+      - |
+        http_code=$(curl -s -o /dev/null -w "%{http_code}" http://RELEASE-NAME-service:8080/v1/watchers/login \
+        -H 'Content-Type: application/json' -d '{"machine_id": "'"$AGENT_USERNAME"'", "password":"'"$AGENT_PASSWORD"'"}'); \
+        if [ "$http_code" == "200" ]; then echo 'connection to lapi succeed' && exit 0; else echo 'failed connect to lapi' && exit 1; fi
+  restartPolicy: Never
+---
+# Source: crowdsec/templates/tests/test_lapi_up.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "RELEASE-NAME-test-lapi-up"
+  namespace: "default"
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  containers:
+  - name: RELEASE-NAME-test-lapi-up
+    image: curlimages/curl
+    command:
+      - /bin/sh
+      - -ec
+      - |
+        curl -XGET http://RELEASE-NAME-service:8080/health
+  restartPolicy: Never
