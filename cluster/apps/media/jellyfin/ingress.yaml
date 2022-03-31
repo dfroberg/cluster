@@ -1,0 +1,34 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jellyfin
+  namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    external-dns/is-public: "true"
+    haproxy-ingress-proxy.pfsense.org/enabled: "true"
+    haproxy-ingress-proxy.pfsense.org/frontend: "https-443"
+    haproxy-ingress-proxy.pfsense.org/backend: "nginx-443"
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    nginx.ingress.kubernetes.io/auth-url: "http://authelia.security.svc.cluster.local/api/verify"
+    nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: tv
+spec:
+  ingressClassName: "nginx"
+  tls:
+    - hosts:
+        - "jellyfin.${SECRET_DOMAIN}"
+      secretName: "${SECRET_DOMAIN//./-}-tls"
+  rules:
+    - host: "jellyfin.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jellyfin
+                port:
+                  number: 3000
