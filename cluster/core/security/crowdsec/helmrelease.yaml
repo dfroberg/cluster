@@ -33,6 +33,9 @@ spec:
     cleanupOnFail: true
   values:
     container_runtime: containerd
+    secrets:
+      username: ${SECRET_CROWDSEC_USER}
+      password: ${SECRET_CROWDSEC_PASS}
     lapi:
       dashboard:
         # TODO: No arm64 images, raise a GH issue
@@ -75,8 +78,6 @@ spec:
           size: 100Mi
     agent:
       replicas: 4
-      username: ${SECRET_CROWDSEC_USER}
-      password: ${SECRET_CROWDSEC_PASS}
       acquisition:
         - namespace: nginx-ingress
           podName: ingress-nginx-controller-*
