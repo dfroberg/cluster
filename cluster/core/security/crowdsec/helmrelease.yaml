@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: crowdsec
-      version: 0.3.13
+      version: 0.3.15
       sourceRef:
         kind: HelmRepository
         name: crowdsec-charts
@@ -72,6 +72,7 @@ spec:
           storageClassName: "ceph-block"
           size: 100Mi
     agent:
+      replicas: 4
       acquisition:
         - namespace: nginx-ingress
           podName: ingress-nginx-controller-*

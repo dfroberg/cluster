@@ -11,8 +11,8 @@ metadata:
     version: v1
 type: Opaque
 data:
-  username: enk4cjQzaTlzd1ZnYkp4Z205Y0NSTjhOUjd5Tk5ZMjhXT2ZSOFdseG45SmlhMnNq
-  password: eDl2eGVOOUEzWUtBQXdNZjhCWGVhcGMybk1wV1JQem9BRkhoQ2RjZGFYMlYzbWo3
+  username: aWNSOTNzWkpoZWUyOThxUnR6U2FNY1liM0RaWkhzV1pyNDdSQ1dTOWE5ZEdOb1Vu
+  password: eDhwRUtjSWRNSkZXNTBqT2o2bE9vR3RMd1hjTUlXQ0lmZ1p0U2xOVjhoaGhJbUZL
 ---
 # Source: crowdsec/templates/acquis-configmap.yaml
 apiVersion: v1
@@ -181,6 +181,8 @@ metadata:
     type: agent
     version: v1
 spec:
+  serviceName: RELEASE-NAME-agent
+  replicas: 4
   selector:
     matchLabels:
       k8s-app: RELEASE-NAME
