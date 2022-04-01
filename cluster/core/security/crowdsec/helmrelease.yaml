@@ -75,6 +75,8 @@ spec:
           size: 100Mi
     agent:
       replicas: 4
+      username: admin
+      password: test
       acquisition:
         - namespace: nginx-ingress
           podName: ingress-nginx-controller-*
