@@ -11,8 +11,8 @@ metadata:
     version: v1
 type: Opaque
 data:
-  username: aWNSOTNzWkpoZWUyOThxUnR6U2FNY1liM0RaWkhzV1pyNDdSQ1dTOWE5ZEdOb1Vu
-  password: eDhwRUtjSWRNSkZXNTBqT2o2bE9vR3RMd1hjTUlXQ0lmZ1p0U2xOVjhoaGhJbUZL
+  username: dEhXWGlvQk45NGJzcGtsbTNxNW9ibHdlMTBnUXc0OUNqSkRWdzlycjlzWjVabVRk
+  password: MjVsQVhjSlRMeXJOUmlVYk9Xanp0ZnVlemZ1UGdybVM3VmlqY0pQbzBjcmtwempK
 ---
 # Source: crowdsec/templates/acquis-configmap.yaml
 apiVersion: v1

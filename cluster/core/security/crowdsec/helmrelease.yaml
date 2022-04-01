@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: crowdsec
-      version: 0.3.15
+      version: 0.3.16
       sourceRef:
         kind: HelmRepository
         name: crowdsec-charts
