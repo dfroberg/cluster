@@ -1,0 +1,30 @@
+---
+- name: Create wikijs directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: users
+    mode: 0775
+  loop:
+    - "{{ docker_base_dir }}/wikijs"
+    - "{{ wikijs_data_dir }}"
+    - "{{ wikijs_data_dir }}/config"
+    - "{{ wikijs_data_dir }}/data"
+
+- block:
+    - name: Create wikijs docker compose file
+      ansible.builtin.template:
+        src: wikijs/docker-compose.yml.j2
+        dest: "{{ docker_base_dir }}/wikijs/docker-compose.yml"
+        owner: "{{ ansible_user }}"
+        group: users
+        mode: 0775
+    - name: Create wikijs systemd service file
+      ansible.builtin.template:
+        src: "docker-compose@.service.j2"
+        dest: "/etc/systemd/system/docker-compose@wikijs.service"
+        mode: 0644
+      vars:
+        condition_path_is_mount_point: "{{ wikijs_data_dir }}"
+  notify: Restart wikijs

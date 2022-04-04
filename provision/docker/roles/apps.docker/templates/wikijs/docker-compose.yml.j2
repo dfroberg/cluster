@@ -1,0 +1,37 @@
+---
+version: "3.8"
+
+services:
+  wikijs:
+    image: linuxserver/wikijs
+    container_name: wikijs
+    restart: unless-stopped
+    network_mode: host
+    user: "1000:1000"
+    privileged: true
+    environment:
+      - TZ=Europe/Stockholm
+    volumes:
+      - wikijs-config:/config
+      - wikijs-data:/data
+    ports:
+      - 3333:3000
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.vault.rule=Host(`wiki.froberg.org`)
+      - traefik.http.routers.vault.entrypoints=websecure
+      - traefik.http.routers.vault.tls.certresolver=letsencrypt
+      - traefik.http.services.vault.loadbalancer.server.port=3333
+volumes:
+  wikijs-config:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "{{ wikijs_data_dir }}/config"
+  wikijs-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "{{ wikijs_data_dir }}/data"

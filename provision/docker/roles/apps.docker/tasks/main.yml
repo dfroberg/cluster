@@ -46,3 +46,7 @@
 - import_tasks: vector.yml
   tags:
     - vector
+
+- import_tasks: wikjs.yml
+  tags:
+    - wikijs
