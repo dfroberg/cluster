@@ -18,10 +18,10 @@ services:
       - 3333:3000
     labels:
       - traefik.enable=true
-      - traefik.http.routers.vault.rule=Host(`wiki.froberg.org`)
-      - traefik.http.routers.vault.entrypoints=websecure
-      - traefik.http.routers.vault.tls.certresolver=letsencrypt
-      - traefik.http.services.vault.loadbalancer.server.port=3333
+      - traefik.http.routers.wikijs.rule=Host(`wiki.froberg.org`)
+      - traefik.http.routers.wikijs.entrypoints=websecure
+      - traefik.http.routers.wikijs.tls.certresolver=letsencrypt
+      - traefik.http.services.wikijs.loadbalancer.server.port=3333
 volumes:
   wikijs-config:
     driver: local

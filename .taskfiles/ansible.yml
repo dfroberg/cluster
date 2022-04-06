@@ -2,21 +2,21 @@
 version: "3"
 
 env:
-  ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/ansible.cfg"
+  ANSIBLE_CONFIG: "{{.ANSIBLE_DIR}}/ansible.cfg"
 
 vars:
   PROJECT_DIR:
     sh: "git rev-parse --show-toplevel"
   CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-  ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/ansible"
+  ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes"
   ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
   ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
-  ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+  ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
 
 tasks:
   deps:
     desc: Upgrade Ansible galaxy deps
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible-galaxy install -r requirements.yml --force --ignore-errors"
       - "ansible-galaxy collection install -r requirements.yml --force"
@@ -24,178 +24,231 @@ tasks:
     silent: true
 
   list:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: List all the hosts
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --list-hosts"
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --list-hosts"
+      #- "ansible-inventory -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --list"
     silent: true
 
   check-date:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Check date on all the hosts
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'date'"
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'date'"
     silent: true
 
   check-space:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Check space on all the hosts
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'df -h /'"
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'df -h /var/lib/rancher'"
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'df -h /var/lib/kubelet'"
     silent: true
   free-space:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Free space on all the hosts
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'rm -rf /var/ramdisk-backup/*'"
     silent: true
   fstrim:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Fstrim all the hosts
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line --become -m command -a 'fstrim /'"
     silent: true
   ping:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Ping all the hosts
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line  --become -m 'ping'"
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line  --become -m 'ping'"
     silent: true
 
   uptime:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Uptime of all the hosts
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line -a 'uptime'
     silent: true
 
   uptime:storage:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Uptime of storage hosts
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - ansible storage -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line -a 'uptime'
     silent: true
 
   clean-images:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Clean up stale container images
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line -a 'k3s crictl rmi --prune' --become"
     silent: true
 
   clean-logs:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Clean up stale logs
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line -a 'rm /var/log/*.*.gz' --become"
     silent: true
 
   purge-manifests:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Delete all manifests under /var/lib/rancher/k3s/server/manifests
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible master -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml --one-line -a 'rm /var/lib/rancher/k3s/server/manifests/*' --become"
 
   reboot:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Reboot all the k8s nodes
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a '/bin/systemctl reboot' --become"
     silent: true
 
   reboot:storage:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Reboot storage nodes
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible storage -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a '/bin/systemctl reboot' --become"
     silent: true
 
   reboot:status:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Check if node reboot is scheduled by kured
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a 'test -f /var/run/reboot-required' --become"
     silent: true
 
   poweroff:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Shutdown all the k8s nodes
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a '/bin/systemctl poweroff' --become"
     silent: true
 
   poweroff:storage:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Shutdown all the k8s nodes
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible storage -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -a '/bin/systemctl poweroff' --become"
     silent: true
 
   playbook:ubuntu-prepare:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Prepare all the k8s nodes for running k3s
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/ubuntu-prepare.yml"
     silent: true
 
   playbook:ubuntu-upgrade:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Upgrade all the k8s nodes operating system
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/ubuntu-upgrade.yml"
     silent: true
 
   playbook:ubuntu-resizefs:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Upgrade all the k8s nodes operating system
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/ubuntu-prepare.yml --tags partitions"
     silent: true
 
   playbook:cluster-install:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Install Kubernetes on the nodes
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/k3s-install.yml"
     silent: true
 
   playbook:cluster-nuke:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Completely remove Kubernetes on the nodes
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/k3s-nuke.yml"
     silent: true
 
   playbook:rook-nuke:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Destroy rook-ceph on the storage nodes
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/rook-ceph-nuke.yml"
     silent: true
   playbook:rook-lsblk:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Check lsblk of configured devices on the storage nodes
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/rook-ceph-lsblk.yml"
     silent: true
   playbook:etcd-restore:master:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Retrieve and restore master from etcd snapshot stored in S3 object storage
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/etcd-s3-restore.yml"
     silent: true
   playbook:vmware:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Run VMWare specific playbooks
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible-playbook -vvv -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/ubuntu-prepare.yml --tags vmware"
     silent: true
 
   playbook:esxi:ssl:
+    vars:
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
     desc: Get and install lestencrypt certs into esxi hosts
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible-playbook -vvv -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/standalone/esxi-prepare.yml"
     silent: true

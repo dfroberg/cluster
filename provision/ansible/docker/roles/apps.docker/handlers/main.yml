@@ -54,3 +54,10 @@
     state: restarted
     enabled: true
     daemon_reload: true
+
+- name: Restart wikijs
+  ansible.builtin.systemd:
+    name: "docker-compose@wikijs.service"
+    state: restarted
+    enabled: true
+    daemon_reload: true

@@ -1,14 +1,14 @@
 ---
 version: "3"
 env:
-  ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/ansible.cfg"
+  ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
 
 vars:
   PROJECT_DIR:
     sh: "git rev-parse --show-toplevel"
   ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
   CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-  ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
+  ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker"
   ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
   ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
   ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
@@ -16,30 +16,16 @@ vars:
 tasks:
   list:
     vars:
-      PROJECT_DIR:
-        sh: "git rev-parse --show-toplevel"
-      ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
-      CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
-      ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
-      ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
-      ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker/inventory"
     desc: List all the hosts
-    dir: "{{.PROJECT_DIR}}/provision/docker"
+    dir: "{{.PROJECT_DIR}}/provision/ansible/docker"
     cmds:
       - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --list-hosts"
     silent: true
 
   check-date:
     vars:
-      PROJECT_DIR:
-        sh: "git rev-parse --show-toplevel"
-      ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
-      CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
-      ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
-      ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
-      ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker/inventory"
     desc: Check date on all the hosts
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
@@ -48,14 +34,7 @@ tasks:
 
   check-space:
     vars:
-      PROJECT_DIR:
-        sh: "git rev-parse --show-toplevel"
-      ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
-      CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
-      ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
-      ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
-      ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker/inventory"
     desc: Check space on all the hosts
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
@@ -63,14 +42,7 @@ tasks:
     silent: true
   free-space:
     vars:
-      PROJECT_DIR:
-        sh: "git rev-parse --show-toplevel"
-      ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
-      CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
-      ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
-      ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
-      ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker/inventory"
     desc: Free space on all the hosts
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
@@ -78,14 +50,7 @@ tasks:
     silent: true
   fstrim:
     vars:
-      PROJECT_DIR:
-        sh: "git rev-parse --show-toplevel"
-      ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
-      CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
-      ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
-      ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
-      ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker/inventory"
     desc: Fstrim all the hosts
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
@@ -93,14 +58,7 @@ tasks:
     silent: true
   ping:
     vars:
-      PROJECT_DIR:
-        sh: "git rev-parse --show-toplevel"
-      ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
-      CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
-      ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
-      ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
-      ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker/inventory"
     desc: Ping all the hosts
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
@@ -109,14 +67,7 @@ tasks:
 
   uptime:
     vars:
-      PROJECT_DIR:
-        sh: "git rev-parse --show-toplevel"
-      ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
-      CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
-      ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
-      ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
-      ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker/inventory"
     desc: Uptime of all the hosts
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
@@ -125,14 +76,7 @@ tasks:
 
   clean-logs:
     vars:
-      PROJECT_DIR:
-        sh: "git rev-parse --show-toplevel"
-      ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
-      CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
-      ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
-      ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
-      ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker/inventory"
     desc: Clean up stale logs
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
@@ -141,14 +85,7 @@ tasks:
 
   reboot:
     vars:
-      PROJECT_DIR:
-        sh: "git rev-parse --show-toplevel"
-      ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
-      CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
-      ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
-      ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
-      ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker/inventory"
     desc: Reboot all the docker nodes
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
@@ -157,14 +94,7 @@ tasks:
 
   reboot:status:
     vars:
-      PROJECT_DIR:
-        sh: "git rev-parse --show-toplevel"
-      ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
-      CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
-      ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
-      ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
-      ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker/inventory"
     desc: Check if node reboot is scheduled by kured
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
@@ -173,14 +103,7 @@ tasks:
 
   poweroff:
     vars:
-      PROJECT_DIR:
-        sh: "git rev-parse --show-toplevel"
-      ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
-      CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
-      ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
-      ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
-      ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker/inventory"
     desc: Shutdown all the docker nodes
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
@@ -189,14 +112,7 @@ tasks:
 
   playbook:os-prepare:
     vars:
-      PROJECT_DIR:
-        sh: "git rev-parse --show-toplevel"
-      ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
-      CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
-      ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
-      ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
-      ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+      ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker/inventory"
     desc: Prepare all the docker nodes for running docker workloads
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
@@ -205,17 +121,13 @@ tasks:
 
   playbook:apps-prepare:
     vars:
-      PROJECT_DIR:
-        sh: "git rev-parse --show-toplevel"
-      ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/provision/docker/ansible.cfg"
-      CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/docker"
+      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/ansible/docker"
       ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
       ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
       ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
     desc: Prepare all the docker nodes for running docker workloads
-    dir: "{{.ANSIBLE_DIR}}"
+    dir: "{{.PROJECT_DIR}}/provision/ansible/docker/"
     cmds:
-      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/apps.yml"
+      - "ansible-playbook -vv -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/apps.yml"
     silent: true
 
