@@ -8,6 +8,7 @@ services:
     restart: unless-stopped
     network_mode: bridge
     environment:
+      TZ: "Europe/Stockholm"
       CF_API_EMAIL: "{{ SECRET_CLOUDFLARE_EMAIL }}"
       CF_API_KEY: "{{ SECRET_CLOUDFLARE_APIKEY }}"
     command:
@@ -33,6 +34,7 @@ services:
       - --metrics.prometheus=true
       - --metrics.prometheus.entryPoint=metrics
       - --entryPoints.metrics.address=:7071
+      - --accessLog.filePath="/data/logs/access.log"
     ports:
       - 80:80
       - 443:443

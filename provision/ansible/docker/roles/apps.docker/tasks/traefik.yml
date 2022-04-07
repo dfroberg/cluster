@@ -10,6 +10,7 @@
     - "{{ docker_base_dir }}/traefik"
     - "{{ traefik_data_dir }}"
     - "{{ traefik_data_dir }}/data"
+    - "{{ traefik_data_dir }}/data/logs"
 
 - block:
     - name: Create traefik docker compose file

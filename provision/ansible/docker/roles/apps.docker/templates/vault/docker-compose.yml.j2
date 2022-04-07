@@ -10,6 +10,7 @@ services:
     cap_add:
       - IPC_LOCK
     environment:
+      TZ: "Europe/Stockholm"
       VAULT_ADDR: http://0.0.0.0:8200
       VAULT_API_ADDR: http://0.0.0.0:8200
       VAULT_ADDRESS: http://0.0.0.0:8200

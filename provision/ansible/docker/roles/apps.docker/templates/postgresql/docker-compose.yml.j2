@@ -8,6 +8,7 @@ services:
     restart: &restartPolicy unless-stopped
     network_mode: bridge
     environment:
+      TZ: "Europe/Stockholm"
       POSTGRES_DB: postgres
       POSTGRES_USER: "{{ SECRET_POSTGRESQL_USERNAME }}"
       POSTGRES_PASSWORD: "{{ SECRET_POSTGRESQL_PASSWORD }}"
@@ -23,6 +24,7 @@ services:
     restart: *restartPolicy
     network_mode: bridge
     environment:
+      TZ: "Europe/Stockholm"
       DATA_SOURCE_NAME: "postgresql://{{ SECRET_POSTGRESQL_USERNAME }}:{{ SECRET_POSTGRESQL_PASSWORD }}@postgresql.{{ SECRET_PRIVATE_DOMAIN }}:5432/postgres?sslmode=disable"
     ports:
       - 9187:9187
@@ -35,6 +37,7 @@ services:
     restart: *restartPolicy
     network_mode: bridge
     environment:
+      TZ: "Europe/Stockholm"
       PGADMIN_DEFAULT_EMAIL: "{{ SECRET_PGADMIN_USERNAME }}"
       PGADMIN_DEFAULT_PASSWORD: "{{ SECRET_PGADMIN_PASSWORD }}"
       PGADMIN_LISTEN_PORT: 12080

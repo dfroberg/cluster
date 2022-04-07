@@ -9,6 +9,7 @@ services:
     network_mode: bridge
     user: "1000:1000"
     environment:
+      TZ: "Europe/Stockholm"
       INSTALL4J_ADD_VM_PARAMS: >-
         -Xms4096m
         -Xmx4096m

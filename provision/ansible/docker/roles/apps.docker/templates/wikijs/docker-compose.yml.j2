@@ -6,11 +6,13 @@ services:
     image: linuxserver/wikijs
     container_name: wikijs
     restart: unless-stopped
-    network_mode: host
-    user: "1000:1000"
+    network_mode: bridge
+    user: "0:0"
     privileged: true
     environment:
-      - TZ=Europe/Stockholm
+      TZ: "Europe/Stockholm"
+      PUID: 0
+      PGID: 0
     volumes:
       - wikijs-config:/config
       - wikijs-data:/data
@@ -18,7 +20,7 @@ services:
       - 3333:3000
     labels:
       - traefik.enable=true
-      - traefik.http.routers.wikijs.rule=Host(`wiki.froberg.org`)
+      - traefik.http.routers.wikijs.rule=Host("wiki.froberg.org")
       - traefik.http.routers.wikijs.entrypoints=websecure
       - traefik.http.routers.wikijs.tls.certresolver=letsencrypt
       - traefik.http.services.wikijs.loadbalancer.server.port=3333
