@@ -1,7 +1,7 @@
 ---
 collections:
   - name: ansible.utils
-    version: 2.5.2
+    version: 2.6.0
   - name: ansible.posix
     version: 1.3.0
   - name: community.docker
@@ -16,7 +16,7 @@ roles:
   - src: geerlingguy.pip
     version: 2.1.0
   - src: geerlingguy.docker
-    version: 4.2.1
+    version: 4.2.2
   - src: xanmanning.k3s
     version: v3.1.1
   - src: https://github.com/mrlesmithjr/ansible-netplan.git

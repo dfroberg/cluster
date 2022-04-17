@@ -33,38 +33,35 @@ k3s_server:
   # Required to monitor component with kube-prometheus-stack
   etcd-expose-metrics: true
   kubelet-arg:
-    - "feature-gates=EphemeralContainers=true"
-    - "feature-gates=MixedProtocolLBService=true"
-    - "feature-gates=ReadWriteOncePod=true"
-    - "feature-gates=GracefulNodeShutdown=true"
+    - "feature-gates=EphemeralContainers=true,MixedProtocolLBService=true,ReadWriteOncePod=true,GracefulNodeShutdown=true"
+    - "node-status-update-frequency=4s"
   # Required to use monitor these components with kube-prometheus-stack
   kube-controller-manager-arg:
-    - "feature-gates=EphemeralContainers=true"
-    - "feature-gates=MixedProtocolLBService=true"
-    - "feature-gates=ReadWriteOncePod=true"
+    - "feature-gates=EphemeralContainers=true,MixedProtocolLBService=true,ReadWriteOncePod=true"
     - "bind-address=0.0.0.0"
+    - "node-monitor-period=4s"
+    - "node-monitor-grace-period=16s"
+    - "pod-eviction-timeout=20s"
   kube-proxy-arg:
-    - "feature-gates=EphemeralContainers=true"
-    - "feature-gates=MixedProtocolLBService=true"
-    - "feature-gates=ReadWriteOncePod=true"
+    - "feature-gates=EphemeralContainers=true,MixedProtocolLBService=true,ReadWriteOncePod=true"
     - "metrics-bind-address=0.0.0.0"
   kube-scheduler-arg:
-    - "feature-gates=EphemeralContainers=true"
-    - "feature-gates=MixedProtocolLBService=true"
-    - "feature-gates=ReadWriteOncePod=true"
+    - "feature-gates=EphemeralContainers=true,MixedProtocolLBService=true,ReadWriteOncePod=true"
     - "bind-address=0.0.0.0"
   # anonymous-auth=true Required for HAProxy health-checks
   kube-apiserver-arg:
-    - "feature-gates=EphemeralContainers=true"
-    - "feature-gates=MixedProtocolLBService=true"
-    - "feature-gates=ReadWriteOncePod=true"
+    - "feature-gates=EphemeralContainers=true,MixedProtocolLBService=true,ReadWriteOncePod=true"
     - "anonymous-auth=true"
     - "oidc-issuer-url=https://dex.k8s.aml.ink/"
     - "oidc-client-id=dex-k8s-authenticator"
     - "oidc-username-claim=preferred_username"
     - "oidc-groups-claim=groups"
+    # Allow pods to be rescheduled quicker in the case of a node failure
+    # https://github.com/k3s-io/k3s/issues/1264
+    - "default-not-ready-toleration-seconds=20"
+    - "default-unreachable-toleration-seconds=20"
   node-label:
-     - "master=yes"
+    - "master=yes"
   node-taint:
     #- "k3s-controlplane=true:NoSchedule"
     - "CriticalAddonsOnly=true:NoSchedule"
