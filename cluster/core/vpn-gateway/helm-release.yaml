@@ -59,7 +59,7 @@ spec:
                 - sysctl net.ipv4.conf.all.src_valid_mark=1
         env:
           TZ: "${CLUSTER_TZ}"
-          IPTABLES_BACKEND: nft
+          IPTABLES_BACKEND: legacy # nft
           KILLSWITCH: true
         configFileSecret: vpn-gateway-vpnconfig
         # configFile: |-
@@ -78,7 +78,7 @@ spec:
             memory: 128Mi
           limits:
             memory: 512Mi
-        nodeSelector: 
+        nodeSelector:
           worker: yes
         livenessProbe:
           exec:
