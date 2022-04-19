@@ -93,20 +93,19 @@ spec:
           group: muraselon
           conditions:
             - "[STATUS] == 200"
-            - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+            - "[RESPONSE_TIME] < 500"   # Response time must be under 300ms
             - "[CERTIFICATE_EXPIRATION] > 72h"
         - name: "Muraselon [en]"
           url: https://en.muraselon.com
           group: muraselon
           conditions:
             - "[STATUS] == 200"
-            - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
+            - "[RESPONSE_TIME] < 500"   # Response time must be under 300ms
             - "[CERTIFICATE_EXPIRATION] > 72h"
         - name: "muraselon-host"
           url: icmp://192.168.50.36
           group: muraselon
           conditions:
-            - "[CONNECTED] == true"
             - "[RESPONSE_TIME] < 10"   # Response time must be under 10ms
         - name: muraselon-dns-query
           url: "1.1.1.1"
