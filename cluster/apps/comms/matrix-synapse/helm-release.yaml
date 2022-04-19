@@ -71,6 +71,8 @@ spec:
     extraConfig:
       enable_registration: true
       registration_shared_secret: "${SECRET_MATRIX_REGISTRATION_SECRET}"
+      suppress_key_server_warning: true
+      enable_registration_without_verification: true
 
       email:
         smtp_host: ${SECRET_SMTP}
