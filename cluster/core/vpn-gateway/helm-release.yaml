@@ -118,7 +118,7 @@ spec:
       VPN_INTERFACE: wg0
       VPN_BLOCK_OTHER_TRAFFIC: false
       VPN_TRAFFIC_PORT: ${VPN_PORT}
-      VXLAN_ID: 43
+      VXLAN_ID: 42
       NOT_ROUTED_TO_GATEWAY_CIDRS: ${NETWORK_K8S_CLUSTER_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVER_CIDR} ${NETWORK_BGP_CIDR}
       VPN_LOCAL_CIDRS: ${NETWORK_K8S_CLUSTER_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVER_CIDR} ${NETWORK_BGP_CIDR}
       # Use a different VXLAN network segment that does not conflict with the above
@@ -129,8 +129,8 @@ spec:
         ports:
           - type: TCP
             port: ${VPN_FORWARDED_PORT_1}
-          - type: UDP
-            port: ${VPN_FORWARDED_PORT_1}
+          # - type: UDP
+          #   port: ${VPN_FORWARDED_PORT_1}
     webhook:
       image:
         repository: ghcr.io/k8s-at-home/gateway-admision-controller
