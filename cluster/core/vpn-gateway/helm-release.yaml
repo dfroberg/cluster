@@ -122,7 +122,7 @@ spec:
       NOT_ROUTED_TO_GATEWAY_CIDRS: ${NETWORK_K8S_CLUSTER_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVER_CIDR} ${NETWORK_BGP_CIDR}
       VPN_LOCAL_CIDRS: ${NETWORK_K8S_CLUSTER_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVER_CIDR} ${NETWORK_BGP_CIDR}
       # Use a different VXLAN network segment that does not conflict with the above
-      VXLAN_IP_NETWORK: "172.16.0." #${VXLAN_IP_NETWORK}"
+      VXLAN_IP_NETWORK: "172.16.0" #${VXLAN_IP_NETWORK}"
     publicPorts:
       - hostname: qbittorrent-vpn
         IP: 10
