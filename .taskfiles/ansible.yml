@@ -9,7 +9,7 @@ vars:
     sh: "git rev-parse --show-toplevel"
   CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
   ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes"
-  ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
+  ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/kubernetes/playbooks/kubernetes/"
   ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
   ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
 
@@ -196,6 +196,9 @@ tasks:
   playbook:cluster-install:
     vars:
       ANSIBLE_INVENTORY_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes/inventory"
+      ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/ansible/kubernetes"
+      ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks/"
+      ANSIBLE_ROLE_DIR: "{{.ANSIBLE_DIR}}/roles"
     desc: Install Kubernetes on the nodes
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
