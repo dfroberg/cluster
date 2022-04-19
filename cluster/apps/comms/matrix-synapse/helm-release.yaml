@@ -41,7 +41,7 @@ spec:
       enabled: true
     config:
       trustedKeyServers:
-      - server_name: matrix.org
+        - server_name: matrix.org
 
       enableRegistration: true
       registrationSharedSecret: "${SECRET_MATRIX_REGISTRATION_SECRET}"
@@ -69,8 +69,6 @@ spec:
       #     - name: matrix-slack
       #       mountPath: /data/matrix-slack
     extraConfig:
-      enable_registration: true
-      registration_shared_secret: "${SECRET_MATRIX_REGISTRATION_SECRET}"
       suppress_key_server_warning: true
       enable_registration_without_verification: true
 
