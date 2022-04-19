@@ -60,7 +60,7 @@ spec:
         env:
           TZ: "${CLUSTER_TZ}"
           IPTABLES_BACKEND: legacy # nft
-          KILLSWITCH: true
+          KILLSWITCH: false
         configFileSecret: vpn-gateway-vpnconfig
         # configFile: |-
         #     [Interface]
