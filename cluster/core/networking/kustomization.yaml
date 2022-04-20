@@ -6,5 +6,5 @@ resources:
   - wildcard-certificate
   - secret-reflector
   - external-dns
-  #- kpc # pfSense controller moved to its own 
-
+  #- kpc # pfSense controller moved to its own
+  - linkerd
