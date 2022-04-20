@@ -137,7 +137,9 @@ spec:
 
     redis:
       enabled: true
-      password: ${SECRET_MATRIX_REDIS_PASSWORD}
+      auth:
+        enabled: true
+        password: ${SECRET_MATRIX_REDIS_PASSWORD}
 
     signingkey:
       job:
