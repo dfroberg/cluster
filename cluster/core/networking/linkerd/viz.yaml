@@ -1393,7 +1393,7 @@ spec:
         - -viz-namespace=linkerd-viz
         - -log-level=info
         - -log-format=plain
-        - -enforced-host=^(localhost|127\.0\.0\.1|web\.linkerd-viz\.svc\.cluster\.local|web\.linkerd-viz\.svc|\[::1\])(:\d+)?$
+        - -enforced-host=^(viz.${SECRET_DOMAIN}|localhost|127\.0\.0\.1|web\.linkerd-viz\.svc\.cluster\.local|web\.linkerd-viz\.svc|\[::1\])(:\d+)?$
         image: cr.l5d.io/linkerd/web:stable-2.11.1
         imagePullPolicy: IfNotPresent
         livenessProbe:
