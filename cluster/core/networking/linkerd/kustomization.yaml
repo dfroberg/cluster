@@ -4,3 +4,6 @@ resources:
   - crds.yaml
   - secrets.sops.yaml
   - manifests.yaml
+  - jaeger.yaml
+  - viz.yaml
+  - ingress.yaml
