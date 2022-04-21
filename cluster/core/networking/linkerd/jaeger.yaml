@@ -459,7 +459,7 @@ spec:
       containers:
       - args:
         - --query.base-path=/jaeger
-        image: jaegertracing/all-in-one:1.19.2
+        image: jaegertracing/all-in-one:1.33.0
         imagePullPolicy: Always
         name: jaeger
         ports:
