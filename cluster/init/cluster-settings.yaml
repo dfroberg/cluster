@@ -45,6 +45,6 @@ data:
   NAS_PVC_PATH: "/mnt/data/nfs/PersistentVolumeClaims"
   # vpn-gateway Config
   VPN_PORT: "51820"
-  VPN_COUNTRY:  "NL"
+  VPN_COUNTRY:  "Netherlands"
   VPN_GATEWAY_VPN_PORT: "57683"
   VPN_FORWARDED_PORT_1: "57683"
