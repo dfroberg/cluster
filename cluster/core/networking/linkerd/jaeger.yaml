@@ -374,7 +374,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: otel/opentelemetry-collector:0.27.0
+        image: otel/opentelemetry-collector:0.49.0
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
@@ -459,7 +459,7 @@ spec:
       containers:
       - args:
         - --query.base-path=/jaeger
-        image: jaegertracing/all-in-one:1.19.2
+        image: jaegertracing/all-in-one:1.33.0
         imagePullPolicy: Always
         name: jaeger
         ports:
