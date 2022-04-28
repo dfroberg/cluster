@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://avakarev.github.io/gatus-chart
       chart: gatus
-      version: 2.2.1
+      version: 2.3.1
       sourceRef:
         kind: HelmRepository
         name: avakarev-charts
@@ -37,7 +37,7 @@ spec:
       size: 1Gi
     image:
       repository: twinproduction/gatus
-      tag: v3.7.0
+      tag: v3.8.0
       pullPolicy: IfNotPresent
     updateStrategy: Recreate
     replicas: 1
