@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: matrixhook
+  name: matrix-hook
   namespace: comms
   annotations:
     kubernetes.io/tls-acme: "true"
@@ -16,10 +16,10 @@ spec:
   ingressClassName: "nginx"
   tls:
     - hosts:
-        - "matrixhook.${SECRET_DOMAIN}"
+        - "matrix-hook.${SECRET_DOMAIN}"
       secretName: "${SECRET_DOMAIN//./-}-tls"
   rules:
-    - host: "matrixhook.${SECRET_DOMAIN}"
+    - host: "matrix-hook.${SECRET_DOMAIN}"
       http:
         paths:
           - path: /
