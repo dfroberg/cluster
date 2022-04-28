@@ -28,4 +28,4 @@ spec:
               service:
                 name: matrix-webhook
                 port:
-                  number: 3000
+                  number: 8080
