@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matrix-webhook
+  namespace: comms
+spec:
+  selector:
+    matchLabels:
+      app: matrix-webhook
+  template:
+    metadata:
+      labels:
+        app: matrix-webhook
+    spec:
+      containers:
+      - name: matrix-webhook
+        image: nim65s/matrix-webhook
+        envFrom:
+          - secretRef:
+              name: matrix-webhook
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 4785

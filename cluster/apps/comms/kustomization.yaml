@@ -7,3 +7,4 @@ resources:
 #  - matrix-slack
 #  - mautrix-facebook
   - matrix-synapse-admin
+  - matrix-webhook
