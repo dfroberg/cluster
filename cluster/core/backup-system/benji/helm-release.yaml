@@ -70,42 +70,42 @@ spec:
         startingDeadlineSeconds: null
       crontab:
         - name: backup-default
-          schedule: "15 00 * * *"
+          schedule: "00 20 * * *"
           command: ["/usr/bin/bash", "-c", "bash /script/backup-pvc.sh default 62639da0-f365-4249-81ba-e3a647c37935"]
         - name: backup-tools
-          schedule: "00 01 * * *"
+          schedule: "10 20 * * *"
           command: ["/usr/bin/bash", "-c", "bash /script/backup-pvc.sh tools 4643f336-e119-40e9-b2be-c7938d750e33"]
         - name: backup-security
-          schedule: "00 02 * * *"
+          schedule: "20 20 * * *"
           command: ["/usr/bin/bash", "-c", "bash /script/backup-pvc.sh security 71c80678-7a08-49cf-84c8-5535009eff2e"]
         - name: backup-media
-          schedule: "00 03 * * *"
+          schedule: "30 20 * * *"
           command: ["/usr/bin/bash", "-c", "bash /script/backup-pvc.sh media 62a93cd1-c479-4b94-9b15-b099847d9fb7"]
         - name: backup-collab
-          schedule: "00 04 * * *"
+          schedule: "40 20 * * *"
           command: ["/usr/bin/bash", "-c", "bash /script/backup-pvc.sh collab 8575aca2-a459-45a2-bb50-09ad94e4b679"]
         - name: backup-comms
-          schedule: "00 05 * * *"
+          schedule: "50 20 * * *"
           command: ["/usr/bin/bash", "-c", "bash /script/backup-pvc.sh comms 4e708d11-9b18-4ad7-8aac-08469fcee677"]
         - name: backup-home
-          schedule: "00 06 * * *"
+          schedule: "00 21 * * *"
           command: ["/usr/bin/bash", "-c", "bash /script/backup-pvc.sh home 276b7690-1c77-4ed7-a4dc-97a731839def"]
         - name: backup-mail
-          schedule: "00 07 * * *"
+          schedule: "10 21 * * *"
           command: ["/usr/bin/bash", "-c", "bash /script/backup-pvc.sh mailu cd0240ce-1d7f-4d3b-b252-bff3536dc5f4"]
         - name: backup-monitoring
-          schedule: "00 07 * * *"
+          schedule: "20 21 * * *"
           command: ["/usr/bin/bash", "-c", "bash /script/backup-pvc.sh mailu b35bdc88-ce3e-4bd0-93bb-66bafdbb5eaf"]
 
         - name: enforce
-          schedule: "00 07 * * *"
+          schedule: "00 22 * * *"
           command:
             - benji-command
             - enforce
             - latest14,days14
             - 'labels["benji-backup.me/instance"] == "benji-k8s"'
         - name: cleanup
-          schedule: "00 08 * * *"
+          schedule: "20 22 * * *"
           command:
             - benji-command
             - cleanup
