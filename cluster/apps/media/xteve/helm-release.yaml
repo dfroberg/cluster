@@ -75,10 +75,6 @@ spec:
         existingClaim: xteve-config-v1
     podAnnotations:
       backup.velero.io/backup-volumes: config
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
     nodeSelector:
       worker: yes
     resources:
@@ -89,28 +85,3 @@ spec:
       limits:
         #gpu.intel.com/i915: 1
         memory: 4000Mi
-    additionalContainers:
-    #   nginx:
-    #     name: m3u-server
-    #     image: nginx
-    #     imagePullPolicy: IfNotPresent
-    #     command:
-    #       - "/bin/bash"
-    #       - "-c"
-    #       - "sleep infinity"
-    #     volumeMounts:
-    #       - name: recordings
-    #         mountPath: /data
-      fsfreeze:
-        name: fsfreeze
-        image: ubuntu:focal-20210827
-        imagePullPolicy: IfNotPresent
-        command:
-          - "/bin/bash"
-          - "-c"
-          - "sleep infinity"
-        volumeMounts:
-          - name: config
-            mountPath: /config
-        securityContext:
-          privileged: true
