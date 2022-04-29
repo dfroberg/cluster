@@ -73,15 +73,6 @@ spec:
       config:
         enabled: true
         existingClaim: xteve-config-v1
-      recordings:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${NAS_ADDR}"
-            path: ${NAS_BASE_PATH}/
-        mountPath: /recordings
-        readOnly: false
     podAnnotations:
       backup.velero.io/backup-volumes: config
       pre.hook.backup.velero.io/container: fsfreeze
