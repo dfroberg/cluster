@@ -89,7 +89,7 @@ spec:
       limits:
         #gpu.intel.com/i915: 1
         memory: 4000Mi
-    # additionalContainers:
+    additionalContainers:
     #   nginx:
     #     name: m3u-server
     #     image: nginx
