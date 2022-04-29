@@ -24,7 +24,7 @@ resources:
   - calibre-web
   - photoprism
   - unpackerr
-  - tvheadend
+  #- tvheadend
+  - xteve
   - jobs
 
-  
