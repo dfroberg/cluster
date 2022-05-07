@@ -12,4 +12,3 @@ data:
     # cluster addr = ""
     auth_allow_insecure_global_id_reclaim = false
     fsid = deebfdb8-1af4-4576-a1ba-441fae514267
-    
