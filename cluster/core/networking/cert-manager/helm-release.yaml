@@ -33,7 +33,7 @@ spec:
     installCRDs: false
     webhook:
       enabled: true
-    nodeSelector: 
+    nodeSelector:
       worker: yes
     extraArgs:
       - --dns01-recursive-nameservers=1.1.1.1:53,1.0.0.1:53
@@ -48,5 +48,5 @@ spec:
         cpu: 25m
         memory: 263M
       limits:
-        cpu: 125m
+        cpu: 384m
         memory: 512M
