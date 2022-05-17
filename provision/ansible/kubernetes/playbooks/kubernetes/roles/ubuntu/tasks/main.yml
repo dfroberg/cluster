@@ -1,60 +1,63 @@
 ---
-- include: python.yml
+- import_tasks: python.yml
   tags:
     - python
 
-- include: locale.yml
+- import_tasks: locale.yml
   tags:
     - locale
 
-- include: network.yml
+- import_tasks: network.yml
   tags:
     - network
 
-- include: packages.yml
+- import_tasks: packages.yml
   tags:
     - packages
 
-- include: kernel.yml
+- import_tasks: kernel.yml
   tags:
     - kernel
 
-- include: journal.yml
+- import_tasks: journal.yml
   tags:
     - journal
 
-- include: filesystem.yml
+- import_tasks: filesystem.yml
   tags:
     - filesystem
 
-- include: democratic-iscsi.yml
+- import_tasks: democratic-iscsi.yml
+  when: inventory_hostname not in groups['postgres']
   tags:
     - iscsi
 
-- include: mounts.yml
+- import_tasks: mounts.yml
+  when: inventory_hostname not in groups['postgres']
   tags:
     - mounts
 
-- include: disks.yml
+- import_tasks: disks.yml
   tags:
     - disks
 
-- include: ramdisk.yml
+- import_tasks: ramdisk.yml
+  when: inventory_hostname not in groups['postgres']
   tags:
     - ramdisks
 
-- include: security.yml
+- import_tasks: security.yml
   tags:
     - security
 
-- include: unattended-upgrades.yml
+- import_tasks: unattended-upgrades.yml
   tags:
     - unattended-upgrades
 
-- include: user.yml
+- import_tasks: user.yml
   tags:
     - user
 
-- include: vmware.yml
-  tags:
-    - vmware
+# - import_tasks: vmware.yml
+#   tags:
+#     - vmware

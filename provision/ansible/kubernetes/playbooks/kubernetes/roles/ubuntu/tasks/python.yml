@@ -1,3 +1,11 @@
+---
+- name: Install python tools
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    update_cache: true
+  loop:
+    - python3
+
 - name: Correct python version selected
   community.general.alternatives:
     name: python

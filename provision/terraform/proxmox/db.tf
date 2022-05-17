@@ -3,25 +3,27 @@ resource "proxmox_vm_qemu" "postgres" {
   name        = each.key
   tags        = each.value.tags
   target_node = each.value.target_node
+  pool        = "cluster1"
   agent       = 1
   clone       = var.common.clone
   vmid        = each.value.id
-  bios        = "seabios"
+  bios        = "ovmf"
+  qemu_os     = "l26"
   onboot      = true
-  balloon     = 0
+  #balloon     = 0
   memory      = each.value.memory
   sockets     = each.value.sockets
   cores       = each.value.cores
   vcpus       = each.value.vcpus
   #cpulimit    = each.value.cpulimit
-  bootdisk     = "scsi0"
-  scsihw       = "virtio-scsi-single"
+  bootdisk     = "virtio0"
+  scsihw       = "virtio-scsi-pci"
   os_type      = "cloud-init"
   numa         = "1"
   hotplug      = "disk,network,usb,memory,cpu"
-  ci_wait      = 45
+  #ci_wait      = 45
   cicustom     = "user=nas-nfs:snippets/vm-${each.value.id}-user-data.yaml,meta=nas-nfs:snippets/vm-${each.value.id}-meta-data.yaml,network=nas-nfs:snippets/vm-${each.value.id}-network-data.yaml"
-  #cloudinit_cdrom_storage = "vm-data"
+  cloudinit_cdrom_storage = "nas-nfs"
   #ipconfig0    = "ip=${each.value.cidr},gw=${var.common.gw}"
   #ipconfig1    = "ip=${each.value.ceph_cidr},gw=${var.common.ceph_gw}"
   #ciuser       = "dfroberg"
@@ -29,6 +31,8 @@ resource "proxmox_vm_qemu" "postgres" {
   #searchdomain = var.common.search_domain
   #nameserver   = var.common.nameserver
   #sshkeys      = data.sops_file.secrets.data["k8s.ssh_key"]
+
+  depends_on = [null_resource.cloud_init_config_files,local_file.cloud_init_user_data_file,local_file.cloud_init_meta_data_file,local_file.cloud_init_network_data_file]
 
   vga {
     type = "qxl"
@@ -50,12 +54,13 @@ resource "proxmox_vm_qemu" "postgres" {
   }
   disk {
     slot    = each.value.disk_slot # needed to prevent recreate
-    type    = "scsi"
+    type    = "virtio"
     storage = each.value.storage_pool
+    #storage_type = "rbd"
     size    = each.value.disk
     iothread= each.value.disk_iothread
     format  = "raw"
-    ssd     = 1
+    #ssd     = 1
     discard = "on"
     cache   = "writeback"
   }
@@ -63,7 +68,16 @@ resource "proxmox_vm_qemu" "postgres" {
     id = 0
     type = "socket"
   }
-
+  # Prevents recreate
+  lifecycle {
+    ignore_changes  = [
+      network,
+    ]
+  }
+  timeouts {
+    create = "10m"
+    delete = "20m"
+  }
   # Additional service setup
   connection {
     user        = "${data.sops_file.global_secrets.data["k8s.ssh_username"]}"

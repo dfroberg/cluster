@@ -3,7 +3,7 @@ variable "common" {
   type = map(string)
   default = {
     os_type         = "ubuntu"
-    clone           = "ubuntu-20-04-cloudimg"
+    clone           = "ubuntu-22-10-cloudimg"
     search_domain   = ""  # Ensure this one is blank or coredns will not wor properly
     node_fqdn       = "cs.aml.ink"
     nameserver      = "192.168.30.1"
@@ -36,7 +36,7 @@ variable "dbs" {
       disk_slot   = 0
       disk_iothread = 1
       target_node = "pve"
-      storage_pool     = "vm-data"
+      storage_pool     = "vm-pool"
       resource_pool_name = "High"
     },
   }
@@ -58,12 +58,12 @@ variable "masters" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:01"
       ceph_macaddr = "68:b5:99:b3:db:01"
-      memory      = 6*1024
+      memory      = 8*1024
       disk        = "29900M"
       disk_slot   = 0
       disk_iothread = 0
       target_node = "pve"
-      storage_pool     = "vm-data"
+      storage_pool     = "vm-pool"
       resource_pool_name = "High"
     },
     master02 = {
@@ -80,12 +80,12 @@ variable "masters" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:02"
       ceph_macaddr = "68:b5:99:b3:db:02"
-      memory      = 6*1024
+      memory      = 8*1024
       disk        = "29900M"
       disk_slot   = 0
       disk_iothread = 0
       target_node = "pve"
-      storage_pool     = "vm-data"
+      storage_pool     = "vm-pool"
       resource_pool_name = "High"
     },
     master03 = {
@@ -102,12 +102,12 @@ variable "masters" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:03"
       ceph_macaddr = "68:b5:99:b3:db:03"
-      memory      = 6*1024
+      memory      = 8*1024
       disk        = "29900M"
       disk_slot   = 0
       disk_iothread = 0
       target_node = "pve"
-      storage_pool     = "vm-data"
+      storage_pool     = "vm-pool"
       resource_pool_name = "High"
     }
   }
@@ -129,7 +129,7 @@ variable "storage" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1a"
       ceph_macaddr = "68:b5:99:b3:db:1a"
-      memory      = 6*1024
+      memory      = 8*1024
       disk        = "29900M"
       disk_iothread = 0
       disk_slot   = 0
@@ -137,8 +137,8 @@ variable "storage" {
       storage_disk_slot   = 1
       storage_iothread = 1
       target_node = "pve"
-      storage_pool     = "vm-data"
-      storage_pool_disk_storage = "vm-data"
+      storage_pool     = "vm-pool"
+      storage_pool_disk_storage = "vm-pool"
       resource_pool_name = "Normal"
     },
     storage02 = {
@@ -155,7 +155,7 @@ variable "storage" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1b"
       ceph_macaddr = "68:b5:99:b3:db:1b"
-      memory      = 6*1024
+      memory      = 8*1024
       disk        = "29900M"
       disk_iothread = 0
       disk_slot   = 0
@@ -163,8 +163,8 @@ variable "storage" {
       storage_disk_slot   = 1
       storage_iothread = 1
       target_node = "pve"
-      storage_pool     = "vm-data"
-      storage_pool_disk_storage = "vm-data"
+      storage_pool     = "vm-pool"
+      storage_pool_disk_storage = "vm-pool"
       resource_pool_name = "Normal"
     },
     storage03 = {
@@ -181,7 +181,7 @@ variable "storage" {
       cores       = 8
       macaddr     = "68:b5:99:b3:da:1c"
       ceph_macaddr = "68:b5:99:b3:db:1c"
-      memory      = 6*1024
+      memory      = 8*1024
       disk        = "29900M"
       disk_iothread = 0
       disk_slot   = 0
@@ -189,8 +189,8 @@ variable "storage" {
       storage_disk_slot   = 1
       storage_iothread = 1
       target_node = "pve"
-      storage_pool     = "vm-data"
-      storage_pool_disk_storage = "vm-data"
+      storage_pool     = "vm-pool"
+      storage_pool_disk_storage = "vm-pool"
       resource_pool_name = "Normal"
     },
   }
@@ -206,10 +206,10 @@ variable "workers" {
       cidr6       = "fe80::6ab5:99ff:feb3:db0a"
       ceph_primary_ip  = "192.168.25.56"
       ceph_cidr   = "192.168.25.56/24"
-      sockets     = 4
+      sockets     = 1
       cpulimit    = 4
-      vcpus       = 8
-      cores       = 8
+      vcpus       = 16
+      cores       = 16
       macaddr     = "68:b5:99:b3:da:0a"
       ceph_macaddr = "68:b5:99:b3:db:0a"
       memory      = 16*1024
@@ -217,7 +217,7 @@ variable "workers" {
       disk_slot   = 0
       disk_iothread = 0
       target_node = "pve"
-      storage_pool     = "vm-data"
+      storage_pool     = "vm-pool"
       resource_pool_name = "Normal"
     },
     worker02 = {
@@ -228,10 +228,10 @@ variable "workers" {
       cidr6       = "fe80::6ab5:99ff:feb3:da0b"
       ceph_primary_ip  = "192.168.25.57"
       ceph_cidr   = "192.168.25.57/24"
-      sockets     = 4
+      sockets     = 1
       cpulimit    = 4
-      vcpus       = 8
-      cores       = 8
+      vcpus       = 16
+      cores       = 16
       macaddr     = "68:b5:99:b3:da:0b"
       ceph_macaddr = "68:b5:99:b3:db:0b"
       memory      = 16*1024
@@ -239,7 +239,7 @@ variable "workers" {
       disk_slot   = 0
       disk_iothread = 0
       target_node = "pve"
-      storage_pool     = "vm-data"
+      storage_pool     = "vm-pool"
       resource_pool_name = "Normal"
     },
     worker03 = {
@@ -250,10 +250,10 @@ variable "workers" {
       cidr6       = "fe80::6ab5:99ff:feb3:da0c"
       ceph_primary_ip  = "192.168.25.58"
       ceph_cidr   = "192.168.25.58/24"
-      sockets     = 4
+      sockets     = 1
       cpulimit    = 4
-      vcpus       = 8
-      cores       = 8
+      vcpus       = 16
+      cores       = 16
       macaddr     = "68:b5:99:b3:da:0c"
       ceph_macaddr = "68:b5:99:b3:db:0c"
       memory      = 16*1024
@@ -261,7 +261,7 @@ variable "workers" {
       disk_slot   = 0
       disk_iothread = 0
       target_node = "pve"
-      storage_pool= "vm-data"
+      storage_pool= "vm-pool"
       resource_pool_name = "Normal"
     },
   }

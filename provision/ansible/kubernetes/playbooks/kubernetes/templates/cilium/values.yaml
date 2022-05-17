@@ -1,0 +1,21 @@
+---
+# basic helm values to generate ansible templates
+autoDirectNodeRoutes: true
+k8sServiceHost: "k8s.${SECRET_DOMAIN}"
+k8sServicePort: 6443
+#nativeRoutingCIDR: 10.69.0.0/16
+rollOutCiliumPods: true
+tunnel: disabled
+kubeProxyReplacement: "strict"
+kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
+bgp:
+  enabled: true
+  announce:
+    loadbalancerIP: true
+containerRuntime:
+  integration: containerd
+ipam:
+  mode: "kubernetes"
+operator:
+  rollOutPods: true
+  replicas: 1

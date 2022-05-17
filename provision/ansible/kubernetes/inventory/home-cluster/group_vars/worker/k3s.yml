@@ -11,9 +11,8 @@ k3s_agent:
   kubelet-arg:
     - "feature-gates=EphemeralContainers=true,MixedProtocolLBService=true,ReadWriteOncePod=true,GracefulNodeShutdown=true"
     - "node-status-update-frequency=4s"
-  # TODO: Adding a node label here breaks the k3s service
-  # node-label:
-  #   - "node-role.kubernetes.io/worker=true"
+  # TODO: Adding a node role label here breaks the k3s service
   node-label:
-     - "worker=yes"
+  #  - "node-role.kubernetes.io/worker=true"
+    - "worker=yes"
 

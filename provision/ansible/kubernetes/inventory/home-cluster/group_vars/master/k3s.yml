@@ -13,6 +13,7 @@ k3s_server:
     # kube-vip
     - "{{ kubevip_address }}"
     # haproxy
+    - 192.168.30.50
     - "{{ k3s_registration_address }}"
   docker: false
   flannel-backend: "none" # This needs to be in quotes
@@ -64,5 +65,5 @@ k3s_server:
     - "master=yes"
   node-taint:
     #- "k3s-controlplane=true:NoSchedule"
-    - "CriticalAddonsOnly=true:NoSchedule"
+    #- "CriticalAddonsOnly=true:NoSchedule"
 

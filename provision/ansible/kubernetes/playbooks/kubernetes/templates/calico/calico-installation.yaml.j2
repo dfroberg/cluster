@@ -8,6 +8,8 @@ spec:
   imagePath: calico
   calicoNetwork:
     # Note: The ipPools section cannot be modified post-install.
+    # nodeAddressAutodetectionV4:
+    #  interface: eth.*
     ipPools:
       - blockSize: 26
         cidr: "{{ k3s_server['cluster-cidr'] }}"
@@ -20,7 +22,4 @@ spec:
   nodeMetricsPort: 9091
   typhaMetricsPort: 9093
   controlPlaneTolerations:
-    - effect: NoSchedule
-      operator: Exists
-    - effect: NoExecute
-      operator: Exists
+    - operator: Exists

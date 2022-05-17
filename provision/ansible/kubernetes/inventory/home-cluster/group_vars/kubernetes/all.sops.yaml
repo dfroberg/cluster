@@ -4,14 +4,18 @@ SECRET_NEXUS_USERNAME: ENC[AES256_GCM,data:vFKXIKsB9wY=,iv:0aqEl+YBUNSX0nxBXEnjI
 SECRET_NEXUS_PASSWORD: ENC[AES256_GCM,data:+rF2bU2CbMWR,iv:ZK61zoOT+mg7tWXeR2rJNZNSBFhjUuzQ4m85KDpGUmc=,tag:m/0V1d4EJaro7jughCGlvQ==,type:str]
 SECRET_MINIO_ACCESS_KEY: ENC[AES256_GCM,data:6gwW91dO0jNmLMmFDuw=,iv:qh0JbE0RkoabuzfiT4tRkm1Glxdfsn/9VIjrzXW63KE=,tag:dks5vSWhYGGH56UPBBAu3w==,type:str]
 SECRET_MINIO_SECRET_KEY: ENC[AES256_GCM,data:LJAGON1h/9YFfcdsoi0=,iv:sO+Qe0fcsNRIZTPKhxFMfd5FP983RXIO3qF4xFJY0Os=,tag:VPuR67Ove5gebEep26sDqw==,type:str]
+ansible_become_pass: ENC[AES256_GCM,data:CXl7GtU43f8K,iv:6xiwHAQw3idNfqG3aNy2iaD5nFSsWKYTTlJg0+4B/rk=,tag:kb0zDK03b5OodVa9XR+g/Q==,type:str]
+ansible_become: ENC[AES256_GCM,data:9vPX,iv:L48QgDePFNZNvlH0S9zpmbXgg//EtlVvHNAx7eVKypg=,tag:p9dpImOhvaCXqWqjzrCMDA==,type:str]
+esxi_username: ENC[AES256_GCM,data:1lvkBQ==,iv:qlJGj/Y46RjnNhvkEAhIcp2nkeg0CIwc5L6d38diPQM=,tag:tF5nLQpGk9XwkUWkqnPY9A==,type:str]
+esxi_password: ENC[AES256_GCM,data:O+q+TWfJodKH,iv:UDvI46gEpVXXlYsiN40I1Juyq5DhMeEkFYr5nkL0ByA=,tag:1OglpjvYagFlikWAMlHVtw==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-03-30T11:08:03Z"
-    mac: ENC[AES256_GCM,data:nGy59X4Dfuez7tbRohEomrXznBr8gzwgl7LlT+ta5Iy2CvcJhjRoXc2D/ZGYpCOqAoyhJ5+fvd8VSGp61sI8A4t+ASkzp4r1xRxtUuBuLM8bgmDCcymy0Nnf63T65jAmjOjxOvpvW5fk8pDeni/IQF0jwXKb6gXQJbR7473XgqI=,iv:qOFgYN5c/xuceQ1p0KxoGx+gMaYmZhogKYjF1/Wt/bs=,tag:PIIJhkGhZ5FguRf7Yycypg==,type:str]
+    lastmodified: "2022-05-11T07:46:01Z"
+    mac: ENC[AES256_GCM,data:jaJnkUJVGdSCcqyj2usj1MDbIwGReRtCWrocmghmaS11GVsrC/KuaecDx68wwoqq3L6OzpO1Afj2MzPOySrNb5USZ1+AiOvyF+QmkXeYkOOYNGz+SVA6XXpZxNORqqgmfq7MBi1XvCyvb25rzMhhUQzwL3IC1bsEUZea1bnPvUk=,iv:Z5f82hzik9VnZk60TOCWjK+LNdgDbz6gp85uFEV06NQ=,tag:E7aV4aUxzD4tBMzpHaR8+g==,type:str]
     pgp:
         - created_at: "2022-03-29T06:52:53Z"
           enc: |

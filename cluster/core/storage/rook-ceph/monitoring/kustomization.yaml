@@ -1,5 +1,23 @@
+---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: rook-ceph
 resources:
-  - rbac.yaml
-  - servicemonitor.yaml
+  - rook-ceph-rules.yaml
+generatorOptions:
+  labels:
+    grafana_dashboard: "1"
+configMapGenerator:
+  # Note: These are currently not renovated
+  # https://grafana.com/grafana/dashboards/2842
+  - name: grafana-dashboard-ceph-cluster
+    files:
+      - ceph-cluster.json
+  # https://grafana.com/grafana/dashboards/5336
+  - name: grafana-dashboard-ceph-osd
+    files:
+      - ceph-osd.json
+  # https://grafana.com/grafana/dashboards/5342
+  - name: grafana-dashboard-ceph-pools
+    files:
+      - ceph-pools.json

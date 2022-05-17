@@ -1,3 +1,14 @@
+---
+- name: Install scsi tools
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    update_cache: true
+  loop:
+    - open-iscsi
+    - sg3-utils
+    - multipath-tools
+    - scsitools
+
 - name: create multipath.conf
   ansible.builtin.template:
     src: etc/multipath.conf.j2

@@ -1,0 +1,19 @@
+---
+apiVersion: ceph.rook.io/v1
+kind: CephCluster
+metadata:
+  name: rook-ceph
+  namespace: rook-ceph
+spec:
+  external:
+    enable: true
+  crashCollector:
+    disable: true
+  monitoring:
+    enabled: true
+    rulesNamespace: rook-ceph
+    externalMgrEndpoints:
+      - ip: 192.168.3.100
+      - ip: 192.168.3.111
+      - ip: 192.168.3.112
+    externalMgrPrometheusPort: 9283

@@ -1,6 +1,6 @@
 version: 1
 config:
-  # Simple network adapter
+  # Primary nic
   - type: physical
     name: eth0
     mac_address: '${node_mac_address}'
@@ -8,7 +8,7 @@ config:
         - type: static
           address: ${node_ip}
           gateway: ${node_gateway}
-  # Second nic with Jumbo frames
+  # Storage nic with Jumbo frames
   - type: physical
     name: eth1
     mac_address: '${storage_node_mac_address}'

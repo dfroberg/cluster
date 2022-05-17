@@ -39,6 +39,24 @@
       when: allow_reboot is not defined or (allow_reboot is defined and allow_reboot == true)
 
   tasks:
+    - name: Nuke iptables on all nodes F
+      ansible.builtin.command:
+        cmd: iptables -F
+      when:
+        - ansible_hostname != "postgres"
+    - name: Nuke iptables on all nodes X
+      ansible.builtin.command:
+        cmd: iptables -X
+      when:
+        - ansible_hostname != "postgres"
+    - name: Remove containerd-hack
+      ansible.builtin.file:
+        path: /etc/systemd/system/containerd-hack.service
+        state: absent
+      notify:
+        - Reload systemd daemon
+      when:
+        - ansible_hostname != "postgres"
     - name: Gather ramdisk backups to delete
       find:
         paths: /var/ramdisk-backup/
@@ -143,3 +161,20 @@
         cmd: sudo -i -u postgres psql cluster -c "truncate kine;"
       when:
         - ansible_hostname == "postgres"
+    - name: Delete extra files
+      ansible.builtin.file:
+        path: '{{ item }}'
+        state: absent
+      with_items:
+        - /usr/local/bin/cilium
+        - /usr/local/bin/flux
+        - /etc/systemd/system/k3s-killall.service
+        - /usr/local/bin/kubectl
+        - /usr/local/bin/kustomize
+        - /usr/local/bin/calicoctl
+      when:
+        - ansible_hostname != "postgres"
+  handlers:
+    - name: Reload systemd daemon
+      systemd:
+        daemon-reload: true
