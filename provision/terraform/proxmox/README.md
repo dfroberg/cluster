@@ -125,14 +125,15 @@ rm $VM_IMG
 
 ## Everything in One Go
 ~~~sh
-export VM_NAME="ubuntu-22-10-cloudimg"
-export VM_IMG="kinetic-server-cloudimg-amd64.img"
+export VM_NAME="ubuntu-20-04-cloudimg"
+export VM_IMG="focal-server-cloudimg-amd64.img"
 export STORAGE_POOL="local"
+export STORAGE_POOL_CI="nas-nfs"
 export VM_ID="10000"
 export VM_ROOTPW="yourpassword"
 
 rm $VM_IMG
-wget https://cloud-images.ubuntu.com/kinetic/current/$VM_IMG
+wget https://cloud-images.ubuntu.com/focal/current/$VM_IMG
 virt-customize -a $VM_IMG --install qemu-guest-agent
 virt-customize -a $VM_IMG --install cloud-init
 virt-customize -a $VM_IMG --run-command "sed -i 's/.*PasswordAuthentication.*/PasswordAuthentication yes/g' /etc/ssh/sshd_config"
@@ -141,12 +142,12 @@ virt-customize -a $VM_IMG --run-command "sed -i 's/quiet splash/quiet intel_iomm
 virt-customize -a $VM_IMG --run-command "update-grub"
 virt-customize -a $VM_IMG --root-password password:$VM_ROOTPW
 virt-customize -a $VM_IMG --run-command "fstrim -av"
-virt-customize -a $VM_IMG --run-command "rm /etc/cloud/cloud.cfg.d/90_dpkg.cfg && echo 'datasource_list: [ NoCloud, ConfigDrive ]' >/etc/cloud/cloud.cfg.d/99_pve.cfg"
-#virt-customize -a $VM_IMG --run-command "rm /etc/machine-id && touch /etc/machine-id && ln -s /etc/machine-id /var/lib/dbus/machine-id"
 #virt-customize -a $VM_IMG --run-command "systemctl enable systemd-networkd"
 #virt-customize -a $VM_IMG --firstboot-command "cloud-init init"
 # or;
 #virt-customize -a $VM_IMG --firstboot-command "sleep 60 && reboot --reboot"
+virt-customize -a $VM_IMG --run-command "rm /etc/cloud/cloud.cfg.d/90_dpkg.cfg && echo 'datasource_list: [ NoCloud, ConfigDrive ]' >/etc/cloud/cloud.cfg.d/99_pve.cfg"
+virt-customize -a $VM_IMG --run-command "rm /etc/machine-id && touch /etc/machine-id && ln -s /etc/machine-id /var/lib/dbus/machine-id"
 qm destroy $VM_ID
 qm create $VM_ID --bios ovmf --ostype l26 --numa 1 --cpu cputype=host --memory 2048 --net0 virtio,bridge=vmbr30,firewall=0 --net1 virtio,bridge=vmbr25,firewall=0 --description "Node Template" --onboot no
 qm importdisk $VM_ID $VM_IMG $STORAGE_POOL
@@ -154,7 +155,7 @@ qm set $VM_ID --scsihw virtio-scsi-pci --virtio0 $STORAGE_POOL:$VM_ID/vm-$VM_ID-
 qm set $VM_ID --efidisk0 $STORAGE_POOL:0,pre-enrolled-keys=1
 qm set $VM_ID --agent enabled=1,fstrim_cloned_disks=1
 qm set $VM_ID --name $VM_NAME
-qm set $VM_ID --scsi1 $STORAGE_POOL:cloudinit
+qm set $VM_ID --scsi0 $STORAGE_POOL_CI:cloudinit
 qm set $VM_ID --boot c --bootdisk virtio0
 qm set $VM_ID --serial0 socket --vga serial0
 qm template $VM_ID

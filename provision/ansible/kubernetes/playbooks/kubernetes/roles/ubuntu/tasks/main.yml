@@ -3,6 +3,10 @@
   tags:
     - python
 
+- import_tasks: kernel.yml
+  tags:
+    - kernel
+
 - import_tasks: locale.yml
   tags:
     - locale
@@ -14,10 +18,6 @@
 - import_tasks: packages.yml
   tags:
     - packages
-
-- import_tasks: kernel.yml
-  tags:
-    - kernel
 
 - import_tasks: journal.yml
   tags:

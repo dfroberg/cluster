@@ -1,6 +1,7 @@
 resource "proxmox_vm_qemu" "postgres" {
   for_each = var.dbs
   name        = each.key
+  desc        = "Main Cluster Database"
   tags        = each.value.tags
   target_node = each.value.target_node
   pool        = "cluster1"
@@ -8,7 +9,7 @@ resource "proxmox_vm_qemu" "postgres" {
   clone       = var.common.clone
   vmid        = each.value.id
   bios        = "ovmf"
-  qemu_os     = "l26"
+  #qemu_os     = "l26"
   onboot      = true
   #balloon     = 0
   memory      = each.value.memory
@@ -31,7 +32,11 @@ resource "proxmox_vm_qemu" "postgres" {
   #searchdomain = var.common.search_domain
   #nameserver   = var.common.nameserver
   #sshkeys      = data.sops_file.secrets.data["k8s.ssh_key"]
-
+  #
+  # Nonsense Values
+  #
+  disk_gb                   = null
+  # Depnds
   depends_on = [null_resource.cloud_init_config_files,local_file.cloud_init_user_data_file,local_file.cloud_init_meta_data_file,local_file.cloud_init_network_data_file]
 
   vga {
@@ -44,6 +49,8 @@ resource "proxmox_vm_qemu" "postgres" {
     bridge   = "vmbr30"
     firewall = false
     mtu      = 1500
+    queues   = 0
+    rate     = 0
   }
   network {
     model    = "virtio"
@@ -51,6 +58,8 @@ resource "proxmox_vm_qemu" "postgres" {
     bridge   = "vmbr25"
     firewall = false
     mtu      = 9000
+    queues   = 0
+    rate     = 0
   }
   disk {
     slot    = each.value.disk_slot # needed to prevent recreate
@@ -64,15 +73,25 @@ resource "proxmox_vm_qemu" "postgres" {
     discard = "on"
     cache   = "writeback"
   }
+  /* disk {
+    cache        = "none"
+    file         = "vm-${each.value.id}-cloudinit"
+    format       = "raw"
+    media        = "cdrom"
+    size         = "4M"
+    slot         = 1
+    ssd          = 0
+    storage      = "nas-nfs"
+    type         = "scsi"
+    volume       = "nas-nfs:vm-${each.value.id}-cloudinit"
+  } */
   serial {
     id = 0
     type = "socket"
   }
   # Prevents recreate
   lifecycle {
-    ignore_changes  = [
-      network,
-    ]
+    ignore_changes = [disk_gb, qemu_os, args, clone, hagroup, target_node, full_clone]
   }
   timeouts {
     create = "10m"
@@ -80,10 +99,10 @@ resource "proxmox_vm_qemu" "postgres" {
   }
   # Additional service setup
   connection {
-    user        = "${data.sops_file.global_secrets.data["k8s.ssh_username"]}"
+    user        = "${data.sops_file.global_secrets.data["ssh.username"]}"
     type        = "ssh"
-    private_key = file("/home/${data.sops_file.global_secrets.data["k8s.ssh_username"]}/.ssh/id_rsa")
-    timeout     = "20m"
+    private_key = file(data.sops_file.global_secrets.data["ssh.private_keyfile"])
+    timeout     = "5m"
     host        = each.value.primary_ip
   }
 

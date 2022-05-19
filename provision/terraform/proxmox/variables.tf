@@ -3,7 +3,7 @@ variable "common" {
   type = map(string)
   default = {
     os_type         = "ubuntu"
-    clone           = "ubuntu-22-10-cloudimg"
+    clone           = "ubuntu-20-04-cloudimg"
     search_domain   = ""  # Ensure this one is blank or coredns will not wor properly
     node_fqdn       = "cs.aml.ink"
     nameserver      = "192.168.30.1"
@@ -256,6 +256,28 @@ variable "workers" {
       cores       = 16
       macaddr     = "68:b5:99:b3:da:0c"
       ceph_macaddr = "68:b5:99:b3:db:0c"
+      memory      = 16*1024
+      disk        = "60620M"
+      disk_slot   = 0
+      disk_iothread = 0
+      target_node = "pve"
+      storage_pool= "vm-pool"
+      resource_pool_name = "Normal"
+    },
+    worker04 = {
+      tags        ="k3s,worker"
+      id          = 4023
+      primary_ip  = "192.168.30.59"
+      cidr        = "192.168.30.59/24"
+      cidr6       = "fe80::6ab5:99ff:feb3:da0c"
+      ceph_primary_ip  = "192.168.25.59"
+      ceph_cidr   = "192.168.25.59/24"
+      sockets     = 1
+      cpulimit    = 4
+      vcpus       = 16
+      cores       = 16
+      macaddr     = "68:b5:99:b3:da:0d"
+      ceph_macaddr = "68:b5:99:b3:db:0d"
       memory      = 16*1024
       disk        = "60620M"
       disk_slot   = 0

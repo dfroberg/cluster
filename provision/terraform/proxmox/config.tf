@@ -28,11 +28,13 @@ data template_file "network_data" {
     node_hostname = each.key
     node_ip       = each.value.cidr
     node_gateway  = var.common.gw
+    node_6ip      = each.value.cidr6
+    #node_6gateway = var.common.gw6
     node_dns      = var.common.nameserver
     node_mac_address     = each.value.macaddr
     node_dns_search_domain = var.common.search_domain
     storage_node_ip       = each.value.ceph_cidr
-    storage_node_gateway  = var.common.ceph_gw,
+    storage_node_gateway  = var.common.ceph_gw
     storage_node_dns      = var.common.ceph_nameserver
     storage_node_mac_address     = each.value.ceph_macaddr
     storage_node_dns_search_domain = var.common.search_domain
