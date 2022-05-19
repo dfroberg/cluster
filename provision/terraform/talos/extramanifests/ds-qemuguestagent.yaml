@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: qemu-guest-agent
+  namespace: qemu-guest-agent
+spec:
+  selector:
+    matchLabels:
+      app: qemu-guest-agent
+  template:
+    metadata:
+      labels:
+        app: qemu-guest-agent
+    spec:
+      volumes:
+        - name: virtio-ports
+          hostPath:
+            path: /dev/virtio-ports
+            type: ''
+      containers:
+        - name: qemu-guest-agent
+          image: eleh/qemu-guest-agent
+          resources: {}
+          volumeMounts:
+            - name: virtio-ports
+              mountPath: /dev/virtio-ports
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
+      restartPolicy: Always
+      hostNetwork: true
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+        - key: CriticalAddonsOnly
+          operator: Exists
+        - key: node.kubernetes.io/not-ready
+          operator: Exists
+          effect: NoExecute
+          tolerationSeconds: 120
+        - key: node.kubernetes.io/unreachable
+          operator: Exists
+          effect: NoExecute
+          tolerationSeconds: 120
+        - key: node.kubernetes.io/memory-pressure
+          operator: Exists
+          effect: NoSchedule

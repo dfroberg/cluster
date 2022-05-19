@@ -1,0 +1,13 @@
+version: 1
+config:
+  - type: physical
+    name: eth0
+    mac_address: '${node_mac_address}'
+    subnets:
+        - type: static
+          address: ${node_ip}
+          gateway: ${node_gateway}
+  - type: nameserver
+    address:
+      - ${node_dns}
+    search: ['${node_search_domain}']
