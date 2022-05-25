@@ -1,7 +1,7 @@
 /* Null resource that generates a cloud-config file per vm */
 # Masters
 data "template_file" "user_data" {
-  for_each = merge(var.masters,var.workers,var.storage)
+  for_each = merge(var.dbs)
 
   template = file("${path.module}/files/user-data.yaml")
   vars = {
@@ -12,14 +12,14 @@ data "template_file" "user_data" {
   }
 }
 data template_file "meta_data" {
-  for_each = merge(var.masters,var.workers,var.storage)
+  for_each = merge(var.dbs)
   template = file("${path.module}/files/meta-data.yaml")
   vars = {
     hostname    = "${each.key}"
   }
 }
 data template_file "network_data" {
-  for_each = merge(var.masters,var.workers,var.storage)
+  for_each = merge(var.dbs)
   template = file("${path.module}/files/network-data.yaml")
   vars = {
     hostname = each.key
@@ -41,22 +41,22 @@ data template_file "network_data" {
   }
 }
 resource "local_file" "cloud_init_user_data_file" {
-  for_each = merge(var.masters,var.workers,var.storage)
+  for_each = merge(var.dbs)
   content  = data.template_file.user_data[each.key].rendered
   filename = "${path.module}/files/vm-${each.value.id}-user-data.yaml"
 }
 resource "local_file" "cloud_init_meta_data_file" {
-  for_each = merge(var.masters,var.workers,var.storage)
+  for_each = merge(var.dbs)
   content  = data.template_file.meta_data[each.key].rendered
   filename = "${path.module}/files/vm-${each.value.id}-meta-data.yaml"
 }
 resource "local_file" "cloud_init_network_data_file" {
-  for_each = merge(var.masters,var.workers,var.storage)
+  for_each = merge(var.dbs)
   content  = data.template_file.network_data[each.key].rendered
   filename = "${path.module}/files/vm-${each.value.id}-network-data.yaml"
 }
 resource "null_resource" "cloud_init_config_files" {
-  for_each = merge(var.masters,var.workers,var.storage)
+  for_each = merge(var.dbs)
   connection {
     type     = "ssh"
     user     = data.sops_file.secrets.data["proxmox.user"]

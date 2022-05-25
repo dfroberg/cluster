@@ -16,6 +16,13 @@
     grub_config:
       apparmor: "0"
       mitigations: "off"
+      ipv6.disable: "1"
+      intel_iommu: "on"
+      iommu: "pt"
+      console: "tty1"
+      net.ifnames: "0"
+      biosdevname: "0"
+
   register: grub_status
   when:
     - grub_result.stat.exists

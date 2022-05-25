@@ -94,12 +94,12 @@ curl -s https://github.com/siderolabs/talos/releases/download/v1.0.5/$VM_IMG -L 
 qm destroy $VM_ID
 qm create $VM_ID --bios ovmf --ostype l26 --numa 1 --cpu cputype=host --memory 2048 --net0 virtio,bridge=vmbr30,firewall=0 --description "Talos Node Template" --onboot no
 qm importdisk $VM_ID $VM_IMG $STORAGE_POOL
-qm set $VM_ID --scsihw virtio-scsi-pci --virtio0 $STORAGE_POOL:$VM_ID/vm-$VM_ID-disk-0.raw
-qm set $VM_ID --efidisk0 $STORAGE_POOL:0,pre-enrolled-keys=1
+qm set $VM_ID --scsihw virtio-scsi-pci --scsi0 $STORAGE_POOL:$VM_ID/vm-$VM_ID-disk-0.raw
+#qm set $VM_ID --efidisk0 $STORAGE_POOL:0,pre-enrolled-keys=1
 qm set $VM_ID --agent enabled=1,fstrim_cloned_disks=1
 qm set $VM_ID --name $VM_NAME
-#qm set $VM_ID --scsi0 $STORAGE_POOL_CI:cloudinit
-qm set $VM_ID --boot c --bootdisk virtio0
+#qm set $VM_ID --scsi1 $STORAGE_POOL_CI:cloudinit
+qm set $VM_ID --boot c --bootdisk scsi0
 qm set $VM_ID --serial0 socket --vga serial0
 qm template $VM_ID
 rm $VM_IMG

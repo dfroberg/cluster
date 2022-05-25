@@ -49,6 +49,7 @@
         cmd: iptables -X
       when:
         - ansible_hostname != "postgres"
+
     - name: Remove containerd-hack
       ansible.builtin.file:
         path: /etc/systemd/system/containerd-hack.service

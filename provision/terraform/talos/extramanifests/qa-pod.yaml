@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qemu-guest-agent
+  namespace: kube-system
+  labels:
+    name: qemu-guest-agent
+spec:
+  containers:
+    - name: qemu-guest-agent
+      image: eleh/qemu-guest-agent
+      resources: {}
+      volumeMounts:
+        - name: virtio-ports
+          mountPath: /dev/virtio-ports
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        privileged: true
+      tolerations:
+        - operator: Exists
+  volumes:
+    - name: virtio-ports
+      hostPath:
+        path: /dev/virtio-ports
+        type: ''

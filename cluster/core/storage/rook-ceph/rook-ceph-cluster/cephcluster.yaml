@@ -7,6 +7,9 @@ metadata:
 spec:
   external:
     enable: true
+  cephVersion:
+    image: ceph/ceph:v16.2.7
+  #dataDirHostPath: /var/lib/rook
   crashCollector:
     disable: true
   monitoring:

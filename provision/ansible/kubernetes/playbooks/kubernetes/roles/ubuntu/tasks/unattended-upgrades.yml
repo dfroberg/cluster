@@ -5,7 +5,7 @@
     update_cache: true
 
 - block:
-    - name: Copy 20auto-upgrades unattended-upgrades config
+    - name: Copy 20 auto-upgrades unattended-upgrades config
       ansible.builtin.blockinfile:
         path: /etc/apt/apt.conf.d/20auto-upgrades
         mode: 0644
@@ -15,7 +15,7 @@
           APT::Periodic::Download-Upgradeable-Packages "1";
           APT::Periodic::AutocleanInterval "7";
           APT::Periodic::Unattended-Upgrade "1";
-    - name: Copy 50unattended-upgrades unattended-upgrades config
+    - name: Copy 50 unattended-upgrades unattended-upgrades config
       ansible.builtin.blockinfile:
         path: /etc/apt/apt.conf.d/50unattended-upgrades
         mode: 0644

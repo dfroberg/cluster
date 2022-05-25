@@ -4,19 +4,29 @@
   ignore_errors: yes
   register: uname_result
 
+- name: Remove unused network tools
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    update_cache: true
+    state: absent
+    autoclean: yes
+  loop:
+    - nftables
+
 - name: Install network tools
   ansible.builtin.apt:
     name: "{{ item }}"
     update_cache: true
+    state: present
   loop:
     - arptables
     - ebtables
+    - iptables
     - iputils-ping
     - ipvsadm
     - net-tools
     - wireguard
     - linux-modules-extra-{{ uname_result.stdout }}
-    #- linux-modules-extra-5.15.0-27-generic
 
 - name: Ensure DNS exists
   lineinfile:
@@ -50,23 +60,15 @@
     block: |
       127.0.0.1 localhost
       127.0.1.1 {{ inventory_hostname }}
-
-      # The following lines are desirable for IPv6 capable hosts
-      ::1 ip6-localhost ip6-loopback
-      fe00::0 ip6-localnet
-      ff00::0 ip6-mcastprefix
-      ff02::1 ip6-allnodes
-      ff02::2 ip6-allrouters
-      ff02::3 ip6-allhosts
   tags:
     - network
 
-- name: Ensure Old /etc/sysctl.d/99-kubernetes-cri.conf is not there
+- name: Ensure Old /etc/sysctl.d/99-kubernetes.conf is not there
   ansible.builtin.file:
     state: absent
     path: "{{ item }}"
   loop:
-    - "/etc/sysctl.d/99-kubernetes-cri.conf"
+    - "/etc/sysctl.d/99-kubernetes.conf"
   tags:
     - network
 
@@ -81,16 +83,11 @@
     sysctl_config:
       net.ipv4.ip_forward: 1
       net.ipv4.conf.all.forwarding: 1
-      net.ipv6.conf.all.forwarding: 0
       net.ipv4.conf.all.rp_filter: 0
       net.ipv4.conf.default.rp_filter: 0
-      net.ipv6.conf.lo.disable_ipv6: 1
-      net.ipv6.conf.all.disable_ipv6: 1
-      net.ipv6.conf.default.disable_ipv6: 1
       net.bridge.bridge-nf-call-iptables: 1
-      net.bridge.bridge-nf-call-ip6tables: 0
   tags:
-  - network
+    - network
 
 # - name: Set system controls for Kubernetes II
 #   ansible.posix.sysctl:

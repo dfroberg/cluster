@@ -6,6 +6,7 @@ config:
     subnets:
         - type: static
           address: ${node_ip}
+          netmask: 255.255.255.0
           gateway: ${node_gateway}
   - type: nameserver
     address:

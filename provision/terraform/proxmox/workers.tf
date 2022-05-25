@@ -11,6 +11,7 @@ resource "proxmox_vm_qemu" "kube-worker" {
   bios        = "ovmf"
   #qemu_os     = "l26"
   onboot      = true
+  oncreate    = false
   #balloon     = 0
   memory      = each.value.memory
   sockets     = each.value.sockets
@@ -73,18 +74,6 @@ resource "proxmox_vm_qemu" "kube-worker" {
     cache   = "writeback"
     #volume  = "${each.value.storage_pool}:vm-${each.value.id}-disk-1"
   }
-  /* disk {
-    cache        = "none"
-    file         = "vm-${each.value.id}-cloudinit"
-    format       = "raw"
-    media        = "cdrom"
-    size         = "4M"
-    slot         = 1
-    ssd          = 0
-    storage      = "nas-nfs"
-    type         = "scsi"
-    volume       = "nas-nfs:vm-${each.value.id}-cloudinit"
-  } */
   serial {
     id = 0
     type = "socket"
@@ -98,12 +87,31 @@ resource "proxmox_vm_qemu" "kube-worker" {
     delete = "20m"
   }
 
+  # Fix cloud-init cdrom and start the vm
+  # Requires the oncreate = false flag to be set
+  provisioner "remote-exec" {
+    connection {
+      type     = "ssh"
+      user     = data.sops_file.secrets.data["proxmox.user"]
+      host     = data.sops_file.secrets.data["proxmox.pm_host"]
+      port     = 22
+      private_key = "${file("/home/dfroberg/.ssh/id_rsa")}"
+      agent = false
+      timeout = "5m"
+    }
+    inline = [
+      "sed -i 's/ide2/scsi1/g' /etc/pve/qemu-server/${each.value.id}.conf",
+      "qm start ${each.value.id}",
+      "sleep 120",
+      "exit 0"
+    ]
+  }
   # Additional service setup
   connection {
     user        = "${data.sops_file.global_secrets.data["ssh.username"]}"
     type        = "ssh"
     private_key = file(data.sops_file.global_secrets.data["ssh.private_keyfile"])
-    timeout     = "5m"
+    timeout     = "25m"
     host        = each.value.primary_ip
   }
   provisioner "file" {

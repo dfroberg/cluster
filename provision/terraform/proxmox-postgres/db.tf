@@ -11,6 +11,7 @@ resource "proxmox_vm_qemu" "postgres" {
   bios        = "ovmf"
   #qemu_os     = "l26"
   onboot      = true
+  oncreate    = false
   #balloon     = 0
   memory      = each.value.memory
   sockets     = each.value.sockets
@@ -92,17 +93,35 @@ resource "proxmox_vm_qemu" "postgres" {
   # Prevents recreate
   lifecycle {
     ignore_changes = [disk_gb, qemu_os, args, clone, hagroup, target_node, full_clone]
+    #prevent_destroy = true
   }
   timeouts {
     create = "10m"
     delete = "20m"
+  }
+  # Fix cloud-init cdrom and start the vm
+  provisioner "remote-exec" {
+    connection {
+      type     = "ssh"
+      user     = data.sops_file.secrets.data["proxmox.user"]
+      host     = data.sops_file.secrets.data["proxmox.pm_host"]
+      port     = 22
+      private_key = "${file("/home/dfroberg/.ssh/id_rsa")}"
+      agent = false
+      timeout = "5m"
+    }
+    inline = [
+      "sed -i 's/ide2/scsi1/g' /etc/pve/qemu-server/${each.value.id}.conf",
+      "qm start ${each.value.id}",
+      "sleep 120"
+    ]
   }
   # Additional service setup
   connection {
     user        = "${data.sops_file.global_secrets.data["ssh.username"]}"
     type        = "ssh"
     private_key = file(data.sops_file.global_secrets.data["ssh.private_keyfile"])
-    timeout     = "5m"
+    timeout     = "25m"
     host        = each.value.primary_ip
   }
 

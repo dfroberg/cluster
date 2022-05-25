@@ -1,13 +1,21 @@
 version: 1
 config:
+  # Primary nic
   - type: physical
     name: eth0
     mac_address: '${node_mac_address}'
     subnets:
         - type: static
           address: ${node_ip}
-          netmask: 255.255.255.0
           gateway: ${node_gateway}
+  # Storage nic with Jumbo frames
+  - type: physical
+    name: eth1
+    mac_address: '${storage_node_mac_address}'
+    mtu: 9000
+    subnets:
+        - type: static
+          address: ${storage_node_ip}
   - type: nameserver
     address:
       - ${node_dns}

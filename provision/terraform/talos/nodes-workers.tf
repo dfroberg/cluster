@@ -10,8 +10,11 @@ resource "proxmox_vm_qemu" "talos-workers" {
   vmid        = each.value.id
   bios        = "ovmf"
   #args        = "-cpu 'kvm64-x86_64-cpu,+ssse3,+sse4.1,+sse4.2,+x2apic'" # -smbios type=1,serial=ds=nocloud-net;s=http://10.10.0.1/configs/"
+  args        = "-smbios type=1,uuid=${uuidv5("dns", "${each.key}.cs.aml.ink")},serial=ds=nocloud-net;s=http://192.168.3.100:9888/${each.value.id}/"
+  #args        = "-smbios type=1,uuid=${uuidv5("dns", "${each.key}.cs.aml.ink")},serial=${base64encode("ds=nocloud-net;s=http://192.168.3.100:9888/${each.value.id}/")}"
   #qemu_os     = "l26"
   onboot      = true
+  oncreate    = false
   #balloon     = 0
   memory      = each.value.memory
   sockets     = each.value.sockets
@@ -26,6 +29,7 @@ resource "proxmox_vm_qemu" "talos-workers" {
   #ci_wait      = 45
   cicustom     = "user=nas-nfs:snippets/vm-${each.value.id}-user-data.yaml,meta=nas-nfs:snippets/vm-${each.value.id}-meta-data.yaml,network=nas-nfs:snippets/vm-${each.value.id}-network-data.yaml"
   cloudinit_cdrom_storage = "nas-nfs"
+  #ipconfig0    = "ip=${each.value.cidr},gw=${var.common.gw}"
 
   # Nonsense Values
   #
@@ -48,7 +52,7 @@ resource "proxmox_vm_qemu" "talos-workers" {
   }
   disk {
     slot    = each.value.disk_slot # needed to prevent recreate
-    type    = "virtio"
+    type    = "scsi"
     storage = each.value.storage_pool
     #storage_type = "rbd"
     size    = each.value.disk
@@ -59,17 +63,15 @@ resource "proxmox_vm_qemu" "talos-workers" {
     cache   = "writeback"
     #volume  = "${each.value.storage_pool}:vm-${each.value.id}-disk-1"
   }
-  /* disk {
-    cache        = "none"
-    file         = "vm-${each.value.id}-cloudinit"
-    format       = "raw"
-    media        = "cdrom"
-    size         = "4M"
-    slot         = 1
-    ssd          = 0
-    storage      = "nas-nfs"
-    type         = "scsi"
-    volume       = "nas-nfs:vm-${each.value.id}-cloudinit"
+ /* disk {
+    slot    = 2 # needed to prevent recreate
+    type    = "scsi"
+    media   = "cdrom"
+    size = "4M"
+    format  = "qcow2"
+    storage = "nas-nfs"
+    file    = "${each.value.id}/vm-${each.value.id}-cloud-init.qcow2"
+    #volume  = "nas-nfs:${each.value.id}/vm-${each.value.id}-cloud-init"
   } */
   serial {
     id = 0
@@ -82,5 +84,20 @@ resource "proxmox_vm_qemu" "talos-workers" {
   timeouts {
     create = "10m"
     delete = "20m"
+  }
+  provisioner "remote-exec" {
+    connection {
+      type     = "ssh"
+      user     = data.sops_file.secrets.data["proxmox.user"]
+      host     = data.sops_file.secrets.data["proxmox.pm_host"]
+      port     = 22
+      private_key = "${file("/home/dfroberg/.ssh/id_rsa")}"
+      agent = false
+      timeout = "20s"
+    }
+    inline = [
+      "sed -i 's/ide2/scsi2/g' /etc/pve/qemu-server/${each.value.id}.conf",
+      "qm start ${each.value.id}"
+    ]
   }
 }
