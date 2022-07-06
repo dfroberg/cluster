@@ -1,0 +1,86 @@
+kind: Secret
+SECRET_PRIVATE_DOMAIN: ENC[AES256_GCM,data:3/5Mxuow04vaUQ==,iv:8KJQPMHbEWWJDoxpScWvkJVMpmFieoCJzsl50PVqsKQ=,tag:A3oQeypDXpgk9ebuWa0LpA==,type:str]
+SECRET_NEXUS_USERNAME: ENC[AES256_GCM,data:8+rWypwRndw=,iv:m+O8KrNt3RePkJxbmvB3Ch/tmLq/GrniMECReMVUTBI=,tag:lYfNoglnZ0yFNJ+6X1zzRg==,type:str]
+SECRET_NEXUS_PASSWORD: ENC[AES256_GCM,data:njjA+nNi+/Wa,iv:suPQ+ueJp2y2cNK1xK6I0bma1kIabBxb86uy3o1/iP4=,tag:V47tRGUgBdRA3Bt+O5cdow==,type:str]
+SECRET_MINIO_ACCESS_KEY: ENC[AES256_GCM,data:QeJY8+zHmUlQ5dVjZIs=,iv:UzS6gzoHRyojztb1FkAdm/U+mA2zNBFP6OyltEL0jWA=,tag:2E8inlHKGIiihZBj4pr4Fg==,type:str]
+SECRET_MINIO_SECRET_KEY: ENC[AES256_GCM,data:2F9T5HJhuLjp6seSgvo=,iv:mRXEzQjsNA17v9TRVrwoycy1IhIFsZT9xMapKzu/wFc=,tag:VUfhzXwp7OnZFgcbmEvcog==,type:str]
+ansible_become_pass: ENC[AES256_GCM,data:4QB5nzc2XsKi,iv:/VueuVxwIc/oIDg5EZqn4LaJmjY7cUVPz2hZfXjapJQ=,tag:pzKh1Emr1kRV9ZebRV5fag==,type:str]
+ansible_become: ENC[AES256_GCM,data:KjRH,iv:LobR3vbyvUGqpsX9LZaR2pLqF2nbBRampNyIok4kYqU=,tag:4XVcYN6Of1x/wPwXSm9rQg==,type:str]
+esxi_username: ENC[AES256_GCM,data:3iDQgw==,iv:86Z0INzLim/BKUKhDilxlLsYTqbTjwuHyv9uLAIn3a4=,tag:Ar3D1uNvn93x7jECQEXfPQ==,type:str]
+esxi_password: ENC[AES256_GCM,data:GOL5ab4k9uHt,iv:U9Za2JPjcb9A0PXb5qbpvQ1zvkOji7noUR/bqSjbjI0=,tag:DWoY1mZwzsreSuTsIeq0Wg==,type:str]
+SECRET_BENJI_POSTGRES_PASSWORD: ENC[AES256_GCM,data:uTKmOrq6,iv:srQvhLk8/qmUBe333907G8qYGzsgKIeNVbfILX78WeA=,tag:8DrcD4Rpo/mKtvk7yk5k7Q==,type:str]
+SECRET_POSTGRES_HOST: ENC[AES256_GCM,data:2PZZWwCosB5IXora1A==,iv:qZjmkSpvCzzHkuN8WDh5Utkcipvuh7x+1VN+IxXp54g=,tag:4+9qq5O9NaXqrUDZmhPczQ==,type:str]
+SECRET_POSTGRES_HOSTPORT: ENC[AES256_GCM,data:Hdp/YA==,iv:pM1jlI3KCVSANVyVyz9Ci95r7jcjFRTstavawLUlbeo=,tag:VZP3BI9cEZwdLWx/iTR5tQ==,type:int]
+SECRET_POSTGRES_PASSWORD: ENC[AES256_GCM,data:GzFo0MVTrXQHrw==,iv:E8xCl+pt/kRvd4JWUaW6KeuvgIQJemUHaVB2ieP1O2k=,tag:yJPnXihnRT5DOcSShJkl3A==,type:str]
+k3s_registration_address: ENC[AES256_GCM,data:lsLL8TKQo3V27M5WhA==,iv:pjhIYlVomp6SOEMcGb8bXvJwJgpiE9RuTPY4evEXNH4=,tag:uAiBHXwJApcl5MgFm3rp1g==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2022-05-25T10:04:07Z"
+    mac: ENC[AES256_GCM,data:5uu/Z+p6n9u7zmgD1pUVgQx7oM+ma/dpxQEej7Uw62VPL4dp0faqtiTgUK4sW699y96c80CAHCQMqEcAvFgU9cMDxGgzFiiW8UMQWEFJFhw/1zWWBPaPFYdCf5cyBgmodCa0G0Ywrm5sIVCMbF90vIWsPyEnQJmgZcKIQzNh39o=,iv:ORMFmgsx5eYxG9PAP/61RFSw2ytk4ky0OfrA0ppNhV8=,tag:KWnZmOWAzbhRc3nUwGJtMA==,type:str]
+    pgp:
+        - created_at: "2022-05-25T09:52:42Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA8ad3a5U+CI3AQ/7B5EcXaiqSlQcg4OS6Gp98Rlm5knwUi/UBxkJU9eFjtlF
+            IiX4i/6Qqljtmv67Rvmy6KEcpqLIksWu5jRJsjU43HLg2S7bx9vpYRjUBNgzLc6T
+            o2EVhIeGDkZnsMTfyhgbFU3KFWgv0iOr44iFHnbemLzn52ocIlEUpNhj0VwqJIQV
+            6jU673b2Yh+kmL9zHrEbFdlzThtGpMiEMwdSXEVQVfKH/aQ3zlHZ8w2y72XUY68z
+            HILtS+oByO6a+5RfARDOPFSefhYte07OI+2GhCzC7qVZVclTru85nqLNcz8CzNan
+            bZGbhPnZUouP9KsvLnPvNxDWyarbbc6kpQ4TypklFO2uOSZ5I/XTqs9fmSxlTX9q
+            05YmgV8SwzSQ7l1gzfBucqClSuqwxARn2llCmHb/hJIJh7Qo/EU3cOGOpgvXu2sL
+            LKekr0uVIfdJ6wstx/rb22kY2a1ruUSZCzlmJyhus6tTkVm2hY/K382ALHsAlr8l
+            BLPJMcGlN85/Ocd1SoVf/OseIvZkOMur1LVyNk2zC9vyg7KlKsYWj4VgZ+A3RDqK
+            6mrkuQVwt/6Shphl6pVOc5Pi5qeih0/EqOa2sNw9BO5yCBKTes2CRd4fYe684J47
+            xLLQgc3c6fzDfM9deby2j4ykqi9W/kyvGwdRVOgObmBju/bWWinGg0Sw5f4kO5PS
+            XgEAJEctS/amVNCKeyBL2swivWkaTct+DjoNzd17sVgpkZCggheVif6BZeISK6YS
+            B0j5F8sdPoG51hs1IIErOzXEWIfs/fHrq81Vl9ujoOS5ROsHg2YtKUxhsktbdbU=
+            =qrre
+            -----END PGP MESSAGE-----
+          fp: 8EC7BCCD78652A13D89FC03208B84637AC99822F
+        - created_at: "2022-05-25T09:52:42Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA8+qV9ExWZjOAQ/+Lb+CI4E/ZjIf6rKLuURiTLJQmKfNX9/JXhg6yq0m3gSj
+            Vn7iakUKBgic4+k/zmgSI5yJA0CeDSNgiBCwRF6uCDTgiD+R1vx9qFdrWPcnnu2U
+            2IwQmGH5SaiL8SC7qB++R/vsk3Nv9OMjnMx4lnMpWHZQWomsYtURlVoMjdUn6Occ
+            SbAkGRVJimNtFgOI9Vpr9ncX9o0Io+mnhykDogMd87fieO+td7nH7jLazHZf8LAR
+            8DF9xG8oseH393BfhnU11ryD0pGj9WzJOs2Rqg/4U7uLWt6dh8DkVcqODpBF9Sud
+            9bP/FnO2pa3DtI2CXE7hyGbxGvDs95StPKco5vpZowRHIChTKInsHoKMnfRSReJ6
+            G1Fuk8ggk+qHqRglSIQgWrQ1nKFk0fQirdk7kr9PbFb2UeITII3XbuLQDAhqC1Jd
+            gZ5iAa7K267YBLaHGOSTo/SHPytAjRzfBQr26fH10M7yarJH7Dt44jxrNHTQFi1P
+            DvPX3CqPD6JROaCX8nhz8XbcxPM/vbcxmJ7Gc0dJrfJuImr9kjNjdmvhM4lp3JgT
+            RCi60/OMqUhEBJr2OiujyOTJsoCWO5V6Y+AEQLSFzPsviEHmcuDHq+VgT0FYht+h
+            KNzJWnY+qnmG0ChLEDh0lnRvBXG2NgO/ALJZS1xc5Pku9l+Q1pe5bBMiLd4EwXrS
+            XgE/fyT7xlhODjSBZIdRlkNCg8V1zEmcd/lL0sQWXoXtrxdN8FB1r4S3vsshXpcG
+            JcKvX+xjS7bEQkU/IXuMsbT6173Jz5TvMfFgec8fqV4RdDhTRfP+uaxyT8rOORQ=
+            =85LI
+            -----END PGP MESSAGE-----
+          fp: AB539BAC6BBBFC24F796606A0F64CF7965AA1A1D
+        - created_at: "2022-05-25T09:52:42Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA3AVZfU5pCkBARAApP+A0GQCVmbr9TB6wmOQiUzdmioRQW+HkMhinYBEwPMC
+            DAyaYXJ0A/d9bdGM2u7uK8fJLl4p0UqYdfcwvVNA1sqOfg60s7aAEnmNRk6htPYB
+            NGkXFKK3czXArdKeZD1w1ZqRxYygkOMlOayIE0/ksTV48b0oHdCee1f59YxQu8Wx
+            17RrCroFn14VvNYOLQMSFNYkqjdIK7epGILk3x+zPbTpCLK9wdyIVNGk2hXgJvsT
+            tSJYqL/O+/1BumO56qQyqrCmMOv7H48N+lI3cEu5TPQsSTjdEae6Uv4v0SyYPPaS
+            y71qXpodrFtUv9Bbksc+CrJd5YM8BCBL5f1r8Pab1UNQZfndmGv3HqALxDrmnxT7
+            EK4YNRWH+8aGDJdmd42l+tMTGEYe8YogBQiNWHhz0bwvWzRCvQ8vsDin27QoBfpb
+            QQP/w+BS51wodpuVXdSlLnYrbWsBESSc53lCe/S+m+W6ln4LZhmG/SZQ6eRcXCNa
+            tlQXjSYCAfaitSHoWrRYwgCBYkq6L9AsSrr6CVESlMos1nyDky4A0IexGPhzlr2N
+            KyHgAStl9zFyFTe+B65BYouFTpzgtjdClP1cp9NtapU/bgM7zYwuBAt7LYOlhxKt
+            7nZzm3xzK9u5ePMG7Tg8+6mGyUiGwrb6mXFMj0CugpI/KLOKuemvcs7JYJjQYdzS
+            XgGtrdTLQEVIPyvJt2oBpQKd/sb7d+WwOhXU9JOkeuisSS68Iq2blka7uisO7476
+            KHNAywEgOcteKYpngA4p3Udz63O+r6/eOQonAbWsZIjkrLcdyhS98/z8M20zKtw=
+            =OfXV
+            -----END PGP MESSAGE-----
+          fp: AF5C7A1A19BBAAF0179CA31F1C76136F274A3EC1
+    unencrypted_regex: ^(kind)$
+    version: 3.7.1

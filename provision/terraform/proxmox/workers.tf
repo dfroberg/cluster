@@ -46,13 +46,14 @@ resource "proxmox_vm_qemu" "kube-worker" {
   network {
     model    = "virtio"
     macaddr  = each.value.macaddr
-    bridge   = "vmbr30"
+    bridge   = "vmbr0"
+    tag      = 30
     firewall = false
     mtu      = 1500
     queues   = 0
     rate     = 0
   }
-  network {
+  /* network {
     model    = "virtio"
     macaddr  = each.value.ceph_macaddr
     bridge   = "vmbr25"
@@ -60,7 +61,7 @@ resource "proxmox_vm_qemu" "kube-worker" {
     mtu      = 9000
     queues   = 0
     rate     = 0
-  }
+  } */
   disk {
     slot    = each.value.disk_slot # needed to prevent recreate
     type    = "virtio"
