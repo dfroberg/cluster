@@ -38,9 +38,9 @@ provider "proxmox" {
 }
 ~~~
 
-# Peparing Talos cloudinit image for Proxmox
+## Peparing Talos cloudinit image for Proxmox
 
-### Install libguestfs-tools on Proxmox server.
+### Install libguestfs-tools on Proxmox server
 
 ~~~sh
 sudo apt install libguestfs-tools`
