@@ -374,7 +374,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: otel/opentelemetry-collector:0.58.0
+        image: otel/opentelemetry-collector:0.59.0
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
