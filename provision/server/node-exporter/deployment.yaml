@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: node-exporter
-          image: docker.io/prom/node-exporter:v1.4.0
+          image: docker.io/prom/node-exporter:v1.4.1
           args:
             - --path.procfs=/host/proc
             - --path.rootfs=/rootfs
