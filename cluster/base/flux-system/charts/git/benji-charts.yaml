@@ -8,7 +8,7 @@ spec:
   interval: 10m
   url: https://github.com/elemental-lf/benji
   ref:
-    tag: v0.15.0
+    tag: v0.17.0
   ignore: |
     # exclude all
     /*
