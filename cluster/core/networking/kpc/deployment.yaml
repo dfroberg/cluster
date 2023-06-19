@@ -19,7 +19,7 @@ spec:
       serviceAccountName: kubernetes-pfsense-controller
       containers:
         - name: kubernetes-pfsense-controller
-          image: docker.io/travisghansen/kubernetes-pfsense-controller:v0.5.8
+          image: docker.io/travisghansen/kubernetes-pfsense-controller:v0.5.14
           resources: 
             limits:
               cpu: 100m
