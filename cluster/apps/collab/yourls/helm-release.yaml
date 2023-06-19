@@ -34,7 +34,7 @@ spec:
     image:
       registry: docker.io
       repository: yourls
-      tag: 1.9.1-fpm-alpine
+      tag: 1.9.2-fpm-alpine
 
     yourls:
       site: ${SECRET_SHORT_DOMAIN}
