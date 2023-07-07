@@ -16,7 +16,7 @@ spec:
       name: postgres-restore-recipes
     spec:
       containers:
-      - image: postgres:14
+      - image: postgres:15
         name: postgres-backup
         imagePullPolicy: IfNotPresent
         args:
