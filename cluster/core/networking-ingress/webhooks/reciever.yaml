@@ -29,7 +29,7 @@ spec:
         - "flux-webhook.${SECRET_DOMAIN}"
       secretName: "${SECRET_DOMAIN//./-}-tls"
 ---
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
+apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Receiver
 metadata:
   name: flux-system-reciever
