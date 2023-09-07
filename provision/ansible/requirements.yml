@@ -1,7 +1,7 @@
 ---
 collections:
   - name: ansible.utils
-    version: 2.6.1
+    version: 2.11.0
   - name: ansible.posix
     version: 1.4.0
   - name: community.docker
