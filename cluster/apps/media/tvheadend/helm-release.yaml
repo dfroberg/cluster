@@ -116,7 +116,7 @@ spec:
             mountPath: /data
       fsfreeze:
         name: fsfreeze
-        image: ubuntu:focal-20210827
+        image: ubuntu:22.04
         imagePullPolicy: IfNotPresent
         command:
           - "/bin/bash"
