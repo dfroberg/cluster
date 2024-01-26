@@ -18,7 +18,7 @@ roles:
   - src: geerlingguy.docker
     version: 6.0.1
   - src: xanmanning.k3s
-    version: v3.3.0
+    version: v3.4.4
   - src: https://github.com/mrlesmithjr/ansible-netplan.git
     scm: git
     version: v0.3.0
