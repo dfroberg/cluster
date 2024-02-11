@@ -3,7 +3,7 @@ terraform {
 
   required_providers {
     hyperv = {
-      version = "1.0.3"
+      version = "1.2.1"
       source = "registry.terraform.io/taliesins/hyperv"
     }
     sops = {
