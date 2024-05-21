@@ -1,2 +1,2 @@
 docker==6.0.0
-ansible==6.4.0
+ansible==9.6.0
