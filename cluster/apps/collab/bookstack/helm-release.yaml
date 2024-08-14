@@ -85,7 +85,7 @@ spec:
       enabled: true
       image:
         repository: bitnami/mariadb
-        tag: "10.9.3"
+        tag: "10.11.9"
       architecture: standalone
 
       auth:
