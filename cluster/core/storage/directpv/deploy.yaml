@@ -1803,7 +1803,7 @@ spec:
       - args:
         - --csi-address=/csi/csi.sock
         - --health-port=9898
-        image: quay.io/minio/livenessprobe@sha256:928a80be4d363e0e438ff28dcdb00d8d674d3059c6149a8cda64ce6016a9a3f8
+        image: quay.io/minio/livenessprobe@sha256:6a780c853e6d2f081ec8ac484d813fd00874357eaae5db61062854fc06b32c96
         name: liveness-probe
         resources: {}
         terminationMessagePath: /var/log/driver-liveness-termination-log
