@@ -88,7 +88,7 @@ spec:
     additionalContainers:
       fsfreeze:
         name: fsfreeze
-        image: ubuntu:focal-20210827
+        image: ubuntu:24.04
         imagePullPolicy: IfNotPresent
         command:
           - "/bin/bash"
