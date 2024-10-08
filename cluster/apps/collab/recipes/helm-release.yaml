@@ -35,7 +35,7 @@ spec:
       - name: "regcred"
     image:
       repository: vabene1111/recipes
-      tag: 1.4.4
+      tag: 1.5.20
       pullPolicy: IfNotPresent
 
     env:
