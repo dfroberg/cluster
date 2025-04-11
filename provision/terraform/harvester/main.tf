@@ -3,7 +3,7 @@ terraform {
   required_providers {
     harvester = {
       source = "harvester/harvester"
-      version = "0.5.2"
+      version = "0.6.7"
     }
     sops = {
       source = "carlpett/sops"
