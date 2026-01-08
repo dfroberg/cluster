@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: mysql-operator
-      version: 0.6.2
+      version: 0.6.3
       sourceRef:
         kind: HelmRepository
         name: bitpoke-charts
