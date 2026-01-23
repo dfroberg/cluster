@@ -33,7 +33,7 @@ spec:
       - name: "regcred"
     image:
       repository: amruthpillai/reactive-resume
-      tag: v1
+      tag: v5
 
     nameOverride: rxresume
     # env:
