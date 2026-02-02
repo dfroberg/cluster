@@ -1,5 +1,5 @@
 # https://github.com/bitnami/charts/blob/master/bitnami/wordpress/values.yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: wordpress-operator
