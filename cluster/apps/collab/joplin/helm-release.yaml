@@ -36,7 +36,7 @@ spec:
     nameOverride: joplin
     image:
       repository: joplin/server
-      tag: 2.5.1
+      tag: 3.7.1
       pullPolicy: IfNotPresent
 
     controllerType: deployment
