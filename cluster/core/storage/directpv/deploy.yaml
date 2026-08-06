@@ -1710,7 +1710,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: spec.nodeName
-        image: quay.io/minio/csi-node-driver-registrar@sha256:843fb23b1a3fa1de986378b0b8c08c35f8e62499d386de8ec57801fd029afe6d
+        image: quay.io/minio/csi-node-driver-registrar@sha256:84f04220dbf3b08c6e11003a4bc3ff94fb31ec89e13c234ef1e4f2308788e3e6
         name: node-driver-registrar
         resources: {}
         terminationMessagePath: /var/log/driver-registrar-termination-log
