@@ -1907,7 +1907,7 @@ spec:
         env:
         - name: CSI_ENDPOINT
           value: unix:///csi/csi.sock
-        image: quay.io/minio/csi-provisioner@sha256:d4f94539565cf62aea57062b6a42c5156337003133fd3f51b93df9a789e69840
+        image: quay.io/minio/csi-provisioner@sha256:73a92d46d529d22e1b7d3da2515d62865784e1e42b1bde724503a83d079a9a4e
         name: csi-provisioner
         resources: {}
         securityContext:
