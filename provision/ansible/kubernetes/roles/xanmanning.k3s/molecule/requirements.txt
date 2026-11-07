@@ -1,6 +1,6 @@
 -r ../requirements.txt
 
 molecule[docker]==4.0.1
-docker==6.0.0
+docker==6.1.3
 yamllint==1.28.0
 ansible-lint==6.8.1
